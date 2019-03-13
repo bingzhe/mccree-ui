@@ -7,4 +7,5 @@ ReactDOM.render(
     <div>
         <Icon name="wechat" />
     </div>
-    , document.getElementById('root'));
+    , document.getElementById('root')
+);
