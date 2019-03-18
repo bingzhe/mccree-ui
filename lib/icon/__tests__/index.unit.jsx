@@ -4,8 +4,12 @@ import Icon from "../index";
 import { mount } from 'enzyme';
 
 describe('icon', () => {
-    it('render success', () => {
+    it('render alipay icon.', () => {
         const json = renderer.create(<Icon name="alipay" />).toJSON();
+        expect(json).toMatchSnapshot();
+    });
+    it('render wechat icon.', () => {
+        const json = renderer.create(<Icon name="wechat" />).toJSON();
         expect(json).toMatchSnapshot();
     });
     it('onClick', () => {

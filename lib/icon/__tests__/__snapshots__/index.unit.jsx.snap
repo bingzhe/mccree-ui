@@ -1,11 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`icon render success 1`] = `
+exports[`icon render alipay icon. 1`] = `
 <svg
   className="r-icon"
 >
   <use
     xlinkHref="#alipay"
+  />
+</svg>
+`;
+
+exports[`icon render wechat icon. 1`] = `
+<svg
+  className="r-icon"
+>
+  <use
+    xlinkHref="#wechat"
   />
 </svg>
 `;
