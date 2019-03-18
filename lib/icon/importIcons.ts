@@ -4,5 +4,4 @@ let importAll = (requireContext: RequireContext) => requireContext.keys().forEac
 try {
     importAll(require.context('../icons/', true, /\.svg$/));
 } catch (error) {
-    // console.log(error)
 }
