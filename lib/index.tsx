@@ -8,7 +8,9 @@ const fn: React.MouseEventHandler = (e) => {
 }
 ReactDOM.render(
     <div>
-        <Icon name="wechat" className="qq" onClick={fn} />
-    </div>
+        <Icon name="wechat" onClick={fn} />
+        <Icon name="alipay" onClick={fn} />
+        <Icon name="outline-delete-24px" onClick={fn} />
+    </ div>
     , document.getElementById('root')
 );
