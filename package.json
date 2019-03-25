@@ -1,9 +1,12 @@
 {
   "name": "react-ui-wheel",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index",
+  "files": [
+    "/dist/**/*"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
@@ -15,7 +18,7 @@
     "url": "git+https://github.com/bingzhe/React-UI-Wheel.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "bingzhe <ranzhouli@foxmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bingzhe/React-UI-Wheel/issues"
