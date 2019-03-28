@@ -1,10 +1,35 @@
-import React from "react";
-import ReactDOM from "react-dom";
 
-import Icon from "../lib/icon/index";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import IconExample from '../lib/icon/demo/icon.example';
+import ButtonExample from '../lib/button/demo/button.example';
 
-ReactDOM.render((
-    <div>
-        <Icon name="alipay" />
-    </div>
-), document.querySelector("#root"));
+ReactDOM.render(
+    <Router>
+        <div>
+            <header>
+                <div className="logo">
+                    React-UI-Wheel
+                </div>
+            </header>
+            <div>
+                <aside>
+                    <h2>组件</h2>
+                    <ul>
+                        <li>
+                            <Link to="/icon">Icon</Link>
+                        </li>
+                        <li>
+                            <Link to="/button">Button</Link>
+                        </li>
+                    </ul>
+                </aside>
+                <main>
+                    <Route path="/icon" component={IconExample} />
+                    <Route path="/button" component={ButtonExample} />
+                </main>
+            </div>
+        </div>
+    </Router>
+    , document.querySelector('#root'));
