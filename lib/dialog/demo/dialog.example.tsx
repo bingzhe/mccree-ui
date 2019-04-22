@@ -8,7 +8,9 @@ export default function () {
     return (
         <div>
             <button onClick={() => setX(!x)}>toggle</button>
-            <Dialog visible={x} />
+            <Dialog visible={x}>
+                <div>hi</div>
+            </Dialog>
         </div>
     );
 };
