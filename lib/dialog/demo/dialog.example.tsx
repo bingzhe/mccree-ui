@@ -1,10 +1,14 @@
 import * as React from "react";
+import { useState } from "react";
 import Dialog from "../dialog";
 
 export default function () {
-    return(
+    const [x, setX] = useState(false);
+
+    return (
         <div>
-            <Dialog/>
+            <button onClick={() => setX(!x)}>toggle</button>
+            <Dialog visible={x} />
         </div>
     );
 };
