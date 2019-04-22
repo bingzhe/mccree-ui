@@ -1,0 +1,9 @@
+[class^="r-"] {
+  box-sizing: border-box;
+  font-size: 14px;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
