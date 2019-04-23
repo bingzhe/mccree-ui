@@ -1,11 +1,25 @@
 import * as React from 'react';
+import "./style/index";
 
-function Button() {
+interface Props {
+    size?: "small" | "medium" | "large";
+    type?: "default" | "primary" | "danger";
+    disabled?: boolean;
+    className?: string;
+}
+
+const Button: React.FunctionComponent<Props> = (props) => {
+    const { className, children, ...restProps } = props;
+
     return (
-        <div>
-            按钮
-        </div>
+        <button
+            // className={className}
+            className="rui-button"
+            {...restProps}
+        >
+            {children}
+        </button>
     )
 }
 
-export default Button
+export default Button;
