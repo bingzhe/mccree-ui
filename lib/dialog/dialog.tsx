@@ -2,7 +2,7 @@ import * as React from "react";
 import "./dialog.scss";
 import { scopeClassMaker } from "../_util/classes";
 
-const scopeClass = scopeClassMaker('r-dialog');
+const scopeClass = scopeClassMaker('rui-dialog');
 const sc = scopeClass;
 
 interface Props {
