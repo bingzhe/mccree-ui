@@ -7,8 +7,9 @@ const sc = scopeClass;
 
 interface Props {
     visible: boolean;
-    buttons?: Array<React.ReactElement>;
+    buttons: Array<React.ReactElement>;
     onClose: React.MouseEventHandler;
+    onBackdropClick?: boolean;
 }
 
 const Dialog: React.FunctionComponent<Props> = (props) => {
@@ -16,11 +17,16 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
     const onClickClose: React.MouseEventHandler = (e) => {
         props.onClose(e);
     };
+    const onClickBackdrop: React.MouseEventHandler = (e) => {
+        if (props.onBackdropClick) {
+            props.onClose(e);
+        }
+    };
 
     return (
         props.visible ?
             <React.Fragment>
-                <div className={sc('mask')}></div>
+                <div className={sc('mask')} onClick={onClickBackdrop}></div>
                 <div className={sc()}>
                     <div className={sc('clsoe')} onClick={onClickClose}>X</div>
                     <header className={sc('header')}></header>
@@ -30,13 +36,21 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
                     <footer className={sc('footer')}>
                         {/* <button>ok</button>
                         <button>cancel</button> */}
-                        {props.buttons}
+                        {
+                            props.buttons.map((button, index) => {
+                                React.cloneElement(button, { key: index })
+                            })
+                        }
                     </footer>
                 </div>
             </React.Fragment>
             :
             null
     );
+};
+
+Dialog.defaultProps = {
+    onBackdropClick: true
 };
 
 export default Dialog;
