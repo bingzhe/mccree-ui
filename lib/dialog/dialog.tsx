@@ -1,14 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import "./dialog.scss";
-import { scopeClassMaker } from "../_util/classes";
+import './dialog.scss';
+import { scopeClassMaker } from '../_util/classes';
 
 const scopeClass = scopeClassMaker('rui-dialog');
 const sc = scopeClass;
 
 interface Props {
     visible: boolean;
-    buttons?: Array<React.ReactElement>;
+    buttons?: React.ReactElement[];
     onClose: React.MouseEventHandler;
     onBackdropClick?: boolean;
 }
@@ -39,7 +39,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
                 <button>cancel</button> */}
                     {
                         props.buttons && props.buttons.map((button, index) => {
-                            return React.cloneElement(button, { key: index })
+                            return React.cloneElement(button, { key: index });
                         })
                     }
                 </footer>
@@ -60,7 +60,7 @@ Dialog.defaultProps = {
     onBackdropClick: true
 };
 
-const modal = (content: React.ReactNode, buttons?: Array<React.ReactElement>, afterClose?: () => void): Function => {
+const modal = (content: React.ReactNode, buttons?: React.ReactElement[], afterClose?: () => void): Function => {
 
     const close = () => {
         ReactDOM.render(React.cloneElement(component, { visible: false }), div);
@@ -80,7 +80,7 @@ const modal = (content: React.ReactNode, buttons?: Array<React.ReactElement>, af
             {content}
         </Dialog>;
 
-    const div: HTMLDivElement = document.createElement("div");
+    const div: HTMLDivElement = document.createElement('div');
     document.body.append(div);
     ReactDOM.render(component, div);
 
@@ -88,7 +88,7 @@ const modal = (content: React.ReactNode, buttons?: Array<React.ReactElement>, af
 };
 
 const alert = (content: string) => {
-    const button = <button onClick={() => { close() }}>ok</button>
+    const button = <button onClick={() => { close() }}>ok</button>;
     const close = modal(content, [button]);
 };
 
@@ -101,7 +101,7 @@ const confirm = (content: string, yes?: () => void, no?: () => void) => {
     const handlerNoClick: React.MouseEventHandler = () => {
         close();
         no && no();
-    }
+    };
 
     const buttons = [
         <button onClick={handlerYesClick}>yes</button>,

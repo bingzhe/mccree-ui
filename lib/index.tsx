@@ -1,3 +1,3 @@
-export { default as Icon } from "./icon/index";
+export { default as Icon } from './icon/index';
 
-import "./index.scss";
+import './index.scss';

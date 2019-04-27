@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 import './importIcons';
 import './icon.scss';
-import classes from "../_util/classes";
+import classes from '../_util/classes';
 
 export interface IconProps extends React.SVGAttributes<SVGElement> {
     name: string;
@@ -17,6 +17,6 @@ const Icon: React.FunctionComponent<IconProps> = (props) => {
             <use xlinkHref={`#${name}`} />
         </svg>
     );
-}
+};
 
 export default Icon;

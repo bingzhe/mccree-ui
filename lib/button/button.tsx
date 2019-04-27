@@ -1,9 +1,9 @@
 import * as React from 'react';
-import "./style/index";
+import './style/index';
 
 interface Props {
-    size?: "small" | "medium" | "large";
-    type?: "default" | "primary" | "danger";
+    size?: 'small' | 'medium' | 'large';
+    type?: 'default' | 'primary' | 'danger';
     disabled?: boolean;
     className?: string;
 }
@@ -19,7 +19,7 @@ const Button: React.FunctionComponent<Props> = (props) => {
         >
             {children}
         </button>
-    )
-}
+    );
+};
 
 export default Button;

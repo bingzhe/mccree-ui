@@ -1,6 +1,6 @@
-import * as React from "react";
-import { useState } from "react";
-import Dialog, { alert, confirm, modal } from "../dialog";
+import React, { useState } from 'react';
+// import { useState } from 'react';
+import Dialog, { alert, confirm, modal } from '../dialog';
 
 export default function () {
     const [x, setX] = useState(false);
@@ -8,7 +8,7 @@ export default function () {
 
     const openModal = () => {
         const close = modal(<h1>你好 <button onClick={() => close()}>close</button></h1>);
-    }
+    };
 
     return (
         <div>
@@ -44,17 +44,17 @@ export default function () {
             </Dialog>
 
             <h1>demo3</h1>
-            <button onClick={() => { alert("1") }}>alert</button>
+            <button onClick={() => { alert('1') }}>alert</button>
             <button onClick={() => {
-                confirm("2", () => {
-                    console.log("你点击了yes");
+                confirm('2', () => {
+                    console.log('你点击了yes');
                 }, () => {
-                    console.log("你点击了no");
-                })
+                    console.log('你点击了no');
+                });
             }}>confirm</button>
 
             <h1>demo4</h1>
             <button onClick={openModal}>modal</button>
         </div>
     );
-};
+}
