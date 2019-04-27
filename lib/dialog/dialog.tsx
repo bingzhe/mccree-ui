@@ -60,61 +60,7 @@ Dialog.defaultProps = {
     onBackdropClick: true
 };
 
-const alert: (content: string) => void = (content) => {
-    const component =
-        <Dialog
-            visible={true}
-            onClose={() => {
-                ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-                ReactDOM.unmountComponentAtNode(div);
-                div.remove();
-            }}
-        >
-            {content}
-        </Dialog>;
-
-    const div: HTMLDivElement = document.createElement("div");
-    document.body.append(div);
-    ReactDOM.render(component, div);
-};
-
-const confirm = (content: string, yes?: () => void, no?: () => void) => {
-    const handlerYesClick: React.MouseEventHandler = () => {
-        ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-        yes && yes();
-    };
-
-    const handlerNoClick: React.MouseEventHandler = () => {
-        ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-        no && no();
-    }
-
-    const component: JSX.Element =
-        <Dialog
-            visible={true}
-            onClose={() => {
-                ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-                ReactDOM.unmountComponentAtNode(div);
-                div.remove();
-            }}
-            buttons={[
-                <button onClick={handlerYesClick}>yes</button>,
-                <button onClick={handlerNoClick}>no</button>
-            ]}
-        >
-            {content}
-        </Dialog >;
-
-    const div: HTMLDivElement = document.createElement("div");
-    document.body.append(div);
-    ReactDOM.render(component, div);
-};
-
-const modal = (content: React.ReactNode) => {
+const modal = (content: React.ReactNode, buttons?: Array<React.ReactElement>, afterClose?: () => void): Function => {
 
     const close = () => {
         ReactDOM.render(React.cloneElement(component, { visible: false }), div);
@@ -125,7 +71,11 @@ const modal = (content: React.ReactNode) => {
     const component: JSX.Element =
         <Dialog
             visible={true}
-            onClose={close}
+            onClose={() => {
+                close();
+                afterClose && afterClose();
+            }}
+            buttons={buttons}
         >
             {content}
         </Dialog>;
@@ -136,6 +86,32 @@ const modal = (content: React.ReactNode) => {
 
     return close;
 };
+
+const alert = (content: string) => {
+    const button = <button onClick={() => { close() }}>ok</button>
+    const close = modal(content, [button]);
+};
+
+const confirm = (content: string, yes?: () => void, no?: () => void) => {
+    const handlerYesClick: React.MouseEventHandler = () => {
+        close();
+        yes && yes();
+    };
+
+    const handlerNoClick: React.MouseEventHandler = () => {
+        close();
+        no && no();
+    }
+
+    const buttons = [
+        <button onClick={handlerYesClick}>yes</button>,
+        <button onClick={handlerNoClick}>no</button>
+    ];
+
+    const close = modal(content, buttons, no);
+};
+
+
 
 export { alert, confirm, modal };
 export default Dialog;
