@@ -1,9 +1,9 @@
-import * as React from 'react';
-import './style/index';
+import * as React from "react";
+import "./style/index";
 
 interface Props {
-    size?: 'small' | 'medium' | 'large';
-    type?: 'default' | 'primary' | 'danger';
+    size?: "small" | "medium" | "large";
+    type?: "default" | "primary" | "danger";
     disabled?: boolean;
     className?: string;
 }

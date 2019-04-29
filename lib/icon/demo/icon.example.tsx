@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Icon from '../index';
+import * as React from "react";
+import Icon from "../index";
 
 const IconExample: React.FunctionComponent = () => {
     return (

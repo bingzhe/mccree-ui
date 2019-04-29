@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import IconExample from '../lib/icon/demo/icon.example';
-import ButtonExample from '../lib/button/demo/button.example';
-import DialogExample from '../lib/dialog/demo/dialog.example';
+import React from "react";
+import ReactDOM from "react-dom";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+import IconExample from "../lib/icon/demo/icon.example";
+import ButtonExample from "../lib/button/demo/button.example";
+import DialogExample from "../lib/dialog/demo/dialog.example";
 
 ReactDOM.render(<Router>
     <div>
         <header>
             <div className="logo">
-                    React-UI-Wheel
+                React-UI-Wheel
             </div>
         </header>
         <div>
@@ -34,4 +34,4 @@ ReactDOM.render(<Router>
             </main>
         </div>
     </div>
-</Router>, document.querySelector('#root'));
+</Router>, document.querySelector("#root"));

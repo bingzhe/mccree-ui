@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-// import { useState } from 'react';
-import Dialog, { alert, confirm, modal } from '../dialog';
+import React from "react";
+import { useState } from "react";
+import Dialog, { alert, confirm, modal } from "../dialog";
 
 export default function () {
     const [x, setX] = useState(false);
@@ -44,12 +44,12 @@ export default function () {
             </Dialog>
 
             <h1>demo3</h1>
-            <button onClick={() => { alert('1') }}>alert</button>
+            <button onClick={() => { alert("1") }}>alert</button>
             <button onClick={() => {
-                confirm('2', () => {
-                    console.log('你点击了yes');
+                confirm("2", () => {
+                    console.log("你点击了yes");
                 }, () => {
-                    console.log('你点击了no');
+                    console.log("你点击了no");
                 });
             }}>confirm</button>
 

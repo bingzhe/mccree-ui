@@ -1,9 +1,9 @@
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import './dialog.scss';
-import { scopeClassMaker } from '../_util/classes';
+import * as React from "react";
+import ReactDOM from "react-dom";
+import "./dialog.scss";
+import { scopeClassMaker } from "../_util/classes";
 
-const scopeClass = scopeClassMaker('rui-dialog');
+const scopeClass = scopeClassMaker("rui-dialog");
 const sc = scopeClass;
 
 interface Props {
@@ -27,14 +27,14 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 
     const dialogEl = props.visible ?
         <React.Fragment>
-            <div className={sc('mask')} onClick={onClickBackdrop}></div>
+            <div className={sc("mask")} onClick={onClickBackdrop}></div>
             <div className={sc()}>
-                <div className={sc('clsoe')} onClick={onClickClose}>X</div>
-                <header className={sc('header')}></header>
-                <main className={sc('main')}>
+                <div className={sc("clsoe")} onClick={onClickClose}>X</div>
+                <header className={sc("header")}></header>
+                <main className={sc("main")}>
                     {props.children}
                 </main>
-                <footer className={sc('footer')}>
+                <footer className={sc("footer")}>
                     {/* <button>ok</button>
                 <button>cancel</button> */}
                     {
@@ -80,7 +80,7 @@ const modal = (content: React.ReactNode, buttons?: React.ReactElement[], afterCl
             {content}
         </Dialog>;
 
-    const div: HTMLDivElement = document.createElement('div');
+    const div: HTMLDivElement = document.createElement("div");
     document.body.append(div);
     ReactDOM.render(component, div);
 
