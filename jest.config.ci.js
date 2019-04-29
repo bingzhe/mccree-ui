@@ -1,9 +1,11 @@
-const base = require('./jest.config');
+/* eslint-disable @typescript-eslint/no-var-requires */
+const base = require("./jest.config");
 
-module.exports = Object.assign({}, base, {
+module.exports = {
+    ...base,
     reporters: ["jest-junit"],
     collectCoverage: true,
     collectCoverageFrom: ["lib/**/*.{ts,tsx}", "!**/node_modules/**"],
-    coverageDirectory: 'coverage',
-    coverageReporters: ['text', 'lcov'],
-})
+    coverageDirectory: "coverage",
+    coverageReporters: ["text", "lcov"],
+};

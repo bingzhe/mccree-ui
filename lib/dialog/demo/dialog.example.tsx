@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Dialog, { alert, confirm, modal } from "../dialog";
 
 export default function () {
