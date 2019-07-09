@@ -6,19 +6,35 @@ import { tuple } from "../_util/type";
 
 import styled, { css, ThemeProvider } from "styled-components";
 
-import { primary, colors, theme } from "../themes/base";
+import { theme } from "../themes/base";
 
-const basicStyle = (props: Props) => css`
-    background: ${props.type ? colors[props.type] : primary};
+const basicStyle = css<Props>`
+    background: ${props => props.theme.button.colors[props.type || "primary"]};
     color: #fff;
     will-change: box-shadow;
-    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+    box-shadow: ${props => props.theme.global.shadows[1]};
 `;
 
-const plainStyle = (props: Props) => css`
-    border: 1px solid ${props.type ? colors[props.type] : primary};
-    color: ${props.type ? colors[props.type] : primary};
+const plainStyle = css<Props>`
+    border: 1px solid ${props => props.theme.button.colors[props.type || "primary"]};
+    color: ${props => props.theme.button.colors[props.type || "primary"]};
 `;
+
+const disabledStyle = css<Props>`
+    opacity: .5;
+    cursor: default;
+    box-shadow: ${props => props.theme.global.shadows[0]};
+`
+
+const sizeStyle = (size: ButtonSize) => {
+    if (size === "large") {
+        return "padding: 8px 24px;";
+    }
+    if (size === "small") {
+        return "padding: 4px 8px;";
+    }
+    return "padding: 6px 16px;"
+};
 
 const StyleButton = styled.button<Props>`
     display: inline-block;
@@ -38,13 +54,17 @@ const StyleButton = styled.button<Props>`
     font-weight: 500;
     border-radius: 2px;
 
-    ${props => !props.plain && basicStyle(props)}
-    ${props => props.plain && plainStyle(props)}
+    ${props => !props.plain && basicStyle}
+    ${props => props.plain && plainStyle}
+
+    ${props => props.size && sizeStyle(props.size)}
+    ${props => props.disabled && disabledStyle}
 `;
 
-const ButtonTypes = tuple('primary', 'success', 'warning', 'danger');
+
+const ButtonTypes = tuple("primary", "success", "warning", "danger");
 export type ButtonType = (typeof ButtonTypes)[number];
-const ButtonSizes = tuple('large', 'medium', 'small');
+const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = (typeof ButtonSizes)[number];
 
 
@@ -68,8 +88,7 @@ const Button: React.FunctionComponent<Props> = (props) => {
                     className={className}
                     {...restProps}
                 >
-                    {/* <span>{children}</span> */}
-                    {children}
+                    <span>{children}</span>
                 </StyleButton>
             </ThemeProvider >
         </React.Fragment>
@@ -92,5 +111,6 @@ Button.propTypes = {
     icon: PropTypes.string,
     plain: PropTypes.bool,
     className: PropTypes.string
-}
+};
+
 export default Button;
