@@ -1,6 +1,6 @@
 // import { deepFreeze } from "../_util/object"
 // import { DefaultTheme } from 'styled-components'
-import shadows from "./shadows"
+import shadows from "./shadows";
 
 export const primaryColor = "#1F74FF";
 export const successColor = "#46C93A";

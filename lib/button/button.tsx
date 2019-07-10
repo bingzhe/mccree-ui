@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import "./style/index";
+// import "./style/index";
 
 import { tuple } from "../_util/type";
 
@@ -24,7 +24,7 @@ const disabledStyle = css<Props>`
     opacity: .5;
     cursor: default;
     box-shadow: ${props => props.theme.global.shadows[0]};
-`
+`;
 
 const sizeStyle = (size: ButtonSize) => {
     if (size === "large") {
@@ -33,7 +33,7 @@ const sizeStyle = (size: ButtonSize) => {
     if (size === "small") {
         return "padding: 4px 8px;";
     }
-    return "padding: 6px 16px;"
+    return "padding: 6px 16px;";
 };
 
 const StyleButton = styled.button<Props>`
