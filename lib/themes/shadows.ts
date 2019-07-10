@@ -7,11 +7,11 @@ function createShadow(...px: number[]) {
         `${px[0]}px ${px[1]}px ${px[2]}px ${px[3]}px rgba(0,0,0,${shadowKeyUmbraOpacity})`,
         `${px[4]}px ${px[5]}px ${px[6]}px ${px[7]}px rgba(0,0,0,${shadowKeyPenumbraOpacity})`,
         `${px[8]}px ${px[9]}px ${px[10]}px ${px[11]}px rgba(0,0,0,${shadowAmbientShadowOpacity})`,
-    ].join(',');
+    ].join(",");
 }
 
 const shadows: string[] = [
-    'none',
+    "none",
     createShadow(0, 1, 3, 0, 0, 1, 1, 0, 0, 2, 1, -1),
     createShadow(0, 1, 5, 0, 0, 2, 2, 0, 0, 3, 1, -2),
     createShadow(0, 1, 8, 0, 0, 3, 4, 0, 0, 3, 3, -2),
