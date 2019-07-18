@@ -64,11 +64,12 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "@types/react-transition-group": "^2.9.2",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^5.0.0",
-    "react-transition-group": "^4.0.0"
+    "react-transition-group": "^4.2.1"
   }
 }

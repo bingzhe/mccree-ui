@@ -1,9 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-// import Button from "./button";
-import styled from "styled-components";
+import Button from "./button";
 
-console.log(styled);
-
-console.log(React);
-console.log(ReactDOM);
+export default Button
