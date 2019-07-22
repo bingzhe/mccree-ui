@@ -6,6 +6,8 @@ import ButtonExample from "../lib/button/demo/button.example";
 import DialogExample from "../lib/dialog/demo/dialog.example";
 // import "../lib/button/index"
 
+import TextExample from "./test";
+
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -38,12 +40,16 @@ ReactDOM.render(
                             <li>
                                 <Link to="/dialog">Dialog</Link>
                             </li>
+                            <li>
+                                <Link to="/text">Text</Link>
+                            </li>
                         </ul>
                     </aside>
                     <main>
                         <Route path="/icon" component={IconExample} />
                         <Route path="/button" component={ButtonExample} />
                         <Route path="/dialog" component={DialogExample} />
+                        <Route path="/text" component={TextExample} />
                     </main>
                 </div>
             </div>

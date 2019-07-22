@@ -1,7 +1,6 @@
 import * as React from "react";
 import Button from "../button";
 import styled from "styled-components";
-import RippleWrapper from "../../ripple/RippleWrapper";
 
 const ButtonsWrapper = styled.div`
     button {
@@ -46,7 +45,6 @@ const ButtonExample: React.FunctionComponent = () => {
                 <Button type="primary" plain>default</Button>
                 <Button type="primary" plain size="small">small</Button>
             </ButtonsWrapper>
-            <RippleWrapper></RippleWrapper>
         </div>
     );
 };
