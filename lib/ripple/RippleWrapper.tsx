@@ -6,30 +6,24 @@ import Ripple from "./Ripple";
 
 
 const DURATION = 550;
-// width: 100%;
-// height: 100%;
-// left: 0;
-// top: 0;
-// pointer-events: none;
-// display: block;
-// overflow: hidden;
-// position: absolute;
-// z-index: 0;
-const StyleRippleWrapper = styled.span`
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
 
+// pointer-events: none;
+const StyleRippleWrapper = styled.span`
     position: absolute;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
+    display: inline-block;
+    overflow: hidden;
     z-index: 0;
 `;
 
 interface Props {
-    center: boolean;
+    className?: string;
+    center?: boolean;
+    color?: string;
+    children?: React.ReactNode;
     timeout?: {
         enter: number;
         exit: number;
@@ -38,12 +32,24 @@ interface Props {
 
 const RippleWrapper: React.FunctionComponent<Props> = (props) => {
 
-    const { children } = props;
+    const {
+        children,
+        center = false,
+        color = "currentColor",
+        timeout = {
+            enter: DURATION,
+            exit: DURATION,
+        }
+    } = props;
 
     const [nextKey, setNextKey] = React.useState(0);
     const [ripples, setRipples] = React.useState<React.ReactNode[]>([]);
 
     const container = React.createRef<HTMLSpanElement>();
+
+    let startTimeout: NodeJS.Timeout;
+    let startWrapper: (() => void) | null;
+    let ignoringMousedown = false;
 
     const handleMouseDown = (e: React.MouseEvent) => { start(e) };
     const handleMouseUp = (e: React.MouseEvent) => { stop(e) };
@@ -52,9 +58,20 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
     const handleTouchEnd = (e: React.TouchEvent) => { stop(e) };
     const handleTouchMove = (e: React.TouchEvent) => { stop(e) };
 
-    const start = (e: React.MouseEvent | React.TouchEvent) => {
+    React.useEffect(() => {
+        return () => {
+            clearTimeout(startTimeout);
+        };
+    });
 
-        const { center, timeout } = props;
+    const start = (e: React.MouseEvent | React.TouchEvent) => {
+        if (e.type === "mousedown" && ignoringMousedown) {
+            ignoringMousedown = false;
+            return;
+        }
+        if (e.type === "touchstart") {
+            ignoringMousedown = true;
+        }
 
         const element = container.current;
         const rect = element
@@ -70,8 +87,6 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
         let rippleX: number;
         let rippleY: number;
         let rippleSize: number;
-        let startTimeout;
-        let startWrapper;
 
         if (
             center ||
@@ -98,12 +113,17 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
         }
 
         if ("touches" in e) {
-            console.log("touches");
             startWrapper = () => {
-                createRipple({ rippleX, rippleY, rippleSize, timeout });
+                createRipple({ rippleX, rippleY, rippleSize, color, timeout });
             };
+
+            startTimeout = setTimeout(() => {
+                (startWrapper as () => void)();
+                startWrapper = null;
+            }, 80);
+
         } else {
-            createRipple({ rippleX, rippleY, rippleSize, timeout });
+            createRipple({ rippleX, rippleY, rippleSize, color, timeout });
         }
     };
 
@@ -111,26 +131,15 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
         rippleX: number;
         rippleY: number;
         rippleSize: number;
-        timeout?: {
+        color: string;
+        timeout: {
             enter: number;
             exit: number;
         };
     }
 
     const createRipple = (params: RippleParams) => {
-        const { rippleX, rippleY, rippleSize } = params;
-        let { timeout } = params;
-
-        if (!timeout) {
-            timeout = {
-                enter: DURATION,
-                exit: DURATION,
-            };
-        }
-        console.log(timeout);
-
-
-        console.log(ripples);
+        const { rippleX, rippleY, rippleSize, color, timeout } = params;
 
         setNextKey(nextKey + 1);
         setRipples([
@@ -141,30 +150,30 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
                 rippleX={rippleX}
                 rippleY={rippleY}
                 rippleSize={rippleSize}
+                color={color}
             >
             </Ripple>
         ]);
     };
 
     const stop = (e: React.MouseEvent | React.TouchEvent) => {
-        console.log("stop");
+        if (e.type === "touchend" && startWrapper) {
+            e.persist();
+            startWrapper();
+            startWrapper = null;
+            startTimeout = setTimeout(() => {
+                stop(e);
+            }, 0);
+            return;
+        }
+
+        startWrapper = null;
         if (ripples && ripples.length) {
             setRipples(ripples.splice(1));
         }
     };
 
-    React.useEffect(() => {
-        console.log("container", container.current);
-
-        return () => {
-            console.log(111);
-        };
-    });
-
-
-
     return (
-
         <React.Fragment>
             {children}
             <StyleRippleWrapper
@@ -189,10 +198,10 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
 };
 
 RippleWrapper.defaultProps = {
-    // timeout: {
-    //     enter: 500,
-    //     exit: 500,
-    // },
+    timeout: {
+        enter: DURATION,
+        exit: DURATION,
+    },
 };
 
 export default RippleWrapper;

@@ -37,8 +37,8 @@ const StyleRippleChildSpan = styled.span<RippleProps>`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: currentColor;
-
+    background-color: ${props => props.color};
+    
     ${props => props.leaving && rippleChildSpanStyle}
 `;
 
@@ -51,6 +51,7 @@ interface Props {
     rippleX: number;
     rippleY: number;
     rippleSize: number;
+    color: string;
     timeout: {
         enter: number;
         exit: number;
@@ -60,12 +61,12 @@ interface Props {
 const Ripple: React.FunctionComponent<Props> = (props) => {
 
     const {
-        classes,
-        className,
         rippleX,
         rippleY,
         rippleSize,
-        ...other
+        color,
+        timeout,
+        ...restProps
     } = props;
 
     const [visible, setVisible] = React.useState(false);
@@ -87,9 +88,9 @@ const Ripple: React.FunctionComponent<Props> = (props) => {
     };
 
     return (
-        <Transition onEnter={handleEnter} onExit={handleExit} {...other}>
+        <Transition onEnter={handleEnter} onExit={handleExit} timeout={timeout} {...restProps}>
             <StyleRippleSpan visible={visible} style={rippleStyles}>
-                <StyleRippleChildSpan leaving={leaving}></StyleRippleChildSpan>
+                <StyleRippleChildSpan leaving={leaving} color={color}></StyleRippleChildSpan>
             </StyleRippleSpan>
         </Transition>
     );
