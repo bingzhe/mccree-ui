@@ -2,7 +2,8 @@
 
 exports[`icon render alipay icon. 1`] = `
 <svg
-  className="r-icon"
+  className="sc-bdVaJa eihmac"
+  name="alipay"
 >
   <use
     xlinkHref="#alipay"
@@ -12,7 +13,8 @@ exports[`icon render alipay icon. 1`] = `
 
 exports[`icon render wechat icon. 1`] = `
 <svg
-  className="r-icon"
+  className="sc-bdVaJa eihmac"
+  name="wechat"
 >
   <use
     xlinkHref="#wechat"

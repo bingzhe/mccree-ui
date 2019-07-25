@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Link } from "react-router-dom";
 import IconExample from "../lib/icon/demo/icon.example";
 import ButtonExample from "../lib/button/demo/button.example";
 import DialogExample from "../lib/dialog/demo/dialog.example";
+import LayoutExample from "../lib/layout/demo/layout.example";
 // import "../lib/button/index"
 
 import TextExample from "./test";
@@ -41,6 +42,9 @@ ReactDOM.render(
                                 <Link to="/dialog">Dialog</Link>
                             </li>
                             <li>
+                                <Link to="/layout">Layout</Link>
+                            </li>
+                            <li>
                                 <Link to="/text">Text</Link>
                             </li>
                         </ul>
@@ -49,6 +53,7 @@ ReactDOM.render(
                         <Route path="/icon" component={IconExample} />
                         <Route path="/button" component={ButtonExample} />
                         <Route path="/dialog" component={DialogExample} />
+                        <Route path="/layout" component={LayoutExample} />
                         <Route path="/text" component={TextExample} />
                     </main>
                 </div>

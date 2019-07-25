@@ -33,6 +33,7 @@ interface Props {
 const RippleWrapper: React.FunctionComponent<Props> = (props) => {
 
     const {
+        className,
         children,
         center = false,
         color = "currentColor",
@@ -47,7 +48,7 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
 
     const container = React.createRef<HTMLSpanElement>();
 
-    let startTimeout: NodeJS.Timeout;
+    let startTimeout: number;
     let startWrapper: (() => void) | null;
     let ignoringMousedown = false;
 
@@ -117,7 +118,7 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
                 createRipple({ rippleX, rippleY, rippleSize, color, timeout });
             };
 
-            startTimeout = setTimeout(() => {
+            startTimeout = window.setTimeout(() => {
                 (startWrapper as () => void)();
                 startWrapper = null;
             }, 80);
@@ -161,7 +162,7 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
             e.persist();
             startWrapper();
             startWrapper = null;
-            startTimeout = setTimeout(() => {
+            startTimeout = window.setTimeout(() => {
                 stop(e);
             }, 0);
             return;
@@ -184,6 +185,7 @@ const RippleWrapper: React.FunctionComponent<Props> = (props) => {
                 onTouchEnd={handleTouchEnd}
                 onTouchMove={handleTouchMove}
                 ref={container}
+                className={className}
             >
                 <TransitionGroup
                     component={null}

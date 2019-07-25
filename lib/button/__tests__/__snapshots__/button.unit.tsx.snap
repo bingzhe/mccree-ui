@@ -2,6 +2,11 @@
 
 exports[`button 是个 div 1`] = `
 <button
-  className="rui-button"
-/>
+  className="sc-bdVaJa iNNPow"
+  disabled={false}
+  size="medium"
+  type="primary"
+>
+  <span />
+</button>
 `;
