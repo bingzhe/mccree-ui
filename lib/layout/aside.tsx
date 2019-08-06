@@ -1,17 +1,21 @@
 import * as React from "react";
+import styled from "styled-components";
 
-interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
+const StyleAside = styled.aside`
+    width: 200px;
+`;
 
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Props extends React.HtmlHTMLAttributes<HTMLElement> { }
 
-const aside: React.FunctionComponent<Props> = (props) => {
+const Aside: React.FunctionComponent<Props> = (props) => {
     const { className, children, ...restProps } = props;
 
     return (
-        <div className={className} {...restProps}>
+        <StyleAside className={className} {...restProps}>
             {children}
-        </div>
+        </StyleAside>
     );
 };
 
-export default aside;
+export default Aside;

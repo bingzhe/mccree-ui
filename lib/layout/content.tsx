@@ -1,17 +1,21 @@
 import * as React from "react";
+import styled from "styled-components";
 
-interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
+const StyleContent = styled.main`
+    flex: auto;
+`;
 
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Props extends React.HtmlHTMLAttributes<HTMLElement> { }
 
-const content: React.FunctionComponent<Props> = (props) => {
+const Content: React.FunctionComponent<Props> = (props) => {
     const { className, children, ...restProps } = props;
 
     return (
-        <div className={className} {...restProps}>
+        <StyleContent className={className} {...restProps}>
             {children}
-        </div>
+        </StyleContent>
     );
 };
 
-export default content;
+export default Content;

@@ -1,17 +1,24 @@
 import * as React from "react";
+import styled from "styled-components";
 
-interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
+const StyleFooter = styled.footer`
+    flex: 0 0 auto;
+    height: 64px;
+    line-height: 64px;
+    padding: 0 50px;
+`;
 
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Props extends React.HtmlHTMLAttributes<HTMLElement> { }
 
-const footer: React.FunctionComponent<Props> = (props) => {
+const Footer: React.FunctionComponent<Props> = (props) => {
     const { className, children, ...restProps } = props;
 
     return (
-        <div className={className} {...restProps}>
+        <StyleFooter className={className} {...restProps}>
             {children}
-        </div>
+        </StyleFooter>
     );
 };
 
-export default footer;
+export default Footer;
