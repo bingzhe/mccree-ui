@@ -1,8 +1,16 @@
 import * as React from "react";
 
-const content: React.FunctionComponent = () => {
+interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
+
+}
+
+const content: React.FunctionComponent<Props> = (props) => {
+    const { className, children, ...restProps } = props;
+
     return (
-        <div>content</div>
+        <div className={className} {...restProps}>
+            {children}
+        </div>
     );
 };
 
