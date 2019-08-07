@@ -3,9 +3,7 @@ import styled from "styled-components";
 
 const StyleHeader = styled.header`
     flex: 0 0 auto;
-    height: 64px;
-    line-height: 64px;
-    padding: 0 50px;
+    min-height: 64px;
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

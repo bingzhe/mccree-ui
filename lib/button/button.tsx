@@ -68,7 +68,7 @@ const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = (typeof ButtonSizes)[number];
 
 
-interface Props {
+interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
     type?: ButtonType;
     size?: ButtonSize;
     plain?: boolean;
