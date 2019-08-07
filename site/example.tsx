@@ -8,10 +8,28 @@ import LayoutExample from "../lib/layout/demo/layout.example";
 // import "../lib/button/index"
 
 import TextExample from "./test";
+import Layout from "../lib/layout/index";
 
 import { createGlobalStyle } from "styled-components";
+const { Aside, Header, Footer, Content } = Layout;
+
+import logo from "./logo.jpg";
 
 const GlobalStyle = createGlobalStyle`
+    * { 
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    *::before {
+        box-sizing: border-box;
+    }    
+    *::after {
+        box-sizing: border-box;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: normal;
+    }
     ul, li{
         list-style: none;
         margin: 0;
@@ -22,14 +40,15 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
     <Router>
         <React.Fragment>
-            <div>
-                <header>
+            <Layout>
+                <Header>
                     <div className="logo">
                         React-UI-Wheel
+                        <img src={logo} alt="" />
                     </div>
-                </header>
-                <div>
-                    <aside>
+                </Header>
+                <Layout>
+                    <Aside>
                         <h2>组件</h2>
                         <ul>
                             <li>
@@ -48,16 +67,19 @@ ReactDOM.render(
                                 <Link to="/text">Text</Link>
                             </li>
                         </ul>
-                    </aside>
-                    <main>
+                    </Aside>
+                    <Content>
                         <Route path="/icon" component={IconExample} />
                         <Route path="/button" component={ButtonExample} />
                         <Route path="/dialog" component={DialogExample} />
                         <Route path="/layout" component={LayoutExample} />
                         <Route path="/text" component={TextExample} />
-                    </main>
-                </div>
-            </div>
+                    </Content>
+                </Layout>
+                <Footer>
+                    footer
+                </Footer>
+            </Layout>
             <GlobalStyle />
         </React.Fragment>
     </Router>,

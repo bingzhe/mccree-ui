@@ -27,7 +27,8 @@
         // "types": ["react", "jest"]
     },
     "include": [
-        "lib/**/*"
+        "lib/**/*",
+        "site/**/*"
     ],
     "exclude": [
         "node_modules",

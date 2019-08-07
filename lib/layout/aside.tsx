@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyleAside = styled.aside`
     width: 200px;
+    flex: 0 0 200px;
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
