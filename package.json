@@ -29,11 +29,11 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@types/jest": "^24.0.11",
-    "@types/react": "^16.8.7",
+    "@types/react": "^16.8.25",
     "@types/react-dom": "^16.8.2",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-test-renderer": "^16.8.1",
-    "@types/styled-components": "4.1.8",
+    "@types/styled-components": "^4.1.18",
     "@types/webpack-env": "^1.13.9",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
@@ -68,9 +68,14 @@
   "dependencies": {
     "@types/react-transition-group": "^2.9.2",
     "clsx": "^1.0.4",
+    "lz-string": "^1.4.4",
+    "monaco-editor": "^0.17.1",
+    "monaco-editor-webpack-plugin": "^1.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-live": "^2.1.2",
+    "react-monaco-editor": "^0.28.0",
     "react-router-dom": "^5.0.0",
     "react-transition-group": "^4.2.1"
   }

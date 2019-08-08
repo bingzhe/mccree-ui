@@ -1,9 +1,11 @@
 import * as React from "react";
 
+import Code from "./Doc/Code";
+
 const textExample: React.FunctionComponent = () => {
     return (
         <div>
-            play
+            <Code code={""}></Code>
         </div>
     );
 };
