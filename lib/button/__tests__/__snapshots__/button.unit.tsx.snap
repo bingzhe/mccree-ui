@@ -2,10 +2,9 @@
 
 exports[`button 是个 div 1`] = `
 <button
-  className="sc-bdVaJa iNNPow"
+  className="sc-bdVaJa dOYsNp"
   disabled={false}
   size="medium"
-  type="primary"
 >
   <span />
 </button>
