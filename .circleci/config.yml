@@ -60,9 +60,15 @@ workflows:
       - build:
           requires:
             - test
+          filters:
+            branches:
+              only: /deploy/
       - test:
           requires:
             - prepare
+            filters:
+            branches:
+              only: /deploy|master/
       - publish:
           requires:
             - build
