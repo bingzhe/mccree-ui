@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist/lib"),
-        library: "FUI",
+        library: "RUI",
         libraryTarget: "umd",
     },
     module: {

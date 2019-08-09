@@ -14,6 +14,8 @@ import Layout from "../lib/layout/index";
 const { Aside, Header, Footer, Content } = Layout;
 
 import logo from "./logo.jpg";
+console.log(logo);
+
 import {
     GlobalStyle,
     StyleLogoWrapper,
