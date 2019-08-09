@@ -3,7 +3,7 @@ import * as React from "react";
 import Code from "./Doc/Code";
 
 const textExample: React.FunctionComponent = () => {
-    const code = "<Button>Button</Button>";
+    const code = "<Button>Button  test</Button>";
 
     return (
         <div>
