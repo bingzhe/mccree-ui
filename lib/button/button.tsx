@@ -8,19 +8,19 @@ import styled, { css, ThemeProvider } from "styled-components";
 
 import { theme } from "../themes/base";
 
-const basicStyle = css<Props>`
-    background: ${props => props.theme.button.colors[props.type || "primary"]};
+const basicStyle = css<StyleProps>`
+    background: ${props => props.theme.button.colors[props.styleType]};
     color: #fff;
     will-change: box-shadow;
     box-shadow: ${props => props.theme.global.shadows[1]};
 `;
 
-const plainStyle = css<Props>`
-    border: 1px solid ${props => props.theme.button.colors[props.type || "primary"]};
-    color: ${props => props.theme.button.colors[props.type || "primary"]};
+const plainStyle = css<StyleProps>`
+    border: 1px solid ${props => props.theme.button.colors[props.styleType]};
+    color: ${props => props.theme.button.colors[props.styleType]};
 `;
 
-const disabledStyle = css<Props>`
+const disabledStyle = css<StyleProps>`
     opacity: .5;
     cursor: default;
     box-shadow: ${props => props.theme.global.shadows[0]};
@@ -36,7 +36,7 @@ const sizeStyle = (size: ButtonSize) => {
     return "padding: 6px 16px;";
 };
 
-const StyleButton = styled.button<Props>`
+const StyleButton = styled.button<StyleProps>`
     display: inline-block;
     box-sizing: border-box;
     cursor: pointer;
@@ -67,6 +67,15 @@ export type ButtonType = (typeof ButtonTypes)[number];
 const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = (typeof ButtonSizes)[number];
 
+interface StyleProps {
+    styleType: ButtonType;
+    size: ButtonSize;
+    plain?: boolean;
+    disabled?: boolean;
+    // className?: string;
+    // icon?: string;
+    // loading?: boolean;
+}
 
 interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
     type?: ButtonType;
@@ -79,13 +88,22 @@ interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
 }
 
 const Button: React.FunctionComponent<Props> = (props) => {
-    const { className, loading, children, ...restProps } = props;
+    const {
+        className,
+        loading,
+        type = "primary",
+        size = "medium",
+        children,
+        ...restProps
+    } = props;
 
     return (
         <React.Fragment>
             <ThemeProvider theme={theme}>
                 <StyleButton
                     className={className}
+                    size={size}
+                    styleType={type}
                     {...restProps}
                 >
                     <span>{children}</span>

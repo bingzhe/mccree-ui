@@ -2,10 +2,11 @@
 // import { DefaultTheme } from 'styled-components'
 import shadows from "./shadows";
 
-export const primaryColor = "#1F74FF";
-export const successColor = "#46C93A";
-export const warningColor = "#FFBA00";
-export const dangerColor = "#FF4757";
+export const primaryColor = "#4285f4";
+export const successColor = "#34a853";
+// export const infoColor = "#3498db";
+export const warningColor = "#fbbc05";
+export const dangerColor = "#ea4335";
 
 // const fontSizeBase = "14px"
 

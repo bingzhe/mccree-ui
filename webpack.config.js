@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+// const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const APP_DIR = path.resolve(__dirname, "./lib");
+const SITE_DIR = path.resolve(__dirname, "./site");
 const MONACO_DIR = path.resolve(__dirname, "./node_modules/monaco-editor");
 
 module.exports = {
@@ -33,19 +34,14 @@ module.exports = {
             },
             {
                 test: /\.s([ac])ss$/,
-                include: APP_DIR,
+                include: [APP_DIR, SITE_DIR],
                 loader: ["style-loader", "css-loader", "sass-loader"]
             },
             {
                 test: /\.css$/,
                 include: MONACO_DIR,
-                use: ["style-loader", "css-loader"],
+                loader: ["style-loader", "css-loader"],
             }
         ]
     },
-    plugins: [
-        new MonacoWebpackPlugin({
-            languages: ["json", "javascript", "typescript"]
-        }),
-    ]
 };

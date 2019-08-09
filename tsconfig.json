@@ -24,7 +24,12 @@
         "esModuleInterop": true,
         // "allowSyntheticDefaultImports": true,
         "noUnusedLocals": true,
-        // "types": ["react", "jest"]
+        "types": [
+            "react",
+            "jest",
+            "node",
+            "webpack-env"
+        ]
     },
     "include": [
         "lib/**/*",
