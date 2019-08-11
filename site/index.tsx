@@ -6,6 +6,7 @@ import ButtonExample from "../lib/button/demo/button.example";
 import DialogExample from "../lib/dialog/demo/dialog.example";
 import LayoutExample from "../lib/layout/demo/layout.example";
 import RippleExample from "../lib/ripple/demo/ripple.example";
+import FormExample from "../lib/form/demo/form.example";
 
 // import "../lib/button/index"
 import PlayExample from "./play";
@@ -14,7 +15,6 @@ import Layout from "../lib/layout/index";
 const { Aside, Header, Footer, Content } = Layout;
 
 import logo from "./logo.jpg";
-console.log(logo);
 
 import {
     GlobalStyle,
@@ -52,6 +52,9 @@ ReactDOM.render(
                             <li>
                                 <NavLink to="/play">play</NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/form">form</NavLink>
+                            </li>
                         </StyleAsideUl>
                     </Aside>
                     <Content>
@@ -61,6 +64,7 @@ ReactDOM.render(
                         <Route path="/layout" component={LayoutExample} />
                         <Route path="/ripple" component={RippleExample} />
                         <Route path="/play" component={PlayExample} />
+                        <Route path="/form" component={FormExample} />
                     </Content>
                 </Layout>
                 <Footer>
