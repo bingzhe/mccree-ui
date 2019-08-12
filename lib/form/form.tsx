@@ -1,10 +1,50 @@
 import React from "react";
 
-const Form: React.FunctionComponent = () => {
+export interface FormValue {
+    [k: string]: any;
+}
+
+interface FormProps {
+    value: FormValue;
+    fields: Array<{
+        name: string; label: string; input: { type: string };
+    }>;
+    buttons: React.ReactFragment;
+    onSubmit: React.FormEventHandler;
+    onChange: (value: FormValue) => void;
+}
+
+const Form: React.FunctionComponent<FormProps> = (props) => {
+    const formData = props.value;
+
+    const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+        props.onSubmit(e);
+    };
+
+    const onChange = (name: string, e: React.ChangeEvent<HTMLInputElement>) => {
+        const newFormValue = {
+            ...formData,
+            [name]: e.target.value
+        };
+        props.onChange(newFormValue);
+    };
     return (
-        <div>
-            form
-        </div>
+        <form onSubmit={onSubmit}>
+            {props.fields.map(f => (
+                <div key={f.name}>
+                    {f.label}
+                    <input
+                        type={f.input.type}
+                        value={formData[f.name]}
+                        onChange={onChange.bind(null, f.name)}
+                    />
+                </div>
+            ))}
+            <div>
+                {props.buttons}
+            </div>
+        </form>
     );
 };
 
