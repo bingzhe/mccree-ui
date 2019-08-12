@@ -742,7 +742,7 @@ module.exports = {
          * 禁止对 undefined 重新赋值
          * @category Variables
          */
-        "no-undefined": "error",
+        "no-undefined": "off",
         /**
          * 定义过的变量必须使用
          * @category Variables
