@@ -7,6 +7,7 @@ import DialogExample from "../lib/dialog/demo/dialog.example";
 import LayoutExample from "../lib/layout/demo/layout.example";
 import RippleExample from "../lib/ripple/demo/ripple.example";
 import FormExample from "../lib/form/demo/form.example";
+import InputExample from "../lib/input/demo/input.example";
 
 // import "../lib/button/index"
 import PlayExample from "./play";
@@ -55,6 +56,9 @@ ReactDOM.render(
                             <li>
                                 <NavLink to="/form">form</NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/input">input</NavLink>
+                            </li>
                         </StyleAsideUl>
                     </Aside>
                     <Content>
@@ -65,6 +69,7 @@ ReactDOM.render(
                         <Route path="/ripple" component={RippleExample} />
                         <Route path="/play" component={PlayExample} />
                         <Route path="/form" component={FormExample} />
+                        <Route path="/input" component={InputExample} />
                     </Content>
                 </Layout>
                 <Footer>
