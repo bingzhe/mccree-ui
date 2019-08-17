@@ -1,83 +1,140 @@
 // eslint-disable-next-line no-unused-vars
 import { FormValue } from "./form";
+// import validators from "./validators";
+import validators from "../testAsyncValidator/validator";
 
-interface FormRule {
-    key: string;
+interface Rule {
+    type?: string;
+    field?: string;
     required?: boolean;
-    minLength?: number;
-    maxLength?: number;
+    min?: number;
+    max?: number;
+    pattern?: RegExp;
     regular?: RegExp;
+    message?: string;
     validator?: (rule: any, value: any, callback: any) => void;
 }
 
-type FormRules = Array<FormRule>
+// type Rules = Array<Rule>
+
+interface Rules {
+    [K: string]: Array<Rule>;
+}
 
 interface FormErrors {
     [K: string]: string[];
 }
 
-const isEmpty = (val: any) => {
-    return val === undefined || val === null || val === "";
-};
+// const isEmpty = (val: any) => {
+//     return val === undefined || val === null || val === "";
+// };
+interface SeriesItem {
+    rule: Rule;
+    value: any;
+    source: FormValue;
+    field: string;
+}
+interface Series {
+    [K: string]: Array<SeriesItem>;
+}
 
-const Validator = (formValue: FormValue, rules: FormRules): FormErrors => {
+
+const Validator = (source: FormValue, rules: Rules): FormErrors => {
     const errors: any = {};
 
-    const addError = (key: string, message: string | Promise<any>) => {
-        errors[key] = errors[key] || [];
-        errors[key].push(message);
-    };
+    // const addError = (key: string, message: string | Promise<any>) => {
+    //     errors[key] = errors[key] || [];
+    //     errors[key].push(message);
+    // };
 
-    rules.forEach(rule => {
-        const value = formValue[rule.key];
+    const series: Series = {};
+    const keys = Object.keys(rules);
+    let arr: Array<Rule>;
+    let value: string;
 
-        if (rule.required && isEmpty(value)) {
-            addError(rule.key, "必填");
-        }
-        if (rule.minLength && !isEmpty(value) && value.length < rule.minLength) {
-            addError(rule.key, "太短");
-        }
-        if (rule.maxLength && !isEmpty(value) && value.length > rule.maxLength) {
-            addError(rule.key, "太长");
-        }
-        if (rule.regular && !(rule.regular.test(value))) {
-            addError(rule.key, "格式不正确");
-        }
-        // if (rule.validator && typeof rule.validator === "function") {
-        //     const promise = new Promise((resolve, rejects) => {
-        //         console.log(rule.validator);
-        //         (rule.validator as () => void)(rule, value, ()=>{}));
-        //     });
-        //     addError(rule.key, promise);
-        // }
+
+    keys.forEach(z => {
+        arr = rules[z];
+        value = source[z];
+
+        arr.forEach(r => {
+            console.log(r);
+            let rule = r;
+            rule.field = z;
+            rule.type = getType(rule);
+            rule.validator = getValidationMethod(rule);
+
+            if (!rule.validator) {
+                return;
+            }
+
+            series[z] = series[z] || [];
+            series[z].push({
+                rule,
+                value,
+                source,
+                field: z,
+            });
+
+            // 直接返回string或者new Error('xxx')形式
+
+
+        });
     });
+
+    console.log("series", series);
+
+    // rules.forEach(rule => {
+    //     const value = formValue[rule.key];
+
+    //     if (rule.required && isEmpty(value)) {
+    //         addError(rule.key, "必填");
+    //     }
+    //     if (rule.minLength && !isEmpty(value) && value.length < rule.minLength) {
+    //         addError(rule.key, "太短");
+    //     }
+    //     if (rule.maxLength && !isEmpty(value) && value.length > rule.maxLength) {
+    //         addError(rule.key, "太长");
+    //     }
+    //     if (rule.regular && !(rule.regular.test(value))) {
+    //         addError(rule.key, "格式不正确");
+    //     }
+    // });
 
     return errors;
 };
 
+const getType = (rule: Rule) => {
+    if (rule.type === undefined && rule.pattern instanceof RegExp) {
+        rule.type = "pattern";
+    }
+
+    if (
+        typeof rule.validator !== "function" &&
+        (rule.type && !validators.hasOwnProperty(rule.type))
+    ) {
+        throw new Error("Unknown rule type");
+    }
+    return rule.type || "string";
+
+};
+
+const getValidationMethod = (rule: Rule) => {
+    if (typeof rule.validator === "function") {
+        return rule.validator;
+    }
+    const keys = Object.keys(rule);
+    const messageIndex = keys.indexOf("message");
+
+    if (messageIndex !== -1) {
+        keys.splice(messageIndex, 1);
+    }
+
+    if (keys.length === 1 && keys[0] === "required") {
+        return validators.required;
+    }
+
+    return validators[(rule.type) as string] || false;
+};
+
 export default Validator;
-
-
-// function validate(source, options = {}, callback) {
-//     const keys = options.keys || Object.keys(this.rules);
-//     const errors = [];
-//     for (let key of keys) {
-//         const rules = this.rules[key];
-//         let value = source[key];
-//         for (let rule of rules) {
-//             let tempError = rule.validator(rule, value, source, options);
-//             // 直接返回string或者new Error('xxx')形式
-//             if (typeof tempError === "string" || tempError.message) {
-//                 tempError = [tempError];
-//             }
-//             if (Array.isArray(tempError) && tempError.length) {
-//                 if (rule.message) {
-//                     tempError = [].concat(rule.message);
-//                 }
-//                 errors.push(...tempError);
-//                 break;
-//             }
-//         }
-//     }
-//     callback(errors.length ? errors : null);
-// }

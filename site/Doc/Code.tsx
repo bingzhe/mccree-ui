@@ -82,7 +82,6 @@ const Code: React.FunctionComponent<CodeProps> = (props) => {
     React.useEffect(() => {
         const encodedCode = window.localStorage.getItem(`code-${name}`);
 
-        console.log(11111);
         if (encodedCode) {
             const code = LZString.decompressFromEncodedURIComponent(encodedCode);
             setCode(code);
