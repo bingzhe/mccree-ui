@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 // eslint-disable-next-line no-unused-vars
 import Form, { FormValue } from "../form";
-import Validator from "../validator";
+import Validator from "../../validator/index";
 
 
 // FIXME:  异步测试代码
@@ -41,7 +41,7 @@ const FormExample: React.FunctionComponent = () => {
 
     const rules = {
         username: [
-            { required: true, min: 6, max: 8 }
+            { required: true, min: 6 }
         ],
         password: [
             { required: true },
