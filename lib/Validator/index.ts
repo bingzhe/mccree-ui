@@ -17,6 +17,7 @@ export interface Rule {
     pattern?: RegExp;
     regular?: RegExp;
     message?: string;
+    whitespace?: boolean;
     validator?: (rule: any, value: any, source: any, options: Options) => void;
 }
 
@@ -26,13 +27,6 @@ interface Rules {
 
 export interface Errors {
     [K: string]: string[];
-}
-
-interface SeriesItem {
-    rule: Rule;
-    value: any;
-    source: Source;
-    field: string;
 }
 
 export interface Options {

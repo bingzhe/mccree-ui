@@ -1,7 +1,7 @@
 
 const formatRegExp = /%[sdj%]/g;
 
-export const isNativeStringType = (type: string) => {
+export const isNativeStringType = (type?: string) => {
     return (
         type === "string" ||
         type === "url" ||
@@ -11,7 +11,7 @@ export const isNativeStringType = (type: string) => {
     );
 };
 
-export const isEmptyValue = (value: any, type: string) => {
+export const isEmptyValue = (value: any, type?: string) => {
     if (value === undefined || value === null) {
         return true;
     }
