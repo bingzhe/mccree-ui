@@ -25,6 +25,7 @@ function array(rule: Rule, value: any, source: any, options: any) {
             rules.range(rule, value, source, errors, options);
         }
     }
+    console.log(errors);
     return errors;
 }
 

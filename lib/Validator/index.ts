@@ -1,5 +1,5 @@
 import validators from "./validators/index";
-import { deepMerge, complementError } from "./util";
+import { deepMerge } from "./util";
 import { newMessages } from "./message";
 
 export interface Source {
@@ -18,16 +18,22 @@ export interface Rule {
     regular?: RegExp;
     message?: string;
     whitespace?: boolean;
-    validator?: (rule: any, value: any, source: any, options: Options) => void;
+    validator?: (rule: any, value: any, source: any, options: Options) => string[];
 }
 
 interface Rules {
     [K: string]: Array<Rule>;
 }
 
-export interface Errors {
-    [K: string]: string[];
+export interface Error {
+    message: string;
+    filed: string;
 }
+export type Errors = Array<Error>;
+
+// export interface Errors {
+//     [K: string]: string[];
+// }
 
 export interface Options {
     messages?: any;
@@ -38,6 +44,8 @@ const Validator = (source: Source, rules: Rules, o: Options = {}): Errors => {
 
     const errors: any = [];
     const options = o;
+
+    // console.log(source);
 
     if (options.messages) {
         const messages = newMessages();
@@ -69,12 +77,13 @@ const Validator = (source: Source, rules: Rules, o: Options = {}): Errors => {
             let tempError = rule.validator(rule, value, source, options);
 
             // 直接返回string或者new Error('xxx')形式
-            if (typeof tempError === "string" || tempError.message) {
-                tempError = [tempError];
-            }
+            // if (typeof tempError === "string" || tempError.message) {
+            //     tempError = [tempError];
+            // }
+            // console.log("tempError", tempError);
             if (Array.isArray(tempError) && tempError.length) {
                 if (rule.message) {
-                    tempError = [].concat(rule.message);
+                    tempError = [rule.message];
                 }
                 // 将字符串转化一下成对象形式
                 tempError = tempError.map(complementError(rule));
@@ -83,13 +92,27 @@ const Validator = (source: Source, rules: Rules, o: Options = {}): Errors => {
                 return;
             }
 
-            console.log(tempError);
         });
     });
 
-    console.log("errors", errors);
+    // console.log("errors", errors);
     return errors;
 };
+
+
+export const complementError = (rule: Rule) => {
+    return (oe: any) => {
+        if (oe && oe.message) {
+            oe.field = oe.field || rule.field;
+            return oe;
+        }
+        return {
+            message: typeof oe === "function" ? oe() : oe,
+            field: oe.field || rule.field
+        };
+    };
+};
+
 
 const getType = (rule: Rule) => {
     if (rule.type === undefined && rule.pattern instanceof RegExp) {
@@ -112,7 +135,7 @@ const getValidationMethod = (rule: Rule) => {
     }
     const keys = Object.keys(rule);
 
-    console.log("keys", keys);
+    // console.log("keys", keys);
     const messageIndex = keys.indexOf("message");
 
     if (messageIndex !== -1) {
@@ -121,13 +144,11 @@ const getValidationMethod = (rule: Rule) => {
 
 
     if (keys.length === 1 && keys[0] === "required") {
-
-        console.log(11111111111);
-        console.log(validators);
         return validators.required;
     }
 
-    return validators[(rule.type) as string] || false;
+    type ValidatorsType = "string" | "method" | "number" | "boolean" | "regexp" | "integer" | "float" | "array" | "object" | "enum" | "pattern" | "date" | "url" | "hex" | "email" | "required"
+    return validators[getType(rule) as ValidatorsType] || false;
 };
 
 export default Validator;

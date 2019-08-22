@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Code from "./Doc/Code";
 
-import schema from "../lib/testAsyncValidator/index.js";
+// import schema from "../lib/testAsyncValidator/index.js";
 
 const textExample: React.FunctionComponent = () => {
     const code = "<Button>Button  7777777</Button>";
@@ -11,7 +11,8 @@ const textExample: React.FunctionComponent = () => {
     //     name: {
     //         type: "string",
     //         required: true,
-    //         validator: (rule, value) => value === "muji",
+    //         // validator: (rule, value) => value === "muj1223i1",
+    //         min: 7,
     //     },
     //     password: {
     //         type: "number",
@@ -20,7 +21,7 @@ const textExample: React.FunctionComponent = () => {
     //     email: [
     //         {
     //             type: "string",
-    //             // required: true,
+    //             required: true,
     //             //  pattern: schema.pattern.email
     //         },
     //         {
@@ -37,7 +38,7 @@ const textExample: React.FunctionComponent = () => {
 
     // const testFunction = () => {
     //     validator.validate(
-    //         { name: "muji", email: "123" },
+    //         { name: "", email: "" }, {},
     //         (errors, fields) => {
     //             if (errors) {
     //                 // validation failed, errors is an array of all errors

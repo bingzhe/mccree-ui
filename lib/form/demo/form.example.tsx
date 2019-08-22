@@ -41,20 +41,23 @@ const FormExample: React.FunctionComponent = () => {
 
     const rules = {
         username: [
-            { required: true, min: 6 }
+            { required: true, min: 6, type: "string" }
         ],
-        password: [
-            { required: true },
-            { min: 6 }
+        // password: [
+        //     { required: true },
+        //     { min: 6 }
+        // ],
+        v: [
+            { required: true, message: "no", }
         ]
     };
 
 
 
     const onSubmit = () => {
-        const errors = Validator(formData, rules);
+        const errors = Validator({ v: [], username: "" }, rules);
         setErrors(errors);
-        // console.log("errops", errors);
+        // console.log("formerrors", errors);
     };
 
     return (

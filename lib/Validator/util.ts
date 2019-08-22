@@ -24,10 +24,10 @@ export const isEmptyValue = (value: any, type?: string) => {
     return false;
 };
 
-export const convertFieldsError = (errors) => {
+export const convertFieldsError = (errors: any) => {
     if (!errors || !errors.length) return null;
-    const fields = {};
-    errors.forEach(error => {
+    const fields: any = {};
+    errors.forEach((error: any) => {
         const field = error.field;
         fields[field] = fields[field] || [];
         fields[field].push(error);
@@ -95,17 +95,4 @@ export const deepMerge = (target: any, source: any) => {
         }
     }
     return target;
-};
-
-export const complementError = (rule) => {
-    return oe => {
-        if (oe && oe.message) {
-            oe.field = oe.field || rule.fullField;
-            return oe;
-        }
-        return {
-            message: typeof oe === "function" ? oe() : oe,
-            field: oe.field || rule.fullField,
-        };
-    };
 };
