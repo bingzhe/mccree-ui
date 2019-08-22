@@ -14,7 +14,7 @@ export interface Rule {
     max?: number;
     len?: number;
     enum?: Array<any>;
-    pattern?: RegExp;
+    pattern?: RegExp | string;
     regular?: RegExp;
     message?: string;
     whitespace?: boolean;
@@ -22,7 +22,7 @@ export interface Rule {
 }
 
 interface Rules {
-    [K: string]: Array<Rule>;
+    [K: string]: Array<Rule> | Rule;
 }
 
 export interface Error {
@@ -50,6 +50,7 @@ const Validator = (source: Source, rules: Rules, o: Options = {}): Errors => {
     if (options.messages) {
         const messages = newMessages();
         deepMerge(messages, options.messages);
+
         options.messages = messages;
     } else {
         options.messages = newMessages();
@@ -61,7 +62,13 @@ const Validator = (source: Source, rules: Rules, o: Options = {}): Errors => {
 
 
     keys.forEach(z => {
-        arr = rules[z];
+        const rulesItem = rules[z];
+
+        if (!Array.isArray(rulesItem)) {
+            arr = [rulesItem as Rule];
+        } else {
+            arr = rulesItem;
+        }
         value = source[z];
 
         arr.forEach(r => {

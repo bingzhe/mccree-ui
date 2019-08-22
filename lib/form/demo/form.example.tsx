@@ -55,7 +55,17 @@ const FormExample: React.FunctionComponent = () => {
 
 
     const onSubmit = () => {
-        const errors = Validator({ v: [], username: "" }, rules);
+        const errors = Validator(
+            { v: [], username: "" },
+            rules,
+            {
+                messages: {
+                    required(f: string) {
+                        return `${f} required!`;
+                    },
+                }
+            }
+        );
         setErrors(errors);
         // console.log("formerrors", errors);
     };

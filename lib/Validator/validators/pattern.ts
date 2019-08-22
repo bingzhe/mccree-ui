@@ -16,6 +16,7 @@ import { Rule } from "../index";
  *  @param options.messages The validation messages.
  */
 function pattern(rule: Rule, value: any, source: any, options: any) {
+    console.log(123123123131);
     const errors: string[] = [];
     const validate = rule.required || (!rule.required && source.hasOwnProperty(rule.field));
     if (validate) {
@@ -27,6 +28,7 @@ function pattern(rule: Rule, value: any, source: any, options: any) {
             rules.pattern(rule, value, source, errors, options);
         }
     }
+
     return errors;
 }
 
