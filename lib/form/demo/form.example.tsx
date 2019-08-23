@@ -31,14 +31,6 @@ const FormExample: React.FunctionComponent = () => {
 
     const [errors, setErrors] = useState({});
 
-    // const rules = [
-    //     { key: "username", required: true },
-    //     { key: "username", minLength: 6, maxLength: 8 },
-    //     { key: "username", regular: /^[a-zA-Z0-9]+$/ },
-    //     { key: "username", validator: checkUserName },
-    //     { key: "password", required: true }
-    // ];
-
     const rules = {
         username: [
             { required: true, min: 6, type: "string" }
@@ -67,7 +59,6 @@ const FormExample: React.FunctionComponent = () => {
             }
         );
         setErrors(errors);
-        // console.log("formerrors", errors);
     };
 
     return (
