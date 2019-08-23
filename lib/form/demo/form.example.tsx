@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-// eslint-disable-next-line no-unused-vars
 import Form, { FormValue } from "../form";
 import Validator from "../../validator/index";
 

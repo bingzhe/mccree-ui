@@ -1,5 +1,4 @@
 import * as util from "../util";
-// eslint-disable-next-line no-unused-vars
 import { Rule } from "../index";
 /**
  *  Rule for validating a regular expression pattern.

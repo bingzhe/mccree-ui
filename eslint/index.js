@@ -748,7 +748,7 @@ module.exports = {
          * @category Variables
          */
         "no-unused-vars": [
-            "error",
+            "off",
             {
                 vars: "all",
                 args: "none",

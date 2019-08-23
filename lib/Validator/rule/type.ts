@@ -1,7 +1,6 @@
 import * as util from "../util";
 import required from "./required";
 
-// eslint-disable-next-line no-unused-vars
 import { Rule } from "../index";
 
 /* eslint max-len:0 */

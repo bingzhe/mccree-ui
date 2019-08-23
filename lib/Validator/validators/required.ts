@@ -1,5 +1,4 @@
 import rules from "../rule/index";
-// eslint-disable-next-line no-unused-vars
 import { Rule } from "../index";
 
 const required = (rule: Rule, value: any, source: any, options: any) => {

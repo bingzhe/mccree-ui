@@ -1,7 +1,6 @@
 import * as React from "react";
 import { LiveError, LiveProvider, LivePreview } from "react-live";
 import styled, { css } from "styled-components";
-// eslint-disable-next-line no-unused-vars
 import MonacoEditor, { EditorDidMount, ChangeHandler } from "react-monaco-editor";
 import LZString from "lz-string";
 

@@ -1,6 +1,5 @@
 import rules from "../rule/";
 import { isEmptyValue } from "../util";
-// eslint-disable-next-line no-unused-vars
 import { Rule } from "../index";
 
 function type(rule: Rule, value: any, source: any, options: any) {

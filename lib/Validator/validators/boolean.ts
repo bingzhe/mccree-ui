@@ -1,6 +1,5 @@
 import { isEmptyValue } from "../util";
 import rules from "../rule/";
-// eslint-disable-next-line no-unused-vars
 import { Rule } from "../index";
 
 /**

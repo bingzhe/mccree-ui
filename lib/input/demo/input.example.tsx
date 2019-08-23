@@ -3,7 +3,7 @@ import Input from "../index";
 
 const InputExample: React.FunctionComponent = () => {
 
-    const [value, setValue] = React.useState("1adfa");
+    const [value, setValue] = React.useState("");
 
     const handleChange = (v: string) => {
         setValue(v);
