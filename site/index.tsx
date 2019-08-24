@@ -9,6 +9,8 @@ import RippleExample from "../lib/ripple/demo/ripple.example";
 import FormExample from "../lib/form/demo/form.example";
 import InputExample from "../lib/input/demo/input.example";
 
+import { ThemeProvider } from "../lib/index";
+
 // import "../lib/button/index"
 import PlayExample from "./play";
 
@@ -23,59 +25,63 @@ import {
     StyleAsideUl
 } from "./StyleSite";
 
+const theme = {};
+
 ReactDOM.render(
     <Router>
         <React.Fragment>
-            <Layout>
-                <Header>
-                    <StyleLogoWrapper>
-                        <img src={logo} />
-                    </StyleLogoWrapper>
-                </Header>
+            <ThemeProvider theme={theme}>
                 <Layout>
-                    <Aside>
-                        <StyleAsideUl>
-                            <li>
-                                <NavLink to="/icon">Icon</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/button">Button</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dialog">Dialog</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/layout">Layout</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/ripple">ripple</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/play">play</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/form">form</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/input">input</NavLink>
-                            </li>
-                        </StyleAsideUl>
-                    </Aside>
-                    <Content>
-                        <Route path="/icon" component={IconExample} />
-                        <Route path="/button" component={ButtonExample} />
-                        <Route path="/dialog" component={DialogExample} />
-                        <Route path="/layout" component={LayoutExample} />
-                        <Route path="/ripple" component={RippleExample} />
-                        <Route path="/play" component={PlayExample} />
-                        <Route path="/form" component={FormExample} />
-                        <Route path="/input" component={InputExample} />
-                    </Content>
+                    <Header>
+                        <StyleLogoWrapper>
+                            <img src={logo} />
+                        </StyleLogoWrapper>
+                    </Header>
+                    <Layout>
+                        <Aside>
+                            <StyleAsideUl>
+                                <li>
+                                    <NavLink to="/icon">Icon</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/button">Button</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dialog">Dialog</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/layout">Layout</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/ripple">ripple</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/play">play</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/form">form</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/input">input</NavLink>
+                                </li>
+                            </StyleAsideUl>
+                        </Aside>
+                        <Content>
+                            <Route path="/icon" component={IconExample} />
+                            <Route path="/button" component={ButtonExample} />
+                            <Route path="/dialog" component={DialogExample} />
+                            <Route path="/layout" component={LayoutExample} />
+                            <Route path="/ripple" component={RippleExample} />
+                            <Route path="/play" component={PlayExample} />
+                            <Route path="/form" component={FormExample} />
+                            <Route path="/input" component={InputExample} />
+                        </Content>
+                    </Layout>
+                    <Footer>
+                        footer
+                    </Footer>
                 </Layout>
-                <Footer>
-                    footer
-                </Footer>
-            </Layout>
+            </ThemeProvider>
             <GlobalStyle />
         </React.Fragment>
     </Router>,

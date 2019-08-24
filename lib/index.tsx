@@ -3,4 +3,6 @@ export { default as Button } from "./button/index";
 export { default as Layout } from "./layout/index";
 export { default as Input } from "./input/index";
 
+export { ThemeProvider } from "./ThemeProvider";
+
 import "./index.scss";

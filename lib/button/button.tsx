@@ -4,27 +4,28 @@ import * as PropTypes from "prop-types";
 
 import { tuple } from "../_util/type";
 
-import styled, { css, ThemeProvider } from "styled-components";
+import styled, { css } from "styled-components";
 
-import { theme } from "../themes/base";
+// import { theme } from "../themes/base";
 
+// background: ${props => props.theme.button.colors[props.styleType]};
 const basicStyle = css<StyleProps>`
-    background: ${props => props.theme.button.colors[props.styleType]};
+    background: ${props => props.theme.colors.primary.main}
     color: #fff;
     will-change: box-shadow;
-    box-shadow: ${props => props.theme.global.shadows[1]};
-`;
+    `;
+// box-shadow: ${props => props.theme.global.shadows[1]};
 
+// border: 1px solid ${props => props.theme.button.colors[props.styleType]};
+// color: ${props => props.theme.button.colors[props.styleType]};
 const plainStyle = css<StyleProps>`
-    border: 1px solid ${props => props.theme.button.colors[props.styleType]};
-    color: ${props => props.theme.button.colors[props.styleType]};
 `;
 
 const disabledStyle = css<StyleProps>`
     opacity: .5;
     cursor: default;
-    box-shadow: ${props => props.theme.global.shadows[0]};
-`;
+    `;
+// box-shadow: ${props => props.theme.global.shadows[0]};
 
 const sizeStyle = (size: ButtonSize) => {
     if (size === "large") {
@@ -99,16 +100,16 @@ const Button: React.FunctionComponent<Props> = (props) => {
 
     return (
         <React.Fragment>
-            <ThemeProvider theme={theme}>
-                <StyleButton
-                    className={className}
-                    size={size}
-                    styleType={type}
-                    {...restProps}
-                >
-                    <span>{children}</span>
-                </StyleButton>
-            </ThemeProvider >
+            {/* <ThemeProvider theme={theme}> */}
+            <StyleButton
+                className={className}
+                size={size}
+                styleType={type}
+                {...restProps}
+            >
+                <span>{children}</span>
+            </StyleButton>
+            {/* </ThemeProvider > */}
         </React.Fragment>
 
     );
