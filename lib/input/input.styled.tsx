@@ -14,8 +14,7 @@ const base = css`
     border-radius: 2px;
     border: 1px solid;
     border-color: ${th("colors.grey.main")}
-    `;
-    // border-color: ${th.color("grey.main")};
+`;
 
 export const StyledInput = styled.input`
     ${base}
