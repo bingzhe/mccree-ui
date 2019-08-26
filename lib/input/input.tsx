@@ -43,6 +43,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props: InputProps,
                 cleared={cleared}
                 clearedHeight={clearedHeight}
                 onChange={handleChange}
+                disabled={disabled}
+                placeholder={placeholder}
                 {...rest}
             />
             {!!value && cleared && (

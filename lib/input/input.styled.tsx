@@ -20,6 +20,7 @@ const base = css`
     border: 1px solid;
     border-color: ${th("colors.grey.main")}
     transition: ${th("transitions.input")};
+    ${th("sizes.medium.input")};
     &:hover{
         border-color:${th("colors.grey.dark1")};
     }
@@ -29,8 +30,8 @@ const base = css`
     &:disabled{
         color: ${th("colors.grey.dark2")};
         background-color: ${th("colors.grey.light1")}
-        cursor: not-allowed;
         pointer-events:none;
+        cursor: not-allowed;
     }
 `;
 

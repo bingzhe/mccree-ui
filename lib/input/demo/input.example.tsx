@@ -25,6 +25,16 @@ const InputExample: React.FunctionComponent = () => {
             <div>
                 <Input value={value} onChange={handleChange} cleared={true}></Input>
             </div>
+
+            <h1>input demo4</h1>
+            <div>
+                <Input value={value} onChange={handleChange} placeholder="text input"></Input>
+            </div>
+
+            <h1>input demo5</h1>
+            <div>
+                <Input value={value} onChange={handleChange} disabled placeholder="text input"></Input>
+            </div>
         </div>
     );
 };
