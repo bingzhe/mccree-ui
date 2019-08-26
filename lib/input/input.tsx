@@ -1,22 +1,9 @@
 import React from "react";
-import { StyleWrapper, StyledInput } from "./input.styled";
+import { StyleWrapper, StyleInput, StyleIcon } from "./input.styled";
+import { InputProps } from "./input.type";
+import Icon from "../icon/index";
 
-export interface InputProps
-    extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "size" | "value" | "onChange" | "type"
-    > {
-    value?: string;
-    onChange?: (value: string) => void;
-    placeholder?: string;
-    disabled?: boolean;
-    cleared?: boolean;
-    password?: boolean;
-    error?: boolean;
-}
-
-
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
     const {
         value,
         onChange,
@@ -28,19 +15,41 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         ...rest
     } = props;
 
+    const clearedRef = React.useRef<HTMLSpanElement>(null);
+    const [clearedHeight, setClearedHeight] = React.useState(0);
 
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    React.useEffect(() => {
+        clearedRef && clearedRef.current && setClearedHeight(clearedRef.current.clientHeight);
+    }, []);
+
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | null) => {
         onChange && onChange(e ? e.target.value : "");
     };
 
+    const handleClear: React.MouseEventHandler<HTMLSpanElement> = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleChange(null);
+    };
+
+
     return (
         <StyleWrapper>
-            <StyledInput
+            <StyleInput
                 ref={ref}
                 value={value}
+                error={error}
+                cleared={cleared}
+                clearedHeight={clearedHeight}
                 onChange={handleChange}
                 {...rest}
             />
+            {!!value && cleared && (
+                <StyleIcon onClick={handleClear} clearedHeight={clearedHeight} ref={clearedRef}>
+                    <Icon name="close" />
+                </StyleIcon>
+            )}
         </StyleWrapper>
     );
 });

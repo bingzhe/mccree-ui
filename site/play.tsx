@@ -56,7 +56,6 @@ const textExample: React.FunctionComponent = () => {
     return (
         <div>
             <Code code={code} name="play"></Code>
-
             {/* <button onClick={testFunction}>sasdas</button> */}
         </div>
     );

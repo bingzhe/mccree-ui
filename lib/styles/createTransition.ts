@@ -36,7 +36,7 @@ function createTransition(transitions: Transitions) {
         navigation: baseTransition,
         drawer: createBaseTransition(["box-shadow"], 250)
     };
-    return deepMerge(transitions, defaultTransitions);
+    return deepMerge(defaultTransitions, transitions);
 }
 
 

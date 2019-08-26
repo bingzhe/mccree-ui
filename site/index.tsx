@@ -9,7 +9,7 @@ import RippleExample from "../lib/ripple/demo/ripple.example";
 import FormExample from "../lib/form/demo/form.example";
 import InputExample from "../lib/input/demo/input.example";
 
-import { ThemeProvider } from "../lib/index";
+import { ThemeProvider, Normalize } from "../lib/index";
 
 // import "../lib/button/index"
 import PlayExample from "./play";
@@ -82,6 +82,7 @@ ReactDOM.render(
                     </Footer>
                 </Layout>
             </ThemeProvider>
+            <Normalize />
             <GlobalStyle />
         </React.Fragment>
     </Router>,

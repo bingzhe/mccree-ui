@@ -11,9 +11,19 @@ const InputExample: React.FunctionComponent = () => {
 
     return (
         <div>
-            <h1>input demo</h1>
+            <h1>input demo1</h1>
             <div>
                 <Input value={value} onChange={handleChange}></Input>
+            </div>
+
+            <h1>input demo2</h1>
+            <div>
+                <Input value={value} onChange={handleChange} error={true}></Input>
+            </div>
+
+            <h1>input demo3</h1>
+            <div>
+                <Input value={value} onChange={handleChange} cleared={true}></Input>
             </div>
         </div>
     );
