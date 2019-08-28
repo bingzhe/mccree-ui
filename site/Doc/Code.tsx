@@ -4,13 +4,17 @@ import styled, { css } from "styled-components";
 import MonacoEditor, { EditorDidMount, ChangeHandler } from "react-monaco-editor";
 import LZString from "lz-string";
 
-import Button from "../../lib/button/index";
+
+import { Button, Input } from "../../lib/index";
+
 
 const scope = {
     styled,
     css,
-    Button
+    Button,
+    Input
 };
+
 const options = {
     fontSize: 16,
     minimap: {

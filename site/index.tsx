@@ -17,7 +17,7 @@ import PlayExample from "./play";
 import Layout from "../lib/layout/index";
 const { Aside, Header, Footer, Content } = Layout;
 
-import logo from "./logo.jpg";
+// import logo from "./logo.jpg";
 
 import {
     GlobalStyle,
@@ -31,10 +31,11 @@ ReactDOM.render(
     <Router>
         <React.Fragment>
             <ThemeProvider theme={theme}>
-                <Layout>
+                <Layout style={{ padding: "3.6rem 3rem", width: "100vw", height: "100vh" }}>
                     <Header>
                         <StyleLogoWrapper>
-                            <img src={logo} />
+                            {/* <img src={logo} /> */}
+                            <div style={{ fontSize: "34px" }}>React UI</div>
                         </StyleLogoWrapper>
                     </Header>
                     <Layout>
