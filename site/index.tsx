@@ -8,8 +8,10 @@ import LayoutExample from "../lib/layout/demo/layout.example";
 import RippleExample from "../lib/ripple/demo/ripple.example";
 import FormExample from "../lib/form/demo/form.example";
 import InputExample from "../lib/input/demo/input.example";
-
 import { ThemeProvider, Normalize } from "../lib/index";
+
+import ItemExample from "./docs/components/Item/Item";
+import ColorExample from "./docs/components/Color/Color";
 
 // import "../lib/button/index"
 import PlayExample from "./play";
@@ -31,7 +33,7 @@ ReactDOM.render(
     <Router>
         <React.Fragment>
             <ThemeProvider theme={theme}>
-                <Layout style={{ padding: "3.6rem 3rem", width: "100vw", height: "100vh" }}>
+                <Layout style={{ padding: "3.6rem 3rem", height: "100vh" }}>
                     <Header>
                         <StyleLogoWrapper>
                             {/* <img src={logo} /> */}
@@ -63,7 +65,13 @@ ReactDOM.render(
                                     <NavLink to="/form">form</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/input">input</NavLink>
+                                    <NavLink to="/input">Input</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/item">Item</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/color">Color</NavLink>
                                 </li>
                             </StyleAsideUl>
                         </Aside>
@@ -76,6 +84,8 @@ ReactDOM.render(
                             <Route path="/play" component={PlayExample} />
                             <Route path="/form" component={FormExample} />
                             <Route path="/input" component={InputExample} />
+                            <Route path="/item" component={ItemExample} />
+                            <Route path="/color" component={ColorExample} />
                         </Content>
                     </Layout>
                     <Footer>

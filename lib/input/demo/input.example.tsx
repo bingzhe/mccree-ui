@@ -1,6 +1,6 @@
 import React from "react";
 // import Input from "../index";
-import Code from "../../../site/Doc/Code";
+import Code from "../../../site/Code/Code";
 
 const InputExample: React.FunctionComponent = () => {
     const defaultCode =

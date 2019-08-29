@@ -3,7 +3,7 @@ import { LiveError, LiveProvider, LivePreview } from "react-live";
 import styled, { css } from "styled-components";
 import MonacoEditor, { EditorDidMount, ChangeHandler } from "react-monaco-editor";
 import LZString from "lz-string";
-
+import { th } from "@xstyled/system";
 
 import { Button, Input } from "../../lib/index";
 
@@ -24,13 +24,15 @@ const options = {
 
 const StyleCodeWrapper = styled.div`
     display: flex;
-    border: 1px solid #4285f4;
+    border: 1px solid;
+    border-color: ${th("colors.primary.main")}
     border-radius: 24px;
 `;
 const StyleLiveWrapper = styled.div`
     flex: 0 0 50%;
     width: 50%; 
-    border-right: 1px solid #4285f4; 
+    border-right: 1px solid; 
+    border-color: ${th("colors.primary.main")}
     padding: 24px;
     display: flex; 
     justify-content: center;

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import Code from "./Doc/Code";
+import Code from "./Code/Code";
 
 const textExample: React.FunctionComponent = () => {
     const code = "<Button>Button</Button>";
