@@ -5,12 +5,14 @@ export { default as error } from "./error";
 export { default as grey } from "./grey";
 export { default as black } from "./black";
 export { default as white } from "./white";
+export { default as success } from "./success";
+export { default as info } from "./info";
 
 export interface Color {
     light3?: CSS.Color;
     light2?: CSS.Color;
     light1?: CSS.Color;
-    main?: CSS.Color;
+    default?: CSS.Color;
     dark1?: CSS.Color;
     dark2?: CSS.Color;
     dark3?: CSS.Color;

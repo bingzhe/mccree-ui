@@ -10,7 +10,7 @@ import styled, { css } from "styled-components";
 
 // background: ${props => props.theme.button.colors[props.styleType]};
 const basicStyle = css<StyleProps>`
-    background: ${props => props.theme.colors.primary.main}
+    background: ${props => props.theme.colors.primary.default}
     color: #fff;
     will-change: box-shadow;
     `;

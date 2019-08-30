@@ -3,14 +3,6 @@ import * as React from "react";
 import { colors } from "../../../../lib/index";
 import styled from "styled-components";
 
-/**
- * colors: {
- *      primary: {
- *          default: #434343
- *      }
- * }
- */
-
 interface Item {
     key: string;
     value: string;
@@ -53,10 +45,10 @@ const ColorExample: React.FunctionComponent = () => {
     return (
         <div>
             <h1>color</h1>
-            <div>
+            <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
                 {colorsList.map(({ type, items }): React.ReactElement => (
-                    <div key={type}>
-                        <div>{type}</div>
+                    <div key={type} style={{ display: "inline-block", width: "30%" }}>
+                        <h2>{type}</h2>
                         <div>
                             {items.map(({ key, value }): React.ReactElement => (
                                 <Block key={key} type={key} value={value} />

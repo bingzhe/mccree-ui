@@ -1,7 +1,7 @@
 import { Color } from "./index";
 
 const white: Color = {
-    main: "#ffffff"
+    default: "#ffffff"
 };
 
 export default white;

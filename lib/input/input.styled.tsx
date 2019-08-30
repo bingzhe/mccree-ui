@@ -18,14 +18,14 @@ const base = css`
     width: 100%;
     border-radius: 2px;
     border: 1px solid;
-    border-color: ${th("colors.grey.main")}
+    border-color: ${th("colors.grey.default")}
     transition: ${th("transitions.input")};
     ${th("sizes.medium.input")};
     &:hover{
         border-color:${th("colors.grey.dark1")};
     }
     &:active, &:focus {
-        border-color:${th("colors.primary.main")};
+        border-color:${th("colors.primary.default")};
     }
     &:disabled{
         color: ${th("colors.grey.dark2")};
@@ -40,13 +40,13 @@ const error = variant({
     default: false,
     variants: {
         true: css`
-            border-color: ${th("colors.error.main")}
+            border-color: ${th("colors.error.default")}
             &:hover {
-                border-color: ${th("colors.error.main")};
+                border-color: ${th("colors.error.default")};
             }
             &:active,
             &:focus {
-            border-color: ${th("colors.error.main")};
+            border-color: ${th("colors.error.default")};
             }
         `,
         false: css``
@@ -83,7 +83,7 @@ export const StyleIcon = styled.span<{ clearedHeight: number }>`
     align-items: center;
     transition: ${th.transition("input")};
     &:hover {
-        background-color: ${th.color("primary.main")};
-        color: ${th.color("white.main")};
+        background-color: ${th.color("primary.default")};
+        color: ${th.color("white.default")};
     }
 `;

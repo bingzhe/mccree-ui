@@ -25,14 +25,14 @@ const options = {
 const StyleCodeWrapper = styled.div`
     display: flex;
     border: 1px solid;
-    border-color: ${th("colors.primary.main")}
+    border-color: ${th("colors.primary.default")}
     border-radius: 24px;
 `;
 const StyleLiveWrapper = styled.div`
     flex: 0 0 50%;
     width: 50%; 
     border-right: 1px solid; 
-    border-color: ${th("colors.primary.main")}
+    border-color: ${th("colors.primary.default")}
     padding: 24px;
     display: flex; 
     justify-content: center;
