@@ -18,18 +18,18 @@ const base = css`
     width: 100%;
     border-radius: 2px;
     border: 1px solid;
-    border-color: ${th("colors.grey.default")}
+    border-color: ${th("colors.standard.default")}
     transition: ${th("transitions.input")};
     ${th("sizes.medium.input")};
     &:hover{
-        border-color:${th("colors.grey.dark1")};
+        border-color:${th("colors.standard.dark1")};
     }
     &:active, &:focus {
         border-color:${th("colors.primary.default")};
     }
     &:disabled{
-        color: ${th("colors.grey.dark2")};
-        background-color: ${th("colors.grey.light1")}
+        color: ${th("colors.standard.dark2")};
+        background-color: ${th("colors.standard.light1")}
         pointer-events:none;
         cursor: not-allowed;
     }

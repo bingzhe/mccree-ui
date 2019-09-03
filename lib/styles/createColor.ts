@@ -1,8 +1,8 @@
-import { grey, primary, error, black, white, Color } from "../colors/index";
+import { standard, primary, error, black, white, Color } from "../colors/index";
 import { deepMerge } from "../utils";
 
 export interface Colors {
-    grey?: Color;
+    standard?: Color;
     primary?: Color;
     error?: Color;
     white?: Color;
@@ -11,7 +11,7 @@ export interface Colors {
 
 function createColor(colors: Colors): Colors {
     const defaultColors = {
-        grey,
+        standard,
         primary,
         error,
         white,

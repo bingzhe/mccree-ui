@@ -1,12 +1,12 @@
 import * as CSS from "csstype";
 
+export { default as standard } from "./standard";
 export { default as primary } from "./primary";
 export { default as error } from "./error";
-export { default as grey } from "./grey";
+export { default as info } from "./info";
+export { default as success } from "./success";
 export { default as black } from "./black";
 export { default as white } from "./white";
-export { default as success } from "./success";
-export { default as info } from "./info";
 
 export interface Color {
     light3?: CSS.Color;

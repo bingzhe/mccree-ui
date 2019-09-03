@@ -10,3 +10,9 @@ import * as colors from "./colors";
 export { colors };
 
 import "./index.scss";
+
+export type StandardProps<
+    T = React.HTMLAttributes<HTMLDivElement>,
+    Ref = HTMLDivElement,
+    O extends string = ""
+> = { className?: string; style?: React.CSSProperties } & Omit<T, O> & { ref?: React.Ref<Ref> }
