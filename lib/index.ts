@@ -3,6 +3,7 @@ export { default as Button } from "./button/index";
 export { default as Layout } from "./layout/index";
 export { default as Input } from "./input/index";
 export { default as Item } from "./Item/index";
+export { default as Box } from "./Box/index";
 
 export { ThemeProvider, Normalize } from "./ThemeProvider";
 

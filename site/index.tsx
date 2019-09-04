@@ -10,6 +10,7 @@ import FormExample from "../lib/form/demo/form.example";
 import InputExample from "../lib/input/demo/input.example";
 import { ThemeProvider, Normalize } from "../lib/index";
 
+import BoxExample from "./docs/components/Box/Box";
 import ItemExample from "./docs/components/Item/Item";
 import ColorExample from "./docs/components/Color/Color";
 
@@ -73,6 +74,9 @@ ReactDOM.render(
                                 <li>
                                     <NavLink to="/color">Color</NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to="/box">Box</NavLink>
+                                </li>
                             </StyleAsideUl>
                         </Aside>
                         <Content>
@@ -86,6 +90,7 @@ ReactDOM.render(
                             <Route path="/input" component={InputExample} />
                             <Route path="/item" component={ItemExample} />
                             <Route path="/color" component={ColorExample} />
+                            <Route path="/box" component={BoxExample} />
                         </Content>
                     </Layout>
                     <Footer>

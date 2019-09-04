@@ -861,7 +861,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
   integrity sha512-28QvEGyQyNkB0/m2B4FU7IEZGK2NUrcMtT6BZEFALTguLk+AUT6ofsHtPk5QyjAdUkpMJ+/Em+quwz4HOt30AQ==
@@ -1475,6 +1475,13 @@
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/wast-parser" "1.8.5"
     "@xtuc/long" "4.2.2"
+
+"@xstyled/prop-types@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@xstyled/prop-types/-/prop-types-1.11.0.tgz#d6ca513102a04fde9ea05795022d2524440390c8"
+  integrity sha512-cInhx79Dd16LtUAXCVNH/Rw1Gk/XGgJg9yf130EEFzFkOLKimq1rdVcTuQv9AyZoIybnlLjPEdqZBtixb8gNUQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
 
 "@xstyled/system@^1.10.0":
   version "1.10.0"
