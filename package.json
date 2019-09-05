@@ -59,6 +59,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
     "jest-junit": "^6.3.0",
+    "jest-styled-components": "^6.3.3",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "node-sass": "^4.12.0",
     "raw-loader": "^3.1.0",

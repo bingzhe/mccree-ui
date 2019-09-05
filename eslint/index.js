@@ -953,8 +953,9 @@ module.exports = {
          * 函数参数要么同在一行要么每行一个
          * @category Stylistic Issues
          * @fixable
+         * @reason tsx 显示很奇怪
          */
-        "function-paren-newline": ["error", "multiline"],
+        "function-paren-newline": ["off", "multiline"],
         /**
          * 禁止使用指定的标识符
          * @category Stylistic Issues
