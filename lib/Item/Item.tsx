@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ItemProps } from "./Item.type";
+import { StyledItemWrapper, StyledItemPrefixWrapper, StyledItemTextWrapper } from "./Item.styled";
 
 const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
     const {
@@ -16,11 +17,15 @@ const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>((p
     };
 
     // const [_active, setActive] = React.useState(false);
+    const expanded = true;
 
     return (
-        <div ref={ref} onClick={handleItemClick} {...rest}>
-            {children}
-        </div>
+        <StyledItemWrapper reveal={true} ref={ref} onClick={handleItemClick} {...rest}>
+            <StyledItemPrefixWrapper>{prefix}</StyledItemPrefixWrapper>
+            <StyledItemTextWrapper expanded={expanded} hasPrefix={!!prefix}>
+                {children}
+            </StyledItemTextWrapper>
+        </StyledItemWrapper>
     );
 });
 

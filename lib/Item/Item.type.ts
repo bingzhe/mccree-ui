@@ -1,6 +1,7 @@
 import * as React from "react";
+import { BoxProps } from "../Box";
 
-export interface ItemProps {
+export interface ItemProps extends Omit<BoxProps, "prefix"> {
     value?: string;
     prefix?: React.ReactElement;
     active?: boolean;
