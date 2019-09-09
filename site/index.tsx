@@ -12,7 +12,9 @@ import { ThemeProvider, Normalize } from "../lib/index";
 
 import BoxExample from "./docs/components/Box/Box";
 import ItemExample from "./docs/components/Item/Item";
+import ItemGroupExample from "./docs/components/ItemGroup/ItemGroup";
 import ColorExample from "./docs/components/Color/Color";
+import TransitionExample from "./docs/components/Transition/Transition";
 
 // import "../lib/button/index"
 import PlayExample from "./play";
@@ -69,13 +71,19 @@ ReactDOM.render(
                                     <NavLink to="/input">Input</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/item">Item</NavLink>
-                                </li>
-                                <li>
                                     <NavLink to="/color">Color</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/box">Box</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/item">Item</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/itemgroup">ItemGroup</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/transition">Transition</NavLink>
                                 </li>
                             </StyleAsideUl>
                         </Aside>
@@ -88,9 +96,11 @@ ReactDOM.render(
                             <Route path="/play" component={PlayExample} />
                             <Route path="/form" component={FormExample} />
                             <Route path="/input" component={InputExample} />
-                            <Route path="/item" component={ItemExample} />
                             <Route path="/color" component={ColorExample} />
                             <Route path="/box" component={BoxExample} />
+                            <Route path="/item" component={ItemExample} />
+                            <Route path="/itemgroup" component={ItemGroupExample} />
+                            <Route path="/transition" component={TransitionExample} />
                         </Content>
                     </Layout>
                     <Footer>
