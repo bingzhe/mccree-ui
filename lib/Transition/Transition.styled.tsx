@@ -1,4 +1,4 @@
-import { css, variant, FlattenSimpleInterpolation } from "../styles/styled";
+import { styled, css, variant, FlattenSimpleInterpolation } from "../styles/styled";
 import { createBaseTransition } from "lib/styles/createTransition";
 import { StyledContainerProps } from "./Transition.type";
 
@@ -127,3 +127,13 @@ export const type = variant({
         custom: ({ custom }: StyledContainerProps): FlattenSimpleInterpolation | string => custom || ""
     }
 });
+
+export const StyledContainer = styled.div`
+    ${type}
+
+    ${fade}
+    ${zoom}
+    ${slide}
+    ${collapse}
+    ${grow}
+`;

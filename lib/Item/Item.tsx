@@ -29,4 +29,6 @@ const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>((p
     );
 });
 
+Item.displayName = "FItem";
+
 export default Item;

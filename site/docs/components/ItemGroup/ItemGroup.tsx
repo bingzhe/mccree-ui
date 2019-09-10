@@ -3,15 +3,18 @@ import { ItemGroup, Item } from "../../../../lib/index";
 
 const ItemGroupExample: React.FC = () => {
     return (
-        <ItemGroup>
-            <Item>123</Item>
-            <Item>123</Item>
-            <Item>123</Item>
-            <ItemGroup title="group">
-                <Item>456</Item>
-                <Item>456</Item>
+        <div style={{ margin: "10px" }}>
+            <ItemGroup title="ItemGroup">
+                <Item>123</Item>
+                <Item>123</Item>
+                <Item>123</Item>
+                <ItemGroup title="group">
+                    <Item>456</Item>
+                    <Item>456</Item>
+                </ItemGroup>
             </ItemGroup>
-        </ItemGroup>
+        </div>
+
     );
 };
 
