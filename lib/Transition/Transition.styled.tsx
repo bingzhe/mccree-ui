@@ -1,6 +1,8 @@
+import * as React from "react";
 import { styled, css, variant, FlattenSimpleInterpolation } from "../styles/styled";
-import { createBaseTransition } from "lib/styles/createTransition";
+import { createBaseTransition } from "../styles/createTransition";
 import { StyledContainerProps } from "./Transition.type";
+import Box from "../Box";
 
 export const fade = css`
     &.fade-enter {
@@ -108,7 +110,7 @@ export const type = variant({
         `,
         zoom: css`
             transition: ${createBaseTransition(["transform", "visibility"])};
-            ${({ visible }: StyledContainerProps): string => (visible ? `transform: none` : `transform: scale3d(0,0,0);visibility:hidden;`)}
+            ${({ visible }: StyledContainerProps): string => (visible ? `transform: none;` : `transform: scale3d(0, 0, 0);visibility: hidden;`)}
         `,
         slide: css`
             transition: ${createBaseTransition(["transform", "visibility"])};
@@ -120,15 +122,38 @@ export const type = variant({
             ${({ visible, wrapperHeight }: StyledContainerProps): string => (visible ? `height: ${wrapperHeight}px;` : `height: 0;visibility: hidden;`)}
         `,
         grow: css`
-        transform-origin: 0 0 0;
-        transition: ${createBaseTransition(["opacity", "transform", "visibility"])};
-        ${({ visible }: StyledContainerProps): string => (visible ? `opacity: 1;transform: none;` : `opacity: 0;transform: scale(0.75, 0.5625);visibility: hidden;`)}
-      `,
+            transform-origin: 0 0 0;
+            transition: ${createBaseTransition(["opacity", "transform", "visibility"])};
+            ${({ visible }: StyledContainerProps): string => (visible ? `opacity: 1;transform: none;` : `opacity: 0;transform: scale(0.75, 0.5625);visibility: hidden;`)}
+        `,
         custom: ({ custom }: StyledContainerProps): FlattenSimpleInterpolation | string => custom || ""
     }
 });
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled(
+    ({
+        children,
+        forwardRef,
+        wrapper,
+        setWrapperHeight,
+        ...props
+    }: StyledContainerProps) => {
+        const wrapperRef = React.useRef<HTMLDivElement>(null);
+        const wrapperHeight = (wrapperRef && wrapperRef.current && wrapperRef.current.clientHeight) || 0;
+
+        React.useEffect(() => {
+            setWrapperHeight(wrapperHeight);
+        }, [setWrapperHeight, wrapperHeight]);
+        return wrapper ? (
+            <Box ref={forwardRef} {...props}>
+                <Box ref={wrapperRef}>{children}</Box>
+            </Box>
+        ) : (
+            React.cloneElement(children, props)
+        );
+    }
+
+)`
     ${type}
 
     ${fade}
