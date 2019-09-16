@@ -6,6 +6,7 @@ export { default as Box } from "./Box/index";
 export { default as Item } from "./Item/index";
 export { default as ItemGroup } from "./ItemGroup/index";
 export { default as Transition } from "./Transition";
+export { default as Checkbox } from "./Checkbox";
 
 export { ThemeProvider, Normalize } from "./ThemeProvider";
 

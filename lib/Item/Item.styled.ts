@@ -17,9 +17,9 @@ export const StyledItemWrapper = styled(Box) <{ reveal: boolean }>`
         background-color: ${({ reveal }) => (reveal ? th.color("standard.light1") : th.color("standard.transparent1"))};
     }
     &:active{
-        // color: ${th.color("black.default")};
-        // background-color:${({ reveal }) => (reveal ? th.color("standard.dark1") : th.color("standard.transparent2"))};
-        transform:scale(0.99);
+        color: ${th.color("black.default")};
+        background-color:${({ reveal }) => (reveal ? th.color("standard.dark1") : th.color("standard.transparent2"))};
+        // transform:scale(0.99);
     }
 `;
 

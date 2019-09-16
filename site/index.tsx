@@ -15,6 +15,7 @@ import ItemExample from "./docs/components/Item/Item";
 import ItemGroupExample from "./docs/components/ItemGroup/ItemGroup";
 import ColorExample from "./docs/components/Color/Color";
 import TransitionExample from "./docs/components/Transition/Transition";
+import CheckboxExample from "./docs/components/Checkbox/Checkbox";
 
 // import "../lib/button/index"
 import PlayExample from "./play";
@@ -85,6 +86,9 @@ ReactDOM.render(
                                 <li>
                                     <NavLink to="/transition">Transition</NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to="/checkbox">Checkbox</NavLink>
+                                </li>
                             </StyleAsideUl>
                         </Aside>
                         <Content>
@@ -101,6 +105,7 @@ ReactDOM.render(
                             <Route path="/item" component={ItemExample} />
                             <Route path="/itemgroup" component={ItemGroupExample} />
                             <Route path="/transition" component={TransitionExample} />
+                            <Route path="/checkbox" component={CheckboxExample} />
                         </Content>
                     </Layout>
                     <Footer>

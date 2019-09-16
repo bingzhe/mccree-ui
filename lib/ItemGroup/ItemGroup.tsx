@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { ItemGroupProps } from "./ItemGroup.type";
-import { Box, Item, Icon } from "../index";
+import { Box, Item, Icon, Transition } from "../index";
 import {
     StyledItemGroupTitleSuffixWrapper,
     StyledItemGroupTitleWrapper,
@@ -10,7 +10,7 @@ import {
 
 const ItemGroup: React.FC<ItemGroupProps> = ({ level = 1, children, title, ...rest }) => {
 
-    const expanded = false;
+    // const expanded = false;
 
     const [open, setOpen] = React.useState(true);
     // const handleOpen = React.useCallback(() => {
@@ -18,7 +18,6 @@ const ItemGroup: React.FC<ItemGroupProps> = ({ level = 1, children, title, ...re
     // }, [expanded]);
 
     const handleOpen = () => {
-        console.log(11);
         setOpen(v => !v);
     };
 
@@ -26,7 +25,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({ level = 1, children, title, ...re
     const childElements = React.Children.map(
         children,
         (child: React.ReactElement, i): React.ReactElement => {
-            if (child.type && child.type.displayName === "FItemGroup") {
+            if (child.type && (child as any).type.displayName === "FItemGroup") {
                 return React.cloneElement(child, { level: level + 1 });
             }
             return child;
@@ -41,11 +40,11 @@ const ItemGroup: React.FC<ItemGroupProps> = ({ level = 1, children, title, ...re
                     <Icon name="down" />
                 </StyledItemGroupTitleSuffixWrapper>
             </StyledItemGroupTitleWrapper>
-            {open && (
+            <Transition visible={open} type="collapse">
                 <StyledItemGroupItemWrapper level={level}>
                     {childElements}
                 </StyledItemGroupItemWrapper>
-            )}
+            </Transition>
         </Box>
     );
 };
