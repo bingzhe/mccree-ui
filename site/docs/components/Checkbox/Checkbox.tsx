@@ -4,10 +4,15 @@ import { Checkbox } from "../../../../lib/index";
 
 const CheckboxExample: React.FunctionComponent = () => {
     const [checked, setChecked] = React.useState(false);
+    const [checked1, setChecked1] = React.useState(true);
 
     const handleCheckboxChange = (e: boolean) => {
         console.log("checked", e);
         setChecked(e);
+    };
+    const handleCheckboxChange1 = (e: boolean) => {
+        console.log("checked", e);
+        setChecked1(e);
     };
     return (
         <div>
@@ -16,6 +21,8 @@ const CheckboxExample: React.FunctionComponent = () => {
 
             <h1>disabled</h1>
             <Checkbox checked={checked} onChange={handleCheckboxChange} disabled>label</Checkbox>
+            <Checkbox checked={checked1} onChange={handleCheckboxChange1} disabled>label</Checkbox>
+
         </div>
     );
 };

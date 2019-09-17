@@ -8,8 +8,17 @@ import {
     StyledItemGroupItemWrapper
 } from "./ItemGroup.styled";
 
-const ItemGroup: React.FC<ItemGroupProps> = ({ level = 1, children, title, ...rest }) => {
+const ItemGroup: React.FC<ItemGroupProps> = (
+    {
+        level = 1,
+        children,
+        title,
+        shrink = "expand",
+        ...rest
+    }
+) => {
 
+    console.log("shrink", shrink);
     // const expanded = false;
 
     const [open, setOpen] = React.useState(true);
@@ -17,6 +26,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({ level = 1, children, title, ...re
     //     if (expanded) setOpen(v => !v);
     // }, [expanded]);
 
+    const isFloat = shrink === "float";
     const handleOpen = () => {
         setOpen(v => !v);
     };
@@ -34,17 +44,32 @@ const ItemGroup: React.FC<ItemGroupProps> = ({ level = 1, children, title, ...re
 
     return (
         <Box>
-            <StyledItemGroupTitleWrapper onClick={handleOpen}>
-                <Item>{title}</Item>
-                <StyledItemGroupTitleSuffixWrapper open={open}>
-                    <Icon name="down" />
-                </StyledItemGroupTitleSuffixWrapper>
-            </StyledItemGroupTitleWrapper>
-            <Transition visible={open} type="collapse">
-                <StyledItemGroupItemWrapper level={level}>
-                    {childElements}
-                </StyledItemGroupItemWrapper>
-            </Transition>
+            {shrink === "expand" && (
+                <>
+                    <StyledItemGroupTitleWrapper onClick={handleOpen}>
+                        <Item>{title}</Item>
+                        <StyledItemGroupTitleSuffixWrapper open={open}>
+                            <Icon name="down" />
+                        </StyledItemGroupTitleSuffixWrapper>
+                    </StyledItemGroupTitleWrapper>
+                    <Transition visible={open} type="collapse">
+                        <StyledItemGroupItemWrapper level={level}>
+                            {childElements}
+                        </StyledItemGroupItemWrapper>
+                    </Transition>
+                </>
+            )}
+            {isFloat && (
+                <>
+                    <StyledItemGroupTitleWrapper>
+                        <Item>{title}</Item>
+                        <StyledItemGroupTitleSuffixWrapper open={open}>
+                            <Icon name="down" />
+                        </StyledItemGroupTitleSuffixWrapper>
+                    </StyledItemGroupTitleWrapper>
+                </>
+            )}
+
         </Box>
     );
 };
