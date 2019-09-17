@@ -8,6 +8,8 @@ import {
     StyledItemGroupItemWrapper
 } from "./ItemGroup.styled";
 
+import { useHover } from "../hooks/useHover";
+
 const ItemGroup: React.FC<ItemGroupProps> = (
     {
         level = 1,
@@ -18,13 +20,14 @@ const ItemGroup: React.FC<ItemGroupProps> = (
     }
 ) => {
 
-    console.log("shrink", shrink);
-    // const expanded = false;
-
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     // const handleOpen = React.useCallback(() => {
     //     if (expanded) setOpen(v => !v);
     // }, [expanded]);
+
+    const [hoverStatus, bindHover] = useHover();
+
+    console.log(hoverStatus, bindHover);
 
     const isFloat = shrink === "float";
     const handleOpen = () => {
@@ -61,15 +64,20 @@ const ItemGroup: React.FC<ItemGroupProps> = (
             )}
             {isFloat && (
                 <>
-                    <StyledItemGroupTitleWrapper>
+                    <StyledItemGroupTitleWrapper {...bindHover}>
                         <Item>{title}</Item>
-                        <StyledItemGroupTitleSuffixWrapper open={open}>
-                            <Icon name="down" />
+                        <StyledItemGroupTitleSuffixWrapper open={hoverStatus}>
+                            <Icon name="right" />
                         </StyledItemGroupTitleSuffixWrapper>
                     </StyledItemGroupTitleWrapper>
+                    {JSON.stringify(hoverStatus)}
+                    <Transition visible={hoverStatus} type="grow">
+                        <StyledItemGroupItemWrapper level={level} float={isFloat}>
+                            {childElements}
+                        </StyledItemGroupItemWrapper>
+                    </Transition>
                 </>
             )}
-
         </Box>
     );
 };

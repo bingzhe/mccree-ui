@@ -2,7 +2,7 @@ import * as React from "react";
 import { Transition, Box } from "../../../../lib/index";
 
 const TransitionExample: React.FC = () => {
-    const [visible1, setVisible1] = React.useState(true);
+    const [visible1, setVisible1] = React.useState(false);
 
     const handleVisibleToggle = () => {
         setVisible1(v => !v);
@@ -11,7 +11,7 @@ const TransitionExample: React.FC = () => {
         <Box>
             <button onClick={handleVisibleToggle}>toggle</button>
             <Box display="flex">
-                <Transition visible={visible1} type="collapse">
+                <Transition visible={visible1} type="grow">
                     <Box
                         display="inline-block"
                         width={50}
