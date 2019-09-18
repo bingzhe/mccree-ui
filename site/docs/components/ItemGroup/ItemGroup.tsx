@@ -1,6 +1,5 @@
 import * as React from "react";
-import { ItemGroup, Item } from "../../../../lib/index";
-
+import { ItemGroup, Item, Box } from "../../../../lib/index";
 const ItemGroupExample: React.FC = () => {
 
     const propsList = [
@@ -23,13 +22,17 @@ const ItemGroupExample: React.FC = () => {
             </div>
 
             <h1>float</h1>
-            <div style={{ margin: "10px" }}>
+            <Box m={10} width={200}>
                 <ItemGroup title="ItemGroup" shrink="float">
                     <Item>123</Item>
                     <Item>123</Item>
                     <Item>123</Item>
+                    <ItemGroup title="group">
+                        <Item>456</Item>
+                        <Item>456</Item>
+                    </ItemGroup>
                 </ItemGroup>
-            </div>
+            </Box>
 
 
             <h1>Props</h1>
