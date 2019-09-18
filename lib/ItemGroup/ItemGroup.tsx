@@ -9,6 +9,7 @@ import {
 } from "./ItemGroup.styled";
 
 import { useHover } from "../hooks/useHover";
+import { usePopper } from "../hooks/usePopper";
 
 const ItemGroup: React.FC<ItemGroupProps> = (
     {
@@ -26,6 +27,21 @@ const ItemGroup: React.FC<ItemGroupProps> = (
     // }, [expanded]);
 
     const [hoverStatus, bindHover] = useHover();
+    const [referenceRef, popperRef] = usePopper<HTMLDivElement, HTMLDivElement>({
+        placement: "right-start",
+        eventsEnabled: true,
+        positionFixed: true,
+        modifiers: {
+            preventOverflow: {
+                enabled: true,
+                priority: ["right", "bottom"],
+                boundariesElement: "viewport"
+            },
+            flip: {
+                enabled: true
+            }
+        }
+    });
 
     console.log(hoverStatus, bindHover);
 
@@ -63,20 +79,17 @@ const ItemGroup: React.FC<ItemGroupProps> = (
                 </>
             )}
             {isFloat && (
-                <>
-                    <StyledItemGroupTitleWrapper {...bindHover}>
-                        <Item>{title}</Item>
-                        <StyledItemGroupTitleSuffixWrapper open={hoverStatus}>
-                            <Icon name="right" />
-                        </StyledItemGroupTitleSuffixWrapper>
-                    </StyledItemGroupTitleWrapper>
-                    {JSON.stringify(hoverStatus)}
-                    <Transition visible={hoverStatus} type="grow">
-                        <StyledItemGroupItemWrapper level={level} float={isFloat}>
+                <StyledItemGroupTitleWrapper ref={referenceRef} {...bindHover}>
+                    <Item>{title}</Item>
+                    <StyledItemGroupTitleSuffixWrapper open={hoverStatus}>
+                        <Icon name="right" />
+                    </StyledItemGroupTitleSuffixWrapper>
+                    <Transition visible={hoverStatus} type="grow" wrapper={false}>
+                        <StyledItemGroupItemWrapper ref={popperRef} level={level} float={isFloat}>
                             {childElements}
                         </StyledItemGroupItemWrapper>
                     </Transition>
-                </>
+                </StyledItemGroupTitleWrapper>
             )}
         </Box>
     );

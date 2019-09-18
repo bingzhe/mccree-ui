@@ -152,8 +152,7 @@ export const StyledContainer = styled(
             React.cloneElement(children, props)
         );
     }
-
-)`
+) <StyledContainerProps>`
     ${type}
 
     ${fade}

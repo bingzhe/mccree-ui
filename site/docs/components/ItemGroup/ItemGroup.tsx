@@ -26,8 +26,8 @@ const ItemGroupExample: React.FC = () => {
                 <ItemGroup title="ItemGroup" shrink="float">
                     <Item>123</Item>
                     <Item>123</Item>
-                    <Item>123</Item>
-                    <ItemGroup title="group">
+                    <Item>12optionoptionoptionoption3</Item>
+                    <ItemGroup title="group" shrink="float">
                         <Item>456</Item>
                         <Item>456</Item>
                     </ItemGroup>
