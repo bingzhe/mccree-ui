@@ -3,7 +3,7 @@ import { BoxProps } from "./Box.type";
 
 const baseStyle = css`
     ${system}
-    -webkit-overflow-scrolling: touch;
+    // -webkit-overflow-scrolling: touch;
     ${breakpoints({
         sm: css`
             &::-webkit-scrollbar {
