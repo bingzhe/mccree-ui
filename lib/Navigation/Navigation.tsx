@@ -8,6 +8,10 @@ import {
     NavigationContainer,
     NavigationChild
 } from "./Navigation.type";
+import {
+    StyledNavigationWrapper,
+    StyledContent
+} from "./Navigation.styled";
 
 export const NavigationContext = React.createContext<NavigationProps>({
     value: "",
@@ -56,11 +60,11 @@ const Navigation: React.FC<NavigationProps> = React.forwardRef<HTMLDivElement, N
         reveal = acrylic ? false : reveal;
 
         return (
-            <div>
+            <StyledNavigationWrapper horizontal={horizontal} expanded={expanded} {...rest}>
                 <div>{container.header}</div>
-                <div>{container.content}</div>
+                <StyledContent horizontal={horizontal}>{container.content}</StyledContent>
                 <div>{container.footer}</div>
-            </div>
+            </StyledNavigationWrapper>
         );
     }
 );

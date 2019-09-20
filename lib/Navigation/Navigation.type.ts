@@ -1,5 +1,7 @@
 import * as React from "react";
-import { BoxProps, BoxPropTypes } from "../Box";
+
+// TODO: BoxPropTypes
+import { BoxProps } from "../Box";
 
 import Header from "./components/Header";
 import Content from "./components/Content";

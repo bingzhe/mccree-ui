@@ -8,21 +8,23 @@ const TransitionExample: React.FC = () => {
         setVisible1(v => !v);
     };
     return (
-        <Box>
-            <button onClick={handleVisibleToggle}>toggle</button>
-            <Box display="flex">
-                <Transition visible={visible1} type="grow">
-                    <Box
-                        display="inline-block"
-                        width={50}
-                        height={50}
-                        margin={2}
-                        backgroundColor="standard.dark2"
-                    />
-                </Transition>
-            </Box>
+        <>
+            <Box>
+                <button onClick={handleVisibleToggle}>toggle</button>
+                <Box display="flex">
+                    <Transition visible={visible1} type="grow">
+                        <Box
+                            display="inline-block"
+                            width={50}
+                            height={50}
+                            margin={2}
+                            backgroundColor="standard.dark2"
+                        />
+                    </Transition>
+                </Box>
 
-        </Box>
+            </Box>
+        </>
     );
 
 };
