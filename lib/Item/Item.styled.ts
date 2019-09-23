@@ -23,7 +23,7 @@ export const StyledItemWrapper = styled(Box) <{ reveal: boolean }>`
     }
 `;
 
-export const StyledItemActiveBar = styled.div`
+export const StyledItemActiveBar = styled.div<{ active: boolean; horizontal: boolean }>`
     position: absolute;
     background-color: ${th.color("primary.default")}
     transition: ${th.transition("navigation")}
@@ -33,12 +33,12 @@ export const StyledItemActiveBar = styled.div`
             true: css`
                 width: 80%;
                 height: 4px;
-                left: 10%:
+                left: 10%;
                 bottom: 0;
             `,
             false: css`
                 width: 6px;
-                height: 4px;
+                height: 24px;
                 left: 0;
                 top: 50%;
                 margin-top: -12px;

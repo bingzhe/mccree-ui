@@ -1,8 +1,9 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
+import { NavigationID } from "../Navigation";
 
 export interface ItemProps extends Omit<BoxProps, "prefix"> {
-    value?: string;
+    value?: NavigationID;
     prefix?: React.ReactElement;
     active?: boolean;
     children?: React.ReactChild;

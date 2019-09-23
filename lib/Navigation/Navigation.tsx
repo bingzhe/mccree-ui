@@ -6,14 +6,17 @@ import {
     NavigationType,
     NavigationProps,
     NavigationContainer,
-    NavigationChild
+    NavigationChild,
+    // NavigationID,
+    NavigationContextType
 } from "./Navigation.type";
 import {
     StyledNavigationWrapper,
     StyledContent
 } from "./Navigation.styled";
 
-export const NavigationContext = React.createContext<NavigationProps>({
+
+export const NavigationContext = React.createContext<NavigationContextType>({
     value: "",
     onChange: (): void => { },
     expanded: true,

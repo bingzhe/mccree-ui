@@ -18,6 +18,15 @@ export interface NavigationProps extends Omit<BoxProps, "onChange"> {
     onChange?: (id: NavigationID) => void;
 }
 
+export interface NavigationContextType {
+    value: NavigationID;
+    onChange: (id: NavigationID) => void;
+    expanded: boolean;
+    reveal: boolean;
+    acrylic: boolean;
+    horizontal: boolean;
+}
+
 export interface NavigationType
     extends React.ForwardRefExoticComponent<NavigationProps & React.RefAttributes<HTMLDivElement>> {
     Header: typeof Header;

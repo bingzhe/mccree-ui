@@ -1,33 +1,44 @@
 import * as React from "react";
+import { NavigationContext } from "../Navigation/Navigation";
 import { ItemProps } from "./Item.type";
-import { StyledItemWrapper, StyledItemPrefixWrapper, StyledItemTextWrapper } from "./Item.styled";
+import {
+    StyledItemWrapper,
+    StyledItemPrefixWrapper,
+    StyledItemTextWrapper,
+    StyledItemActiveBar
+} from "./Item.styled";
 
-const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
-    const {
-        value,
-        prefix,
-        active,
-        children,
-        onClick,
-        ...rest
-    } = props;
+const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>(
+    ({ value, prefix, active, children, onClick, ...rest }, ref) => {
 
-    const handleItemClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-        onClick && onClick(e);
-    };
+        const {
+            value: activeID,
+            horizontal
+        } = React.useContext(NavigationContext);
 
-    // const [_active, setActive] = React.useState(false);
-    const expanded = true;
+        const handleItemClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+            onClick && onClick(e);
+        };
 
-    return (
-        <StyledItemWrapper reveal={true} ref={ref} onClick={handleItemClick} {...rest}>
-            <StyledItemPrefixWrapper>{prefix}</StyledItemPrefixWrapper>
-            <StyledItemTextWrapper expanded={expanded} hasPrefix={!!prefix}>
-                {children}
-            </StyledItemTextWrapper>
-        </StyledItemWrapper>
-    );
-});
+        const [_active, setActive] = React.useState(false);
+        const expanded = true;
+
+        React.useEffect(() => {
+            if (value && activeID) {
+                value === activeID ? setActive(true) : setActive(false);
+            }
+        }, [activeID, value]);
+
+        return (
+            <StyledItemWrapper reveal={true} ref={ref} onClick={handleItemClick} {...rest}>
+                {!!value && <StyledItemActiveBar active={active || _active} horizontal={horizontal} />}
+                <StyledItemPrefixWrapper>{prefix}</StyledItemPrefixWrapper>
+                <StyledItemTextWrapper expanded={expanded} hasPrefix={!!prefix}>
+                    {children}
+                </StyledItemTextWrapper>
+            </StyledItemWrapper>
+        );
+    });
 
 Item.displayName = "FItem";
 
