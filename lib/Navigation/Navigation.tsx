@@ -7,8 +7,8 @@ import {
     NavigationProps,
     NavigationContainer,
     NavigationChild,
-    // NavigationID,
-    NavigationContextType
+    NavigationID,
+    NavigationContextType,
 } from "./Navigation.type";
 import {
     StyledNavigationWrapper,
@@ -46,6 +46,15 @@ const Navigation: React.FC<NavigationProps> = React.forwardRef<HTMLDivElement, N
             content: []
         };
 
+        const contextValue = {
+            value: value as NavigationID,
+            onChange: onChange as (id: NavigationID) => void,
+            expanded: expanded as boolean,
+            reveal: reveal as boolean,
+            acrylic: acrylic as boolean,
+            horizontal: horizontal as boolean,
+        };
+
         React.Children.forEach(
             children,
             (child: NavigationChild) => {
@@ -63,11 +72,13 @@ const Navigation: React.FC<NavigationProps> = React.forwardRef<HTMLDivElement, N
         reveal = acrylic ? false : reveal;
 
         return (
-            <StyledNavigationWrapper horizontal={horizontal} expanded={expanded} {...rest}>
-                <div>{container.header}</div>
-                <StyledContent horizontal={horizontal}>{container.content}</StyledContent>
-                <div>{container.footer}</div>
-            </StyledNavigationWrapper>
+            <NavigationContext.Provider value={contextValue}>
+                <StyledNavigationWrapper horizontal={horizontal} expanded={expanded} {...rest}>
+                    <div>{container.header}</div>
+                    <StyledContent horizontal={horizontal}>{container.content}</StyledContent>
+                    <div>{container.footer}</div>
+                </StyledNavigationWrapper>
+            </NavigationContext.Provider>
         );
     }
 );

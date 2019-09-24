@@ -4,8 +4,11 @@ import { Item, Icon } from "../../../../lib/index";
 
 const ItemExample: React.FunctionComponent = () => {
     const propsList = [
-        { name: "title", type: "string", default: "", description: "标题显示文本" },
-        { name: "active", type: "boolean", default: "false", description: "active status, 需要value" }
+        { name: "value", type: "string | number", default: "", description: "唯一的标识" },
+        { name: "active", type: "boolean", default: "", description: "active status, 需要value" },
+        { name: "prefix", type: "React.ReactElement", default: "", description: "展示的前缀" },
+        { name: "chilren", type: "React.ReactChild", default: "", description: "children" },
+        { name: "onClick", type: "React.MouseEventHandle", default: "", description: "click event" }
     ];
 
     return (

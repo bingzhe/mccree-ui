@@ -13,15 +13,18 @@ const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>(
 
         const {
             value: activeID,
-            horizontal
+            horizontal,
+            onChange,
+            reveal: navigationReveal,
+            expanded,
         } = React.useContext(NavigationContext);
 
         const handleItemClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
             onClick && onClick(e);
+            onChange && value && onChange(value);
         };
 
         const [_active, setActive] = React.useState(false);
-        const expanded = true;
 
         React.useEffect(() => {
             if (value && activeID) {
