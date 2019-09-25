@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Navigation, Item, Icon } from "../../../../lib/index";
+import { Navigation, Item, Icon, Box, ItemGroup } from "../../../../lib/index";
 
 const NavigationExample: React.FC = () => {
 
@@ -47,6 +47,10 @@ const NavigationExample: React.FC = () => {
                 <Item value={1} prefix={<Icon name="smile" />}>menu1</Item>
                 <Item value={2} prefix={<Icon name="smile" />}>menu2</Item>
                 <Item value={3} prefix={<Icon name="smile" />}>menu3</Item>
+                <ItemGroup title="group" shrink="float">
+                    <Item>456</Item>
+                    <Item>456</Item>
+                </ItemGroup>
                 <Navigation.Footer>
                     <Item>Footer</Item>
                 </Navigation.Footer>
@@ -72,6 +76,30 @@ const NavigationExample: React.FC = () => {
                 </Navigation.Footer>
             </Navigation>
 
+            <h1>acrylic</h1>
+
+            <Box
+                background="url(https://i.loli.net/2019/06/08/5cfb6d5a7456419123.jpg) center/cover fixed"
+                padding={10}
+            >
+                <Navigation
+                    height={600}
+                    expanded={expanded}
+                    value={activeId}
+                    acrylic={true}
+                    onChange={handleAcitveId}
+                >
+                    <Navigation.Header>
+                        <Item>Header</Item>
+                    </Navigation.Header>
+                    <Item value={1} prefix={<Icon name="smile" />}>menu1</Item>
+                    <Item value={2} prefix={<Icon name="smile" />}>menu2</Item>
+                    <Item value={3} prefix={<Icon name="smile" />}>menu3</Item>
+                    <Navigation.Footer>
+                        <Item>Footer</Item>
+                    </Navigation.Footer>
+                </Navigation>
+            </Box>
             <h1>Props</h1>
 
             <table style={{ width: "80%" }}>

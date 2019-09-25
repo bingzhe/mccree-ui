@@ -107,7 +107,7 @@ const Navigation: React.FC<NavigationProps> = React.forwardRef<HTMLDivElement, N
 
         return (
             <NavigationContext.Provider value={contextValue}>
-                <StyledNavigationWrapper horizontal={horizontal} expanded={expanded} {...rest}>
+                <StyledNavigationWrapper ref={ref} horizontal={horizontal} expanded={expanded} {...rest} acrylic={acrylic}>
                     <StyledHeader horizontal={horizontal}>
                         {reveal ? RevealHeader : container.header}
                     </StyledHeader>
