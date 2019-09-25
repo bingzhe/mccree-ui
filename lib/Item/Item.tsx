@@ -19,6 +19,8 @@ const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>(
             expanded,
         } = React.useContext(NavigationContext);
 
+        const reveal = navigationReveal;
+
         const handleItemClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
             onClick && onClick(e);
             onChange && value && onChange(value);
@@ -33,7 +35,7 @@ const Item: React.FC<ItemProps> = React.forwardRef<HTMLDivElement, ItemProps>(
         }, [activeID, value]);
 
         return (
-            <StyledItemWrapper reveal={true} ref={ref} onClick={handleItemClick} {...rest}>
+            <StyledItemWrapper reveal={reveal} ref={ref} onClick={handleItemClick} {...rest}>
                 {!!value && <StyledItemActiveBar active={active || _active} horizontal={horizontal} />}
                 <StyledItemPrefixWrapper>{prefix}</StyledItemPrefixWrapper>
                 <StyledItemTextWrapper expanded={expanded} hasPrefix={!!prefix}>

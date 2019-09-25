@@ -2,6 +2,7 @@ import * as React from "react";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
+import { useReveal } from "../hooks/useReveal";
 import {
     NavigationType,
     NavigationProps,
@@ -12,7 +13,9 @@ import {
 } from "./Navigation.type";
 import {
     StyledNavigationWrapper,
-    StyledContent
+    StyledHeader,
+    StyledContent,
+    StyledFooter
 } from "./Navigation.styled";
 
 
@@ -71,12 +74,49 @@ const Navigation: React.FC<NavigationProps> = React.forwardRef<HTMLDivElement, N
         // eslint-disable-next-line no-param-reassign
         reveal = acrylic ? false : reveal;
 
+        const [RevealWrapper] = useReveal(66);
+        const RevealHeader = React.useMemo(
+            (): React.ReactElement[] => {
+                return container.header.map(
+                    (child, i) => <RevealWrapper key={i}>{child}</RevealWrapper>
+                );
+            },
+            []
+        );
+        const RevealContent = React.useMemo(
+            (): React.ReactElement[] => {
+                return container.content.map(
+                    (child, i) => {
+                        if (child.type && child.type.displayName === "FItem") {
+                            return <RevealWrapper key={i}>{child}</RevealWrapper>;
+                        }
+                        return child;
+                    }
+                );
+            },
+            []
+        );
+        const RevealFooter = React.useMemo(
+            (): React.ReactElement[] => {
+                return container.footer.map(
+                    (child, i) => <RevealWrapper key={i}>{child}</RevealWrapper>
+                );
+            },
+            []
+        );
+
         return (
             <NavigationContext.Provider value={contextValue}>
                 <StyledNavigationWrapper horizontal={horizontal} expanded={expanded} {...rest}>
-                    <div>{container.header}</div>
-                    <StyledContent horizontal={horizontal}>{container.content}</StyledContent>
-                    <div>{container.footer}</div>
+                    <StyledHeader horizontal={horizontal}>
+                        {reveal ? RevealHeader : container.header}
+                    </StyledHeader>
+                    <StyledContent horizontal={horizontal}>
+                        {reveal ? RevealContent : container.content}
+                    </StyledContent>
+                    <StyledFooter horizontal={horizontal}>
+                        {reveal ? RevealFooter : container.footer}
+                    </StyledFooter>
                 </StyledNavigationWrapper>
             </NavigationContext.Provider>
         );

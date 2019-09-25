@@ -24,7 +24,8 @@ const NavigationExample: React.FC = () => {
         { name: "horizontal", type: "boolean", default: "false", description: "布局方式" },
         { name: "expanded", type: "boolean", default: "true", description: "展开收起" },
         { name: "value", type: "string | number", default: "", description: "选中 Item value" },
-        { name: "onChange", type: "(id: string|number) => void", default: "", description: "Item 被选中时候的回调" }
+        { name: "onChange", type: "(id: string|number) => void", default: "", description: "Item 被选中时候的回调" },
+        { name: "reveal", type: "boolean", default: "", description: "一种高亮效果" }
     ];
 
     return (
@@ -51,6 +52,25 @@ const NavigationExample: React.FC = () => {
                 </Navigation.Footer>
             </Navigation>
 
+
+            <h1>reveal</h1>
+            <Navigation
+                height={600}
+                expanded={expanded}
+                value={activeId}
+                reveal={true}
+                onChange={handleAcitveId}
+            >
+                <Navigation.Header>
+                    <Item>Header</Item>
+                </Navigation.Header>
+                <Item value={1} prefix={<Icon name="smile" />}>menu1</Item>
+                <Item value={2} prefix={<Icon name="smile" />}>menu2</Item>
+                <Item value={3} prefix={<Icon name="smile" />}>menu3</Item>
+                <Navigation.Footer>
+                    <Item>Footer</Item>
+                </Navigation.Footer>
+            </Navigation>
 
             <h1>Props</h1>
 

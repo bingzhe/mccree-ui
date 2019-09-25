@@ -67,14 +67,14 @@ export const StyledItemPrefixWrapper = styled.div`
 `;
 
 export const StyledItemTextWrapper = styled.div<{ expanded: boolean; hasPrefix: boolean }>`
-  width: ${({ expanded }): string => (expanded ? "auto" : "0px")};
-  opacity: ${({ expanded }): number => (expanded ? 1 : 0)};
-  padding-left: ${({ children, expanded, hasPrefix }): string => (children ? (expanded ? (hasPrefix ? "12px" : "0px") : "0px") : "0px")};
-  flex: 1;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: ${th.transition("navigation")};
-  font-size: 14px;
+    width: ${({ expanded }): string => (expanded ? "auto" : "0px")};
+    opacity: ${({ expanded }): number => (expanded ? 1 : 0)};
+    padding-left: ${({ children, expanded, hasPrefix }): string => (children ? (expanded ? (hasPrefix ? "12px" : "0px") : "0px") : "0px")};
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: ${th.transition("navigation")};
+    font-size: 14px;
 `;

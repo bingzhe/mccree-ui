@@ -22,7 +22,6 @@ const TransitionExample: React.FC = () => {
                         />
                     </Transition>
                 </Box>
-
             </Box>
         </>
     );
