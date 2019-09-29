@@ -26,6 +26,8 @@ const { Aside, Header, Footer, Content } = Layout;
 
 // import logo from "./logo.jpg";
 
+import SiteHeader from "./components/Header";
+
 import {
     GlobalStyle,
     StyleLogoWrapper,
@@ -39,12 +41,13 @@ ReactDOM.render(
         <React.Fragment>
             <ThemeProvider theme={theme}>
                 <Layout style={{ padding: "3.6rem 3rem", height: "100vh" }}>
-                    <Header>
+                    <SiteHeader>
                         <StyleLogoWrapper>
                             {/* <img src={logo} /> */}
-                            <div style={{ fontSize: "34px" }}>React UI</div>
+                            {/* <div style={{ fontSize: "34px" }}>React UI</div> */}
+                            <Header />
                         </StyleLogoWrapper>
-                    </Header>
+                    </SiteHeader>
                     <Layout>
                         <Aside>
                             <StyleAsideUl>
