@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { colors } from "../../../../lib/index";
+import { colors } from "../../../../components/index";
 import styled from "styled-components";
 
 interface Item {

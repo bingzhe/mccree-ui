@@ -2,19 +2,19 @@
 const path = require("path");
 
 // const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
-const APP_DIR = path.resolve(__dirname, "./lib");
+const APP_DIR = path.resolve(__dirname, "./components");
 const SITE_DIR = path.resolve(__dirname, "./site");
 const MONACO_DIR = path.resolve(__dirname, "./node_modules/monaco-editor");
 
 module.exports = {
     entry: {
-        index: "./lib/index.tsx"
+        index: "./components/index.tsx"
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
     output: {
-        path: path.resolve(__dirname, "dist/lib"),
+        path: path.resolve(__dirname, "dist/components"),
         library: "RUI",
         libraryTarget: "umd",
     },

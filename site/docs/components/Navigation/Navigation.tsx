@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Navigation, Item, Icon, Box, ItemGroup } from "../../../../lib/index";
+import { Navigation, Item, Icon, Box, ItemGroup } from "../../../../components/index";
 
 const NavigationExample: React.FC = () => {
 

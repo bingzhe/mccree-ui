@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ItemGroup, Item, Box } from "../../../../lib/index";
+import { ItemGroup, Item, Box } from "../../../../components/index";
 const ItemGroupExample: React.FC = () => {
 
     const propsList = [

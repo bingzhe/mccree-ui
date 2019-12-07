@@ -5,7 +5,7 @@ import MonacoEditor, { EditorDidMount, ChangeHandler } from "react-monaco-editor
 import LZString from "lz-string";
 import { th } from "@xstyled/system";
 
-import { Button, Input } from "../../lib/index";
+import { Button, Input } from "../../components/index";
 
 
 const scope = {

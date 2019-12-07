@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Item, Icon } from "../../../../lib/index";
+import { Item, Icon } from "../../../../components/index";
 
 
 const ItemExample: React.FunctionComponent = () => {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Transition, Box } from "../../../../lib/index";
+import { Transition, Box } from "../../../../components/index";
 
 const TransitionExample: React.FC = () => {
     const [visible1, setVisible1] = React.useState(false);

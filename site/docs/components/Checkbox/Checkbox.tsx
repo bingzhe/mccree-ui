@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Checkbox } from "../../../../lib/index";
+import { Checkbox } from "../../../../components/index";
 
 
 const CheckboxExample: React.FunctionComponent = () => {

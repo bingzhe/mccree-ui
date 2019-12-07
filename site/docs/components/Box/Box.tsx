@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box } from "../../../../lib/index";
+import { Box } from "../../../../components/index";
 
 const BoxExample: React.FC = () => {
     return (

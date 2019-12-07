@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Box } from "../../lib/index";
+import { Box } from "../../components/index";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 

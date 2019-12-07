@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
-import IconExample from "../lib/icon/demo/icon.example";
-import ButtonExample from "../lib/button/demo/button.example";
-import DialogExample from "../lib/dialog/demo/dialog.example";
-import LayoutExample from "../lib/layout/demo/layout.example";
-import RippleExample from "../lib/ripple/demo/ripple.example";
-import FormExample from "../lib/form/demo/form.example";
-import InputExample from "../lib/input/demo/input.example";
-import { ThemeProvider, Normalize } from "../lib/index";
+import IconExample from "../components/icon/demo/icon.example";
+import ButtonExample from "../components/button/demo/button.example";
+import DialogExample from "../components/dialog/demo/dialog.example";
+import LayoutExample from "../components/layout/demo/layout.example";
+import RippleExample from "../components/ripple/demo/ripple.example";
+import FormExample from "../components/form/demo/form.example";
+import InputExample from "../components/input/demo/input.example";
+import { ThemeProvider, Normalize } from "../components/index";
 
 import BoxExample from "./docs/components/Box/Box";
 import ItemExample from "./docs/components/Item/Item";
@@ -18,10 +18,10 @@ import TransitionExample from "./docs/components/Transition/Transition";
 import CheckboxExample from "./docs/components/Checkbox/Checkbox";
 import NavigationExample from "./docs/components/Navigation/Navigation";
 
-// import "../lib/button/index"
+// import "../components/button/index"
 import PlayExample from "./play";
 
-import Layout from "../lib/layout/index";
+import Layout from "../components/layout/index";
 const { Aside, Header, Footer, Content } = Layout;
 
 // import logo from "./logo.jpg";

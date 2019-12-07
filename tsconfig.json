@@ -32,7 +32,7 @@
         ]
     },
     "include": [
-        "lib/**/*",
+        "components/**/*",
         "site/**/*"
     ],
     "exclude": [
