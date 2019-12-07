@@ -13,17 +13,23 @@ const StyledNavlink = styled(NavLink)`
     text-decoration: none;
     padding: 0 26px;
     cursor: pointer;
-    transition: all, 0.25s,
+    transition: all, 0.25s;
 
     &:hover{
         text-decoration: underline;
         background: rgba(0, 0, 0, 0.2);
     }
 
-    &.active{
-        text-decoration: underline;
-        background: rgba(0, 0, 0, 0.2);
-    }
+    // &.active{
+    //     text-decoration: underline;
+    //     background: rgba(0, 0, 0, 0.2);
+    // }
+`;
+
+const StyledLogo = styled.div`
+    line-height: 60px;
+    font-size: 18px;
+    padding: 0 26px;
 `;
 
 const Header: React.FC = () => {
@@ -37,14 +43,17 @@ const Header: React.FC = () => {
             boxShadow="rgba(0, 0, 0, 0.1) 0px 2px 8px"
             width="100%"
             display="flex"
+            padding="0 3rem"
 
         >
+            <StyledLogo>
+                React UI
+            </StyledLogo>
             <div>
-                <NavLink to="/components">
-                    React UI
-                </NavLink>
+                <StyledNavlink to="/starts">
+                    Get Starts
+                </StyledNavlink>
             </div>
-            <div>Get Starts</div>
             <div>
                 <StyledNavlink to="/components">
                     Components
