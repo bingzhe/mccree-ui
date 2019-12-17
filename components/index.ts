@@ -10,6 +10,7 @@ export { default as Checkbox } from "./Checkbox";
 export { default as Navigation } from "./Navigation";
 
 export { ThemeProvider, Normalize } from "./ThemeProvider";
+export * from "./styles/intex";
 
 import * as colors from "./colors";
 export { colors };
