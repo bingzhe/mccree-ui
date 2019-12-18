@@ -6,6 +6,11 @@
 
 module.exports = {
     /* Your site config here */
+    siteMetadata: {
+        title: `React-UI`,
+        description: `React components that implement Microsoft's Fluent Design System.`,
+        author: `@chenyueban`
+    },
     plugins: [
         `gatsby-plugin-react-helmet`,
         {
