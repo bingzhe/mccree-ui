@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import { Box } from "../../../../components/index";
 import Layout from "../Layout";
 import Content from "./Content";
+import Nav from "./Nav";
 
 export interface TemplateProps {
     data: {
@@ -48,6 +49,7 @@ const Template: React.FC<TemplateProps> = ({ data }) => {
                 overflow="hidden"
             >
                 {console.log(data)}
+                <Nav data={data} />
                 <Content data={data} />
             </Box>
         </Layout>
