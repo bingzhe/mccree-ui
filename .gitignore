@@ -64,3 +64,24 @@ typings/
 
 # next.js build output
 .next
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# dotenv environment variable files
+.env*
+
+# gatsby files
+.cache/
+public
+
+# Mac files
+.DS_Store
+
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
+
+# Yarn Integrity file
+.yarn-integrity
