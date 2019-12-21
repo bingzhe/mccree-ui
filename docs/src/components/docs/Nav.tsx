@@ -14,11 +14,24 @@ const iconMap = [
     },
 ];
 
+interface Elem {
+    type: string;
+    title: string;
+}
+
+interface Result {
+    type: string;
+    titles: string[];
+}
+
+const getFrontMatter = (target: TemplateProps["data"]) => {
+    const classify = target.docs.edges
+        .map(v => v.node.frontmatter);
+    console.log("classify", classify);
+};
 
 const Nav: React.FC<TemplateProps> = ({ data }) => {
     const activeId = data.doc.frontmatter.title;
-
-    console.log("React", React);
 
     const [expanded, setExpanded] = React.useState(true);
     const [drawerVisible, setDrawerVisible] = React.useState(false);
@@ -30,6 +43,10 @@ const Nav: React.FC<TemplateProps> = ({ data }) => {
         setDrawerVisible((e): boolean => !e);
     }, []);
 
+
+
+    const result = getFrontMatter(data);
+
     const PcChild = (
         <Navigation
             value={activeId}
@@ -38,7 +55,7 @@ const Nav: React.FC<TemplateProps> = ({ data }) => {
             height="100%"
         >
             <Navigation.Header>
-                <Item onClick={handleExpanded} prefix={<Icon name="qq" />}></Item>
+                <Item onClick={handleExpanded} prefix={<Icon name="wechat" />}>123</Item>
             </Navigation.Header>
         </Navigation>
     );

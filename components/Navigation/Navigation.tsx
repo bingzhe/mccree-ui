@@ -70,7 +70,6 @@ const Navigation: React.FC<NavigationProps> = React.forwardRef<HTMLDivElement, N
             }
         );
 
-        // eslint-disable-next-line no-param-reassign
         const curReveal = acrylic ? false : reveal;
 
         const [RevealWrapper] = useReveal(66);

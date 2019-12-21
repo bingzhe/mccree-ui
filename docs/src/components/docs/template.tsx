@@ -30,8 +30,24 @@ export interface TemplateProps {
                 type: string;
             };
         };
-        api: {};
-        docs: {};
+        api: {
+            frontmatter: {
+                components: string;
+                title: string;
+            };
+            rawMarkdownBody: string;
+
+        };
+        docs: {
+            edges: {
+                node: {
+                    frontmatter: {
+                        title: string;
+                        type: string;
+                    };
+                };
+            }[];
+        };
     };
 }
 
