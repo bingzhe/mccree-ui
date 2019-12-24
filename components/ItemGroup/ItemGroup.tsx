@@ -17,6 +17,7 @@ const ItemGroup: React.FC<ItemGroupProps> = (
         children,
         title,
         shrink = "expand",
+        prefix,
         ...rest
     }
 ) => {
@@ -66,7 +67,7 @@ const ItemGroup: React.FC<ItemGroupProps> = (
             {shrink === "expand" && (
                 <>
                     <StyledItemGroupTitleWrapper onClick={handleOpen}>
-                        <Item>{title}</Item>
+                        <Item prefix={prefix}>{title}</Item>
                         <StyledItemGroupTitleSuffixWrapper open={open}>
                             <Icon name="down" />
                         </StyledItemGroupTitleSuffixWrapper>
@@ -80,7 +81,7 @@ const ItemGroup: React.FC<ItemGroupProps> = (
             )}
             {isFloat && (
                 <StyledItemGroupTitleWrapper ref={referenceRef} {...bindHover}>
-                    <Item>{title}</Item>
+                    <Item prefix={prefix}>{title}</Item>
                     <StyledItemGroupTitleSuffixWrapper open={hoverStatus}>
                         <Icon name="right" />
                     </StyledItemGroupTitleSuffixWrapper>

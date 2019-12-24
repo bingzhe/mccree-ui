@@ -68,7 +68,8 @@ module.exports = {
                 disable: true
             }
         },
-        `gatsby-plugin-sass`
+        `gatsby-plugin-sass`,
+        `gatsby-plugin-svg-sprite`
     ]
 
 };

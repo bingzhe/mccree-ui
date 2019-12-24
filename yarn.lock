@@ -7600,6 +7600,13 @@ gatsby-plugin-styled-components@^3.1.16:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
+gatsby-plugin-svg-sprite@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/gatsby-plugin-svg-sprite/download/gatsby-plugin-svg-sprite-2.0.1.tgz#533c338788a70f9882333ef540df53b92bda0d4b"
+  integrity sha1-Uzwzh4inD5iCMz71QN9TuSvaDUs=
+  dependencies:
+    svg-sprite-loader "^4.1.3"
+
 gatsby-plugin-typescript@^2.1.23:
   version "2.1.23"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.1.23.tgz#02b29bf1986816d74a3f94231437b17b32bf1d12"

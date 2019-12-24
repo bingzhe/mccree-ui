@@ -6,14 +6,12 @@ interface LayoutProps {
     children: React.ReactNode;
 }
 
-const theme: Theme = {
+const theme: Theme = {};
 
-};
-
+// body {
+//     overflow: hidden;
+// }
 const GlobalStyle = createGlobalStyle`
-    body {
-        overflow: hidden;
-    }
     code {
         background-color: rgba(27, 31, 35, 0.05);
         border-radius: 3px;

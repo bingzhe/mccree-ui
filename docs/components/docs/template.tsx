@@ -61,10 +61,9 @@ const Template: React.FC<TemplateProps> = ({ data }) => {
                 width="100vw"
                 display="flex"
                 justifyContent="space-between"
-                overflow="hidden"
                 height="100vh"
             >
-                {console.log(data)}
+                {/* overflow="hidden" */}
                 <Nav data={data} />
                 <Content data={data} />
             </Box>

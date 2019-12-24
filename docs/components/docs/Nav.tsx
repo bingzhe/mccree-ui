@@ -8,11 +8,11 @@ import { TemplateProps } from "./template";
 const iconMap = [
     {
         title: "Layout",
-        prefix: <Icon name="qq" />
+        prefix: <Icon name="smile" />
     },
     {
         title: "Inputs",
-        prefix: <Icon name="wechat" />
+        prefix: <Icon name="smile" />
     },
 ];
 
@@ -53,6 +53,11 @@ const getFrontMatter = (target: TemplateProps["data"]): Result[] => {
     }));
 };
 
+const getPrefixByTitle = (title: string): JSX.Element => {
+    const target = iconMap.find(v => v.title === title);
+    return target ? target.prefix : <Icon name="smile" />;
+};
+
 const Nav: React.FC<TemplateProps> = ({ data }) => {
     const activeId = data.doc.frontmatter.title;
 
@@ -84,12 +89,12 @@ const Nav: React.FC<TemplateProps> = ({ data }) => {
             width={260}
         >
             <Navigation.Header>
-                <Item onClick={handleExpanded} prefix={<Icon name="wechat" />}>123</Item>
+                <Item onClick={handleExpanded} prefix={<Icon name="smile" />}></Item>
             </Navigation.Header>
             {result.map(
                 ({ type, titles }) => {
                     return (
-                        <ItemGroup key={type} title={type}>
+                        <ItemGroup key={type} title={type} prefix={getPrefixByTitle(type)}>
                             {titles.map(
                                 title => (
                                     <Item
