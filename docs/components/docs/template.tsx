@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import { Box } from "../../../../components/index";
+import { Box } from "../../../components/index";
 import Layout from "../Layout";
 import Content from "./Content";
 import Nav from "./Nav";
@@ -59,10 +59,10 @@ const Template: React.FC<TemplateProps> = ({ data }) => {
                 background="url(/wall.jpg) 50% center / cover no-repeat fixed"
                 padding={{ xs: "0", sm: "3.6rem 3rem" }}
                 width="100vw"
-                height="100vh"
                 display="flex"
                 justifyContent="space-between"
                 overflow="hidden"
+                height="100vh"
             >
                 {console.log(data)}
                 <Nav data={data} />

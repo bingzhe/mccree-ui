@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Layout } from "../../../components/index";
+import { Layout } from "../../components/index";
 
 export default () => {
     return (

@@ -11,8 +11,7 @@ const path = require("path");
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
 
-    // const docs = path.resolve(`src/components/docs/template.tsx`);
-    const docs = path.resolve(`docs/src/components/docs/template.tsx`);
+    const docs = path.resolve(`docs/components/docs/template.tsx`);
 
 
     return graphql(`

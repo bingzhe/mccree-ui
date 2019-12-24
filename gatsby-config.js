@@ -15,7 +15,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-page-creator`,
             options: {
-                path: `${__dirname}/docs/src/pages`,
+                path: `${__dirname}/docs/pages`,
             },
         },
         `gatsby-plugin-react-helmet`,
@@ -23,7 +23,7 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `images`,
-                path: `${__dirname}/docs/src/images`
+                path: `${__dirname}/docs/static/images`
             }
         },
         `gatsby-transformer-sharp`,
@@ -37,7 +37,7 @@ module.exports = {
                 start_url: `/`,
                 background_color: `#0078d4`,
                 theme_color: `#0078d4`,
-                icon: `docs/src/images/gatsby-icon.png` // This path is relative to the root of the site.
+                icon: `docs/static/images/gatsby-icon.png` // This path is relative to the root of the site.
             }
         },
         `gatsby-plugin-typescript`,
@@ -45,7 +45,7 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `docs`,
-                path: `${__dirname}/docs/src/docs`
+                path: `${__dirname}/docs/docs`
             }
         },
         `gatsby-transformer-remark`,

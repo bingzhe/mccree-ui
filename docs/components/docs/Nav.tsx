@@ -2,7 +2,7 @@ import React from "react";
 
 import { navigate } from "gatsby";
 
-import { Icon, Navigation, Item, ItemGroup } from "../../../../components/index";
+import { Icon, Navigation, Item, ItemGroup } from "../../../components/index";
 import { TemplateProps } from "./template";
 
 const iconMap = [
@@ -71,7 +71,7 @@ const Nav: React.FC<TemplateProps> = ({ data }) => {
     }, []);
 
     const result = getFrontMatter(data);
-    console.log("result", result);
+
     const rootRef = React.useRef<HTMLDivElement>(null);
 
     const PcChild = (

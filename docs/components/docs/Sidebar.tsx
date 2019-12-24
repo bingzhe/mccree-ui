@@ -1,26 +1,24 @@
 import React from "react";
 
 import { TemplateProps } from "./template";
-import { Box, styled, th } from "../../../../components/index";
+import { Box, styled, th } from "../../../components/index";
 
 const StyledSideBarRoot = styled.div`
-position: fixed;
-top: 114px;
-// right: -80px;
-right: 0;
-z-index: 100 !important;
-transition: ${th.transition("default")};
-&:hover {
-  right: 0;
-}
+    position: fixed;
+    top: 114px;
+    // right: -80px;
+    right: 0;
+    z-index: 100 !important;
+    transition: ${th.transition("default")};
+    &:hover {
+    right: 0;
+    }
 `;
 
 const Sidebar: React.FC<TemplateProps> = ({ data }) => {
     const [title] = data.doc.htmlAst.children.filter((element): boolean => element.tagName === "h1");
     const subtitles = data.doc.htmlAst.children.filter((element): boolean => element.tagName === "h2");
 
-    console.log("title", title);
-    console.log("subtitles", subtitles);
     return (
         <StyledSideBarRoot>
             <Box
