@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import "./dialog.scss";
+// import "./dialog.scss";
 import { scopeClassMaker } from "../_util/classes";
 
 const scopeClass = scopeClassMaker("rui-dialog");

@@ -15,7 +15,7 @@ export * from "./styles/intex";
 import * as colors from "./colors";
 export { colors };
 
-import "./index.scss";
+// import "./index.scss";
 
 export type StandardProps<
     T = React.HTMLAttributes<HTMLDivElement>,
