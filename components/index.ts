@@ -21,4 +21,4 @@ export type StandardProps<
     T = React.HTMLAttributes<HTMLDivElement>,
     Ref = HTMLDivElement,
     O extends string = ""
-> = { className?: string; style?: React.CSSProperties } & Omit<T, O> & { ref?: React.Ref<Ref> }
+    > = { className?: string; style?: React.CSSProperties } & Omit<T, O> & { ref?: React.Ref<Ref> }
