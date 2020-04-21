@@ -35,9 +35,8 @@ module.exports = {
             {
                 test: /\.s([ac])ss$/,
                 include: [APP_DIR, SITE_DIR],
-                loader: ["style-loader", "css-loader"]
+                loader: ["style-loader", "css-loader", "less-loader"]
             },
-            // "sass-loader"
             {
                 test: /\.css$/,
                 include: MONACO_DIR,
