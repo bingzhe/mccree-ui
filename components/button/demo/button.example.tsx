@@ -21,29 +21,29 @@ const ButtonExample: React.FunctionComponent = () => {
             </ButtonsWrapper>
             <h1>plain</h1>
             <ButtonsWrapper>
-                <Button plain>plain</Button>
+                {/* <Button plain>plain</Button>
                 <Button type="primary" plain>primary</Button>
                 <Button type="success" plain>success</Button>
                 <Button type="warning" plain>warning</Button>
-                <Button type="danger" plain>danger</Button>
+                <Button type="danger" plain>danger</Button> */}
             </ButtonsWrapper>
             <h1>禁用</h1>
             <ButtonsWrapper>
-                <Button disabled>plain</Button>
+                {/* <Button disabled>plain</Button>
                 <Button type="primary" disabled>primary</Button>
                 <Button type="success" disabled>success</Button>
                 <Button type="warning" disabled>warning</Button>
-                <Button type="danger" disabled>danger</Button>
+                <Button type="danger" disabled>danger</Button> */}
             </ButtonsWrapper>
             <h1>size</h1>
             <ButtonsWrapper>
-                <Button type="primary" size="large">large</Button>
+                {/* <Button type="primary" size="large">large</Button>
                 <Button type="primary" >default</Button>
                 <Button type="primary" size="small">small</Button>
                 <br></br>
                 <Button type="primary" plain size="large">large</Button>
                 <Button type="primary" plain>default</Button>
-                <Button type="primary" plain size="small">small</Button>
+                <Button type="primary" plain size="small">small</Button> */}
             </ButtonsWrapper>
         </div>
     );
