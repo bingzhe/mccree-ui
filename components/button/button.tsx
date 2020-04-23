@@ -1,6 +1,7 @@
 import * as React from "react";
 // import * as PropTypes from "prop-types";
 // import "./style/index";
+// import SizeContext from "../config-provider/SizeContext";
 
 import { Omit, tuple } from "../_util/type";
 
@@ -16,12 +17,11 @@ export type ButtonHTMLType = typeof ButtonHTMLTypes[number]
 
 export interface BaseButtonProps {
     type?: ButtonType;
-    // styleType: ButtonType;
     size: ButtonSize;
     plain?: boolean;
     disabled?: boolean;
     className?: string;
-    // icon?: string;
+    icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
 }
 
@@ -38,27 +38,7 @@ export type NativeButtonProps = {
 
 export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
-// interface Props extends React.HtmlHTMLAttributes<HTMLElement> {
-//     type?: ButtonType;
-//     size?: ButtonSize;
-//     plain?: boolean;
-//     disabled?: boolean;
-//     className?: string;
-//     icon?: string;
-//     loading?: boolean | { delay?: number };
-// }
-
-
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
-    const {
-        // className,
-        // loading,
-        // type = "primary",
-        // size = "medium",
-        children,
-        // ...restProps
-    } = props;
-
     const [loading, setLoading] = React.useState(props.loading);
 
     let delayTimeout: number;
@@ -96,7 +76,7 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                 // {...otherProps}
                 // {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
             >
-                {children}
+                {props.children}
             </button>
         </React.Fragment>
 
