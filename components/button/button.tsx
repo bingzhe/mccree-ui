@@ -1,7 +1,8 @@
 import * as React from "react";
+import classNames from "classnames";
 // import * as PropTypes from "prop-types";
 // import "./style/index";
-// import SizeContext from "../config-provider/SizeContext";
+import SizeContext from "../config-provider/SizeContext";
 
 import { Omit, tuple } from "../_util/type";
 
@@ -66,19 +67,52 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
     // const { htmlType, ...otherProps } = restProps as NativeButtonProps;
 
     return (
-        <React.Fragment>
-            <button
-                // className={className}
-                // size={size}
-                // styleType={type}
-                // type={htmlType}
-                onClick={handleClick}
-                // {...otherProps}
-                // {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
-            >
-                {props.children}
-            </button>
-        </React.Fragment>
+        <SizeContext.Consumer>
+            {size => {
+                const {
+                    type,
+                    size: customizeSize,
+                    className,
+                    icon,
+                } = props;
+
+                let sizeCls = "";
+                switch (customizeSize || size) {
+                    case "large":
+                        sizeCls = "lg";
+                        break;
+                    case "small":
+                        sizeCls = "sm";
+                        break;
+                    default:
+                        break;
+                }
+
+                const iconType = loading ? "loading" : icon;
+
+                console.log({ type });
+                console.log({ className });
+                console.log({ sizeCls });
+                console.log({ iconType });
+                console.log({ classNames });
+                return (
+                    <React.Fragment>
+                        <button
+                            // className={className}
+                            // size={size}
+                            // styleType={type}
+                            // type={htmlType}
+                            onClick={handleClick}
+                        // {...otherProps}
+                        // {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
+                        >
+                            {props.children}
+                        </button>
+                    </React.Fragment>
+                );
+            }}
+        </SizeContext.Consumer>
+
 
     );
 };
