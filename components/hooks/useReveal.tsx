@@ -50,7 +50,7 @@ const createRevealWrapper = (
 };
 
 export function useReveal(
-    gradientSize: number = 80,
+    gradientSize = 80,
     lightColor: CSS.ColorProperty = "rgba(160, 160, 160, 1)"
 ): Return {
     const RevealWrapper = createRevealWrapper(gradientSize, lightColor);
