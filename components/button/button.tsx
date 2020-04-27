@@ -3,11 +3,16 @@ import classNames from "classnames";
 // import * as PropTypes from "prop-types";
 // import "./style/index";
 import SizeContext from "../config-provider/SizeContext";
+// import ConfigContext from "../config-provider";
+
 
 import { Omit, tuple } from "../_util/type";
 
+const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
+    if (customizePrefixCls) return customizePrefixCls;
 
-// import { theme } from "../themes/base";
+    return suffixCls ? `mccree-${suffixCls}` : "mccree";
+};
 
 const ButtonTypes = tuple("primary", "success", "warning", "danger");
 export type ButtonType = typeof ButtonTypes[number];
@@ -15,13 +20,17 @@ const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = typeof ButtonSizes[number];
 const ButtonHTMLTypes = tuple("submit", "button", "reset");
 export type ButtonHTMLType = typeof ButtonHTMLTypes[number]
+const ButtonShapes = tuple("circle", "circle-outline", "round");
+export type ButtonShape = typeof ButtonShapes[number];
 
 export interface BaseButtonProps {
     type?: ButtonType;
+    shape?: ButtonShape;
     size: ButtonSize;
     plain?: boolean;
     disabled?: boolean;
     className?: string;
+    prefixCls?: string;
     icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
 }
@@ -41,7 +50,7 @@ export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
     const [loading, setLoading] = React.useState(props.loading);
-
+    // const { getPrefixCls } = React.useContext(ConfigContext);
     let delayTimeout: number;
 
 
@@ -70,11 +79,15 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
         <SizeContext.Consumer>
             {size => {
                 const {
+                    prefixCls: customizePrefixCls,
                     type,
+                    shape,
                     size: customizeSize,
                     className,
                     icon,
                 } = props;
+
+                const prefixCls = getPrefixCls("btn", customizePrefixCls);
 
                 let sizeCls = "";
                 switch (customizeSize || size) {
@@ -90,11 +103,15 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
 
                 const iconType = loading ? "loading" : icon;
 
-                console.log({ type });
-                console.log({ className });
+                const classes = classNames(prefixCls, className, {
+                    [`${prefixCls}-${type}`]: type,
+                    [`${prefixCls}-${shape}`]: shape,
+                    [`${prefixCls}-${sizeCls}`]: sizeCls
+                });
+
                 console.log({ sizeCls });
                 console.log({ iconType });
-                console.log({ classNames });
+                console.log({ classes });
                 return (
                     <React.Fragment>
                         <button

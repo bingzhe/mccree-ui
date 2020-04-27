@@ -3,11 +3,11 @@ import { storiesOf } from "@storybook/react";
 
 import Button from "../components/button/index";
 
-export const ButtonBook = () => (<Button>test</Button>);
+// export const ButtonBook = () => (<Button>test</Button>);
 
-ButtonBook.story = {
-    name: "Button",
-};
+// ButtonBook.story = {
+//     name: "Button",
+// };
 
 // export default {
 //     title: "Button",
@@ -28,7 +28,7 @@ storiesOf("demo", module)
         () => {
             return (
                 <>
-                    <ButtonBook></ButtonBook>
+                    <Button type="primary" size="small">test</Button>
                 </>
             );
         }
