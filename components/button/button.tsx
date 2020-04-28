@@ -5,7 +5,7 @@ import classNames from "classnames";
 import SizeContext from "../config-provider/SizeContext";
 // import ConfigContext from "../config-provider";
 
-
+import { omit } from "../utils/omit";
 import { Omit, tuple } from "../_util/type";
 
 const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
@@ -31,8 +31,11 @@ export interface BaseButtonProps {
     disabled?: boolean;
     className?: string;
     prefixCls?: string;
+    ghost?: boolean;
     icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
+    block?: boolean;
+    children?: React.ReactNode;
 }
 
 export type AnchorButtonProps = {
@@ -51,6 +54,7 @@ export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
     const [loading, setLoading] = React.useState(props.loading);
     // const { getPrefixCls } = React.useContext(ConfigContext);
+    const buttonRef = React.createRef<HTMLButtonElement>();
     let delayTimeout: number;
 
 
@@ -73,8 +77,6 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
         onClick && onClick(e);
     };
 
-    // const { htmlType, ...otherProps } = restProps as NativeButtonProps;
-
     return (
         <SizeContext.Consumer>
             {size => {
@@ -85,6 +87,10 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     size: customizeSize,
                     className,
                     icon,
+                    children,
+                    ghost,
+                    block,
+                    ...rest
                 } = props;
 
                 const prefixCls = getPrefixCls("btn", customizePrefixCls);
@@ -106,27 +112,28 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                 const classes = classNames(prefixCls, className, {
                     [`${prefixCls}-${type}`]: type,
                     [`${prefixCls}-${shape}`]: shape,
-                    [`${prefixCls}-${sizeCls}`]: sizeCls
+                    [`${prefixCls}-${sizeCls}`]: sizeCls,
+                    [`${prefixCls}-icon-only`]: !children && children !== 0 && iconType,
+                    [`${prefixCls}-background-ghost`]: ghost,
+                    [`${prefixCls}-loading`]: loading,
+                    [`${prefixCls}-block`]: block
                 });
 
-                console.log({ sizeCls });
-                console.log({ iconType });
-                console.log({ classes });
-                return (
-                    <React.Fragment>
-                        <button
-                            // className={className}
-                            // size={size}
-                            // styleType={type}
-                            // type={htmlType}
-                            onClick={handleClick}
-                        // {...otherProps}
-                        // {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
-                        >
-                            {props.children}
-                        </button>
-                    </React.Fragment>
+                const { htmlType, ...otherProps } = rest as NativeButtonProps;
+
+                const buttonNode = (
+                    <button
+                        {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
+                        type={htmlType}
+                        className={classes}
+                        onClick={handleClick}
+                        ref={buttonRef}
+                    >
+                        {children}
+                    </button>
                 );
+
+                return buttonNode;
             }}
         </SizeContext.Consumer>
 

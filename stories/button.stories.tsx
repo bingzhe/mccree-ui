@@ -28,7 +28,7 @@ storiesOf("demo", module)
         () => {
             return (
                 <>
-                    <Button type="primary" size="small">test</Button>
+                    <Button type="primary" block>test</Button>
                 </>
             );
         }
