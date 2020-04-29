@@ -2,17 +2,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import Button from "../components/button/index";
+import "../components/button/style/index.less";
 
-// export const ButtonBook = () => (<Button>test</Button>);
-
-// ButtonBook.story = {
-//     name: "Button",
-// };
-
-// export default {
-//     title: "Button",
-//     component: ButtonBook,
-// };
 
 storiesOf("demo", module)
     .add(
@@ -28,7 +19,7 @@ storiesOf("demo", module)
         () => {
             return (
                 <>
-                    <Button type="primary" block>test</Button>
+                    <Button type="primary">test</Button>
                 </>
             );
         }

@@ -1,0 +1,159 @@
+@mccree-prefix: mccree;
+
+// --------- Colors --------
+@primary-color: #1890ff;
+@warning-color: #faad14;
+@success-color: #52c41a;
+@error-color  : #ff4d4f;
+@info-color   : @primary-color;
+
+@white : #fff;
+@black : #000;
+
+@body-background     : #fff;
+@component-background: #fff;
+
+@font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+@code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+@text-color          : fade(@black, 65%);
+@text-color-secondary: fade(@black, 45%);
+@text-color-inverse  : @white;
+@icon-color          : inherit;
+@icon-color-hover    : fade(@black, 75%);
+
+@font-size-base: 14px;
+@font-size-lg  : 16px;
+@font-size-sm  : 12px;
+
+@line-height-base  : 1.5715;
+@border-radius-base: 2px;
+@border-radius-sm  : @border-radius-base;
+
+// vertical paddings
+@padding-lg : 24px;
+@padding-md : 16px;
+@padding-sm : 12px;
+@padding-xs : 8px;
+@padding-xss: 4px;
+
+// vertical margins
+@margin-lg : 24px;
+@margin-md : 16px;
+@margin-sm : 12px;
+@margin-xs : 8px;
+@margin-xss: 4px;
+
+//height rules
+@height-base: 32px;
+@height-lg  : 40px;
+@height-sm  : 24px;
+
+// Animation
+@ease-base-out    : cubic-bezier(0.7, 0.3, 0.1, 1);
+@ease-base-in     : cubic-bezier(0.9, 0, 0.3, 0.7);
+@ease-out         : cubic-bezier(0.215, 0.61, 0.355, 1);
+@ease-in          : cubic-bezier(0.55, 0.055, 0.675, 0.19);
+@ease-in-out      : cubic-bezier(0.645, 0.045, 0.355, 1);
+@ease-out-back    : cubic-bezier(0.12, 0.4, 0.29, 1.46);
+@ease-in-back     : cubic-bezier(0.71, -0.46, 0.88, 0.6);
+@ease-in-out-back : cubic-bezier(0.71, -0.46, 0.29, 1.46);
+@ease-out-circ    : cubic-bezier(0.08, 0.82, 0.17, 1);
+@ease-in-circ     : cubic-bezier(0.6, 0.04, 0.98, 0.34);
+@ease-in-out-circ : cubic-bezier(0.78, 0.14, 0.15, 0.86);
+@ease-out-quint   : cubic-bezier(0.23, 1, 0.32, 1);
+@ease-in-quint    : cubic-bezier(0.755, 0.05, 0.855, 0.06);
+@ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+
+// Border color
+@border-color-base   : hsv(0, 0, 85%);
+@border-color-split  : hsv(0, 0, 94%);
+@border-color-inverse: @white;
+@border-width-base   : 1px;
+@border-style-base   : solid;
+
+//Outline
+@outline-blur-size: 0;
+@outline-width    : 2px;
+@outline-color    : @primary-color;
+@outline-fade     : 20%;
+
+@background-color-light: hsv(0, 0, 98%);
+@background-color-base : hsv(0, 0, 96%);
+
+//Disabled states
+@disabled-color     : fade(#333, 25%);
+@disabled-bg        : @background-color-base;
+@disabled-color-dark: fade(#fff, 35%);
+
+// Shadow
+@shadow-color        : rgba(0, 0, 0, 0.15);
+@shadow-color-inverse: @component-background;
+@box-shadow-base     : @shadow-2;
+@shadow-1-up         : 0 -6px 16px -8px rgba(0, 0, 0, 0.08),
+0 -9px 28px 0 rgba(0, 0, 0, 0.05),
+0 -12px 48px 16px rgba(0, 0, 0, 0.03);
+@shadow-1-down: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 0 9px 28px 0 rgba(0, 0, 0, 0.05),
+    0 12px 48px 16px rgba(0, 0, 0, 0.03);
+@shadow-1-left: -6px 0 16px -8px rgba(0, 0, 0, 0.08), -9px 0 28px 0 rgba(0, 0, 0, 0.05),
+    -12px 0 48px 16px rgba(0, 0, 0, 0.03);
+@shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.08), 9px 0 28px 0 rgba(0, 0, 0, 0.05),
+    12px 0 48px 16px rgba(0, 0, 0, 0.03);
+@shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+//Buttons
+@btn-font-weight       : 400;
+@btn-border-radius-base: @border-radius-base;
+@btn-border-radius-sm  : @border-radius-base;
+@btn-border-width      : @border-width-base;
+@btn-border-style      : @border-style-base;
+@btn-shadow            : 0 2px 0 rgba(0, 0, 0, 0.015);
+@btn-primary-shadow    : 0 2px 0 rgba(0, 0, 0, 0.045);
+@btn-text-shadow       : 0 -1px 0 rgba(0, 0, 0, 0.12);
+
+@btn-primary-color: #fff;
+@btn-primary-bg   : @primary-color;
+
+@btn-default-color : @text-color;
+@btn-default-bg    : @component-background;
+@btn-default-border: @border-color-base;
+
+@btn-danger-color : #fff;
+@btn-danger-bg    : @error-color;
+@btn-danger-border: @error-color;
+
+@btn-disable-color : @disabled-color;
+@btn-disable-bg    : @disabled-bg;
+@btn-disable-border: @border-color-base;
+
+@btn-default-ghost-color : @component-background;
+@btn-default-ghost-bg    : transparent;
+@btn-default-ghost-border: @component-background;
+
+@btn-font-size-lg           : @font-size-lg;
+@btn-font-size-sm           : @font-size-base;
+@btn-padding-horizontal-base: @padding-md - 1px;
+@btn-padding-horizontal-lg  : @btn-padding-horizontal-base;
+@btn-padding-horizontal-sm  : @padding-xs - 1px;
+
+@btn-height-base: @height-base;
+@btn-height-lg  : @height-lg;
+@btn-height-sm  : @height-sm;
+
+@btn-circle-size   : @btn-height-base;
+@btn-circle-size-lg: @btn-height-lg;
+@btn-circle-size-sm: @btn-height-sm;
+
+@btn-square-size             : @btn-height-base;
+@btn-square-size-lg          : @btn-height-lg;
+@btn-square-size-sm          : @btn-height-sm;
+@btn-square-only-icon-size   : @font-size-base +2px;
+@btn-square-only-icon-size-sm: @font-size-base;
+@btn-square-only-icon-size-lg: @btn-font-size-lg + 2px;
+
+@btn-group-border: @primary-color;
+
+@btn-link-ghost-color: @component-background;

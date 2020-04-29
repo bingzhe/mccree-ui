@@ -121,6 +121,7 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
 
                 const { htmlType, ...otherProps } = rest as NativeButtonProps;
 
+                console.log({ classes });
                 const buttonNode = (
                     <button
                         {...(omit(otherProps, ["loading"]) as NativeButtonProps)}

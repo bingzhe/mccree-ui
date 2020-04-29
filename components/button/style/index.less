@@ -1,4 +1,8 @@
-@import '../../styles/index.less';
+@import "../../styles/var.less";
+@import "./mixin.less";
 
-@btn-prefix-cls : '@{mc-prefix}-button';
+@btn-prefix-cls :~'@{mccree-prefix}-btn';
 
+.@{btn-prefix-cls} {
+    .btn;
+}
