@@ -14,7 +14,7 @@ const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
     return suffixCls ? `mccree-${suffixCls}` : "mccree";
 };
 
-const ButtonTypes = tuple("primary", "success", "warning", "danger");
+const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
 export type ButtonType = typeof ButtonTypes[number];
 const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = typeof ButtonSizes[number];

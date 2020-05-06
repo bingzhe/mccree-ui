@@ -1,11 +1,29 @@
 @mccree-prefix: mccree;
 
 // --------- Colors --------
-@primary-color: #1890ff;
-@warning-color: #faad14;
-@success-color: #52c41a;
-@error-color  : #ff4d4f;
-@info-color   : @primary-color;
+@primary-color       : #1976d2;
+@primary-light-color : #4791db;
+@primary-dark-color  : #115293;
+
+@secondary-color       : #dc004e;
+@secondary-light-color : #e33371;
+@secondary-dark-color  : #9a0036;
+
+@warning-color       : #ff9800;
+@warning-light-color : #ffb74d;
+@warning-dark-color  : #f57c00;
+
+@success-color       : #4caf50;
+@success-light-color : #81c784;
+@success-dark-color  : #388e3c;
+
+@error-color       : #f44336;
+@error-light-color : #e57373;
+@error-dark-color  : #d32f2f;
+
+@info-color       : #2196f3;
+@info-light-color : #64b5f6;
+@info-dark-color  : #1976d2;
 
 @white : #fff;
 @black : #000;
@@ -101,29 +119,79 @@
     -12px 0 48px 16px rgba(0, 0, 0, 0.03);
 @shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.08), 9px 0 28px 0 rgba(0, 0, 0, 0.05),
     12px 0 48px 16px rgba(0, 0, 0, 0.03);
-@shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+// @shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+//     0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+@shadow-1 : 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+@shadow-2 : 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+@shadow-3 : 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
+0px 3px 4px 0px rgba(0, 0, 0, 0.14),
+0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+@shadow-4 : 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+@shadow-5 : 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+@shadow-6 : 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+@shadow-7 : 0px 4px 5px -2px rgba(0, 0, 0, 0.2),
+0px 7px 10px 1px rgba(0, 0, 0, 0.14),
+0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+@shadow-8 : 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+@shadow-9 : 0px 5px 6px -3px rgba(0, 0, 0, 0.2),
+0px 9px 12px 1px rgba(0, 0, 0, 0.14),
+0px 3px 16px 2px rgba(0, 0, 0, 0.12);
+@shadow-10 : 0px 6px 6px -3px rgba(0, 0, 0, 0.2),
+0px 10px 14px 1px rgba(0, 0, 0, 0.14),
+0px 4px 18px 3px rgba(0, 0, 0, 0.12);
 
 //Buttons
-@btn-font-weight       : 400;
-@btn-border-radius-base: @border-radius-base;
-@btn-border-radius-sm  : @border-radius-base;
-@btn-border-width      : @border-width-base;
-@btn-border-style      : @border-style-base;
-@btn-shadow            : 0 2px 0 rgba(0, 0, 0, 0.015);
-@btn-primary-shadow    : 0 2px 0 rgba(0, 0, 0, 0.045);
-@btn-text-shadow       : 0 -1px 0 rgba(0, 0, 0, 0.12);
-
-@btn-primary-color: #fff;
-@btn-primary-bg   : @primary-color;
+@btn-font-weight          : 400;
+@btn-border-radius-base   : 4px;
+@btn-border-radius-sm     : @border-radius-base;
+@btn-border-width         : @border-width-base;
+@btn-border-style         : @border-style-base;
+@btn-shadow               : 0 2px 0 rgba(0, 0, 0, 0.015);
+@btn-primary-shadow       : @shadow-2;
+@btn-primary-shadow-hover : @shadow-4;
+@btn-text-shadow          : 0 -1px 0 rgba(0, 0, 0, 0.12);
 
 @btn-default-color : @text-color;
 @btn-default-bg    : @component-background;
 @btn-default-border: @border-color-base;
 
-@btn-danger-color : #fff;
-@btn-danger-bg    : @error-color;
-@btn-danger-border: @error-color;
+@btn-primary-color   : @white;
+@btn-primary-bg      : @primary-color;
+@btn-primary-bg-hover: @primary-dark-color;
+
+@btn-secondary-color   : @white;
+@btn-secondary-bg      : @secondary-color;
+@btn-secondary-bg-hover: @secondary-dark-color;
+
+@btn-warning-color   : @white;
+@btn-warning-bg      : @warning-color;
+@btn-warning-bg-hover: @warning-dark-color;
+
+@btn-success-color   : @white;
+@btn-success-bg      : @success-color;
+@btn-success-bg-hover: @success-dark-color;
+
+@btn-error-color    : @white;
+@btn-error-bg       : @error-color;
+@btn-error-bg-hover : @error-dark-color;
+@btn-error-border   : @error-color;
+
+@btn-info-color   : @white;
+@btn-info-bg      : @info-color;
+@btn-info-bg-hover: @info-dark-color;
 
 @btn-disable-color : @disabled-color;
 @btn-disable-bg    : @disabled-bg;
