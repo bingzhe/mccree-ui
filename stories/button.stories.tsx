@@ -22,6 +22,7 @@ storiesOf("demo", module)
         () => {
             return (
                 <>
+                    <Button onClick={action("clicked")}>Default</Button>
                     <Button type="primary" onClick={action("clicked")}>Primary</Button>
                     <Button type="success" onClick={action("clicked")}>Success</Button>
                     <Button type="error">Danger</Button>

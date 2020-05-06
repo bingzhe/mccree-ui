@@ -1,4 +1,4 @@
-.button-size(@height; @padding-horizontal; @font-size; @border-radius) {
+.btn-size(@height; @padding-horizontal; @font-size; @border-radius) {
     @padding-vertical: max(round((@height - @font-size * @line-height-base) / 2 * 10) / 10 - @border-width-base, 0);
 
     height       : @height;
@@ -35,13 +35,13 @@
     text-align      : center;
     background-image: none;
     border          : @btn-border-width @btn-border-style transparent;
-    box-shadow      : @btn-shadow;
+    box-shadow      : @shadow-2;
     cursor          : pointer;
     transition      : all 0.3s @ease-in-out;
     user-select     : none;
     touch-action    : manipulation;
 
-    .button-size(@btn-height-base; @btn-padding-horizontal-base; @font-size-base; @btn-border-radius-base );
+    .btn-size(@btn-height-base; @btn-padding-horizontal-base; @font-size-base; @btn-border-radius-base );
 
     // >.@{iconfont-css-prefix} {
     //     line-height: 1;
@@ -72,11 +72,11 @@
     }
 
     &-lg {
-        .button-size(@btn-height-lg; @btn-padding-horizontal-lg; @btn-font-size-lg; @btn-border-radius-base );
+        .btn-size(@btn-height-lg; @btn-padding-horizontal-lg; @btn-font-size-lg; @btn-border-radius-base );
     }
 
     &-sm {
-        .button-size(@btn-height-sm; @btn-padding-horizontal-sm; @btn-font-size-sm; @btn-border-radius-sm );
+        .btn-size(@btn-height-sm; @btn-padding-horizontal-sm; @btn-font-size-sm; @btn-border-radius-sm );
         line-height: @btn-height-sm - 2px;
     }
 }
@@ -84,11 +84,24 @@
 .btn-variant-type(@color; @bg-color; @bg-hover-color) {
     .btn-color(@color, @bg-color, @bg-color);
 
-    text-shadow: @btn-text-shadow;
-    box-shadow : @shadow-2;
+    text-shadow   : @btn-text-shadow;
+    // box-shadow : @shadow-2;
 
     &:hover {
         .btn-color(@color, @bg-hover-color, @bg-hover-color);
+        // box-shadow: @shadow-4
+    }
+
+    // &:active {
+    //     box-shadow: @shadow-8;
+    // }
+}
+
+.btn-default() {
+    .btn-color(@btn-default-color, @btn-default-bg, @btn-default-bg);
+
+    &:hover {
+        .btn-color(@btn-default-color, @btn-default-bg-hover, @btn-default-bg-hover);
         box-shadow: @shadow-4
     }
 
