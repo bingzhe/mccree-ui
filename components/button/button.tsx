@@ -14,7 +14,7 @@ const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
     return suffixCls ? `mccree-${suffixCls}` : "mccree";
 };
 
-const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
+const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info", "text");
 export type ButtonType = typeof ButtonTypes[number];
 const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = typeof ButtonSizes[number];
@@ -32,6 +32,7 @@ export interface BaseButtonProps {
     className?: string;
     prefixCls?: string;
     ghost?: boolean;
+    outline?: boolean;
     icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
     block?: boolean;
@@ -90,6 +91,7 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     children,
                     ghost,
                     block,
+                    outline,
                     ...rest
                 } = props;
 
@@ -113,6 +115,7 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     [`${prefixCls}-${type}`]: type,
                     [`${prefixCls}-${shape}`]: shape,
                     [`${prefixCls}-${sizeCls}`]: sizeCls,
+                    [`${prefixCls}-outline`]: outline,
                     [`${prefixCls}-icon-only`]: !children && children !== 0 && iconType,
                     [`${prefixCls}-background-ghost`]: ghost,
                     [`${prefixCls}-loading`]: loading,
