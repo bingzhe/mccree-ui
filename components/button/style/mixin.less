@@ -29,7 +29,7 @@
     }
 }
 
-.btn-disabled(@color: @btn-disable-color; @background: @btn-disable-bg; @border: @btn-disable-border) {
+.btn-disabled(@color; @background; @border) {
 
     &-disabled,
     &.disabled,
@@ -41,8 +41,6 @@
         &:active,
         &.active {
             .btn-color(@color; @background; @border);
-
-            // text-shadow: none;
             box-shadow: none;
         }
     }
@@ -80,8 +78,7 @@
     }
 
     &:not([disabled]):active {
-        outline      : 0;
-        // box-shadow: none;
+        outline: 0;
     }
 
     &.disabled,
@@ -106,7 +103,6 @@
 .btn-variant-type(@color; @bg-color; @bg-hover-color) {
     .btn-color(@color, @bg-color, @bg-color);
 
-    // text-shadow   : @btn-text-shadow;
     box-shadow: @shadow-2;
 
     &:hover {
@@ -118,19 +114,20 @@
         box-shadow: @shadow-8;
     }
 
-    // .btn-disabled();
     .btn-disabled(@btn-disable-color, @btn-disable-bg , transparent);
 
     &.@{btn-prefix-cls}-outline {
         .btn-outline(@bg-color);
     }
+
+    &.@{btn-prefix-cls}-text {
+        .btn-text(@bg-color);
+    }
 }
 
 .btn-outline(@color) {
-    color           : @color;
-    border-color    : fade(@color, 50%);
-    background-color: transparent;
-    box-shadow      : none;
+    .btn-color(@color, transparent, fade(@color, 50%));
+    box-shadow: none;
 
     &:hover {
         background-color: fade(@color, 4%)
@@ -139,21 +136,18 @@
     .btn-disabled(@btn-disable-color, transparent, @btn-disable-border);
 }
 
+.btn-text(@color) {
+    .btn-color(@color, transparent, transparent);
+    box-shadow: none;
+
+    &:hover {
+        background-color: fade(@color, 4%)
+    }
+
+    .btn-disabled(@btn-disable-color, transparent, transparent)
+}
+
 .btn-default() {
-
-    // .btn-color(@btn-default-color, @btn-default-bg, @btn-default-bg);
-
-    // &:hover {
-    //     .btn-color(@btn-default-color, @btn-default-bg-hover, @btn-default-bg-hover);
-    //     box-shadow: @shadow-4
-    // }
-
-    // &:active {
-    //     box-shadow: @shadow-8;
-    // }
-
-    // .btn-disabled(@btn-disable-color, @btn-disable-bg , transparent);
-
     .btn-variant-type(@btn-default-color, @btn-default-bg, @btn-default-bg-hover);
 
     &.@{btn-prefix-cls}-outline {
@@ -161,6 +155,9 @@
         border-color: fade(@btn-default-color, 23%);
     }
 
+    &.@{btn-prefix-cls}-text {
+        .btn-text(@btn-default-color);
+    }
 }
 
 
@@ -186,21 +183,4 @@
 
 .btn-info() {
     .btn-variant-type(@btn-info-color, @btn-info-bg, @btn-info-bg-hover);
-}
-
-.btn-text() {
-    .btn-variant-type(@btn-primary-bg, transparent, transparent);
-    box-shadow: none;
-
-    &:focus,
-    &:hover,
-    &:active {
-        box-shadow: none;
-    }
-
-    &:hover {
-        background-color: fade(@btn-primary-bg, 4%);
-    }
-
-    .btn-disabled(@btn-disable-color, transparent, transparent)
 }
