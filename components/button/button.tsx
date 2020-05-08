@@ -34,7 +34,6 @@ export interface BaseButtonProps {
     disabled?: boolean;
     className?: string;
     prefixCls?: string;
-    ghost?: boolean;
     icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
     block?: boolean;
@@ -57,7 +56,7 @@ export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
     const [loading, setLoading] = React.useState(props.loading);
     // const { getPrefixCls } = React.useContext(ConfigContext);
-    const buttonRef = React.createRef<HTMLButtonElement>();
+    // const buttonRef = React.createRef<HTMLButtonElement>();
     let delayTimeout: number;
 
 
@@ -91,7 +90,6 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     className,
                     icon,
                     children,
-                    ghost,
                     block,
                     variant,
                     ...rest
@@ -119,21 +117,30 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     [`${prefixCls}-${shape}`]: shape,
                     [`${prefixCls}-${sizeCls}`]: sizeCls,
                     [`${prefixCls}-icon-only`]: !children && children !== 0 && iconType,
-                    [`${prefixCls}-background-ghost`]: ghost,
                     [`${prefixCls}-loading`]: loading,
-                    [`${prefixCls}-block`]: block
+                    [`${prefixCls}-block`]: block,
                 });
+
+                const linkButtonRestProps = omit(rest as AnchorButtonProps, ["loading"]);
+
+                if (linkButtonRestProps.href !== undefined) {
+                    return (
+                        <a
+                            {...linkButtonRestProps}
+                            className={classes}
+                            onClick={handleClick}
+                        >{children}</a>
+                    );
+                }
 
                 const { htmlType, ...otherProps } = rest as NativeButtonProps;
 
-                console.log({ classes });
                 const buttonNode = (
                     <button
                         {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
                         type={htmlType}
                         className={classes}
                         onClick={handleClick}
-                        ref={buttonRef}
                     >
                         {children}
                     </button>

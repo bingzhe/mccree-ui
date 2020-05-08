@@ -9,15 +9,7 @@ import "../components/button/style/index.less";
 
 import "./styles/button.less";
 
-storiesOf("demo", module)
-    // .add(
-    //     "demo div",
-    //     () => {
-    //         return (
-    //             <div>DEMO</div>
-    //         );
-    //     }
-    // )
+storiesOf("Button", module)
     .add(
         "Button",
         () => {
@@ -33,6 +25,7 @@ storiesOf("demo", module)
                         <Button type="warning" onClick={action("clicked")}>WARNING</Button>
                         <Button type="info" onClick={action("clicked")}>INFO</Button>
                         <Button disabled type="primary" onClick={action("clicked")}>PRIMARY</Button>
+                        <Button target="block" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
                     </div>
 
                     <div>
@@ -45,6 +38,7 @@ storiesOf("demo", module)
                         <Button variant="outline" type="warning" onClick={action("clicked")}>WARNING</Button>
                         <Button variant="outline" type="info" onClick={action("clicked")}>INFO</Button>
                         <Button disabled variant="outline" type="primary" onClick={action("clicked")}>PRIMARY</Button>
+                        <Button target="block" variant="outline" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
                     </div>
 
                     <div>
@@ -57,6 +51,7 @@ storiesOf("demo", module)
                         <Button variant="text" type="warning" onClick={action("clicked")}>WARNING</Button>
                         <Button variant="text" type="info" onClick={action("clicked")}>INFO</Button>
                         <Button disabled variant="text" type="primary" onClick={action("clicked")}>PRIMARY</Button>
+                        <Button target="block" variant="text" href="http://bingzhe.github.io/" type="secondary" onClick={action("clicked")}>LINK</Button>
                     </div>
                     <div>
                         <h4>———— size ———— </h4>
@@ -81,6 +76,12 @@ storiesOf("demo", module)
                         <Button disabled variant="text" type="primary" onClick={action("clicked")} block>PRIMARY</Button>
                     </div>
                     <div>
+                        <h4>———— link ———— </h4>
+                        <Button target="block" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+                        <Button target="block" variant="outline" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+                        <Button target="block" variant="text" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+                    </div>
+                    <div>
                         <h4>———— disabled ———— </h4>
                         <Button disabled onClick={action("clicked")}>DEFAULT</Button>
                         <Button disabled type="primary" onClick={action("clicked")}>PRIMARY</Button>
@@ -88,7 +89,11 @@ storiesOf("demo", module)
                         <Button disabled variant="outline" type="primary" onClick={action("clicked")}>PRIMARY</Button>
                         <Button disabled variant="text" onClick={action("clicked")}>DEFAULT</Button>
                         <Button disabled variant="text" type="primary" onClick={action("clicked")}>PRIMARY</Button>
+                        <Button disabled target="block" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+                        <Button disabled target="block" variant="outline" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+                        <Button disabled target="block" variant="text" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
                     </div>
+
                 </div>
             );
         }
