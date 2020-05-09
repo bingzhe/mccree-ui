@@ -94,6 +94,25 @@ storiesOf("Button", module)
                         <Button disabled target="block" variant="text" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
                     </div>
 
+                    <div>
+                        <h4>———— shape ———— </h4>
+                        <Button shape="round" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button shape="round" type="primary" onClick={action("clicked")}>PRIMARY</Button>
+                        <Button shape="round" type="primary" onClick={action("clicked")}>P</Button>
+
+                        <Button shape="round" onClick={action("clicked")} size="large">DEFAULT</Button>
+                        <Button shape="round" type="primary" onClick={action("clicked")} size="small">PRIMARY</Button>
+                        <Button shape="round" variant="outline" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button shape="round" variant="outline" type="primary" onClick={action("clicked")}>PRIMARY</Button>
+                        <Button shape="round" variant="text" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button shape="round" variant="text" type="primary" onClick={action("clicked")}>PRIMARY</Button>
+                        <Button shape="round" target="block" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+                        <Button shape="round" target="block" variant="outline" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+                        <Button shape="round" target="block" variant="text" href="http://bingzhe.github.io/" type="primary" onClick={action("clicked")}>LINK</Button>
+
+                        <Button shape="circle" type="primary" onClick={action("clicked")}>P</Button>
+
+                    </div>
                 </div>
             );
         }

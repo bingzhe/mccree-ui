@@ -31,9 +31,17 @@
         .btn-info;
     }
 
-    // &-text {
-    //     .btn-text;
-    // }
+    &-round {
+        .btn-round(@btn-prefix-cls);
+
+        &.@{btn-prefix-cls}-icon-only {
+            width: auto;
+        }
+    }
+
+    &-circle {
+        .btn-circle(@btn-prefix-cls)
+    }
 
     &-block {
         width: 100%;

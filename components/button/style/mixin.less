@@ -186,3 +186,34 @@
 .btn-info() {
     .btn-variant-type(@btn-info-color, @btn-info-bg, @btn-info-bg-hover);
 }
+
+.btn-round(@btnClassName) {
+    .btn-size(@btn-circle-size; @btn-circle-size / 2; @font-size-base; @btn-circle-size);
+
+    &.@{btnClassName}-lg {
+        .btn-size(@btn-circle-size-lg; @btn-circle-size-lg / 2; @btn-font-size-lg; @btn-circle-size-lg );
+    }
+
+    &.@{btnClassName}-sm {
+        .btn-size(@btn-circle-size-sm; @btn-circle-size-sm / 2; @font-size-base; @btn-circle-size-sm );
+    }
+}
+
+// circle button: the content only contains icon
+.btn-circle(@btnClassName) {
+    min-width    : @btn-height-base;
+    padding-right: 0;
+    padding-left : 0;
+    text-align   : center;
+    border-radius: 50%;
+
+    &.@{btnClassName}-lg {
+        min-width    : @btn-height-lg;
+        border-radius: 50%;
+    }
+
+    &.@{btnClassName}-sm {
+        min-width    : @btn-height-sm;
+        border-radius: 50%;
+    }
+}

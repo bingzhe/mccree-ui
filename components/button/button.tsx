@@ -22,7 +22,7 @@ const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = typeof ButtonSizes[number];
 const ButtonHTMLTypes = tuple("submit", "button", "reset");
 export type ButtonHTMLType = typeof ButtonHTMLTypes[number]
-const ButtonShapes = tuple("circle", "circle-outline", "round");
+const ButtonShapes = tuple("circle", "round");
 export type ButtonShape = typeof ButtonShapes[number];
 
 export interface BaseButtonProps {
