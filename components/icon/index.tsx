@@ -1,9 +1,9 @@
 import * as React from "react";
-// import styled, { css } from "styled-components";
-
+import classNames from "classnames";
 
 // import { loadingCircle } from "../themes/animations";
 import "./importIcons";
+import { ConfigContext } from "../config-provider";
 
 // const SpinStyle = css<IconProps>`
 //     animation: ${loadingCircle} 1s infinite linear;
@@ -40,10 +40,17 @@ export interface IconProps extends React.SVGAttributes<SVGElement> {
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
     const { className, name, ...restProps } = props;
+    const { getPrefixCls } = React.useContext(ConfigContext);
 
+    const prefixCls = getPrefixCls("icon");
+
+    const classes = classNames(prefixCls, className);
+
+    console.log({ classes });
+    // const prefixCls = get;
     return (
         <svg
-            className={className}
+            className={classes}
             name={name}
             {...restProps}
             style={StyleSvg}
