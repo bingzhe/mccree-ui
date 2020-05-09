@@ -1,9 +1,9 @@
-// import * as React from "react";
+import * as React from "react";
 // import styled, { css } from "styled-components";
 
 
 // import { loadingCircle } from "../themes/animations";
-// import "./importIcons";
+import "./importIcons";
 
 // const SpinStyle = css<IconProps>`
 //     animation: ${loadingCircle} 1s infinite linear;
@@ -24,24 +24,33 @@
 //     ${props => props.rotate && rotateStyle}
 // `;
 
-// export interface IconProps extends React.SVGAttributes<SVGElement> {
-//     name: string;
-//     spin?: boolean;
-//     rotate?: number;
-// }
+const StyleSvg = {
+    width: "1em",
+    height: "1em",
+    verticalAlign: "-0.15em",
+    fill: "currentColor",
+    overflow: "hidden"
+};
 
-// const Icon: React.FunctionComponent<IconProps> = (props) => {
-//     const { className, name, ...restProps } = props;
+export interface IconProps extends React.SVGAttributes<SVGElement> {
+    name: string;
+    spin?: boolean;
+    rotate?: number;
+}
 
-//     return (
-//         <StyleSvg
-//             className={className}
-//             name={name}
-//             {...restProps}
-//         >
-//             <use xlinkHref={`#${name}`} />
-//         </StyleSvg>
-//     );
-// };
+const Icon: React.FunctionComponent<IconProps> = (props) => {
+    const { className, name, ...restProps } = props;
 
-// export default Icon;
+    return (
+        <svg
+            className={className}
+            name={name}
+            {...restProps}
+            style={StyleSvg}
+        >
+            <use xlinkHref={`#${name}`} />
+        </svg>
+    );
+};
+
+export default Icon;

@@ -2,17 +2,18 @@ import * as React from "react";
 import classNames from "classnames";
 // import * as PropTypes from "prop-types";
 // import "./style/index";
+
 import SizeContext from "../config-provider/SizeContext";
-// import ConfigContext from "../config-provider";
+import { ConfigContext } from "../config-provider";
 
 import { omit } from "../utils/omit";
 import { Omit, tuple } from "../_util/type";
 
-const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
-    if (customizePrefixCls) return customizePrefixCls;
+// const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
+//     if (customizePrefixCls) return customizePrefixCls;
 
-    return suffixCls ? `mccree-${suffixCls}` : "mccree";
-};
+//     return suffixCls ? `mccree-${suffixCls}` : "mccree";
+// };
 
 const ButtonVariants = tuple("contain", "outline", "text");
 export type ButtonVariant = typeof ButtonVariants[number];
@@ -55,7 +56,7 @@ export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
     const [loading, setLoading] = React.useState(props.loading);
-    // const { getPrefixCls } = React.useContext(ConfigContext);
+    const { getPrefixCls } = React.useContext(ConfigContext);
     // const buttonRef = React.createRef<HTMLButtonElement>();
     let delayTimeout: number;
 

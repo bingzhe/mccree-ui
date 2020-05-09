@@ -1,5 +1,5 @@
-// import * as React from "react";
-// import Icon from "../index";
+import * as React from "react";
+import Icon from "../index";
 // import styled from "styled-components";
 
 // const IconListWrapper = styled.ul`
@@ -121,3 +121,23 @@
 // };
 
 // export default IconExample;
+const IconExample: React.FunctionComponent = () => {
+    return (
+        <div>
+
+
+            <Icon name="loading" />
+
+
+            <Icon name="reload" />
+
+
+            <Icon name="qq" />
+
+
+
+        </div>
+    );
+};
+
+export default IconExample;
