@@ -43,6 +43,22 @@
         .btn-circle(@btn-prefix-cls)
     }
 
+    &&-loading {
+        position: relative;
+
+        &:not([disabled]) {
+            pointer-events: none;
+        }
+
+        &::before {
+            display: block;
+        }
+
+        .@{btn-prefix-cls}-icon-loading {
+            margin-right: 8px;
+        }
+    }
+
     &-block {
         width: 100%;
     }

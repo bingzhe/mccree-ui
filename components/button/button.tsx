@@ -8,6 +8,7 @@ import { ConfigContext } from "../config-provider";
 
 import { omit } from "../utils/omit";
 import { Omit, tuple } from "../_util/type";
+import Icon from "../icon/index";
 
 // const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
 //     if (customizePrefixCls) return customizePrefixCls;
@@ -38,6 +39,8 @@ export interface BaseButtonProps {
     icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
     block?: boolean;
+    startIcon?: React.ReactNode;
+    endIcon?: React.ReactNode;
     children?: React.ReactNode;
 }
 
@@ -93,6 +96,8 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     children,
                     block,
                     variant,
+                    startIcon: startIconProp,
+                    endIcon: endIconProp,
                     ...rest
                 } = props;
 
@@ -122,6 +127,10 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     [`${prefixCls}-block`]: block,
                 });
 
+                // const loadingIcon = loading && <Icon name="loading" spin />;
+                const startIcon = !loading && startIconProp && (<span style={{ fontSize: "20px" }}>{startIconProp}</span>);
+                const endIcon = !loading && endIconProp && (<span style={{ fontSize: "20px" }}>{endIconProp}</span>);
+
                 const linkButtonRestProps = omit(rest as AnchorButtonProps, ["loading"]);
 
                 if (linkButtonRestProps.href !== undefined) {
@@ -143,7 +152,10 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                         className={classes}
                         onClick={handleClick}
                     >
+                        {loading && <Icon name="loading" spin className="mccree-btn-icon-loading" />}
+                        {startIcon}
                         {children}
+                        {endIcon}
                     </button>
                 );
 

@@ -4,6 +4,7 @@ import { action } from "@storybook/addon-actions";
 
 
 import Button from "../components/button/index";
+import Icon from "../components/icon/index";
 import "../components/styles/index.less";
 import "../components/button/style/index.less";
 
@@ -113,6 +114,24 @@ storiesOf("Button", module)
 
                         <Button shape="circle" type="primary" onClick={action("clicked")}>P</Button>
 
+                    </div>
+
+                    <div>
+                        <h4>———— Loading ———— </h4>
+                        <Button loading type="primary" onClick={action("clicked")}>DEFAULT</Button>
+
+                    </div>
+
+                    <div>
+                        <h4>———— Icon ———— </h4>
+                        <Button type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button startIcon={<Icon name="caret-left" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button startIcon={<Icon name="caret-right" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button endIcon={<Icon name="caret-right" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button loading endIcon={<Icon name="caret-right" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button type="primary" shape="circle"> <Icon name="caret-right" /></Button>
+                        <Button type="error" shape="circle"> <Icon name="caret-right" /></Button>
+                        <Button variant="text" type="primary" shape="circle"> <Icon name="caret-right" /></Button>
                     </div>
                 </div>
             );
