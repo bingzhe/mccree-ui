@@ -1,4 +1,49 @@
-@import '../../styles/index.less';
+@import "../../styles/vars.less";
+@import "./mixin.less";
 
-@btn-prefix-cls : '@{mc-prefix}-button';
+// @btn-prefix-cls :~'@{mccree-prefix}-btn';
 
+.@{btn-prefix-cls} {
+    .btn;
+    .btn-default;
+
+    &-primary {
+        .btn-primary;
+    }
+
+    &-secondary {
+        .btn-secondary;
+    }
+
+    &-success {
+        .btn-success;
+    }
+
+    &-warning {
+        .btn-warning;
+    }
+
+    &-error {
+        .btn-error;
+    }
+
+    &-info {
+        .btn-info;
+    }
+
+    &-round {
+        .btn-round(@btn-prefix-cls);
+
+        &.@{btn-prefix-cls}-icon-only {
+            width: auto;
+        }
+    }
+
+    &-circle {
+        .btn-circle(@btn-prefix-cls)
+    }
+
+    &-block {
+        width: 100%;
+    }
+}

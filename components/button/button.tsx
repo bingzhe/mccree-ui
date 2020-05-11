@@ -2,28 +2,43 @@ import * as React from "react";
 import classNames from "classnames";
 // import * as PropTypes from "prop-types";
 // import "./style/index";
-import SizeContext from "../config-provider/SizeContext";
 
+import SizeContext from "../config-provider/SizeContext";
+import { ConfigContext } from "../config-provider";
+
+import { omit } from "../utils/omit";
 import { Omit, tuple } from "../_util/type";
 
+// const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
+//     if (customizePrefixCls) return customizePrefixCls;
 
-// import { theme } from "../themes/base";
+//     return suffixCls ? `mccree-${suffixCls}` : "mccree";
+// };
 
-const ButtonTypes = tuple("primary", "success", "warning", "danger");
+const ButtonVariants = tuple("contain", "outline", "text");
+export type ButtonVariant = typeof ButtonVariants[number];
+const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
 export type ButtonType = typeof ButtonTypes[number];
 const ButtonSizes = tuple("large", "medium", "small");
 export type ButtonSize = typeof ButtonSizes[number];
 const ButtonHTMLTypes = tuple("submit", "button", "reset");
 export type ButtonHTMLType = typeof ButtonHTMLTypes[number]
+const ButtonShapes = tuple("circle", "round");
+export type ButtonShape = typeof ButtonShapes[number];
 
 export interface BaseButtonProps {
     type?: ButtonType;
+    variant?: ButtonVariant;
+    shape?: ButtonShape;
     size: ButtonSize;
     plain?: boolean;
     disabled?: boolean;
     className?: string;
+    prefixCls?: string;
     icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
+    block?: boolean;
+    children?: React.ReactNode;
 }
 
 export type AnchorButtonProps = {
@@ -41,7 +56,8 @@ export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
     const [loading, setLoading] = React.useState(props.loading);
-
+    const { getPrefixCls } = React.useContext(ConfigContext);
+    // const buttonRef = React.createRef<HTMLButtonElement>();
     let delayTimeout: number;
 
 
@@ -64,17 +80,23 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
         onClick && onClick(e);
     };
 
-    // const { htmlType, ...otherProps } = restProps as NativeButtonProps;
-
     return (
         <SizeContext.Consumer>
             {size => {
                 const {
+                    prefixCls: customizePrefixCls,
                     type,
+                    shape,
                     size: customizeSize,
                     className,
                     icon,
+                    children,
+                    block,
+                    variant,
+                    ...rest
                 } = props;
+
+                const prefixCls = getPrefixCls("btn", customizePrefixCls);
 
                 let sizeCls = "";
                 switch (customizeSize || size) {
@@ -90,26 +112,42 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
 
                 const iconType = loading ? "loading" : icon;
 
-                console.log({ type });
-                console.log({ className });
-                console.log({ sizeCls });
-                console.log({ iconType });
-                console.log({ classNames });
-                return (
-                    <React.Fragment>
-                        <button
-                            // className={className}
-                            // size={size}
-                            // styleType={type}
-                            // type={htmlType}
+                const classes = classNames(prefixCls, className, {
+                    [`${prefixCls}-${type}`]: type,
+                    [`${prefixCls}-${variant}`]: variant,
+                    [`${prefixCls}-${shape}`]: shape,
+                    [`${prefixCls}-${sizeCls}`]: sizeCls,
+                    [`${prefixCls}-icon-only`]: !children && children !== 0 && iconType,
+                    [`${prefixCls}-loading`]: loading,
+                    [`${prefixCls}-block`]: block,
+                });
+
+                const linkButtonRestProps = omit(rest as AnchorButtonProps, ["loading"]);
+
+                if (linkButtonRestProps.href !== undefined) {
+                    return (
+                        <a
+                            {...linkButtonRestProps}
+                            className={classes}
                             onClick={handleClick}
-                        // {...otherProps}
-                        // {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
-                        >
-                            {props.children}
-                        </button>
-                    </React.Fragment>
+                        >{children}</a>
+                    );
+                }
+
+                const { htmlType, ...otherProps } = rest as NativeButtonProps;
+
+                const buttonNode = (
+                    <button
+                        {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
+                        type={htmlType}
+                        className={classes}
+                        onClick={handleClick}
+                    >
+                        {children}
+                    </button>
                 );
+
+                return buttonNode;
             }}
         </SizeContext.Consumer>
 

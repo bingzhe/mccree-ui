@@ -138,8 +138,11 @@ module.exports = {
          * 类型断言必须使用 as Type，禁止使用 <Type>
          * @category TypeScript
          * @reason <Type> 容易被理解为 jsx
+         * Merged both no-angle-bracket-type-assertion and no-object-literal-type-assertion
+         * into one rule - consistent-type-assertions.
+         * https://github.com/typescript-eslint/typescript-eslint/releases/tag/v2.0.0
          */
-        "@typescript-eslint/no-angle-bracket-type-assertion": "error",
+        // "@typescript-eslint/no-angle-bracket-type-assertion": "error",
         /**
          * 禁止使用 Array 构造函数
          * @category TypeScript
@@ -200,8 +203,9 @@ module.exports = {
         /**
          * 禁止对对象字面量进行类型断言（断言成 any 是允许的）
          * @category TypeScript
+         * https://github.com/typescript-eslint/typescript-eslint/releases/tag/v2.0.0
          */
-        "@typescript-eslint/no-object-literal-type-assertion": "error",
+        // "@typescript-eslint/no-object-literal-type-assertion": "error",
         /**
          * 禁止给类的构造函数的参数添加修饰符
          * @category TypeScript
@@ -222,8 +226,9 @@ module.exports = {
          * 禁止使用三斜杠引入类型定义文件
          * @category TypeScript
          * @reason 三斜杠是已废弃的语法
+         * https://github.com/typescript-eslint/typescript-eslint/releases/tag/v2.0.0
          */
-        "@typescript-eslint/no-triple-slash-reference": "error",
+        // "@typescript-eslint/no-triple-slash-reference": "error",
         /**
          * 禁止使用类型别名
          * @category TypeScript
@@ -277,8 +282,9 @@ module.exports = {
          * @category TypeScript
          * @reason 接口可以 implement extend 和 merge
          * @fixable
+         * https://github.com/typescript-eslint/typescript-eslint/releases/tag/v2.0.0
          */
-        "@typescript-eslint/prefer-interface": "error",
+        // "@typescript-eslint/prefer-interface": "error",
         /**
          * 禁止使用 module 来定义命名空间
          * @category TypeScript

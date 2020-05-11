@@ -1,0 +1,17 @@
+@import "../../styles/vars.less";
+@import "../../styles/animate.less";
+
+@icon-prefix-cls: ~'@{mccree-prefix}-icon';
+
+
+.@{icon-prefix-cls} {
+    width         : 1em;
+    height        : 1em;
+    vertical-align: -0.15em;
+    fill          : currentColor;
+    overflow      : hidden;
+
+    &-spin {
+        animation: mccree-spin 1.5s linear infinite;
+    }
+}

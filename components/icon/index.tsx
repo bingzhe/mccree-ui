@@ -1,9 +1,9 @@
-// import * as React from "react";
-// import styled, { css } from "styled-components";
-
+import * as React from "react";
+import classNames from "classnames";
 
 // import { loadingCircle } from "../themes/animations";
-// import "./importIcons";
+import "./importIcons";
+import { ConfigContext } from "../config-provider";
 
 // const SpinStyle = css<IconProps>`
 //     animation: ${loadingCircle} 1s infinite linear;
@@ -24,24 +24,45 @@
 //     ${props => props.rotate && rotateStyle}
 // `;
 
-// export interface IconProps extends React.SVGAttributes<SVGElement> {
-//     name: string;
-//     spin?: boolean;
-//     rotate?: number;
-// }
 
-// const Icon: React.FunctionComponent<IconProps> = (props) => {
-//     const { className, name, ...restProps } = props;
+export interface IconProps extends React.SVGAttributes<SVGElement> {
+    name: string;
+    spin?: boolean;
+    rotate?: number;
+}
 
-//     return (
-//         <StyleSvg
-//             className={className}
-//             name={name}
-//             {...restProps}
-//         >
-//             <use xlinkHref={`#${name}`} />
-//         </StyleSvg>
-//     );
-// };
+const Icon: React.FunctionComponent<IconProps> = (props) => {
+    const {
+        className,
+        name,
+        spin,
+        rotate,
+        ...restProps
+    } = props;
 
-// export default Icon;
+    const { getPrefixCls } = React.useContext(ConfigContext);
+
+    const prefixCls = getPrefixCls("icon");
+    const classes = classNames(prefixCls, className, {
+        [`${prefixCls}-spin`]: spin
+    });
+
+    const styles = rotate ? {
+        transform: `rotate(${rotate}deg)`
+    } : {};
+
+    console.log({ classes });
+    // const prefixCls = get;
+    return (
+        <svg
+            className={classes}
+            name={name}
+            {...restProps}
+            style={styles}
+        >
+            <use xlinkHref={`#${name}`} />
+        </svg>
+    );
+};
+
+export default Icon;
