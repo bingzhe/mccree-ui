@@ -24,13 +24,6 @@ import { ConfigContext } from "../config-provider";
 //     ${props => props.rotate && rotateStyle}
 // `;
 
-const StyleSvg = {
-    width: "1em",
-    height: "1em",
-    verticalAlign: "-0.15em",
-    fill: "currentColor",
-    overflow: "hidden"
-};
 
 export interface IconProps extends React.SVGAttributes<SVGElement> {
     name: string;
@@ -39,12 +32,24 @@ export interface IconProps extends React.SVGAttributes<SVGElement> {
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
-    const { className, name, ...restProps } = props;
+    const {
+        className,
+        name,
+        spin,
+        rotate,
+        ...restProps
+    } = props;
+
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("icon");
+    const classes = classNames(prefixCls, className, {
+        [`${prefixCls}-spin`]: spin
+    });
 
-    const classes = classNames(prefixCls, className);
+    const styles = rotate ? {
+        transform: `rotate(${rotate}deg)`
+    } : {};
 
     console.log({ classes });
     // const prefixCls = get;
@@ -53,7 +58,7 @@ const Icon: React.FunctionComponent<IconProps> = (props) => {
             className={classes}
             name={name}
             {...restProps}
-            style={StyleSvg}
+            style={styles}
         >
             <use xlinkHref={`#${name}`} />
         </svg>

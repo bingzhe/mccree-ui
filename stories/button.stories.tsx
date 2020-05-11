@@ -7,6 +7,7 @@ import Button from "../components/button/index";
 import "../components/styles/index.less";
 import "../components/button/style/index.less";
 
+import "./styles/common.less";
 import "./styles/button.less";
 
 storiesOf("Button", module)
@@ -14,7 +15,7 @@ storiesOf("Button", module)
         "Button",
         () => {
             return (
-                <div className="button-page-wrapper">
+                <div className="page-wrapper">
                     <div>
                         <h4>———— type ————</h4>
                         <Button onClick={action("clicked")}>DEFAULT</Button>
