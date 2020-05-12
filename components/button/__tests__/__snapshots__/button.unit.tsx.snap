@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`button 是个 div 1`] = `
+exports[`button render <Button/> component 1`] = `
 <button
-  className="sc-bdVaJa dOYsNp"
-  disabled={false}
-  size="medium"
+  class="mccree-btn mccree-btn-contain"
 >
-  <span />
+  Default
 </button>
 `;
