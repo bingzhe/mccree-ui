@@ -1,8 +1,6 @@
 @import "../../styles/vars.less";
 @import "./mixin.less";
 
-// @btn-prefix-cls :~'@{mccree-prefix}-btn';
-
 .@{btn-prefix-cls} {
     .btn;
     .btn-default;
@@ -33,14 +31,52 @@
 
     &-round {
         .btn-round(@btn-prefix-cls);
-
-        &.@{btn-prefix-cls}-icon-only {
-            width: auto;
-        }
     }
 
     &-circle {
         .btn-circle(@btn-prefix-cls)
+    }
+
+    &&-loading {
+        position: relative;
+
+        &:not([disabled]) {
+            pointer-events: none;
+        }
+
+        &::before {
+            display: block;
+        }
+
+        .@{btn-prefix-cls}-icon-loading {
+            margin-right: 8px;
+        }
+    }
+
+    &&-icon {
+        .@{btn-prefix-cls}-prefix-icon {
+            font-size   : @btn-icon-font-size;
+            margin-right: 8px;
+            margin-left : -4px;
+        }
+
+        .@{btn-prefix-cls}-suffix-icon {
+            font-size   : @btn-icon-font-size;
+            margin-left : 8px;
+            margin-right: -4px;
+        }
+
+        .@{btn-prefix-cls}-icon-lg {
+            font-size: @btn-icon-font-size-lg;
+        }
+
+        .@{btn-prefix-cls}-icon-sm {
+            font-size: @btn-icon-font-size-sm;
+        }
+    }
+
+    &-group {
+        .btn-group(@btn-prefix-cls);
     }
 
     &-block {

@@ -1,1 +1,1 @@
-describe("<Ripple />", () => { });
+// describe("<Ripple />", () => { });

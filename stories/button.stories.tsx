@@ -4,6 +4,7 @@ import { action } from "@storybook/addon-actions";
 
 
 import Button from "../components/button/index";
+import Icon from "../components/icon/index";
 import "../components/styles/index.less";
 import "../components/button/style/index.less";
 
@@ -15,7 +16,7 @@ storiesOf("Button", module)
         "Button",
         () => {
             return (
-                <div className="page-wrapper">
+                <div className="page-wrapper button-wrapper">
                     <div>
                         <h4>———— type ————</h4>
                         <Button onClick={action("clicked")}>DEFAULT</Button>
@@ -114,6 +115,67 @@ storiesOf("Button", module)
                         <Button shape="circle" type="primary" onClick={action("clicked")}>P</Button>
 
                     </div>
+
+                    <div>
+                        <h4>———— Loading ———— </h4>
+                        <Button loading type="primary" onClick={action("clicked")}>DEFAULT</Button>
+
+                    </div>
+
+                    <div>
+                        <h4>———— Icon ———— </h4>
+                        <Button loading type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button size="large" startIcon={<Icon name="caret-left" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button startIcon={<Icon name="caret-left" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button size="small" startIcon={<Icon name="caret-left" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+
+                        <Button endIcon={<Icon name="caret-right" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button size="large" endIcon={<Icon name="caret-right" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+                        <Button size="small" endIcon={<Icon name="caret-right" />} type="primary" onClick={action("clicked")}>DEFAULT</Button>
+
+                        <Button type="primary" shape="round"> <Icon name="caret-right" /></Button>
+                        <Button type="primary" shape="circle"> <Icon name="caret-right" /></Button>
+                        <Button type="error" shape="circle"> <Icon name="caret-right" /></Button>
+                        <Button variant="text" type="primary" shape="circle"> <Icon name="caret-right" /></Button>
+                    </div>
+                </div>
+            );
+        }
+    )
+    .add(
+        "ButtonGroup",
+        () => {
+            return (
+                <div className="page-wrapper">
+                    <h4>1</h4>
+                    <Button.Group>
+                        <Button type="primary">One</Button>
+                        <Button type="primary">Two</Button>
+                        <Button type="primary">Three</Button>
+                    </Button.Group>
+
+                    <h4>2</h4>
+                    <Button.Group>
+                        <Button type="primary" variant="outline">One</Button>
+                        <Button type="primary" variant="outline">Two</Button>
+                        <Button type="primary" variant="text">Three</Button>
+
+                    </Button.Group>
+
+                    <h4>3</h4>
+                    <Button.Group>
+                        <Button type="primary" variant="text">One</Button>
+                        <Button type="primary" variant="text">Two</Button>
+                        <Button type="primary" variant="text">Three</Button>
+                    </Button.Group>
+
+                    <h4>size</h4>
+                    <Button.Group size="large">
+                        <Button size="small" type="primary">One</Button>
+                        <Button type="primary">Two</Button>
+                        <Button type="primary">Three</Button>
+                    </Button.Group>
                 </div>
             );
         }
