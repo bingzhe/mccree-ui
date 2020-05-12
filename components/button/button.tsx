@@ -1,27 +1,18 @@
 import * as React from "react";
 import classNames from "classnames";
-// import * as PropTypes from "prop-types";
-// import "./style/index";
 
-import SizeContext from "../config-provider/SizeContext";
+import ButtonGroup from "./button-group";
 import { ConfigContext } from "../config-provider";
+import SizeContext, { SizeType } from "../config-provider/SizeContext";
 
 import { omit } from "../utils/omit";
 import { Omit, tuple } from "../_util/type";
 import Icon from "../icon/index";
 
-// const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
-//     if (customizePrefixCls) return customizePrefixCls;
-
-//     return suffixCls ? `mccree-${suffixCls}` : "mccree";
-// };
-
 const ButtonVariants = tuple("contain", "outline", "text");
 export type ButtonVariant = typeof ButtonVariants[number];
 const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
 export type ButtonType = typeof ButtonTypes[number];
-const ButtonSizes = tuple("large", "medium", "small");
-export type ButtonSize = typeof ButtonSizes[number];
 const ButtonHTMLTypes = tuple("submit", "button", "reset");
 export type ButtonHTMLType = typeof ButtonHTMLTypes[number]
 const ButtonShapes = tuple("circle", "round");
@@ -31,12 +22,11 @@ export interface BaseButtonProps {
     type?: ButtonType;
     variant?: ButtonVariant;
     shape?: ButtonShape;
-    size: ButtonSize;
+    size: SizeType;
     plain?: boolean;
     disabled?: boolean;
     className?: string;
     prefixCls?: string;
-    icon?: React.ReactNode;
     loading?: boolean | { delay?: number };
     block?: boolean;
     startIcon?: React.ReactNode;
@@ -57,7 +47,10 @@ export type NativeButtonProps = {
 
 export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
-const Button: React.FC<ButtonProps> = ({ ...props }) => {
+interface ButtonTypeProps extends React.FC<ButtonProps> {
+    Group: typeof ButtonGroup;
+}
+const Button: ButtonTypeProps = ({ ...props }) => {
     const [loading, setLoading] = React.useState(props.loading);
     const { getPrefixCls } = React.useContext(ConfigContext);
     // const buttonRef = React.createRef<HTMLButtonElement>();
@@ -92,7 +85,6 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                     shape,
                     size: customizeSize,
                     className,
-                    icon,
                     children,
                     block,
                     variant,
@@ -115,21 +107,31 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                         break;
                 }
 
-                const iconType = loading ? "loading" : icon;
-
                 const classes = classNames(prefixCls, className, {
                     [`${prefixCls}-${type}`]: type,
                     [`${prefixCls}-${variant}`]: variant,
                     [`${prefixCls}-${shape}`]: shape,
                     [`${prefixCls}-${sizeCls}`]: sizeCls,
-                    [`${prefixCls}-icon-only`]: !children && children !== 0 && iconType,
                     [`${prefixCls}-loading`]: loading,
+                    [`${prefixCls}-icon`]: startIconProp || endIconProp,
                     [`${prefixCls}-block`]: block,
                 });
 
-                // const loadingIcon = loading && <Icon name="loading" spin />;
-                const startIcon = !loading && startIconProp && (<span style={{ fontSize: "20px" }}>{startIconProp}</span>);
-                const endIcon = !loading && endIconProp && (<span style={{ fontSize: "20px" }}>{endIconProp}</span>);
+                const loadingIcon = loading && (
+                    <span className={`${prefixCls}-icon-loading`}>
+                        <Icon name="loading" spin />
+                    </span>
+                );
+                const startIcon = !loading && startIconProp && (
+                    <span
+                        className={classNames(`${prefixCls}-prefix-icon`, { [`${prefixCls}-icon-${sizeCls}`]: sizeCls })}
+                    >{startIconProp}</span>
+                );
+                const endIcon = !loading && endIconProp && (
+                    <span
+                        className={classNames(`${prefixCls}-suffix-icon`, { [`${prefixCls}-icon-${sizeCls}`]: sizeCls })}
+                    >{endIconProp}</span>
+                );
 
                 const linkButtonRestProps = omit(rest as AnchorButtonProps, ["loading"]);
 
@@ -152,7 +154,7 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                         className={classes}
                         onClick={handleClick}
                     >
-                        {loading && <Icon name="loading" spin className="mccree-btn-icon-loading" />}
+                        {loadingIcon}
                         {startIcon}
                         {children}
                         {endIcon}
@@ -162,26 +164,17 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
                 return buttonNode;
             }}
         </SizeContext.Consumer>
-
-
     );
 };
 
 Button.defaultProps = {
-    // type: "primary",
-    size: "medium",
+    variant: "contain",
+    size: "middle",
     disabled: false,
     loading: false,
+    block: false,
 };
 
-// Button.propTypes = {
-// type: PropTypes.oneOf(ButtonTypes),
-// size: PropTypes.oneOf(ButtonSizes),
-// disabled: PropTypes.bool,
-// loading: PropTypes.bool,
-// icon: PropTypes.string,
-// plain: PropTypes.bool,
-// className: PropTypes.string
-// };
+Button.Group = ButtonGroup;
 
 export default Button;

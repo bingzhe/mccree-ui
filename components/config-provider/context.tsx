@@ -11,3 +11,5 @@ export const ConfigContext = React.createContext<ConfigConsumerProps>({
         return suffixCls ? `mccree-${suffixCls}` : "mccree";
     }
 });
+
+export const ConfigConsumer = ConfigContext.Consumer;
