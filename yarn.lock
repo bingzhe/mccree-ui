@@ -2066,13 +2066,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-test-renderer@^16.9.2":
-  version "16.9.2"
-  resolved "https://registry.npm.taobao.org/@types/react-test-renderer/download/@types/react-test-renderer-16.9.2.tgz#e1c408831e8183e5ad748fdece02214a7c2ab6c5"
-  integrity sha1-4cQIgx6Bg+WtdI/ezgIhSnwqtsU=
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-textarea-autosize@^4.3.3":
   version "4.3.5"
   resolved "https://registry.npm.taobao.org/@types/react-textarea-autosize/download/@types/react-textarea-autosize-4.3.5.tgz#6c4d2753fa1864c98c0b2b517f67bb1f6e4c46de"
@@ -9745,7 +9738,7 @@ react-syntax-highlighter@^11.0.2:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react-test-renderer@^16.0.0-0, react-test-renderer@^16.13.1:
+react-test-renderer@^16.0.0-0:
   version "16.13.1"
   resolved "https://registry.npm.taobao.org/react-test-renderer/download/react-test-renderer-16.13.1.tgz?cache=0&sync_timestamp=1586484610525&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-test-renderer%2Fdownload%2Freact-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
   integrity sha1-3iXqNY2QEmBt5R4BLZdC5/Deq8E=

@@ -1,9 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`button render <Button/> component 1`] = `
-<button
-  class="mccree-btn mccree-btn-contain"
->
-  Default
-</button>
+Array [
+  <button
+    class="mccree-btn mccree-btn-contain"
+  >
+    DEFAULT
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain"
+  >
+    PRIMARY
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-secondary mccree-btn-contain"
+  >
+    SECONDARY
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-success mccree-btn-contain"
+  >
+    SUCCESS
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-error mccree-btn-contain"
+  >
+    ERROE
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-warning mccree-btn-contain"
+  >
+    WARNING
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-info mccree-btn-contain"
+  >
+    INFO
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-contain"
+    disabled=""
+  >
+    DISABLED
+  </button>,
+  <a
+    class="mccree-btn mccree-btn-primary mccree-btn-contain"
+    href="http://bingzhe.github.io/"
+    target="block"
+  >
+    LINK
+  </a>,
+]
 `;
