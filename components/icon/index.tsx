@@ -51,7 +51,6 @@ const Icon: React.FunctionComponent<IconProps> = (props) => {
         transform: `rotate(${rotate}deg)`
     } : {};
 
-    console.log({ classes });
     // const prefixCls = get;
     return (
         <svg

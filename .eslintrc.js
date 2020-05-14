@@ -30,6 +30,7 @@ module.exports = {
         'describe': false,
         'it': false,
         'expect': false,
+        'jest': false,
     },
     rules: {
     },

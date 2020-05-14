@@ -50,5 +50,52 @@ Array [
   >
     LINK
   </a>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-loading"
+  >
+    <span
+      class="mccree-btn-icon-loading"
+    >
+      <svg
+        class="mccree-icon mccree-icon-spin"
+        name="loading"
+      >
+        <use
+          href="#loading"
+        />
+      </svg>
+    </span>
+    loading
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-lg"
+  >
+    大
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain"
+  >
+    中
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-sm"
+  >
+    小
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-block"
+  >
+    loading
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-circle"
+  >
+    circle
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-round"
+  >
+    loading
+  </button>,
 ]
 `;
