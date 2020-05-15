@@ -1,7 +1,11 @@
 /dist/*
 /.idea/*
 /test-results/
-/storybook-static/
+
+storybook-static
+dist
+lib
+es
 
 # Logs
 logs
