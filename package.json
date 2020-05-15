@@ -16,7 +16,8 @@
     "lint": "eslint --ext .js,.ts,.tsx components site",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "dev": "yarn storybook"
+    "dev": "yarn storybook",
+    "deploy": "./deploy.sh"
   },
   "repository": {
     "type": "git",
