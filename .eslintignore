@@ -1,3 +1,5 @@
 dist/*
 coverage/*
 .circleci/*
+*.bundle.js
+scripts/build.umd.js

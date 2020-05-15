@@ -17,7 +17,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "dev": "yarn storybook",
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "build:lib": "cross-env OUTPUT_MODULE=commonjs babel components -d lib --ignore **/__tests__",
+    "build:es": "babel components -d es --ignore **/__tests__",
+    "build:umd": "webpack --config ./scripts/build.umd.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +34,7 @@
   },
   "homepage": "https://github.com/bingzhe/mccree-ui",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
@@ -69,6 +73,9 @@
     "jest-junit": "^10.0.0",
     "less": "^3.11.1",
     "less-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "raw-loader": "^4.0.1",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
@@ -78,7 +85,9 @@
     "ts-jest": "^25.4.0",
     "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
