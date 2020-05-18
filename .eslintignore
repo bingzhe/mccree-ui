@@ -2,4 +2,4 @@ dist/*
 coverage/*
 .circleci/*
 *.bundle.js
-scripts/*
+# scripts/*

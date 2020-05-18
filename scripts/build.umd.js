@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * @name UMD 模块 打包
  * @description 参考 dragon-ui
@@ -101,7 +102,7 @@ const config = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     "css-loader",
-                    { loader: "postcss-loader", options: { sourceMap: false } },
+                    { loader: "postcss-loader", options: { sourceMap: false }},
                     {
                         loader: "less-loader",
                         options: {
@@ -139,7 +140,7 @@ const config = {
             new OptimizeCSSAssetsPlugin({
                 // 压缩css  与 ExtractTextPlugin 配合使用
                 cssProcessor: require("cssnano"),
-                cssProcessorOptions: { discardComments: { removeAll: true } }, // 移除所有注释
+                cssProcessorOptions: { discardComments: { removeAll: true }}, // 移除所有注释
                 canPrint: true // 是否向控制台打印消息
             })
         ],
