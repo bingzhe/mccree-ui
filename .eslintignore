@@ -3,3 +3,5 @@ coverage/*
 .circleci/*
 *.bundle.js
 # scripts/*
+lib
+es

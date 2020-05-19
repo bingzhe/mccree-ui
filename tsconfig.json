@@ -12,7 +12,7 @@
         "sourceMap": true,
         "jsx": "react",
         "moduleResolution": "node",
-        "rootDir": ".",
+        "rootDir": "../",
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,

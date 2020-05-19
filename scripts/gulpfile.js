@@ -25,6 +25,7 @@ const argv = require("minimist")(process.argv.slice(2));
 const getBabelCommonConfig = require("./getBabelCommonConfig");
 const babel = require("gulp-babel");
 const through2 = require("through2");
+const rimraf = require("rimraf");
 
 const tsDefaultReporter = ts.reporter.defaultReporter();
 
@@ -139,30 +140,53 @@ function babelify(js, modules) {
     //         })
     //     );
     // }
-    // return stream.pipe(gulp.dest(modules === false ? esDir : libDir));
-    return stream.pipe(gulp.dest("lib/"));
+    return stream.pipe(gulp.dest(modules === false ? esDir : libDir));
+    // return stream.pipe(gulp.dest("lib/"));
 
 }
 
 
-function compile() {
+function compile(modules) {
+    rimraf.sync(modules !== false ? libDir : esDir);
+
+    const less = gulp.src(["../components/**/*.less"]).pipe(
+        through2.obj(function (file, encoding, next) {
+            this.push(file.clone());
+
+            if (
+                file.path.match(/(\/|\\)style(\/|\\)index\.less$/) ||
+                file.path.match(/(\/|\\)style(\/|\\)v2-compatible-reset\.less$/)
+            ) {
+                // transformLess(file.path)
+                //     .then(css => {
+                //         file.contents = Buffer.from(css);
+                //         file.path = file.path.replace(/\.less$/, ".css");
+                //         this.push(file);
+                //         next();
+                //     })
+                //     .catch(e => {
+                //         console.error(e);
+                //     });
+            } else {
+                next();
+            }
+        })
+    );
 
     let error = 0;
     const source = [
-        // "../components/**/*.tsx",
-        // "../components/**/*.ts",
-        // "../components/**/*.jsx"
-        "../components/button/*.tsx"
+        "../components/**/*.tsx",
+        "../components/**/*.ts",
+        "../components/**/*.d.ts",
+        "!../components/**/__tests__/**",
     ];
 
-    if (tsConfig.allowJs) {
+    if (tsConfig.compilerOptions.allowJs) {
         source.unshift("components/**/*.jsx");
     }
 
-    console.log(source);
-
     const tsResult = gulp.src(source).pipe(
-        ts(tsConfig, {
+        ts(tsConfig.compilerOptions, {
             error(e) {
                 tsDefaultReporter.error(e);
                 error = 1;
@@ -181,23 +205,35 @@ function compile() {
     tsResult.on("finish", check);
     tsResult.on("end", check);
 
-    // const tsFilesStream = babelify(tsResult.js, true);
-    const tsFilesStream = tsResult;
 
-    // console.log(tsFilesStream);
+    const tsFilesStream = babelify(tsResult.js, modules);
+    const tsd = tsResult.dts.pipe(gulp.dest(modules === false ? esDir : libDir));
 
 
-    return merge2([tsFilesStream]);
+    return merge2([tsFilesStream, tsd]);
 }
 
 gulp.task(
     "compile-with-es",
     done => {
-        compile().on("finish", done);
+        console.log("[Parallel] Compile to es ...");
+        compile(false).on("finish", done);
     }
 );
 
 gulp.task(
-    "compile",
-    gulp.series(gulp.parallel("compile-with-es"))
+    "compile-with-lib",
+    done => {
+        console.log("[Parallel] Compile to js ...");
+        compile().on("finish", done);
+    }
 );
+
+// gulp.task(
+//     "compile",
+//     gulp.series(gulp.parallel("compile-with-es"))
+// );
+
+const compileTask = gulp.series(gulp.parallel("compile-with-es", "compile-with-lib"));
+
+exports.compile = compileTask;
