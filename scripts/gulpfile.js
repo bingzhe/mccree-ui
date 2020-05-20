@@ -133,57 +133,30 @@ function babelify(js, modules) {
             }
         })
     );
-    // if (modules === false) {
-    //     stream = stream.pipe(
-    //         stripCode({
-    //             start_comment: "@remove-on-es-build-begin",
-    //             end_comment: "@remove-on-es-build-end",
-    //         })
-    //     );
-    // }
-    return stream.pipe(gulp.dest(modules === false ? esDir : libDir));
-    // return stream.pipe(gulp.dest("lib/"));
 
+    return stream.pipe(gulp.dest(modules === false ? esDir : libDir));
 }
 
 
 function compile(modules) {
     rimraf.sync(modules !== false ? libDir : esDir);
 
-    const copyLess = gulp.src(["../components/**/*.less"]).pipe(gulp.dest(modules === false ? esDir : libDir));
+    const copyLess = gulp
+        .src(["../components/**/*.less"])
+        .pipe(gulp.dest(modules === false ? esDir : libDir));
 
     const less2css = gulp.src(["../components/**/*.less"])
         .pipe(less())
         .pipe(autoprefixer({ overrideBrowserslist: browserList }))
         .pipe(cssnano())
         .pipe(gulp.dest(modules === false ? esDir : libDir));
-    // .pipe(
-    //     through2.obj(function (file, encoding, next) {
-    //         this.push(file.clone());
 
-    //         console.log(file.path);
-    //         if (
-    //             file.path.match(/(\/|\\)style(\/|\\)index\.less$/)
-    //         ) {
-    //             // transformLess(file.path)
-    //             //     .then(css => {
-    //             //         file.contents = Buffer.from(css);
-    //             //         file.path = file.path.replace(/\.less$/, ".css");
-    //             //         this.push(file);
-    //             //         next();
-    //             //     })
-    //             //     .catch(e => {
-    //             //         console.error(e);
-    //             //     });
-    //         } else {
-    //             next();
-    //         }
-    //     })
-    // );
 
     const assets = gulp
         .src(["../components/**/*.@(png|svg)"])
         .pipe(gulp.dest(modules === false ? esDir : libDir));
+
+
 
     let error = 0;
     const source = [
@@ -220,7 +193,6 @@ function compile(modules) {
     const tsFilesStream = babelify(tsResult.js, modules);
     const tsd = tsResult.dts.pipe(gulp.dest(modules === false ? esDir : libDir));
 
-    // tsFilesStream tsd
     return merge2([less2css, tsFilesStream, tsd, assets, copyLess]);
 }
 
