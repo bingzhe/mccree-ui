@@ -36,6 +36,14 @@ const browserList = [
     "not ie < 9"
 ];
 
+function cssInjection(content) {
+    return content
+        .replace(/\/style\/?'/g, "/style/css'")
+        .replace(/\/style\/?"/g, '/style/css"')
+        .replace(/\.less/g, ".css");
+}
+
+
 const DIR = {
     less: path.resolve(__dirname, "../components/**/*.less"),
     buildSrc: [
@@ -50,28 +58,28 @@ const DIR = {
 const libDir = path.resolve(__dirname, "../lib");
 const esDir = path.resolve(__dirname, "../es");
 
-gulp.task("copyLess", () => {
-    return gulp
-        .src(DIR.less)
-        .pipe(gulp.dest(DIR.lib))
-        .pipe(gulp.dest(DIR.es));
-});
+// gulp.task("copyLess", () => {
+//     return gulp
+//         .src(DIR.less)
+//         .pipe(gulp.dest(DIR.lib))
+//         .pipe(gulp.dest(DIR.es));
+// });
 
-gulp.task("copyCss", () => {
-    return gulp
-        .src(DIR.buildSrc)
-        .pipe(sourcemaps.init())
-        .pipe(
-            less({
-                outputStyle: "compressed"
-            })
-        )
-        .pipe(autoprefixer({ overrideBrowserslist: browserList }))
-        .pipe(size())
-        .pipe(cssnano())
-        .pipe(gulp.dest(DIR.lib))
-        .pipe(gulp.dest(DIR.es));
-});
+// gulp.task("copyCss", () => {
+//     return gulp
+//         .src(DIR.buildSrc)
+//         .pipe(sourcemaps.init())
+//         .pipe(
+//             less({
+//                 outputStyle: "compressed"
+//             })
+//         )
+//         .pipe(autoprefixer({ overrideBrowserslist: browserList }))
+//         .pipe(size())
+//         .pipe(cssnano())
+//         .pipe(gulp.dest(DIR.lib))
+//         .pipe(gulp.dest(DIR.es));
+// });
 
 gulp.task("dist", () => {
     return gulp
@@ -101,7 +109,8 @@ gulp.task("dist", () => {
         .pipe(gulp.dest(DIR.dist));
 });
 
-gulp.task("default", gulp.series("copyLess", "copyCss", "dist"));
+// copyCss copyLess
+gulp.task("default", gulp.series("dist"));
 
 function babelify(js, modules) {
     const babelConfig = getBabelCommonConfig(modules);
@@ -114,16 +123,8 @@ function babelify(js, modules) {
             this.push(file.clone());
             if (file.path.match(/(\/|\\)style(\/|\\)index\.js/)) {
                 const content = file.contents.toString(encoding);
-                if (content.indexOf("'react-native'") !== -1) {
-                    // actually in antd-mobile@2.0, this case will never run,
-                    // since we both split style/index.mative.js style/index.js
-                    // but let us keep this check at here
-                    // in case some of our developer made a file name mistake ==
-                    next();
-                    return;
-                }
 
-                // file.contents = Buffer.from(cssInjection(content));
+                file.contents = Buffer.from(cssInjection(content));
                 file.path = file.path.replace(/index\.js/, "css.js");
                 this.push(file);
                 next();
@@ -149,29 +150,40 @@ function babelify(js, modules) {
 function compile(modules) {
     rimraf.sync(modules !== false ? libDir : esDir);
 
-    const less = gulp.src(["../components/**/*.less"]).pipe(
-        through2.obj(function (file, encoding, next) {
-            this.push(file.clone());
+    const copyLess = gulp.src(["../components/**/*.less"]).pipe(gulp.dest(modules === false ? esDir : libDir));
 
-            if (
-                file.path.match(/(\/|\\)style(\/|\\)index\.less$/) ||
-                file.path.match(/(\/|\\)style(\/|\\)v2-compatible-reset\.less$/)
-            ) {
-                // transformLess(file.path)
-                //     .then(css => {
-                //         file.contents = Buffer.from(css);
-                //         file.path = file.path.replace(/\.less$/, ".css");
-                //         this.push(file);
-                //         next();
-                //     })
-                //     .catch(e => {
-                //         console.error(e);
-                //     });
-            } else {
-                next();
-            }
-        })
-    );
+    const less2css = gulp.src(["../components/**/*.less"])
+        .pipe(less())
+        .pipe(autoprefixer({ overrideBrowserslist: browserList }))
+        .pipe(cssnano())
+        .pipe(gulp.dest(modules === false ? esDir : libDir));
+    // .pipe(
+    //     through2.obj(function (file, encoding, next) {
+    //         this.push(file.clone());
+
+    //         console.log(file.path);
+    //         if (
+    //             file.path.match(/(\/|\\)style(\/|\\)index\.less$/)
+    //         ) {
+    //             // transformLess(file.path)
+    //             //     .then(css => {
+    //             //         file.contents = Buffer.from(css);
+    //             //         file.path = file.path.replace(/\.less$/, ".css");
+    //             //         this.push(file);
+    //             //         next();
+    //             //     })
+    //             //     .catch(e => {
+    //             //         console.error(e);
+    //             //     });
+    //         } else {
+    //             next();
+    //         }
+    //     })
+    // );
+
+    const assets = gulp
+        .src(["../components/**/*.@(png|svg)"])
+        .pipe(gulp.dest(modules === false ? esDir : libDir));
 
     let error = 0;
     const source = [
@@ -205,12 +217,11 @@ function compile(modules) {
     tsResult.on("finish", check);
     tsResult.on("end", check);
 
-
     const tsFilesStream = babelify(tsResult.js, modules);
     const tsd = tsResult.dts.pipe(gulp.dest(modules === false ? esDir : libDir));
 
-
-    return merge2([tsFilesStream, tsd]);
+    // tsFilesStream tsd
+    return merge2([less2css, tsFilesStream, tsd, assets, copyLess]);
 }
 
 gulp.task(
