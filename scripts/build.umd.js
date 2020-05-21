@@ -177,8 +177,10 @@ const config = {
         new webpack.LoaderOptionsPlugin({
             minimize: true
         }),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin({
+            analyzerMode: "static",
+            openAnalyzer: false,
+        }),
     ]
 };
 
