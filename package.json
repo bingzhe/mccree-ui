@@ -2,11 +2,15 @@
   "name": "mccree-ui",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/components/index.js",
-  "types": "dist/components/index",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "unpkg": "dist/mccree-ui.min.js",
   "files": [
-    "/dist/**/*"
+    "dist",
+    "lib",
+    "es"
   ],
+  "typings": "lib/index.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
@@ -22,7 +26,8 @@
     "build:lib": "cross-env OUTPUT_MODULE=commonjs babel components -d lib --ignore **/__tests__",
     "build:es": "babel components -d es --ignore **/__tests__",
     "build:umd": "webpack --config ./scripts/build.umd.js",
-    "build:test": "cd scripts && gulp compile"
+    "build:test": "cd scripts && gulp compile",
+    "build:testdist": "cd scripts && gulp dist"
   },
   "repository": {
     "type": "git",
@@ -111,7 +116,7 @@
     "style-loader": "^1.2.0",
     "svg-sprite-loader": "^4.2.5",
     "ts-jest": "^25.4.0",
-    "ts-loader": "^7.0.1",
+    "ts-loader": "^7.0.4",
     "typescript": "^3.8.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",

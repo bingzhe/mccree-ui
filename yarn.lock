@@ -13897,7 +13897,7 @@ ts-jest@^25.4.0:
     semver "6.x"
     yargs-parser "18.x"
 
-ts-loader@^7.0.1:
+ts-loader@^7.0.4:
   version "7.0.4"
   resolved "https://registry.npm.taobao.org/ts-loader/download/ts-loader-7.0.4.tgz?cache=0&sync_timestamp=1589210495904&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fts-loader%2Fdownload%2Fts-loader-7.0.4.tgz#5d9b95227de5afb91fdd9668f8920eb193cfe0cc"
   integrity sha1-XZuVIn3lr7kf3ZZo+JIOsZPP4Mw=

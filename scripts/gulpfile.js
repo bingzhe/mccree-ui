@@ -26,6 +26,7 @@ const getBabelCommonConfig = require("./getBabelCommonConfig");
 const babel = require("gulp-babel");
 const through2 = require("through2");
 const rimraf = require("rimraf");
+const webpack = require("webpack");
 
 const tsDefaultReporter = ts.reporter.defaultReporter();
 
@@ -109,15 +110,52 @@ gulp.task("dist", () => {
         .pipe(gulp.dest(DIR.dist));
 });
 
+function dist1(done) {
+    rimraf.sync("../dist");
+
+    process.env.RUN_ENV = "PRODUCTION";
+
+    const webpackConfig = require("./build.umd");
+
+    webpack(webpackConfig, (err, stats) => {
+        if (err) {
+            console.error(err.stack || err);
+            if (err.details) {
+                console.error(err.details);
+            }
+            return;
+        }
+
+        const info = stats.toJson();
+
+        if (stats.hasErrors) {
+            console.error(info.errors);
+        }
+        if (stats.hasWarnings) {
+            console.error(info.warnings);
+        }
+        const buildInfo = stats.toString({
+            colors: true,
+            children: true,
+            chunks: false,
+            modules: false,
+            chunkModules: false,
+            hash: false,
+            version: false,
+        });
+        console.log(buildInfo);
+
+        done(0);
+    });
+
+}
 // copyCss copyLess
 gulp.task("default", gulp.series("dist"));
 
 function babelify(js, modules) {
     const babelConfig = getBabelCommonConfig(modules);
     delete babelConfig.cacheDirectory;
-    // if (modules === false) {
-    //     babelConfig.plugins.push(replaceLib);
-    // }
+
     let stream = js.pipe(babel(babelConfig)).pipe(
         through2.obj(function z(file, encoding, next) {
             this.push(file.clone());
@@ -212,11 +250,14 @@ gulp.task(
     }
 );
 
-// gulp.task(
-//     "compile",
-//     gulp.series(gulp.parallel("compile-with-es"))
-// );
+gulp.task(
+    "compile",
+    gulp.series(gulp.parallel("compile-with-es", "compile-with-lib"))
+);
 
-const compileTask = gulp.series(gulp.parallel("compile-with-es", "compile-with-lib"));
-
-exports.compile = compileTask;
+gulp.task(
+    "dist",
+    gulp.series(done => {
+        dist1(done);
+    })
+);

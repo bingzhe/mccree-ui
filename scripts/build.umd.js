@@ -22,6 +22,8 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 const { version, name, description } = require("../package.json");
 
+const babelConfig = require("./getBabelCommonConfig")();
+
 const LOGO = `
 _____ ______   ________  ________  ________  _______   _______                  ___  ___  ___     
 |\   _ \  _   \|\   ____\|\   ____\|\   __  \|\  ___ \ |\  ___ \                |\  \|\  \|\  \    
@@ -38,7 +40,7 @@ _____ ______   ________  ________  ________  _______   _______                  
 const config = {
     mode: "production",
     entry: {
-        [name]: ["./components/index.ts"]
+        [name]: ["../components/index.ts"]
     },
 
     // umd 模式打包
@@ -46,7 +48,7 @@ const config = {
         library: name,
         libraryTarget: "umd",
         umdNamedDefine: true, // 是否将模块名称作为 AMD 输出的命名空间
-        path: path.join(process.cwd(), "dist"),
+        path: path.join(process.cwd(), "../dist"),
         filename: "[name].min.js"
     },
 
@@ -75,8 +77,21 @@ const config = {
                 test: /\.tsx?$/,
                 use: [
                     {
-                        loader: "awesome-typescript-loader"
-                    }
+                        loader: "babel-loader",
+                        options: babelConfig,
+                    },
+                    // {
+                    //     loader: "awesome-typescript-loader",
+                    //     options: {
+                    //         transpileOnly: true,
+                    //     },
+                    // },
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            transpileOnly: true,
+                        },
+                    },
                 ]
             },
             {
@@ -153,7 +168,7 @@ const config = {
         }),
         // 在打包的文件之前 加上版权说明
         new webpack.BannerPlugin(` \n ${name} v${version} \n ${description}
-    \n ${LOGO}\n ${fs.readFileSync(path.join(process.cwd(), "LICENSE"))}
+    \n ${LOGO}\n ${fs.readFileSync(path.join(process.cwd(), "../LICENSE"))}
   `),
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify("production"),
