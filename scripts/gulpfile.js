@@ -111,7 +111,7 @@ function dist1(done) {
 
     process.env.RUN_ENV = "PRODUCTION";
 
-    const webpackConfig = require("./build.umd");
+    const webpackConfig = require("./webpack.config");
 
     webpack(webpackConfig, (err, stats) => {
         if (err) {
@@ -122,7 +122,7 @@ function dist1(done) {
             return;
         }
 
-        const info = stats.toJson();
+        // const info = stats.toJson();
 
         // if (stats.hasErrors()) {
         //     console.error(info.errors);

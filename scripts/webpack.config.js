@@ -191,11 +191,11 @@ const config = {
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
+        }),
+        new BundleAnalyzerPlugin({
+            analyzerMode: "static",
+            openAnalyzer: false
         })
-        // new BundleAnalyzerPlugin({
-        //     analyzerMode: "static",
-        //     openAnalyzer: false,
-        // }),
     ]
 };
 

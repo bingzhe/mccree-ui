@@ -12,22 +12,20 @@
   ],
   "typings": "lib/index.d.ts",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
+    "storybook": "start-storybook -p 6006",
+    "start": "yarn storybook",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand",
-    "site:doc": "cross-env NODE_ENV=production webpack --config webpack.config.site.js",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.ci.js",
     "lint": "eslint --ext .js,.ts,.tsx components site",
-    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "dev": "yarn storybook",
-    "deploy": "./deploy.sh",
     "build:css": "cd scripts && gulp",
     "build:lib": "cross-env OUTPUT_MODULE=commonjs babel components -d lib --ignore **/__tests__",
     "build:es": "babel components -d es --ignore **/__tests__",
     "build:umd": "webpack --config ./scripts/build.umd.js",
     "build:test": "cd scripts && gulp compile",
-    "build:testdist": "cd scripts && gulp dist"
+    "build:testdist": "cd scripts && gulp dist",
+    "deploy": "./deploy.sh"
   },
   "repository": {
     "type": "git",

@@ -7,8 +7,8 @@ module.exports = function (modules) {
         [
             resolve("@babel/plugin-transform-typescript"),
             {
-                isTSX: true,
-            },
+                isTSX: true
+            }
         ],
         resolve("babel-plugin-inline-import-data-uri"),
         resolve("@babel/plugin-transform-member-expression-literals"),
@@ -17,8 +17,8 @@ module.exports = function (modules) {
         [
             resolve("@babel/plugin-transform-runtime"),
             {
-                helpers: false,
-            },
+                helpers: false
+            }
         ],
         resolve("@babel/plugin-transform-spread"),
         resolve("@babel/plugin-transform-template-literals"),
@@ -28,10 +28,10 @@ module.exports = function (modules) {
         [
             resolve("@babel/plugin-proposal-decorators"),
             {
-                legacy: true,
-            },
+                legacy: true
+            }
         ],
-        resolve("@babel/plugin-proposal-class-properties"),
+        resolve("@babel/plugin-proposal-class-properties")
     ];
     return {
         presets: [
@@ -47,12 +47,12 @@ module.exports = function (modules) {
                             "> 1%",
                             "ie >= 9",
                             "iOS >= 8",
-                            "Android >= 4",
-                        ],
-                    },
-                },
-            ],
+                            "Android >= 4"
+                        ]
+                    }
+                }
+            ]
         ],
-        plugins,
+        plugins
     };
 };
