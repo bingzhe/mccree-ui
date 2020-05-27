@@ -55,29 +55,6 @@ const DIR = {
 const libDir = path.resolve(__dirname, "../lib");
 const esDir = path.resolve(__dirname, "../es");
 
-// gulp.task("copyLess", () => {
-//     return gulp
-//         .src(DIR.less)
-//         .pipe(gulp.dest(DIR.lib))
-//         .pipe(gulp.dest(DIR.es));
-// });
-
-// gulp.task("copyCss", () => {
-//     return gulp
-//         .src(DIR.buildSrc)
-//         .pipe(sourcemaps.init())
-//         .pipe(
-//             less({
-//                 outputStyle: "compressed"
-//             })
-//         )
-//         .pipe(autoprefixer({ overrideBrowserslist: browserList }))
-//         .pipe(size())
-//         .pipe(cssnano())
-//         .pipe(gulp.dest(DIR.lib))
-//         .pipe(gulp.dest(DIR.es));
-// });
-
 gulp.task("dist", () => {
     return gulp
         .src(DIR.buildSrc)

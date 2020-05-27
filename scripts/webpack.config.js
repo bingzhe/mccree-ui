@@ -40,7 +40,7 @@ _____ ______   ________  ________  ________  _______   _______                  
 `;
 
 const config = {
-    mode: "development",
+    mode: "production",
     entry: {
         [name]: ["../index"]
         // [`${name}.min`]: ["../index"],
