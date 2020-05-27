@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable no-var */
 /* eslint no-console:0 */
 // function camelCase(name) {
@@ -8,20 +9,17 @@
 // }
 
 // Just import style for https://github.com/ant-design/ant-design/issues/3745
-var req = require.context(
-    "./components",
-    true,
-    /^\.\/[^_][\w-]+\/style\/index\.tsx?$/
-);
+const req = require.context("./components", true, /^\.\/[^_][\w-]+\/style\/index\.tsx?$/);
 
-console.log("req", req.keys());
+// console.log("req", req.keys());
 
 // req.keys().forEach((mod) => {
+//     console.log("mod===================", mod);
 //     let v = req(mod);
 //     if (v && v.default) {
 //         v = v.default;
 //     }
-//     const match = mod.match(/^\.\/([^_][\w-]+)\/index\.tsx?$/);
+//     var match = mod.match(/^\.\/([^_][\w-]+)\/index\.tsx?$/);
 //     if (match && match[1]) {
 //         if (match[1] === "message" || match[1] === "notification") {
 //             // message & notification should not be capitalized

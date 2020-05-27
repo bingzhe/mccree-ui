@@ -1,8 +1,8 @@
-function resolve(moduleName) {
-    return require.resolve(moduleName);
-}
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { resolve } = require("./helpers");
 
-module.exports = function(modules) {
+module.exports = function (modules) {
     const plugins = [
         [
             resolve("@babel/plugin-transform-typescript"),

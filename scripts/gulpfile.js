@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-invalid-this */
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * @name gulpfile.js
@@ -30,12 +32,7 @@ const webpack = require("webpack");
 
 const tsDefaultReporter = ts.reporter.defaultReporter();
 
-const browserList = [
-    "last 2 versions",
-    "Android >= 4.0",
-    "Firefox ESR",
-    "not ie < 9"
-];
+const browserList = ["last 2 versions", "Android >= 4.0", "Firefox ESR", "not ie < 9"];
 
 function cssInjection(content) {
     return content
@@ -43,7 +40,6 @@ function cssInjection(content) {
         .replace(/\/style\/?"/g, '/style/css"')
         .replace(/\.less/g, ".css");
 }
-
 
 const DIR = {
     less: path.resolve(__dirname, "../components/**/*.less"),
@@ -128,12 +124,14 @@ function dist1(done) {
 
         const info = stats.toJson();
 
-        if (stats.hasErrors) {
-            console.error(info.errors);
-        }
-        if (stats.hasWarnings) {
-            console.error(info.warnings);
-        }
+        // if (stats.hasErrors()) {
+        //     console.error(info.errors);
+        // }
+
+        // if (stats.hasWarnings()) {
+        //     console.warn(info.warnings);
+        // }
+
         const buildInfo = stats.toString({
             colors: true,
             children: true,
@@ -142,12 +140,12 @@ function dist1(done) {
             chunkModules: false,
             hash: false,
             version: false,
+            warningsFilter: [/export .* was not found in/]
         });
         console.log(buildInfo);
 
         done(0);
     });
-
 }
 // copyCss copyLess
 gulp.task("default", gulp.series("dist"));
@@ -175,7 +173,6 @@ function babelify(js, modules) {
     return stream.pipe(gulp.dest(modules === false ? esDir : libDir));
 }
 
-
 function compile(modules) {
     rimraf.sync(modules !== false ? libDir : esDir);
 
@@ -183,25 +180,23 @@ function compile(modules) {
         .src(["../components/**/*.less"])
         .pipe(gulp.dest(modules === false ? esDir : libDir));
 
-    const less2css = gulp.src(["../components/**/*.less"])
+    const less2css = gulp
+        .src(["../components/**/*.less"])
         .pipe(less())
         .pipe(autoprefixer({ overrideBrowserslist: browserList }))
         .pipe(cssnano())
         .pipe(gulp.dest(modules === false ? esDir : libDir));
 
-
     const assets = gulp
         .src(["../components/**/*.@(png|svg)"])
         .pipe(gulp.dest(modules === false ? esDir : libDir));
-
-
 
     let error = 0;
     const source = [
         "../components/**/*.tsx",
         "../components/**/*.ts",
         "../components/**/*.d.ts",
-        "!../components/**/__tests__/**",
+        "!../components/**/__tests__/**"
     ];
 
     if (tsConfig.compilerOptions.allowJs) {
@@ -218,7 +213,6 @@ function compile(modules) {
         })
     );
 
-
     function check() {
         if (error && argv["ignore-error"]) {
             process.exit(1);
@@ -234,30 +228,21 @@ function compile(modules) {
     return merge2([less2css, tsFilesStream, tsd, assets, copyLess]);
 }
 
-gulp.task(
-    "compile-with-es",
-    done => {
-        console.log("[Parallel] Compile to es ...");
-        compile(false).on("finish", done);
-    }
-);
+gulp.task("compile-with-es", (done) => {
+    console.log("[Parallel] Compile to es ...");
+    compile(false).on("finish", done);
+});
 
-gulp.task(
-    "compile-with-lib",
-    done => {
-        console.log("[Parallel] Compile to js ...");
-        compile().on("finish", done);
-    }
-);
+gulp.task("compile-with-lib", (done) => {
+    console.log("[Parallel] Compile to js ...");
+    compile().on("finish", done);
+});
 
-gulp.task(
-    "compile",
-    gulp.series(gulp.parallel("compile-with-es", "compile-with-lib"))
-);
+gulp.task("compile", gulp.series(gulp.parallel("compile-with-es", "compile-with-lib")));
 
 gulp.task(
     "dist",
-    gulp.series(done => {
+    gulp.series((done) => {
         dist1(done);
     })
 );

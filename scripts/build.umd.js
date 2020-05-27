@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * @name UMD 模块 打包
@@ -39,9 +40,10 @@ _____ ______   ________  ________  ________  _______   _______                  
 `;
 
 const config = {
-    mode: "production",
+    mode: "development",
     entry: {
-        [name]: ["../index"],
+        [name]: ["../index"]
+        // [`${name}.min`]: ["../index"],
     },
 
     // umd 模式打包
@@ -50,7 +52,7 @@ const config = {
         libraryTarget: "umd",
         umdNamedDefine: true, // 是否将模块名称作为 AMD 输出的命名空间
         path: path.join(process.cwd(), "../dist"),
-        filename: "[name].min.js",
+        filename: "[name].min.js"
     },
 
     // react 和 react-dom 不打包
@@ -59,60 +61,64 @@ const config = {
             root: "React",
             commonjs2: "react",
             commonjs: "react",
-            amd: "react",
+            amd: "react"
         },
         "react-dom": {
             root: "ReactDOM",
             commonjs2: "react-dom",
             commonjs: "react-dom",
-            amd: "react-dom",
-        },
+            amd: "react-dom"
+        }
     },
     devtool: "source-map",
     resolve: {
         enforceExtension: false,
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".less", ".css"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".less", ".css"]
     },
     module: {
         rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: babelConfig
+                    }
+                ]
+            },
             {
                 test: /\.tsx?$/,
                 use: [
                     {
                         loader: "babel-loader",
-                        options: babelConfig,
+                        options: babelConfig
                     },
-                    // {
-                    //     loader: "awesome-typescript-loader",
-                    //     options: {
-                    //         transpileOnly: true,
-                    //     },
-                    // },
                     {
                         loader: "ts-loader",
                         options: {
-                            transpileOnly: true,
-                        },
-                    },
-                ],
+                            transpileOnly: true
+                        }
+                    }
+                ]
             },
             {
                 test: /\.svg$/,
                 use: [
                     {
-                        loader: "svg-sprite-loader",
-                    },
-                ],
+                        loader: "svg-sprite-loader"
+                    }
+                ]
             },
             {
                 test: /\.js[x]?$/,
                 use: [
                     {
-                        loader: "babel-loader",
-                    },
+                        loader: "babel-loader"
+                    }
                 ],
                 exclude: "/node_modules/",
-                include: [path.resolve("components")],
+                include: [path.resolve("components")]
             },
             {
                 test: /\.(le|c)ss$/,
@@ -123,16 +129,16 @@ const config = {
                         loader: "postcss-loader",
                         options: {
                             plugins: [autoprefixer()],
-                            sourceMap: false,
-                        },
+                            sourceMap: false
+                        }
                     },
                     {
                         loader: "less-loader",
                         options: {
-                            sourceMap: false,
-                        },
-                    },
-                ],
+                            sourceMap: false
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(jpg|jpeg|png|gif|cur|ico)$/,
@@ -140,12 +146,12 @@ const config = {
                     {
                         loader: "file-loader",
                         options: {
-                            name: "images/[name][hash:8].[ext]", // 遇到图片  生成一个images文件夹  名字.后缀的图片
-                        },
-                    },
-                ],
-            },
-        ],
+                            name: "images/[name][hash:8].[ext]" // 遇到图片  生成一个images文件夹  名字.后缀的图片
+                        }
+                    }
+                ]
+            }
+        ]
     },
     optimization: {
         minimizer: [
@@ -157,23 +163,23 @@ const config = {
                     warnings: false,
                     compress: {
                         drop_debugger: true,
-                        drop_console: false,
-                    },
-                },
+                        drop_console: false
+                    }
+                }
             }),
             new OptimizeCSSAssetsPlugin({
                 // 压缩css  与 ExtractTextPlugin 配合使用
                 cssProcessor: require("cssnano"),
-                cssProcessorOptions: { discardComments: { removeAll: true }}, // 移除所有注释
-                canPrint: true, // 是否向控制台打印消息
-            }),
+                cssProcessorOptions: { discardComments: { removeAll: true } }, // 移除所有注释
+                canPrint: true // 是否向控制台打印消息
+            })
         ],
-        noEmitOnErrors: true,
+        noEmitOnErrors: true
     },
     plugins: [
         new ProgressBarPlugin(),
         new MiniCssExtractPlugin({
-            filename: "[name].min.css",
+            filename: "[name].min.css"
         }),
         // 在打包的文件之前 加上版权说明
         new webpack.BannerPlugin(` \n ${name} v${version} \n ${description}
@@ -181,16 +187,16 @@ const config = {
   `),
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify("production"),
-            __DEBUG__: false,
+            __DEBUG__: false
         }),
         new webpack.LoaderOptionsPlugin({
-            minimize: true,
-        }),
+            minimize: true
+        })
         // new BundleAnalyzerPlugin({
         //     analyzerMode: "static",
         //     openAnalyzer: false,
         // }),
-    ],
+    ]
 };
 
 module.exports = config;

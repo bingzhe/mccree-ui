@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 
@@ -7,6 +8,11 @@ function getProjectPath(...filePath) {
     return path.join(cwd, ...filePath);
 }
 
+function resolve(moduleName) {
+    return require.resolve(moduleName);
+}
+
 module.exports = {
-    getProjectPath
+    getProjectPath,
+    resolve
 };

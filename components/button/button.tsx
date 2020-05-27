@@ -14,7 +14,7 @@ export type ButtonVariant = typeof ButtonVariants[number];
 const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
 export type ButtonType = typeof ButtonTypes[number];
 const ButtonHTMLTypes = tuple("submit", "button", "reset");
-export type ButtonHTMLType = typeof ButtonHTMLTypes[number]
+export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
 const ButtonShapes = tuple("circle", "round");
 export type ButtonShape = typeof ButtonShapes[number];
 
@@ -38,12 +38,14 @@ export type AnchorButtonProps = {
     href: string;
     target?: string;
     onClick: React.MouseEventHandler<HTMLElement>;
-} & BaseButtonProps & Omit<React.AnchorHTMLAttributes<any>, "type" | "onClick">;
+} & BaseButtonProps &
+    Omit<React.AnchorHTMLAttributes<any>, "type" | "onClick">;
 
 export type NativeButtonProps = {
     htmlType?: ButtonHTMLType;
     onClick?: React.MouseEventHandler<HTMLElement>;
-} & BaseButtonProps & Omit<React.ButtonHTMLAttributes<any>, "type" | "onClick">;
+} & BaseButtonProps &
+    Omit<React.ButtonHTMLAttributes<any>, "type" | "onClick">;
 
 export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
@@ -55,7 +57,6 @@ const Button: ButtonTypeProps = ({ ...props }) => {
     const { getPrefixCls } = React.useContext(ConfigContext);
     // const buttonRef = React.createRef<HTMLButtonElement>();
     let delayTimeout: number;
-
 
     React.useEffect(() => {
         if (props.loading && typeof props.loading !== "boolean") {
@@ -73,12 +74,12 @@ const Button: ButtonTypeProps = ({ ...props }) => {
     const handleClick: React.MouseEventHandler<HTMLElement> = (e) => {
         const { onClick } = props;
         if (loading) return;
-        onClick && onClick(e);
+        onClick?.(e);
     };
 
     return (
         <SizeContext.Consumer>
-            {size => {
+            {(size) => {
                 const {
                     prefixCls: customizePrefixCls,
                     type,
@@ -114,7 +115,7 @@ const Button: ButtonTypeProps = ({ ...props }) => {
                     [`${prefixCls}-${sizeCls}`]: sizeCls,
                     [`${prefixCls}-loading`]: loading,
                     [`${prefixCls}-icon`]: startIconProp || endIconProp,
-                    [`${prefixCls}-block`]: block,
+                    [`${prefixCls}-block`]: block
                 });
 
                 const loadingIcon = loading && (
@@ -124,24 +125,30 @@ const Button: ButtonTypeProps = ({ ...props }) => {
                 );
                 const startIcon = !loading && startIconProp && (
                     <span
-                        className={classNames(`${prefixCls}-prefix-icon`, { [`${prefixCls}-icon-${sizeCls}`]: sizeCls })}
-                    >{startIconProp}</span>
+                        className={classNames(`${prefixCls}-prefix-icon`, {
+                            [`${prefixCls}-icon-${sizeCls}`]: sizeCls
+                        })}
+                    >
+                        {startIconProp}
+                    </span>
                 );
                 const endIcon = !loading && endIconProp && (
                     <span
-                        className={classNames(`${prefixCls}-suffix-icon`, { [`${prefixCls}-icon-${sizeCls}`]: sizeCls })}
-                    >{endIconProp}</span>
+                        className={classNames(`${prefixCls}-suffix-icon`, {
+                            [`${prefixCls}-icon-${sizeCls}`]: sizeCls
+                        })}
+                    >
+                        {endIconProp}
+                    </span>
                 );
 
                 const linkButtonRestProps = omit(rest as AnchorButtonProps, ["loading"]);
 
                 if (linkButtonRestProps.href !== undefined) {
                     return (
-                        <a
-                            {...linkButtonRestProps}
-                            className={classes}
-                            onClick={handleClick}
-                        >{children}</a>
+                        <a {...linkButtonRestProps} className={classes} onClick={handleClick}>
+                            {children}
+                        </a>
                     );
                 }
 
@@ -172,7 +179,7 @@ Button.defaultProps = {
     size: "middle",
     disabled: false,
     loading: false,
-    block: false,
+    block: false
 };
 
 Button.Group = ButtonGroup;
