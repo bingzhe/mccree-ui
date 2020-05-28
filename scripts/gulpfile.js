@@ -55,33 +55,36 @@ const DIR = {
 const libDir = path.resolve(__dirname, "../lib");
 const esDir = path.resolve(__dirname, "../es");
 
-gulp.task("dist", () => {
-    return gulp
-        .src(DIR.buildSrc)
-        .pipe(sourcemaps.init())
-        .pipe(
-            less({
-                outputStyle: "compressed"
-            })
-        )
-        .pipe(autoprefixer({ overrideBrowserslist: browserList }))
-        .pipe(concat(`${name}.css`))
-        .pipe(size())
-        .pipe(gulp.dest(DIR.dist))
-        .pipe(sourcemaps.write())
-        .pipe(rename(`${name}.css.map`))
-        .pipe(size())
-        .pipe(gulp.dest(DIR.dist))
+// gulp.task("dist", () => {
+//     return gulp
+//         .src(DIR.buildSrc)
+//         .pipe(sourcemaps.init())
+//         .pipe(
+//             less({
+//                 outputStyle: "compressed"
+//             })
+//         )
+//         .pipe(autoprefixer({ overrideBrowserslist: browserList }))
+//         .pipe(concat(`${name}.css`))
+//         .pipe(size())
+//         .pipe(gulp.dest(DIR.dist))
+//         .pipe(sourcemaps.write())
+//         .pipe(rename(`${name}.css.map`))
+//         .pipe(size())
+//         .pipe(gulp.dest(DIR.dist))
 
-        .pipe(cssnano())
-        .pipe(concat(`${name}.min.css`))
-        .pipe(size())
-        .pipe(gulp.dest(DIR.dist))
-        .pipe(sourcemaps.write())
-        .pipe(rename(`${name}.min.css.map`))
-        .pipe(size())
-        .pipe(gulp.dest(DIR.dist));
-});
+//         .pipe(cssnano())
+//         .pipe(concat(`${name}.min.css`))
+//         .pipe(size())
+//         .pipe(gulp.dest(DIR.dist))
+//         .pipe(sourcemaps.write())
+//         .pipe(rename(`${name}.min.css.map`))
+//         .pipe(size())
+//         .pipe(gulp.dest(DIR.dist));
+// });
+
+// copyCss copyLess
+// gulp.task("default", gulp.series("dist"));
 
 function dist1(done) {
     rimraf.sync("../dist");
@@ -124,8 +127,7 @@ function dist1(done) {
         done(0);
     });
 }
-// copyCss copyLess
-gulp.task("default", gulp.series("dist"));
+
 
 function babelify(js, modules) {
     const babelConfig = getBabelCommonConfig(modules);
