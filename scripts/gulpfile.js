@@ -128,7 +128,6 @@ function dist1(done) {
     });
 }
 
-
 function babelify(js, modules) {
     const babelConfig = getBabelCommonConfig(modules);
     delete babelConfig.cacheDirectory;

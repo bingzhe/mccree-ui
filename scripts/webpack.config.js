@@ -18,7 +18,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
-// eslint-disable-next-line
+const webpackMerge = require("webpack-merge");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const { version, name, description } = require("../package.json");
@@ -40,11 +40,11 @@ _____ ______   ________  ________  ________  _______   _______                  
 `;
 
 const config = {
-    mode: "production",
-    entry: {
-        [name]: ["../index"]
-        // [`${name}.min`]: ["../index"],
-    },
+    // mode: "production",
+    // entry: {
+    //     [name]: ["../index"]
+    //     // [`${name}.min`]: ["../index"],
+    // },
 
     // umd 模式打包
     output: {
@@ -52,7 +52,7 @@ const config = {
         libraryTarget: "umd",
         umdNamedDefine: true, // 是否将模块名称作为 AMD 输出的命名空间
         path: path.join(process.cwd(), "../dist"),
-        filename: "[name].min.js"
+        filename: "[name].js"
     },
 
     // react 和 react-dom 不打包
@@ -178,9 +178,9 @@ const config = {
     },
     plugins: [
         new ProgressBarPlugin(),
-        new MiniCssExtractPlugin({
-            filename: "[name].min.css"
-        }),
+        // new MiniCssExtractPlugin({
+        //     filename: "[name].min.css"
+        // }),
         // 在打包的文件之前 加上版权说明
         new webpack.BannerPlugin(` \n ${name} v${version} \n ${description}
     \n ${LOGO}\n ${fs.readFileSync(path.join(process.cwd(), "../LICENSE"))}
@@ -191,12 +191,45 @@ const config = {
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
+        })
+    ]
+};
+
+// Development
+const uncompressedConfig = webpackMerge({}, config, {
+    entry: {
+        [name]: ["../index"]
+    },
+    mode: "development",
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "[name].css"
+        })
+    ]
+});
+
+// Production
+const prodConfig = webpackMerge({}, config, {
+    entry: {
+        [`${name}.min`]: ["../index"]
+    },
+    mode: "production",
+    plugins: [
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css"
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: "static",
             openAnalyzer: false
         })
-    ]
-};
+    ],
+    optimization: {
+        minimizer: [new OptimizeCSSAssetsPlugin({})]
+    }
+});
 
-module.exports = config;
+module.exports = [prodConfig, uncompressedConfig];
