@@ -19,6 +19,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const webpackMerge = require("webpack-merge");
+const WebpackBar = require("webpackbar");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const { version, name, description } = require("../package.json");
@@ -27,16 +28,14 @@ const autoprefixer = require("autoprefixer");
 const babelConfig = require("./getBabelCommonConfig")();
 
 const LOGO = `
-_____ ______   ________  ________  ________  _______   _______                  ___  ___  ___     
-|\   _ \  _   \|\   ____\|\   ____\|\   __  \|\  ___ \ |\  ___ \                |\  \|\  \|\  \    
-\ \  \\\__\ \  \ \  \___|\ \  \___|\ \  \|\  \ \   __/|\ \   __/|   ____________\ \  \\\  \ \  \   
- \ \  \\|__| \  \ \  \    \ \  \    \ \   _  _\ \  \_|/_\ \  \_|/__|\____________\ \  \\\  \ \  \  
-  \ \  \    \ \  \ \  \____\ \  \____\ \  \\  \\ \  \_|\ \ \  \_|\ \|____________|\ \  \\\  \ \  \ 
-   \ \__\    \ \__\ \_______\ \_______\ \__\\ _\\ \_______\ \_______\              \ \_______\ \__\
-    \|__|     \|__|\|_______|\|_______|\|__|\|__|\|_______|\|_______|               \|_______|\|__|
-                                                                                                   
-                                                                                                   
-                                                                                                   
+  _____ ______   ________  ________  ________  _______   _______                  ___  ___  ___
+ |\\   _ \\  _   \\|\\   ____\\|\\   ____\\|\\   __  \\|\\  ___ \\ |\\  ___ \\                |\\  \\|\\  \\|\\  \\
+ \\ \\  \\\\\\__\\ \\  \\ \\  \\___|\\ \\  \\___|\\ \\  \\|\\  \\ \\   __/|\\ \\   __/|   ____________\\ \\  \\\\\\  \\ \\  \\
+  \\ \\  \\\\|__| \\  \\ \\  \\    \\ \\  \\    \\ \\   _  _\\ \\  \\_|/_\\ \\  \\_|/__|\\____________\\ \\  \\\\\\  \\ \\  \\
+   \\ \\  \\    \\ \\  \\ \\  \\____\\ \\  \\____\\ \\  \\\\  \\\\ \\  \\_|\\ \\ \\  \\_|\\ \\|____________|\\ \\  \\\\\\  \\ \\  \\
+    \\ \\__\\    \\ \\__\\ \\_______\\ \\_______\\ \\__\\\\ _\\\\ \\_______\\ \\_______\\              \\ \\_______\\ \\__\\
+     \\|__|     \\|__|\\|_______|\\|_______|\\|__|\\|__|\\|_______|\\|_______|               \\|_______|\\|__|
+     
 `;
 
 const config = {
@@ -45,7 +44,7 @@ const config = {
     //     [name]: ["../index"]
     //     // [`${name}.min`]: ["../index"],
     // },
-
+    devtool: "source-map",
     // umd 模式打包
     output: {
         library: name,
@@ -70,11 +69,12 @@ const config = {
             amd: "react-dom"
         }
     },
-    devtool: "source-map",
+
     resolve: {
         enforceExtension: false,
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".less", ".css"]
     },
+
     module: {
         rules: [
             {
@@ -177,21 +177,17 @@ const config = {
         noEmitOnErrors: true
     },
     plugins: [
-        new ProgressBarPlugin(),
-        // new MiniCssExtractPlugin({
-        //     filename: "[name].min.css"
-        // }),
-        // 在打包的文件之前 加上版权说明
-        new webpack.BannerPlugin(` \n ${name} v${version} \n ${description}
-    \n ${LOGO}\n ${fs.readFileSync(path.join(process.cwd(), "../LICENSE"))}
-  `),
-        new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify("production"),
-            __DEBUG__: false
+        // new ProgressBarPlugin(),
+        new WebpackBar({
+            name: "🚚 dist",
+            color: "#2f54eb"
         }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
+        // 在打包的文件之前 加上版权说明
+        new webpack.BannerPlugin(
+            ` \n ${name} v${version} \n ${description} \n ${LOGO}\n ${fs.readFileSync(
+                path.join(process.cwd(), "../LICENSE")
+            )} `
+        )
     ]
 };
 
@@ -225,6 +221,10 @@ const prodConfig = webpackMerge({}, config, {
         new BundleAnalyzerPlugin({
             analyzerMode: "static",
             openAnalyzer: false
+        }),
+        new webpack.DefinePlugin({
+            "process.env.NODE_ENV": JSON.stringify("production"),
+            __DEBUG__: false
         })
     ],
     optimization: {

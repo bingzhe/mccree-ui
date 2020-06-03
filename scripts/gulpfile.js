@@ -1,23 +1,17 @@
 /* eslint-disable @typescript-eslint/no-invalid-this */
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
-/**
- * @name gulpfile.js
- * @description 打包项目css依赖
- * 参考
- * https://github.com/JeromeLin/dragon-ui/blob/dev/scripts/gulp/gulpfile.js
- */
 
 const path = require("path");
 const gulp = require("gulp");
-const concat = require("gulp-concat");
+// const concat = require("gulp-concat");
 const less = require("gulp-less");
 const autoprefixer = require("gulp-autoprefixer");
 const cssnano = require("gulp-cssnano");
-const size = require("gulp-filesize");
-const sourcemaps = require("gulp-sourcemaps");
-const rename = require("gulp-rename");
-const { name } = require("../package.json");
+// const size = require("gulp-filesize");
+// const sourcemaps = require("gulp-sourcemaps");
+// const rename = require("gulp-rename");
+// const { name } = require("../package.json");  F
 
 // ts task
 const merge2 = require("merge2");
@@ -55,38 +49,7 @@ const DIR = {
 const libDir = path.resolve(__dirname, "../lib");
 const esDir = path.resolve(__dirname, "../es");
 
-// gulp.task("dist", () => {
-//     return gulp
-//         .src(DIR.buildSrc)
-//         .pipe(sourcemaps.init())
-//         .pipe(
-//             less({
-//                 outputStyle: "compressed"
-//             })
-//         )
-//         .pipe(autoprefixer({ overrideBrowserslist: browserList }))
-//         .pipe(concat(`${name}.css`))
-//         .pipe(size())
-//         .pipe(gulp.dest(DIR.dist))
-//         .pipe(sourcemaps.write())
-//         .pipe(rename(`${name}.css.map`))
-//         .pipe(size())
-//         .pipe(gulp.dest(DIR.dist))
-
-//         .pipe(cssnano())
-//         .pipe(concat(`${name}.min.css`))
-//         .pipe(size())
-//         .pipe(gulp.dest(DIR.dist))
-//         .pipe(sourcemaps.write())
-//         .pipe(rename(`${name}.min.css.map`))
-//         .pipe(size())
-//         .pipe(gulp.dest(DIR.dist));
-// });
-
-// copyCss copyLess
-// gulp.task("default", gulp.series("dist"));
-
-function dist1(done) {
+function dist(done) {
     rimraf.sync("../dist");
 
     process.env.RUN_ENV = "PRODUCTION";
@@ -102,11 +65,11 @@ function dist1(done) {
             return;
         }
 
-        // const info = stats.toJson();
+        const info = stats.toJson();
 
-        // if (stats.hasErrors()) {
-        //     console.error(info.errors);
-        // }
+        if (stats.hasErrors()) {
+            console.error(info.errors);
+        }
 
         // if (stats.hasWarnings()) {
         //     console.warn(info.warnings);
@@ -218,9 +181,8 @@ gulp.task("compile-with-lib", (done) => {
 
 gulp.task("compile", gulp.series(gulp.parallel("compile-with-es", "compile-with-lib")));
 
-gulp.task(
-    "dist",
-    gulp.series((done) => {
-        dist1(done);
-    })
-);
+gulp.task("dist", (done) => {
+    dist(done);
+});
+
+gulp.task("default", gulp.series("dist"));
