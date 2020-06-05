@@ -17,7 +17,6 @@ const webpack = require("webpack");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const webpackMerge = require("webpack-merge");
 const WebpackBar = require("webpackbar");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
@@ -177,7 +176,6 @@ const config = {
         noEmitOnErrors: true
     },
     plugins: [
-        // new ProgressBarPlugin(),
         new WebpackBar({
             name: "🚚 dist",
             color: "#2f54eb"
