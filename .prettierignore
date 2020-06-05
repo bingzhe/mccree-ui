@@ -1,5 +1,5 @@
 **/*.svg
-package.json
+# package.json
 AUTHORS.txt
 lib/
 es/
