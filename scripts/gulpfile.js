@@ -1,19 +1,11 @@
 /* eslint-disable @typescript-eslint/no-invalid-this */
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
-
 const path = require("path");
 const gulp = require("gulp");
-// const concat = require("gulp-concat");
 const less = require("gulp-less");
 const autoprefixer = require("gulp-autoprefixer");
 const cssnano = require("gulp-cssnano");
-// const size = require("gulp-filesize");
-// const sourcemaps = require("gulp-sourcemaps");
-// const rename = require("gulp-rename");
-// const { name } = require("../package.json");  F
-
-// ts task
 const merge2 = require("merge2");
 const ts = require("gulp-typescript");
 const tsConfig = require("../tsconfig.json");
@@ -23,6 +15,7 @@ const babel = require("gulp-babel");
 const through2 = require("through2");
 const rimraf = require("rimraf");
 const webpack = require("webpack");
+const webpackConfig = require("./webpack.config");
 
 const tsDefaultReporter = ts.reporter.defaultReporter();
 
@@ -35,26 +28,14 @@ function cssInjection(content) {
         .replace(/\.less/g, ".css");
 }
 
-const DIR = {
-    less: path.resolve(__dirname, "../components/**/*.less"),
-    buildSrc: [
-        path.resolve(__dirname, "../components/**/styles.less"),
-        path.resolve(__dirname, "../components/**/index.less")
-    ],
-    lib: path.resolve(__dirname, "../lib"),
-    es: path.resolve(__dirname, "../es"),
-    dist: path.resolve(__dirname, "../dist")
-};
-
 const libDir = path.resolve(__dirname, "../lib");
 const esDir = path.resolve(__dirname, "../es");
+const distDir = path.resolve(__dirname, "../dist");
 
 function dist(done) {
-    rimraf.sync("../dist");
+    rimraf.sync(distDir);
 
     process.env.RUN_ENV = "PRODUCTION";
-
-    const webpackConfig = require("./webpack.config");
 
     webpack(webpackConfig, (err, stats) => {
         if (err) {
@@ -86,7 +67,6 @@ function dist(done) {
             warningsFilter: [/export .* was not found in/]
         });
         console.log(buildInfo);
-
         done(0);
     });
 }
