@@ -336,12 +336,17 @@ async function pushPhPages(done) {
     await run("git checkout -");
     done(0);
 }
+function moveDeployFile() {
+    const move = gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../"));
+    return move;
+}
 
 gulp.task("checkout-gh-pages", (done) => {
     checkoutGhPages(done);
 });
+// gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../"))
 
-gulp.task("move-deploy-file", gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../")));
+gulp.task("move-deploy-file", moveDeployFile);
 
 gulp.task("push-ph-pages", (done) => {
     pushPhPages(done);
