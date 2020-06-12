@@ -320,19 +320,27 @@ gulp.task(
  * ==========================================================
  */
 
-gulp.task("checkout-gh-pages", async (done) => {
+async function checkoutGhPages(done) {
     await run("git checkout gh-pages");
     done(0);
-});
+}
 
-gulp.task("move-deploy-file", gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../")));
-
-gulp.task("push-ph-pages", async (done) => {
+async function pushPhPages(done) {
     await run("git add .");
     await run("git commit -m 'update site:doc'");
     await run("git push");
     await run("git checkout -");
     done(0);
+}
+
+gulp.task("checkout-gh-pages", (done) => {
+    checkoutGhPages(done);
+});
+
+gulp.task("move-deploy-file", gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../")));
+
+gulp.task("push-ph-pages", (done) => {
+    pushPhPages(done);
 });
 
 gulp.task("site-doc-deploy", gulp.series("checkout-gh-pages", "move-deploy-file", "push-ph-pages"));
