@@ -261,6 +261,7 @@ async function sitePublish(done) {
 
     gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../"));
 
+    await run("git add .");
     await run("git commit -m 'update site:doc'");
     await run("git push");
     await run("git checkout -");
