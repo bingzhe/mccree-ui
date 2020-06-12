@@ -3,7 +3,7 @@
 /.idea/*
 /test-results/
 
-distes
+dist
 lib
 es
 storybook-static
