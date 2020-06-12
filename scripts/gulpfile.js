@@ -28,9 +28,28 @@ const tsDefaultReporter = ts.reporter.defaultReporter();
 const browserList = ["last 2 versions", "Android >= 4.0", "Firefox ESR", "not ie < 9"];
 
 const pkg = require("../package.json");
-const currentVersion = pkg.version;
 
 const exec = util.promisify(child_process.exec);
+
+const currentVersion = pkg.version;
+let globalNextVersion;
+
+const timeLog = (logInfo, type) => {
+    let info = "";
+    if (type === "start") {
+        info = `=> 开始任务：${logInfo}`;
+    } else {
+        info = `✨ 结束任务：${logInfo}`;
+    }
+    const nowDate = new Date();
+    console.log(
+        `[${nowDate.toLocaleString()}.${nowDate
+            .getMilliseconds()
+            .toString()
+            .padStart(3, "0")}] ${info}
+    `
+    );
+};
 
 const run = async (command) => {
     console.log(chalk.green(command));
@@ -165,8 +184,11 @@ function compile(modules) {
     return merge2([less2css, tsFilesStream, tsd, assets, copyLess]);
 }
 
-function getNextVersions() {
-    return {
+/**
+ * 获取询问下一次版本号
+ */
+async function prompt(done) {
+    const getNextVersions = () => ({
         major: semverInc(currentVersion, "major"),
         minor: semverInc(currentVersion, "minor"),
         patch: semverInc(currentVersion, "patch"),
@@ -174,13 +196,10 @@ function getNextVersions() {
         preminor: semverInc(currentVersion, "preminor"),
         prepatch: semverInc(currentVersion, "prepatch"),
         prerelease: semverInc(currentVersion, "prerelease")
-    };
-}
-/**
- * 获取询问下一次版本号
- */
-async function prompt() {
+    });
+
     const nextVersions = getNextVersions();
+
     const { nextVersion } = await inquirer.prompt([
         {
             type: "list",
@@ -192,15 +211,45 @@ async function prompt() {
             }))
         }
     ]);
-    return nextVersion;
+
+    globalNextVersion = nextVersion;
+    done(0);
 }
 
+/**
+ * 更新版本号
+ */
 async function updateVersion(done) {
-    const nextVersion = await prompt();
-    pkg.version = nextVersion;
+    try {
+        console.log({ globalNextVersion });
+        pkg.version = globalNextVersion;
+        fs.writeFileSync(path.resolve(__dirname, "../package.json"), JSON.stringify(pkg));
+        await run("npx prettier ../package.json --write");
 
-    await fs.writeFileSync(path.resolve(__dirname, "../package.json", JSON.stringify(pkg)));
-    await run("npx prettier package.json --write");
+        done(0);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/**
+ * 生成CHANGELOG
+ */
+async function generateChangelog(done) {
+    // await run("npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0");
+    await run("yarn changelog");
+    done(0);
+}
+
+/**
+ * 将代码提交至git
+ */
+async function push(done) {
+    console.log({ globalNextVersion });
+
+    await run("git add ../package.json CHANGELOG.md");
+    await run(`git commit -m "v${globalNextVersion}" -n`);
+    await run("git push");
     done(0);
 }
 
@@ -220,10 +269,25 @@ gulp.task("dist", (done) => {
     dist(done);
 });
 
+gulp.task("prompt-version", (done) => {
+    prompt(done);
+});
+
 gulp.task("update-version", (done) => {
     updateVersion(done);
 });
 
+gulp.task("generate-changelog", (done) => {
+    generateChangelog(done);
+});
+
+gulp.task("push-version", (done) => {
+    push(done);
+});
+
 gulp.task("default", gulp.series("dist"));
 
-gulp.task("release", gulp.series("update-version"));
+gulp.task(
+    "release",
+    gulp.series("prompt-version", "update-version", "generate-changelog", "push-version")
+);
