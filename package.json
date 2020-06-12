@@ -23,7 +23,8 @@
         "dist": "cd scripts && gulp dist",
         "site": "yarn build-storybook",
         "deploy": "./deploy.sh",
-        "release": "node ./scripts/release.js"
+        "release": "node ./scripts/release.js",
+        "release-test": "cd scripts && gulp release"
     },
     "repository": {
         "type": "git",
