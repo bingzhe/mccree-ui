@@ -16,10 +16,45 @@ const through2 = require("through2");
 const rimraf = require("rimraf");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
+const semverInc = require("semver/functions/inc");
+const inquirer = require("inquirer");
+const fs = require("fs");
+const chalk = require("chalk");
+const util = require("util");
+const child_process = require("child_process");
 
 const tsDefaultReporter = ts.reporter.defaultReporter();
 
 const browserList = ["last 2 versions", "Android >= 4.0", "Firefox ESR", "not ie < 9"];
+
+const pkg = require("../package.json");
+
+const exec = util.promisify(child_process.exec);
+
+const currentVersion = pkg.version;
+let globalNextVersion;
+
+const timeLog = (logInfo, type) => {
+    let info = "";
+    if (type === "start") {
+        info = `=> 开始任务：${logInfo}`;
+    } else {
+        info = `✨ 结束任务：${logInfo}`;
+    }
+    const nowDate = new Date();
+    console.log(
+        `[${nowDate.toLocaleString()}.${nowDate
+            .getMilliseconds()
+            .toString()
+            .padStart(3, "0")}] ${info}
+    `
+    );
+};
+
+const run = async (command) => {
+    console.log(chalk.green(command));
+    await exec(command);
+};
 
 function cssInjection(content) {
     return content
@@ -149,6 +184,75 @@ function compile(modules) {
     return merge2([less2css, tsFilesStream, tsd, assets, copyLess]);
 }
 
+/**
+ * 获取询问下一次版本号
+ */
+async function prompt(done) {
+    const getNextVersions = () => ({
+        major: semverInc(currentVersion, "major"),
+        minor: semverInc(currentVersion, "minor"),
+        patch: semverInc(currentVersion, "patch"),
+        premajor: semverInc(currentVersion, "premajor"),
+        preminor: semverInc(currentVersion, "preminor"),
+        prepatch: semverInc(currentVersion, "prepatch"),
+        prerelease: semverInc(currentVersion, "prerelease")
+    });
+
+    const nextVersions = getNextVersions();
+
+    const { nextVersion } = await inquirer.prompt([
+        {
+            type: "list",
+            name: "nextVersion",
+            message: `请选择将要发布的版本（当前版本${currentVersion}）`,
+            choices: Object.keys(nextVersions).map((level) => ({
+                name: `${level}=>${nextVersions[level]}`,
+                value: nextVersions[level]
+            }))
+        }
+    ]);
+
+    globalNextVersion = nextVersion;
+    done(0);
+}
+
+/**
+ * 更新版本号
+ */
+async function updateVersion(done) {
+    try {
+        console.log({ globalNextVersion });
+        pkg.version = globalNextVersion;
+        fs.writeFileSync(path.resolve(__dirname, "../package.json"), JSON.stringify(pkg));
+        await run("npx prettier ../package.json --write");
+
+        done(0);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/**
+ * 生成CHANGELOG
+ */
+async function generateChangelog(done) {
+    // await run("npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0");
+    await run("yarn changelog");
+    done(0);
+}
+
+/**
+ * 将代码提交至git
+ */
+async function push(done) {
+    console.log({ globalNextVersion });
+
+    await run("git add ../package.json ../CHANGELOG.md");
+    await run(`git commit -m "v${globalNextVersion}" -n`);
+    await run("git push");
+    done(0);
+}
+
 gulp.task("compile-with-es", (done) => {
     console.log("[Parallel] Compile to es ...");
     compile(false).on("finish", done);
@@ -165,4 +269,32 @@ gulp.task("dist", (done) => {
     dist(done);
 });
 
+gulp.task("prompt-version", (done) => {
+    prompt(done);
+});
+
+gulp.task("update-version", (done) => {
+    updateVersion(done);
+});
+
+gulp.task("generate-changelog", (done) => {
+    generateChangelog(done);
+});
+
+gulp.task("push-version", (done) => {
+    push(done);
+});
+
 gulp.task("default", gulp.series("dist"));
+
+gulp.task(
+    "release",
+    gulp.series(
+        "prompt-version",
+        "update-version",
+        "generate-changelog",
+        "push-version",
+        "compile",
+        "dist"
+    )
+);
