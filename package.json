@@ -22,7 +22,7 @@
         "compile": "cd scripts && gulp compile",
         "dist": "cd scripts && gulp dist",
         "site": "yarn build-storybook",
-        "site:deploy": "yarn site && cd scripts && gulp site-doc-deploy",
+        "site:deploy": "cd scripts && gulp site-doc-deploy",
         "release": "cd scripts && gulp release",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
     },
