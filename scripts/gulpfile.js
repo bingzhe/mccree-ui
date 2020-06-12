@@ -255,6 +255,19 @@ async function publish(done) {
     done(0);
 }
 
+async function sitePublish(done) {
+    await run("yarn site");
+    await run("git checkout gh-pages");
+
+    gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../"));
+
+    await run("git commit -m 'update site:doc'");
+    await run("git push");
+    await run("git checkout -");
+
+    done(0);
+}
+
 gulp.task("compile-with-es", (done) => {
     console.log("[Parallel] Compile to es ...");
     compile(false).on("finish", done);
@@ -297,6 +310,9 @@ gulp.task("tag", (done) => {
 
 gulp.task("default", gulp.series("dist"));
 
+gulp.task("site-doc-deploy", (done) => {
+    sitePublish(done);
+});
 /**
  * 发布到npm
  */
