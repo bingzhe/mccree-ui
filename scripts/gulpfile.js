@@ -255,20 +255,6 @@ async function publish(done) {
     done(0);
 }
 
-async function sitePublish(done) {
-    await run("yarn site");
-    await run("git checkout gh-pages");
-
-    gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../"));
-
-    await run("git add .");
-    await run("git commit -m 'update site:doc'");
-    await run("git push");
-    await run("git checkout -");
-
-    done(0);
-}
-
 gulp.task("compile-with-es", (done) => {
     console.log("[Parallel] Compile to es ...");
     compile(false).on("finish", done);
@@ -284,6 +270,11 @@ gulp.task("compile", gulp.series(gulp.parallel("compile-with-es", "compile-with-
 gulp.task("dist", (done) => {
     dist(done);
 });
+
+/**
+ * 发布npm
+ * ==========================================================
+ */
 
 gulp.task("prompt-version", (done) => {
     prompt(done);
@@ -309,11 +300,6 @@ gulp.task("tag", (done) => {
     tag(done);
 });
 
-gulp.task("default", gulp.series("dist"));
-
-gulp.task("site-doc-deploy", (done) => {
-    sitePublish(done);
-});
 /**
  * 发布到npm
  */
@@ -328,3 +314,27 @@ gulp.task(
         "publish"
     )
 );
+
+/**
+ * site
+ * ==========================================================
+ */
+
+gulp.task("checkout-gh-pages", async (done) => {
+    await run("git checkout gh-pages");
+    done(0);
+});
+
+gulp.task("move-deploy-file", gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../")));
+
+gulp.task("push-ph-pages", async (done) => {
+    await run("git add .");
+    await run("git commit -m 'update site:doc'");
+    await run("git push");
+    await run("git checkout -");
+    done(0);
+});
+
+gulp.task("site-doc-deploy", gulp.series("checkout-gh-pages", "move-deploy-file", "push-ph-pages"));
+
+gulp.task("default", gulp.series("dist"));
