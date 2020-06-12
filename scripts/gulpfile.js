@@ -331,7 +331,7 @@ async function checkoutGhPages(done) {
 
 async function pushPhPages(done) {
     await run("git add .");
-    await run("git commit -m 'update site:doc'");
+    await run('git commit -m "update:site"');
     await run("git push");
     await run("git checkout -");
     done(0);
