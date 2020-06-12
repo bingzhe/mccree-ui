@@ -321,8 +321,12 @@ gulp.task(
  */
 
 async function checkoutGhPages(done) {
-    await run("git checkout gh-pages");
-    done(0);
+    try {
+        await run("git checkout gh-pages");
+        done(0);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function pushPhPages(done) {
