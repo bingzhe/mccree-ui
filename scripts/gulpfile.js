@@ -34,28 +34,17 @@ const exec = util.promisify(child_process.exec);
 const currentVersion = pkg.version;
 let globalNextVersion;
 
-const timeLog = (logInfo, type) => {
-    let info = "";
-    if (type === "start") {
-        info = `=> 开始任务：${logInfo}`;
-    } else {
-        info = `✨ 结束任务：${logInfo}`;
-    }
-    const nowDate = new Date();
-    console.log(
-        `[${nowDate.toLocaleString()}.${nowDate
-            .getMilliseconds()
-            .toString()
-            .padStart(3, "0")}] ${info}
-    `
-    );
-};
-
 const run = async (command) => {
     console.log(chalk.green(command));
     await exec(command);
 };
 
+/**
+ * 当前组件样式 import './index.less' => import './index.css'
+ * 依赖的其他组件样式 import '../test-comp/style' => import '../test-comp/style/css.js'
+ * 依赖的其他组件样式 import '../test-comp/style/index.js' => import '../test-comp/style/css.js'
+ * @param {string} content
+ */
 function cssInjection(content) {
     return content
         .replace(/\/style\/?'/g, "/style/css'")
@@ -235,7 +224,6 @@ async function updateVersion(done) {
  * 生成CHANGELOG
  */
 async function generateChangelog(done) {
-    // await run("npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0");
     await run("yarn changelog");
     done(0);
 }
@@ -251,19 +239,19 @@ async function push(done) {
 }
 
 /**
- * 发布至npm
- */
-async function publish(done) {
-    await run("cd .. && npm publish");
-    done(0);
-}
-
-/**
  * 打tag提交至git
  */
 async function tag(done) {
     await run(`git tag v${globalNextVersion}`);
     await run(`git push origin tag v${globalNextVersion}`);
+    done(0);
+}
+
+/**
+ * push 到deploy分支 通过circle-ci自动部署
+ */
+async function publish(done) {
+    await run("git push origin master:deploy");
     done(0);
 }
 
@@ -309,6 +297,9 @@ gulp.task("tag", (done) => {
 
 gulp.task("default", gulp.series("dist"));
 
+/**
+ * 发布到npm
+ */
 gulp.task(
     "release",
     gulp.series(
@@ -316,9 +307,7 @@ gulp.task(
         "update-version",
         "generate-changelog",
         "push-version",
-        "compile",
-        "dist",
         "tag",
-        "publish",
+        "publish"
     )
 );
