@@ -3,6 +3,11 @@
 /.idea/*
 /test-results/
 
+distes
+lib
+es
+storybook-static
+
 # Logs
 logs
 *.log
