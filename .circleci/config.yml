@@ -32,6 +32,8 @@ jobs:
           root: .
           paths:
             - dist
+            - lib
+            - es     
             - package.json
             - LICENSE
             - README.md

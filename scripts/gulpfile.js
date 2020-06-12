@@ -221,7 +221,6 @@ async function prompt(done) {
  */
 async function updateVersion(done) {
     try {
-        console.log({ globalNextVersion });
         pkg.version = globalNextVersion;
         fs.writeFileSync(path.resolve(__dirname, "../package.json"), JSON.stringify(pkg));
         await run("npx prettier ../package.json --write");
@@ -245,11 +244,26 @@ async function generateChangelog(done) {
  * 将代码提交至git
  */
 async function push(done) {
-    console.log({ globalNextVersion });
-
     await run("git add ../package.json ../CHANGELOG.md");
     await run(`git commit -m "v${globalNextVersion}" -n`);
     await run("git push");
+    done(0);
+}
+
+/**
+ * 发布至npm
+ */
+async function publish(done) {
+    await run("cd .. && npm publish");
+    done(0);
+}
+
+/**
+ * 打tag提交至git
+ */
+async function tag(done) {
+    await run(`git tag v${globalNextVersion}`);
+    await run(`git push origin tag v${globalNextVersion}`);
     done(0);
 }
 
@@ -285,6 +299,14 @@ gulp.task("push-version", (done) => {
     push(done);
 });
 
+gulp.task("publish", (done) => {
+    publish(done);
+});
+
+gulp.task("tag", (done) => {
+    tag(done);
+});
+
 gulp.task("default", gulp.series("dist"));
 
 gulp.task(
@@ -295,6 +317,8 @@ gulp.task(
         "generate-changelog",
         "push-version",
         "compile",
-        "dist"
+        "dist",
+        "tag",
+        "publish",
     )
 );
