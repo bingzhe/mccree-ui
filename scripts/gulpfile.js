@@ -247,7 +247,7 @@ async function generateChangelog(done) {
 async function push(done) {
     console.log({ globalNextVersion });
 
-    await run("git add ../package.json CHANGELOG.md");
+    await run("git add ../package.json ../CHANGELOG.md");
     await run(`git commit -m "v${globalNextVersion}" -n`);
     await run("git push");
     done(0);
@@ -289,5 +289,12 @@ gulp.task("default", gulp.series("dist"));
 
 gulp.task(
     "release",
-    gulp.series("prompt-version", "update-version", "generate-changelog", "push-version")
+    gulp.series(
+        "prompt-version",
+        "update-version",
+        "generate-changelog",
+        "push-version",
+        "compile",
+        "dist"
+    )
 );
