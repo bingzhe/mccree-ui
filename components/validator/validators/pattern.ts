@@ -14,8 +14,8 @@ import { Rule } from "../index";
  *  @param options The validation options.
  *  @param options.messages The validation messages.
  */
+// eslint-disable-next-line max-params
 function pattern(rule: Rule, value: any, source: any, options: any) {
-    console.log(123123123131);
     const errors: string[] = [];
     const validate = rule.required || (!rule.required && source.hasOwnProperty(rule.field));
     if (validate) {

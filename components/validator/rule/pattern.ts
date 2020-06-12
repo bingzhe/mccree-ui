@@ -11,6 +11,7 @@ import { Rule } from "../index";
  *  @param options The validation options.
  *  @param options.messages The validation messages.
  */
+// eslint-disable-next-line max-params
 function pattern(rule: Rule, value: any, source: any, errors: any, options: any) {
     if (rule.pattern) {
         if (rule.pattern instanceof RegExp) {
@@ -19,22 +20,16 @@ function pattern(rule: Rule, value: any, source: any, errors: any, options: any)
             // is not necessary and the result might be misleading
             rule.pattern.lastIndex = 0;
             if (!rule.pattern.test(value)) {
-                errors.push(util.format(
-                    options.messages.pattern.mismatch,
-                    rule.field,
-                    value,
-                    rule.pattern,
-                ),);
+                errors.push(
+                    util.format(options.messages.pattern.mismatch, rule.field, value, rule.pattern)
+                );
             }
         } else if (typeof rule.pattern === "string") {
             const _pattern = new RegExp(rule.pattern);
             if (!_pattern.test(value)) {
-                errors.push(util.format(
-                    options.messages.pattern.mismatch,
-                    rule.field,
-                    value,
-                    rule.pattern,
-                ),);
+                errors.push(
+                    util.format(options.messages.pattern.mismatch, rule.field, value, rule.pattern)
+                );
             }
         }
     }
