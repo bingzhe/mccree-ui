@@ -154,6 +154,7 @@ const Button: ButtonTypeProps = ({ ...props }) => {
 
                 const { htmlType, ...otherProps } = rest as NativeButtonProps;
 
+                console.log("test del");
                 const buttonNode = (
                     <button
                         {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
