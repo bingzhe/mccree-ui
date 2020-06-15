@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * @name UMD 模块 打包
- * @description 参考 dragon-ui
  * @description 这里选择  webpack 进行打包  rollup也可以
  * @description 输出目录 [dist]
  * @description 文件名 [cuke-ui]
