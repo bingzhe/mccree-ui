@@ -337,6 +337,13 @@ async function pushPhPages(done) {
     done(0);
 }
 function moveDeployFile() {
+    rimraf.sync("./*.js");
+    rimraf.sync("./*.js.map");
+    rimraf.sync("./*.html");
+    rimraf.sync("./*.ico");
+    rimraf.sync("./*.LICENSE.txt");
+    rimraf.sync("./sb_dll");
+
     const move = gulp.src(["../storybook-static/**/*"]).pipe(gulp.dest("../"));
     return move;
 }
