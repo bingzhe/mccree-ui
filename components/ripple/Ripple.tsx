@@ -1,99 +1,67 @@
-// import * as React from "react";
-// import { Transition } from "react-transition-group";
-// import styled, { css, keyframes } from "styled-components";
+import * as React from "react";
+import { Transition } from "react-transition-group";
+import classNames from "classnames";
 
+import { ConfigContext } from "../config-provider";
 
-// const rippleEnter = keyframes`
-//     0% { transform: scale(0);}
-//     100% { transform: scale(1);}
-// `;
+interface Props {
+    rippleX: number;
+    rippleY: number;
+    rippleSize: number;
+    color: string;
+    timeout: {
+        enter: number;
+        exit: number;
+    };
+}
 
-// const rippleExit = keyframes`
-//     0% { opacity: 1;}
-//     100% { opacity: 0; }
-// `;
+const Ripple: React.FC<Props> = (props) => {
+    const { rippleX, rippleY, rippleSize, color, timeout, ...restProps } = props;
+    const { getPrefixCls } = React.useContext(ConfigContext);
 
-// const rippleVisibleStyle = css`
-//     opacity: 0.3;
-//     transform: scale(1);
-//     animation: ${rippleEnter} 550ms cubic-bezier(0.4, 0, 0.2, 1);
-// `;
+    const prefixCls = getPrefixCls("ripple");
 
-// const rippleChildSpanStyle = css`
-//     opacity: 0;
-//     animation: ${rippleExit} 550ms cubic-bezier(0.4, 0, 0.2, 1);
-// `;
+    const [visible, setVisible] = React.useState(false);
+    const [leaving, setLeaving] = React.useState(false);
 
-// const StyleRippleSpan = styled.span<RippleProps>`
-//     opacity: 0;
-//     position: absolute;
+    const handleEnter = () => {
+        setVisible(true);
+    };
 
-//     ${props => props.visible && rippleVisibleStyle}
-// `;
+    const handleExit = () => {
+        console.log("exit");
+        setLeaving(true);
+    };
 
-// const StyleRippleChildSpan = styled.span<RippleProps>`
-//     opacity: 1;
-//     display: block;
-//     width: 100%;
-//     height: 100%;
-//     border-radius: 50%;
-//     background-color: ${props => props.color};
+    const rippleStyles = {
+        width: rippleSize,
+        height: rippleSize,
+        top: -(rippleSize / 2) + rippleY,
+        left: -(rippleSize / 2) + rippleX
+    };
 
-//     ${props => props.leaving && rippleChildSpanStyle}
-// `;
+    const rippleClasses = classNames(prefixCls, {
+        [`${prefixCls}-visible`]: visible
+    });
 
-// interface RippleProps {
-//     visible?: boolean;
-//     leaving?: boolean;
-// }
+    const childPrefixCls = `${prefixCls}-child`;
+    const childClasses = classNames(childPrefixCls, {
+        [`${childPrefixCls}-leaving`]: leaving
+    });
 
-// interface Props {
-//     rippleX: number;
-//     rippleY: number;
-//     rippleSize: number;
-//     color: string;
-//     timeout: {
-//         enter: number;
-//         exit: number;
-//     };
-// }
+    console.log({ rippleClasses });
+    console.log({ childClasses });
 
-// const Ripple: React.FunctionComponent<Props> = (props) => {
+    console.log(visible, leaving);
 
-//     const {
-//         rippleX,
-//         rippleY,
-//         rippleSize,
-//         color,
-//         timeout,
-//         ...restProps
-//     } = props;
+    
+    return (
+        <Transition onEnter={handleEnter} onExit={handleExit} timeout={timeout} {...restProps}>
+            <span className={rippleClasses} style={rippleStyles}>
+                <span className={childClasses} />
+            </span>
+        </Transition>
+    );
+};
 
-//     const [visible, setVisible] = React.useState(false);
-//     const [leaving, setLeaving] = React.useState(false);
-
-//     const handleEnter = () => {
-//         setVisible(true);
-//     };
-
-//     const handleExit = () => {
-//         setLeaving(true);
-//     };
-
-//     const rippleStyles = {
-//         width: rippleSize,
-//         height: rippleSize,
-//         top: -(rippleSize / 2) + rippleY,
-//         left: -(rippleSize / 2) + rippleX,
-//     };
-
-//     return (
-//         <Transition onEnter={handleEnter} onExit={handleExit} timeout={timeout} {...restProps}>
-//             <StyleRippleSpan visible={visible} style={rippleStyles}>
-//                 <StyleRippleChildSpan leaving={leaving} color={color}></StyleRippleChildSpan>
-//             </StyleRippleSpan>
-//         </Transition>
-//     );
-// };
-
-// export default Ripple;
+export default Ripple;
