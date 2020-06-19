@@ -7,7 +7,7 @@ import { ConfigContext } from "../config-provider";
 
 const DURATION = 550;
 
-interface Props {
+export interface RippleProps {
     className?: string;
     center?: boolean;
     color?: string;
@@ -18,7 +18,7 @@ interface Props {
     };
 }
 
-const RippleWrapper: React.FC<Props> = (props) => {
+const RippleWrapper: React.FC<RippleProps> = (props) => {
     const {
         className,
         children,
