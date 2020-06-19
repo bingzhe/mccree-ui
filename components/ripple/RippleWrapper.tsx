@@ -27,7 +27,8 @@ const RippleWrapper: React.FC<Props> = (props) => {
         timeout = {
             enter: DURATION,
             exit: DURATION
-        }
+        },
+        ...rest
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -178,9 +179,6 @@ const RippleWrapper: React.FC<Props> = (props) => {
         }
     };
 
-    console.log({ classes });
-    console.log({ ripples });
-    
     return (
         <span
             onMouseDown={handleMouseDown}
@@ -191,6 +189,7 @@ const RippleWrapper: React.FC<Props> = (props) => {
             onTouchMove={handleTouchMove}
             ref={container}
             className={classes}
+            {...rest}
         >
             {children}
 

@@ -17,19 +17,18 @@ interface Props {
 
 const Ripple: React.FC<Props> = (props) => {
     const { rippleX, rippleY, rippleSize, color, timeout, ...restProps } = props;
-    const { getPrefixCls } = React.useContext(ConfigContext);
 
+    const { getPrefixCls } = React.useContext(ConfigContext);
     const prefixCls = getPrefixCls("ripple");
 
-    const [visible, setVisible] = React.useState(false);
-    const [leaving, setLeaving] = React.useState(false);
+    const [visible, setVisible] = React.useState<boolean>(false);
+    const [leaving, setLeaving] = React.useState<boolean>(false);
 
     const handleEnter = () => {
         setVisible(true);
     };
 
     const handleExit = () => {
-        console.log("exit");
         setLeaving(true);
     };
 
@@ -49,16 +48,10 @@ const Ripple: React.FC<Props> = (props) => {
         [`${childPrefixCls}-leaving`]: leaving
     });
 
-    console.log({ rippleClasses });
-    console.log({ childClasses });
-
-    console.log(visible, leaving);
-
-    
     return (
         <Transition onEnter={handleEnter} onExit={handleExit} timeout={timeout} {...restProps}>
             <span className={rippleClasses} style={rippleStyles}>
-                <span className={childClasses} />
+                <span className={childClasses} style={{ background: color }} />
             </span>
         </Transition>
     );
