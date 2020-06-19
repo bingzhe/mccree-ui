@@ -6,42 +6,66 @@ Array [
     class="mccree-btn mccree-btn-contain"
   >
     DEFAULT
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-primary mccree-btn-contain"
   >
     PRIMARY
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-secondary mccree-btn-contain"
   >
     SECONDARY
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-success mccree-btn-contain"
   >
     SUCCESS
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-error mccree-btn-contain"
   >
     ERROE
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-warning mccree-btn-contain"
   >
     WARNING
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-info mccree-btn-contain"
   >
     INFO
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-contain"
     disabled=""
   >
     DISABLED
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <a
     class="mccree-btn mccree-btn-primary mccree-btn-contain"
@@ -66,36 +90,57 @@ Array [
       </svg>
     </span>
     loading
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-lg"
   >
     大
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-primary mccree-btn-contain"
   >
     中
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-sm"
   >
     小
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-block"
   >
     loading
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-circle"
   >
     circle
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
   <button
     class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-round"
   >
     loading
+    <span
+      class="mccree-ripple-root"
+    />
   </button>,
 ]
 `;
