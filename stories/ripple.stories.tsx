@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import Ripple from "../components/ripple/index";
 import Button from "../components/button/index";
+import { action } from "@storybook/addon-actions";
 import "../components/styles/index.less";
 import "../components/ripple/style/index.less";
 import "../components/button/style/index.less";
@@ -15,12 +16,37 @@ storiesOf("Ripple", module).add("Ripple", () => {
         <div className="page-wrapper ripple-wrapper">
             <div>
                 <h4>默认Button启用 </h4>
+                <Button onClick={action("clicked")}>DEFAULT</Button>
+                <Button type="primary" onClick={action("clicked")}>
+                    PRIMARY
+                </Button>
+                <Button type="secondary" onClick={action("clicked")}>
+                    SECONDARY
+                </Button>
+                <Button type="success" onClick={action("clicked")}>
+                    SUCCESS
+                </Button>
+                <Button type="error" onClick={action("clicked")}>
+                    ERROR
+                </Button>
+                <Button type="warning" onClick={action("clicked")}>
+                    WARNING
+                </Button>
+                <Button type="info" onClick={action("clicked")}>
+                    INFO
+                </Button>
+                <Button disabled type="primary" onClick={action("clicked")}>
+                    PRIMARY
+                </Button>
+                <Button
+                    target="block"
+                    href="http://bingzhe.github.io/"
+                    type="primary"
+                    onClick={action("clicked")}
+                >
+                    LINK
+                </Button>
             </div>
-
-            <span className="ripple-box-wrapper">
-                <Button type="primary">primary</Button>
-                <Ripple />
-            </span>
 
             <div>
                 <h4>其他地方使用 </h4>

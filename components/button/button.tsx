@@ -1,6 +1,7 @@
 import * as React from "react";
 import classNames from "classnames";
 
+import Ripple from "../ripple";
 import ButtonGroup from "./button-group";
 import { ConfigContext } from "../config-provider";
 import SizeContext, { SizeType } from "../config-provider/SizeContext";
@@ -165,6 +166,7 @@ const Button: ButtonTypeProps = ({ ...props }) => {
                         {startIcon}
                         {children}
                         {endIcon}
+                        <Ripple />
                     </button>
                 );
 
