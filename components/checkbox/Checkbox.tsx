@@ -24,23 +24,22 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
             <span className="label">
                 <input />
                 <svg />
-        </span>
+            </span>
             <span className="ripple" />
         </span>
-    )
+    );
 
-    console.log(meterial)
+    console.log(meterial);
     const ant = (
         <label className="ant-checkbox-wrapper">
             <span className="ant-checkbox">
-                <input type="checkbox" className="ant-checkbox-input" value=""/>
+                <input type="checkbox" className="ant-checkbox-input" value="" />
                 <span className="ant-checkbox-inner" />
             </span>
             <span>Checkbox</span>
         </label>
     );
-    console.log(ant)
-
+    console.log(ant);
 
     return <input type="checkbox" checked={checked} onChange={handleChange} {...restProps} />;
 };

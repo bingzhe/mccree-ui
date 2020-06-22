@@ -70,6 +70,10 @@ storiesOf("Icon", module).add("Icon", () => {
                 <li className="icon-item">
                     <Icon name="qq" rotate={270} />
                 </li>
+
+                <li className="icon-item">
+                    <Icon name="checkbox-outline" />
+                </li>
             </ul>
         </div>
     );
