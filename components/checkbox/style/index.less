@@ -1,0 +1,48 @@
+@import "../../styles/vars.less";
+
+@checkbox-root-prefix-cls: ~"@{mccree-prefix}-checkbox-root";
+@checkbox-prefix-cls: ~"@{mccree-prefix}-checkbox";
+
+.@{checkbox-root-prefix-cls} {
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    display: inline-flex;
+    outline: 0;
+    position: relative;
+    align-items: center;
+    user-select: none;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+    flex: 0 0 auto;
+    color: rgba(0, 0, 0, 0.54);
+    // padding: 9px;
+    overflow: visible;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 50%;
+
+    .@{checkbox-prefix-cls} {
+        width: 100%;
+        display: flex;
+        align-items: inherit;
+        justify-content: initial;
+        padding: 9px;
+        position: relative;
+
+        .@{checkbox-prefix-cls}-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            cursor: inherit;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            padding: 0;
+            z-index: 1;
+        }
+    }
+}

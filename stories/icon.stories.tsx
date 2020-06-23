@@ -74,6 +74,12 @@ storiesOf("Icon", module).add("Icon", () => {
                 <li className="icon-item">
                     <Icon name="checkbox-outline" />
                 </li>
+                <li className="icon-item">
+                    <Icon name="checkbox" />
+                </li>
+                <li className="icon-item">
+                    <Icon name="checkbox-indeterminate" />
+                </li>
             </ul>
         </div>
     );
