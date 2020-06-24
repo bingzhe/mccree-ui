@@ -1,0 +1,151 @@
+.mccree-checkbox {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum";
+  width: 100%;
+  display: flex;
+  align-items: inherit;
+  justify-content: initial;
+  position: relative;
+  padding: 9px;
+  font-size: 24px;
+  border-radius: 50%;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  user-select: none;
+  color: rgba(0, 0, 0, 0.54);
+}
+.mccree-checkbox-root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum";
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  text-decoration: none;
+  flex: 0 0 auto;
+  overflow: visible;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+.mccree-checkbox .mccree-checkbox-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  cursor: inherit;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  z-index: 1;
+}
+.mccree-checkbox-primary .mccree-checkbox:hover {
+  background-color: rgba(25, 118, 210, 0.04);
+}
+.mccree-checkbox-primary.mccree-checkbox-checked .mccree-checkbox {
+  color: #1976d2;
+}
+.mccree-checkbox-primary.mccree-checkbox-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-checkbox-primary.mccree-checkbox-disabled .mccree-checkbox:hover {
+  background-color: transparent;
+}
+.mccree-checkbox-primary.mccree-checkbox-disabled .mccree-checkbox {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-checkbox-secondary .mccree-checkbox:hover {
+  background-color: rgba(220, 0, 78, 0.04);
+}
+.mccree-checkbox-secondary.mccree-checkbox-checked .mccree-checkbox {
+  color: #dc004e;
+}
+.mccree-checkbox-secondary.mccree-checkbox-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-checkbox-secondary.mccree-checkbox-disabled .mccree-checkbox:hover {
+  background-color: transparent;
+}
+.mccree-checkbox-secondary.mccree-checkbox-disabled .mccree-checkbox {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-checkbox-warning .mccree-checkbox:hover {
+  background-color: rgba(255, 152, 0, 0.04);
+}
+.mccree-checkbox-warning.mccree-checkbox-checked .mccree-checkbox {
+  color: #ff9800;
+}
+.mccree-checkbox-warning.mccree-checkbox-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-checkbox-warning.mccree-checkbox-disabled .mccree-checkbox:hover {
+  background-color: transparent;
+}
+.mccree-checkbox-warning.mccree-checkbox-disabled .mccree-checkbox {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-checkbox-success .mccree-checkbox:hover {
+  background-color: rgba(76, 175, 80, 0.04);
+}
+.mccree-checkbox-success.mccree-checkbox-checked .mccree-checkbox {
+  color: #4caf50;
+}
+.mccree-checkbox-success.mccree-checkbox-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-checkbox-success.mccree-checkbox-disabled .mccree-checkbox:hover {
+  background-color: transparent;
+}
+.mccree-checkbox-success.mccree-checkbox-disabled .mccree-checkbox {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-checkbox-error .mccree-checkbox:hover {
+  background-color: rgba(244, 67, 54, 0.04);
+}
+.mccree-checkbox-error.mccree-checkbox-checked .mccree-checkbox {
+  color: #f44336;
+}
+.mccree-checkbox-error.mccree-checkbox-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-checkbox-error.mccree-checkbox-disabled .mccree-checkbox:hover {
+  background-color: transparent;
+}
+.mccree-checkbox-error.mccree-checkbox-disabled .mccree-checkbox {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-checkbox-info .mccree-checkbox:hover {
+  background-color: rgba(33, 150, 243, 0.04);
+}
+.mccree-checkbox-info.mccree-checkbox-checked .mccree-checkbox {
+  color: #2196f3;
+}
+.mccree-checkbox-info.mccree-checkbox-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-checkbox-info.mccree-checkbox-disabled .mccree-checkbox:hover {
+  background-color: transparent;
+}
+.mccree-checkbox-info.mccree-checkbox-disabled .mccree-checkbox {
+  color: rgba(0, 0, 0, 0.26);
+}

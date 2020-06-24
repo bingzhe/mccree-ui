@@ -16,9 +16,40 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
 
     return (
         <div className="page-wrapper">
-            <Checkbox checked={checked} onChange={handleChange} />
+            <Checkbox disabled checked={checked} onChange={handleChange} />
+            <Checkbox indeterminate disabled checked={checked} onChange={handleChange} />
+
             <br />
             <Checkbox checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <Checkbox indeterminate checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <br />
+            <Checkbox color="secondary" checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <Checkbox indeterminate color="secondary" checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <br />
+            <Checkbox color="success" checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <Checkbox indeterminate color="success" checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <br />
+            <Checkbox color="warning" checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <br />
+            <Checkbox color="error" checked={checked} onChange={handleChange}>
+                Checkbox
+            </Checkbox>
+            <br />
+            <Checkbox color="info" checked={checked} onChange={handleChange}>
                 Checkbox
             </Checkbox>
         </div>

@@ -1,48 +1,112 @@
 @import "../../styles/vars.less";
+@import "../../styles//reset.less";
 
 @checkbox-root-prefix-cls: ~"@{mccree-prefix}-checkbox-root";
 @checkbox-prefix-cls: ~"@{mccree-prefix}-checkbox";
 
-.@{checkbox-root-prefix-cls} {
-    border: 0;
-    cursor: pointer;
-    margin: 0;
-    display: inline-flex;
-    outline: 0;
+.@{checkbox-prefix-cls} {
+    .reset-component;
+
+    width: 100%;
+    display: flex;
+    align-items: inherit;
+    justify-content: initial;
     position: relative;
-    align-items: center;
-    user-select: none;
-    vertical-align: middle;
-    justify-content: center;
-    text-decoration: none;
-    flex: 0 0 auto;
-    color: rgba(0, 0, 0, 0.54);
-    // padding: 9px;
-    overflow: visible;
-    font-size: 14px;
-    text-align: center;
-    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    padding: 9px;
+    font-size: 24px;
     border-radius: 50%;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.54);
 
-    .@{checkbox-prefix-cls} {
-        width: 100%;
-        display: flex;
-        align-items: inherit;
-        justify-content: initial;
-        padding: 9px;
+    &-root {
+        .reset-component;
+
         position: relative;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+        justify-content: center;
+        text-decoration: none;
+        flex: 0 0 auto;
+        overflow: visible;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+    }
 
-        .@{checkbox-prefix-cls}-input {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            cursor: inherit;
-            height: 100%;
-            margin: 0;
-            opacity: 0;
-            padding: 0;
-            z-index: 1;
+    .@{checkbox-prefix-cls}-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        cursor: inherit;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        z-index: 1;
+    }
+
+    &-primary {
+        .checkbox-primary;
+    }
+    &-secondary {
+        .checkbox-secondary;
+    }
+    &-warning {
+        .checkbox-warning;
+    }
+    &-success {
+        .checkbox-success;
+    }
+    &-error {
+        .checkbox-error;
+    }
+    &-info {
+        .checkbox-info;
+    }
+}
+
+.checkbox-primary() {
+    .checkbox-color(@checkbox-primary-color,@checkbox-primary-bg-hover);
+}
+.checkbox-secondary() {
+    .checkbox-color(@checkbox-secondary-color,@checkbox-secondary-bg-hover);
+}
+.checkbox-warning() {
+    .checkbox-color(@checkbox-warning-color,@checkbox-warning-bg-hover);
+}
+.checkbox-success() {
+    .checkbox-color(@checkbox-success-color,@checkbox-success-bg-hover);
+}
+.checkbox-error() {
+    .checkbox-color(@checkbox-error-color,@checkbox-error-bg-hover);
+}
+.checkbox-info() {
+    .checkbox-color(@checkbox-info-color,@checkbox-info-bg-hover);
+}
+
+.checkbox-color(@color, @bg-hover-color) {
+    .@{checkbox-prefix-cls}:hover {
+        background-color: @bg-hover-color;
+    }
+
+    &.@{checkbox-prefix-cls}-checked {
+        .@{checkbox-prefix-cls} {
+            color: @color;
+        }
+    }
+
+    &.@{checkbox-prefix-cls}-disabled {
+        cursor: default;
+        pointer-events: none;
+
+        .@{checkbox-prefix-cls}:hover {
+            background-color: transparent;
+        }
+        .@{checkbox-prefix-cls} {
+            color: @checkbox-disable-color;
         }
     }
 }

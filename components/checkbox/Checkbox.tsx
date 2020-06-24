@@ -2,7 +2,12 @@ import * as React from "react";
 import classNames from "classnames";
 
 import Icon from "../icon";
+import Ripple from "../ripple";
 import { ConfigContext } from "../config-provider";
+import { tuple } from "../_util/type";
+
+const CheckboxColorTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
+export type CheckboxColorType = typeof CheckboxColorTypes[number];
 
 export interface CheckboxProps {
     prefixCls?: string;
@@ -12,6 +17,7 @@ export interface CheckboxProps {
     indeterminate?: boolean;
     disabled?: boolean;
     isButton?: boolean;
+    color?: CheckboxColorType;
     icon?: React.ReactNode;
     checkIcon?: React.ReactNode;
     indeterminateIcon?: React.ReactNode;
@@ -34,6 +40,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
         indeterminate = false,
         isButton = false,
         disabled = false,
+        color = "primary",
         onChange,
         checked,
         children,
@@ -58,7 +65,8 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
         [`${prefixCls}-button-root`]: isButton,
         [`${prefixCls}-checked`]: checked,
         [`${prefixCls}-disabled`]: disabled,
-        [`${prefixCls}-indeterminate`]: indeterminate
+        [`${prefixCls}-indeterminate`]: indeterminate,
+        [`${prefixCls}-${color}`]: color
     });
     const checkboxClasses = classNames(prefixCls, className, {
         [`${prefixCls}-button`]: isButton
@@ -66,6 +74,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
     const checkboxInputClasses = classNames(`${prefixCls}-input`);
     const checkboxLabel = classNames(`${prefixCls}-label`);
 
+    console.log("===================================");
     console.log({ checkboxRootClasses });
     console.log({ checkboxClasses });
     console.log({ checkboxInputClasses });
@@ -83,6 +92,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
                 />
                 {checked ? checkIcon : icon}
             </span>
+            <Ripple />
             {children && <span className={checkboxLabel}>{children}</span>}
         </label>
     );
