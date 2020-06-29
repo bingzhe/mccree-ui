@@ -79,6 +79,12 @@ const Checkbox: CheckboxTypeProps = (props) => {
     const checkboxInputClasses = classNames(`${prefixCls}-input`);
     const checkboxLabel = classNames(`${prefixCls}-label`);
 
+    if (isButton) {
+        console.log("=================================");
+        console.log({ checkboxRootClasses });
+        console.log({ checkboxClasses });
+    }
+
     return (
         <label className={checkboxRootClasses}>
             <Ripple centerRipple={true}>

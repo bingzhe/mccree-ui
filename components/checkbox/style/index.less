@@ -1,7 +1,6 @@
 @import "../../styles/vars.less";
 @import "../../styles/reset.less";
 
-@checkbox-root-prefix-cls: ~"@{mccree-prefix}-checkbox-root";
 @checkbox-prefix-cls: ~"@{mccree-prefix}-checkbox";
 
 .@{checkbox-prefix-cls} {
@@ -65,6 +64,62 @@
     }
     &-info {
         .checkbox-info;
+    }
+
+    &-button-root {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: @btn-font-weight;
+        white-space: nowrap;
+        text-align: center;
+        background-image: none;
+        border: @btn-border-width @btn-border-style transparent;
+        box-shadow: @shadow-2;
+        cursor: pointer;
+        transition: all 0.3s @ease-in-out;
+        user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+
+        .btn-size(@btn-height-base; @btn-padding-horizontal-base; @font-size-base; @btn-border-radius-base );
+
+        .@{checkbox-prefix-cls}-button{
+            display: none;
+        }
+        
+    }
+}
+
+.btn-size(@height; @padding-horizontal; @font-size; @border-radius) {
+    @padding-vertical: max(
+        round((@height - @font-size * @line-height-base) / 2 * 10) / 10 - @border-width-base,
+        0
+    );
+
+    height: @height;
+    padding: @padding-vertical @padding-horizontal;
+    font-size: @font-size;
+    border-radius: @border-radius;
+}
+.btn-color(@color; @background; @border) {
+    color: @color;
+    background-color: @background;
+    border-color: @border;
+
+    > a:only-child {
+        color: currentColor;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: "";
+        }
     }
 }
 
