@@ -75,9 +75,9 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
     const checkboxLabel = classNames(`${prefixCls}-label`);
 
     console.log("===================================");
-    console.log({ checkboxRootClasses });
-    console.log({ checkboxClasses });
-    console.log({ checkboxInputClasses });
+    // console.log({ checkboxRootClasses });
+    // console.log({ checkboxClasses });
+    // console.log({ checkboxInputClasses });
 
     return (
         <label className={checkboxRootClasses}>

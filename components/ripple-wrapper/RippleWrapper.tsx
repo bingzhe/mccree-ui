@@ -1,8 +1,9 @@
 import * as React from "react";
 import classNames from "classnames";
-import TouchRipple from "./TouchRipple";
 
+import TouchRipple from "./RippleTouch";
 import useEventCallback from "../utils/useEventCallback";
+import { ConfigContext } from "../config-provider";
 
 export interface ButtonBaseProps {
     centerRipple?: boolean;
@@ -22,12 +23,15 @@ export interface ButtonBaseProps {
     tabIndex?: number;
 }
 
-const ButtonBase = React.forwardRef((props: ButtonBaseProps, ref) => {
+/**
+ * todo 添加焦点逻辑
+ */
+const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
     const {
         centerRipple = false,
         children,
         className,
-        component = "span",
+        component = "button",
         disableRipple = false,
         disableTouchRipple = false,
         onClick,
@@ -42,13 +46,19 @@ const ButtonBase = React.forwardRef((props: ButtonBaseProps, ref) => {
         ...other
     } = props;
 
+    const { getPrefixCls } = React.useContext(ConfigContext);
+    const prefixCls = getPrefixCls("ripple-wrapper-root");
+
+    const classes = classNames(prefixCls, className);
+
     const rippleRef = React.useRef<any>(null);
 
-    React.useEffect(() => {
-        if (!disableRipple) {
-            rippleRef.current.pulsate();
-        }
-    }, [disableRipple]);
+    // 焦点相关
+    // React.useEffect(() => {
+    //     if (!disableRipple) {
+    //         rippleRef.current.pulsate();
+    //     }
+    // }, [disableRipple]);
 
     function useRippleHandler(
         rippleAction: any,
@@ -81,15 +91,13 @@ const ButtonBase = React.forwardRef((props: ButtonBaseProps, ref) => {
     const handleTouchEnd = useRippleHandler("stop", onTouchEnd);
     const handleTouchMove = useRippleHandler("stop", onTouchMove);
 
-    let ComponentProp = component;
+    // let ComponentProp = component;
 
     const enableTouchRipple = !disableRipple;
 
-    const ComponentPropClassName = classNames("base-button");
-
     return (
-        <ComponentProp
-            className={ComponentPropClassName}
+        <span
+            className={classes}
             onClick={onClick}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
@@ -98,17 +106,13 @@ const ButtonBase = React.forwardRef((props: ButtonBaseProps, ref) => {
             onTouchEnd={handleTouchEnd}
             onTouchMove={handleTouchMove}
             onTouchStart={handleTouchStart}
-            // ref={handleRef}
             tabIndex={tabIndex}
             {...other}
         >
             {children}
-            {enableTouchRipple ? (
-                /* TouchRipple is only needed client-side, x2 boost on the server. */
-                <TouchRipple ref={rippleRef} center={centerRipple} />
-            ) : null}
-        </ComponentProp>
+            {enableTouchRipple ? <TouchRipple ref={rippleRef} center={centerRipple} /> : null}
+        </span>
     );
 });
 
-export default ButtonBase;
+export default RippleWrapper;

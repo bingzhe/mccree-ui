@@ -46,12 +46,12 @@ const Ripple: React.FC<RippleProps> = (props) => {
 
     const childPrefixCls = `${prefixCls}-child`;
     const childClassName = classNames(childPrefixCls, {
-        [`${childPrefixCls}-leaving`]: leaving
-        // [classes.childPulsate]: pulsate
+        [`${childPrefixCls}-leaving`]: leaving,
+        [`${childPrefixCls}-pulsate`]: pulsate
     });
 
     const handleExited = useEventCallback(onExited);
-    // Ripple is used for user feedback (e.g. click or press) so we want to apply styles with the highest priority
+
     useEnhancedEffect(() => {
         if (!inProp) {
             // react-transition-group#onExit

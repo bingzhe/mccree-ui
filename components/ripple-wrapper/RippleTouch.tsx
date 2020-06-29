@@ -3,6 +3,7 @@ import { TransitionGroup } from "react-transition-group";
 
 import classNames from "classnames";
 import Ripple from "./ripple";
+import { ConfigContext } from "../config-provider";
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
@@ -10,14 +11,18 @@ export const DELAY_RIPPLE = 80;
 interface TouchRippleProps {
     center?: boolean;
     className?: string;
-    classes?: any;
 }
 
 const TouchRipple = React.forwardRef((props: TouchRippleProps, ref) => {
-    const { center: centerProp = false, classes, className, ...other } = props;
+    const { center: centerProp = false, className, ...other } = props;
     const [ripples, setRipples] = React.useState<any[]>([]);
     const nextKey = React.useRef(0);
     const rippleCallback = React.useRef<any>(null);
+
+    const { getPrefixCls } = React.useContext(ConfigContext);
+    const prefixCls = getPrefixCls("ripple-root");
+
+    const classes = classNames(prefixCls, className);
 
     React.useEffect(() => {
         if (rippleCallback.current) {
@@ -192,7 +197,7 @@ const TouchRipple = React.forwardRef((props: TouchRippleProps, ref) => {
     );
 
     return (
-        <span className={classNames("ripple-root", className)} ref={container} {...other}>
+        <span className={classes} ref={container} {...other}>
             <TransitionGroup component={null} exit>
                 {ripples}
             </TransitionGroup>
