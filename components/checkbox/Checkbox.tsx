@@ -1,8 +1,9 @@
 import * as React from "react";
 import classNames from "classnames";
 
+import CheckboxButton from "./CheckboxButton";
 import Icon from "../icon";
-import Ripple from "../ripple";
+import Ripple from "../ripple-wrapper";
 import { ConfigContext } from "../config-provider";
 import { tuple } from "../_util/type";
 
@@ -26,11 +27,15 @@ export interface CheckboxProps {
     children?: React.ReactNode;
 }
 
+interface CheckboxTypeProps extends React.FC<CheckboxProps> {
+    Button: typeof CheckboxButton;
+}
+
 const defaultIcon = <Icon name="checkbox-outline" />;
 const defaultCheckedIcon = <Icon name="checkbox" />;
 const defaultIndeterminateIcon = <Icon name="checkbox-indeterminate" />;
 
-const Checkbox: React.FC<CheckboxProps> = (props) => {
+const Checkbox: CheckboxTypeProps = (props) => {
     const {
         prefixCls: customizePrefixCls,
         className,
@@ -74,28 +79,25 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
     const checkboxInputClasses = classNames(`${prefixCls}-input`);
     const checkboxLabel = classNames(`${prefixCls}-label`);
 
-    console.log("===================================");
-    // console.log({ checkboxRootClasses });
-    // console.log({ checkboxClasses });
-    // console.log({ checkboxInputClasses });
-
     return (
         <label className={checkboxRootClasses}>
-            <span className={checkboxClasses}>
-                <input
-                    className={checkboxInputClasses}
-                    type="checkbox"
-                    checked={checked}
-                    onChange={handleChange}
-                    disabled={disabled}
-                    {...restProps}
-                />
-                {checked ? checkIcon : icon}
-            </span>
-            <Ripple />
+            <Ripple centerRipple={true}>
+                <span className={checkboxClasses}>
+                    <input
+                        className={checkboxInputClasses}
+                        type="checkbox"
+                        checked={checked}
+                        onChange={handleChange}
+                        disabled={disabled}
+                        {...restProps}
+                    />
+                    {checked ? checkIcon : icon}
+                </span>
+            </Ripple>
             {children && <span className={checkboxLabel}>{children}</span>}
         </label>
     );
 };
 
+Checkbox.Button = CheckboxButton;
 export default Checkbox;

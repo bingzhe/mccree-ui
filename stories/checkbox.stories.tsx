@@ -1,68 +1,95 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 
 import Checkbox from "../components/checkbox/index";
 // import Icon from "../components/icon/index";
-import "../components/checkbox/style/index.less";
-import BaseButton from "../components/ripple-wrapper/RippleWrapper";
-import "../components/ripple-wrapper/style/index.less";
-import "../components/ripple/style/index.less";
-import Button from "../components/button/index";
+import "../components/checkbox/style/index";
+import "../components/ripple-wrapper/style/index";
 
 import "./styles/common.less";
 
 storiesOf("Checkbox", module).add("Checkbox", () => {
-    const [checked, setChecked] = React.useState(false);
+    const [checkedA, setCheckedA] = React.useState(false);
+    const [checkedB, setCheckedB] = React.useState(false);
+    const [checkedC, setCheckedC] = React.useState(false);
+    const [checkedD, setCheckedD] = React.useState(false);
+    const [checkedE, setCheckedE] = React.useState(false);
+    const [checkedF, setCheckedF] = React.useState(false);
+    const [checkedG, setCheckedG] = React.useState(false);
+    const [checkedH, setCheckedH] = React.useState(false);
+    const [checkedJ, setCheckedJ] = React.useState(false);
 
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setChecked(e.target.checked);
+    type ET = React.ChangeEvent<HTMLInputElement>;
+
+    const handleChange = (e: ET, type: string) => {
+        switch (type) {
+            case "A":
+                setCheckedA(e.target.checked);
+                break;
+            case "B":
+                setCheckedB(e.target.checked);
+                break;
+            case "C":
+                setCheckedC(e.target.checked);
+                break;
+            case "D":
+                setCheckedD(e.target.checked);
+                break;
+            case "E":
+                setCheckedE(e.target.checked);
+                break;
+            case "F":
+                setCheckedF(e.target.checked);
+                break;
+            case "G":
+                setCheckedG(e.target.checked);
+                break;
+            case "H":
+                setCheckedH(e.target.checked);
+                break;
+            case "J":
+                setCheckedJ(e.target.checked);
+                break;
+        }
     };
 
     return (
         <div className="page-wrapper">
-            <Checkbox disabled checked={checked} onChange={handleChange} />
-            <Checkbox indeterminate disabled checked={checked} onChange={handleChange} />
+            <h4>———— Default ————</h4>
 
-            <br />
-            <Checkbox checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <Checkbox indeterminate checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <br />
-            <Checkbox color="secondary" checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <Checkbox indeterminate color="secondary" checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <br />
-            <Checkbox color="success" checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <Checkbox indeterminate color="success" checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <br />
-            <Checkbox color="warning" checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <br />
-            <Checkbox color="error" checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <br />
-            <Checkbox color="info" checked={checked} onChange={handleChange}>
-                Checkbox
-            </Checkbox>
-            <BaseButton component="span" centerRipple>
-                <div style={{ height: "100px", width: "100px", border: "1px solid #ccc" }} />
-            </BaseButton>
+            <Checkbox checked={checkedA} onChange={(e) => handleChange(e, "A")} />
+            <Checkbox indeterminate checked={checkedB} onChange={(e) => handleChange(e, "B")} />
+            <Checkbox disabled checked={checkedC} onChange={(e) => handleChange(e, "C")} />
+            <Checkbox
+                indeterminate
+                disabled
+                checked={checkedC}
+                onChange={(e) => handleChange(e, "C")}
+            />
 
-            <BaseButton>
-                <Button>primary</Button>
-            </BaseButton>
+            <h4>———— Color ————</h4>
+
+            <Checkbox checked={checkedD} onChange={(e) => handleChange(e, "D")}>
+                Checkbox
+            </Checkbox>
+            <Checkbox color="secondary" checked={checkedE} onChange={(e) => handleChange(e, "E")}>
+                Checkbox
+            </Checkbox>
+            <Checkbox color="success" checked={checkedF} onChange={(e) => handleChange(e, "F")}>
+                Checkbox
+            </Checkbox>
+            <Checkbox color="warning" checked={checkedG} onChange={(e) => handleChange(e, "G")}>
+                Checkbox
+            </Checkbox>
+            <Checkbox color="error" checked={checkedH} onChange={(e) => handleChange(e, "H")}>
+                Checkbox
+            </Checkbox>
+            <Checkbox color="info" checked={checkedJ} onChange={(e) => handleChange(e, "J")}>
+                Checkbox
+            </Checkbox>
+
+            <h4>———— Button ————</h4>
+            <Checkbox.Button checked={checkedD} onChange={(e) => handleChange(e, "D")} />
         </div>
     );
 });
