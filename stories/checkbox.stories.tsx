@@ -89,7 +89,16 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
             </Checkbox>
 
             <h4>———— Button ————</h4>
-            <Checkbox.Button checked={checkedD} onChange={(e) => handleChange(e, "D")} />
+            <Checkbox.Button checked={checkedD} onChange={(e) => handleChange(e, "D")}>
+                Button
+            </Checkbox.Button>
+            <Checkbox.Button
+                color="secondary"
+                checked={checkedF}
+                onChange={(e) => handleChange(e, "F")}
+            >
+                Button
+            </Checkbox.Button>
         </div>
     );
 });

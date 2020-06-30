@@ -8,6 +8,8 @@ import { action } from "@storybook/addon-actions";
 import "../components/ripple/style/index.less";
 // import "../components/button/style/index.less";
 
+import RippleNew from "../components/ripple-wrapper/index";
+
 import "./styles/common.less";
 import "./styles/ripple.less";
 
@@ -73,6 +75,9 @@ storiesOf("Ripple", module).add("Ripple", () => {
                 <div className="ripple-box" />
                 <Ripple color="#f5222d" center />
             </div>
+            <RippleNew>
+                <Button type="secondary">test</Button>
+            </RippleNew>
         </div>
     );
 });

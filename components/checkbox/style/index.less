@@ -89,6 +89,24 @@
             display: none;
         }
         
+        &.@{checkbox-prefix-cls}-primary {
+            .checkbox-btn-primary;
+        }
+        &.@{checkbox-prefix-cls}-secondary {
+            .checkbox-btn-secondary;
+        }
+        &.@{checkbox-prefix-cls}-warning {
+            .checkbox-btn-warning;
+        }
+        &.@{checkbox-prefix-cls}-success {
+            .checkbox-btn-success;
+        }
+        &.@{checkbox-prefix-cls}-error {
+            .checkbox-btn-error;
+        }
+        &.@{checkbox-prefix-cls}-info {
+            .checkbox-btn-info;
+        }
     }
 }
 
@@ -103,25 +121,65 @@
     font-size: @font-size;
     border-radius: @border-radius;
 }
+
 .btn-color(@color; @background; @border) {
     color: @color;
     background-color: @background;
     border-color: @border;
+}
 
-    > a:only-child {
-        color: currentColor;
+.btn-outline(@color) {
+    .btn-color(@color, transparent, fade(@color, 50%));
+    box-shadow: none;
 
-        &::after {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: transparent;
-            content: "";
+    &:hover {
+        background-color: fade(@color, 4%);
+    }
+
+    .btn-disabled(@btn-disable-color, transparent, @btn-disable-border);
+
+    &.@{checkbox-prefix-cls}-checked {
+        background: @color;
+        color: #fff;
+        // transition: all .25s ease, background .25s ease .25s
+    }
+}
+
+.btn-disabled(@color; @background; @border) {
+    &-disabled,
+    &.disabled,
+    &[disabled] {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            .btn-color(@color; @background; @border);
+            box-shadow: none;
         }
     }
 }
+
+.checkbox-btn-primary() {
+    .btn-outline(@checkbox-primary-color);
+}
+.checkbox-btn-secondary() {
+    .btn-outline(@checkbox-secondary-color);
+}
+.checkbox-btn-warning() {
+    .btn-outline(@checkbox-warning-color);
+}
+.checkbox-btn-success() {
+    .btn-outline(@checkbox-success-color);
+}
+.checkbox-btn-error() {
+    .btn-outline(@checkbox-error-color);
+}
+.checkbox-btn-info() {
+    .btn-outline(@checkbox-info-color);
+}
+
+
 
 .checkbox-primary() {
     .checkbox-color(@checkbox-primary-color,@checkbox-primary-bg-hover);

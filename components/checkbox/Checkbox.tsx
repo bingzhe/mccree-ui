@@ -2,6 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 import CheckboxButton from "./CheckboxButton";
+import CheckboxGroup from "./CheckboxGroup";
 import Icon from "../icon";
 import Ripple from "../ripple-wrapper";
 import { ConfigContext } from "../config-provider";
@@ -29,6 +30,7 @@ export interface CheckboxProps {
 
 interface CheckboxTypeProps extends React.FC<CheckboxProps> {
     Button: typeof CheckboxButton;
+    Group: typeof CheckboxGroup;
 }
 
 const defaultIcon = <Icon name="checkbox-outline" />;
@@ -81,8 +83,8 @@ const Checkbox: CheckboxTypeProps = (props) => {
 
     if (isButton) {
         console.log("=================================");
-        console.log({ checkboxRootClasses });
-        console.log({ checkboxClasses });
+        // console.log({ checkboxRootClasses });
+        // console.log({ checkboxClasses });
     }
 
     return (
@@ -106,4 +108,6 @@ const Checkbox: CheckboxTypeProps = (props) => {
 };
 
 Checkbox.Button = CheckboxButton;
+Checkbox.Group = CheckboxGroup;
+
 export default Checkbox;

@@ -11,9 +11,10 @@ interface RippleProps {
     rippleX: number;
     rippleY: number;
     rippleSize: number;
-    color?: string;
+    color: string;
     timeout: number;
     in?: boolean;
+    solid: boolean;
     onExited?: () => void;
 }
 
@@ -25,7 +26,9 @@ const Ripple: React.FC<RippleProps> = (props) => {
         rippleSize,
         in: inProp,
         onExited = () => {},
-        timeout
+        timeout,
+        solid,
+        color
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -34,7 +37,8 @@ const Ripple: React.FC<RippleProps> = (props) => {
     const [leaving, setLeaving] = React.useState(false);
 
     const rippleClassName = classNames(prefixCls, `${prefixCls}-visible`, {
-        [`${prefixCls}-pulsate`]: pulsate
+        [`${prefixCls}-pulsate`]: pulsate,
+        [`${prefixCls}-solid`]: solid
     });
 
     const rippleStyles = {
@@ -66,9 +70,11 @@ const Ripple: React.FC<RippleProps> = (props) => {
         return undefined;
     }, [handleExited, inProp, timeout]);
 
+    console.log({ solid });
+
     return (
         <span className={rippleClassName} style={rippleStyles}>
-            <span className={childClassName} />
+            <span className={childClassName} style={{ background: color }} />
         </span>
     );
 };

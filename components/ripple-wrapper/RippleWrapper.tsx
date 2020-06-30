@@ -21,6 +21,8 @@ export interface ButtonBaseProps {
     onTouchStart?: React.TouchEventHandler;
     onDragLeave?: React.DragEventHandler;
     tabIndex?: number;
+    color?: string;
+    solid?: boolean;
 }
 
 /**
@@ -43,6 +45,8 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
         onTouchStart,
         onDragLeave,
         tabIndex = 0,
+        color,
+        solid,
         ...other
     } = props;
 
@@ -110,7 +114,9 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
             {...other}
         >
             {children}
-            {enableTouchRipple ? <TouchRipple ref={rippleRef} center={centerRipple} /> : null}
+            {enableTouchRipple ? (
+                <TouchRipple ref={rippleRef} center={centerRipple} color={color} solid={solid} />
+            ) : null}
         </span>
     );
 });

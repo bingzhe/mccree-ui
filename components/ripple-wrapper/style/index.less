@@ -25,6 +25,7 @@
         display: inline-block;
         overflow: hidden;
         pointer-events: none;
+        z-index: -1;
 
         .@{ripple-prefix-cls} {
             opacity: 0;
@@ -37,6 +38,10 @@
             }
             &-pulsate {
                 animation-duration: 200ms;
+            }
+
+            &-solid {
+                opacity: 1;
             }
         }
 
