@@ -21,13 +21,15 @@ storiesOf("实验室", module).add("Checkbox", () => {
     //     }
     // };
 
+    const a = ["a", "b", "c"];
+
     return (
         <div className="page-wrapper">
             {/* <Checkbox.Button checked={checkedA} onChange={(e) => handleChange(e, "A")}>
                 button
             </Checkbox.Button> */}
             <br />
-            <Checkbox.Group />
+            <Checkbox.Group options={a} />
         </div>
     );
 });

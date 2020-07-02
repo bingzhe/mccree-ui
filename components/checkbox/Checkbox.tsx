@@ -2,7 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 import CheckboxButton from "./CheckboxButton";
-import CheckboxGroup from "./CheckboxGroup";
+import CheckboxGroup, { GroupContext } from "./CheckboxGroup";
 import Icon from "../icon";
 import Ripple from "../ripple-wrapper";
 import { ConfigContext } from "../config-provider";
@@ -56,6 +56,9 @@ const Checkbox: CheckboxTypeProps = (props) => {
 
     const { getPrefixCls } = React.useContext(ConfigContext);
     const prefixCls = getPrefixCls("checkbox", customizePrefixCls);
+
+    const groupContext = React.useContext(GroupContext);
+    console.log({ groupContext });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e);

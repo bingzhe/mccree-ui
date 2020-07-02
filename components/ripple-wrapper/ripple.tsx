@@ -70,8 +70,6 @@ const Ripple: React.FC<RippleProps> = (props) => {
         return undefined;
     }, [handleExited, inProp, timeout]);
 
-    console.log({ solid });
-
     return (
         <span className={rippleClassName} style={rippleStyles}>
             <span className={childClassName} style={{ background: color }} />
