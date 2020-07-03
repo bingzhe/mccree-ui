@@ -67,6 +67,12 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
                 onChange={(e) => handleChange(e, "C")}
             />
 
+            <h4>———— 受控组件 ————</h4>
+            <Checkbox checked={checkedA} onChange={(e) => handleChange(e, "A")} />
+
+            <h4>———— 非受控组件 ————</h4>
+            <Checkbox />
+
             <h4>———— Color ————</h4>
 
             <Checkbox checked={checkedD} onChange={(e) => handleChange(e, "D")}>

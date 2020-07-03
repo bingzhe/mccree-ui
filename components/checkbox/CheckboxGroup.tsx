@@ -8,7 +8,7 @@ export type CheckboxValueType = string | number | boolean;
 
 export interface CheckboxOptionType {
     label: React.ReactNode;
-    value: CheckboxOptionType;
+    value: CheckboxValueType;
     disabled?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -27,6 +27,7 @@ export interface CheckboxGroupProps {
 export interface CheckboxGroupContent {
     toggleOption?: (option: CheckboxOptionType) => void;
     value?: any;
+    name?: string;
     disabled?: boolean;
 }
 
@@ -40,6 +41,11 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
         children: childrenProp,
         ...restProps
     } = props;
+
+    const [value, setValue] = React.useState<Array<CheckboxValueType>>([]);
+
+    // console.log({ value });
+    console.log({ setValue });
 
     const { getPrefixCls } = React.useContext(ConfigContext);
     const prefixCls = getPrefixCls("checkbox");
@@ -64,8 +70,10 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
         : options.map((option) => (
               <Checkbox
                   key={option.value.toString()}
+                  value={option.value}
                   className={`${groupPrefixCls}-item`}
                   disabled={"disabled" in option ? option.disabled : disabled}
+                  checked={value.indexOf(option.value) !== -1}
                   onChange={option.onChange}
               >
                   {option.label}
@@ -80,7 +88,9 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
     // }
 
     const contenxt = {
-        value: 234
+        value: value,
+        disabled: disabled,
+        name: name
     };
     // return <div>Group</div>;
     return <GroupContext.Provider value={contenxt}>{children}</GroupContext.Provider>;
