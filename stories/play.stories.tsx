@@ -9,7 +9,7 @@ import Checkbox from "../components/checkbox/index";
 import "./styles/common.less";
 
 storiesOf("实验室", module).add("Checkbox", () => {
-    // const [checkedA, setCheckedA] = React.useState<boolean | undefined>(undefined);
+    // const [checkedA, setCheckedA] = React.useState<boolean>(true);
 
     // const handleChange = (e: any) => {
     //     setCheckedA(e.target.checked);
@@ -18,6 +18,7 @@ storiesOf("实验室", module).add("Checkbox", () => {
     // const handleChange1 = (e: any) => {
     //     console.log(e.target.checked);
     // };
+    const [v, setV] = React.useState(["a"]);
     const a = ["a", "b", "c"];
     // console.log(setCheckedA);
 
@@ -27,7 +28,14 @@ storiesOf("实验室", module).add("Checkbox", () => {
                 button
             </Checkbox.Button> */}
             <br />
-            <Checkbox.Group options={a} />
+            <Checkbox.Group
+                onChange={(v: any) => {
+                    console.log(v);
+                    setV(v);
+                }}
+                options={a}
+                value={v}
+            />
 
             {/* <Checkbox checked={checkedA} onChange={handleChange}>
                 aaa

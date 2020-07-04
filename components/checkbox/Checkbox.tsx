@@ -7,6 +7,7 @@ import Icon from "../icon";
 import Ripple from "../ripple-wrapper";
 import { ConfigContext } from "../config-provider";
 import { tuple } from "../_util/type";
+import { useControlled } from "../utils/useControlled";
 
 const CheckboxColorTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
 export type CheckboxColorType = typeof CheckboxColorTypes[number];
@@ -48,34 +49,60 @@ const Checkbox: CheckboxTypeProps = (props) => {
         isButton = false,
         disabled: disabledProp = false,
         color = "primary",
-        onChange,
+        onChange: onChangeProp,
         checked: checkedProp,
+        defaultChecked,
         children,
         name: nameProp,
         value,
         ...restProps
     } = props;
 
-    const [checked, setChecked] = React.useState<boolean>(false);
-    const [prevChecked, setPrevChecked] = React.useState<boolean>(false);
+    // const [checked, setChecked] = React.useState<boolean>(false);
+    // const [prevChecked, setPrevChecked] = React.useState<boolean>(false);
 
-    // getDerivedStateFromProps
-    if (checkedProp !== prevChecked && checkedProp !== undefined) {
-        setPrevChecked(checkedProp);
-        setChecked(checkedProp);
-    }
+    // // getDerivedStateFromProps
+    // if (checkedProp !== prevChecked && checkedProp !== undefined) {
+    //     setPrevChecked(checkedProp);
+    //     setChecked(checkedProp);
+    // }
+    const [checkedState, setChecked] = useControlled({
+        controlled: checkedProp,
+        default: !!defaultChecked,
+        name: "Checkbox",
+        state: "checked"
+    });
 
     const groupContext = React.useContext(GroupContext);
+
+    const tttt = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (onChangeProp) {
+            onChangeProp(e);
+        }
+        groupContext?.toggleOption({ label: children, value: value });
+    };
 
     // const disabled = !groupContext ? disabledProp : groupContext.disabled;
     const disabled = disabledProp || groupContext?.disabled;
     const name = groupContext?.name || nameProp;
+    const onChange = groupContext ? tttt : onChangeProp;
+
+    const checked = checkedState;
+
+    // const groupProp = {
+    //     disabled,
+    //     name,
+    //     checked,
+    //     onChange
+    // };
+
+    // if (groupContext) {
+    //     // groupProp
+    // }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (disabled) return;
-        if (checkedProp === undefined) {
-            setChecked(e.target.checked);
-        }
+        setChecked(e.target.checked);
         onChange?.(e);
     };
 
