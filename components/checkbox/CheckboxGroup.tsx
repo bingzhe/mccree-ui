@@ -46,14 +46,6 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
         ...restProps
     } = props;
 
-    // const [value, setValue] = React.useState<Array<CheckboxValueType>>(defaultValue);
-    // const [preValue, setPreValue] = React.useState<Array<CheckboxValueType>>([]);
-
-    // console.log({ value });
-    // console.log({ setValue });
-    // if (valueProp) {
-    //     setValue(valueProp);
-    // }
     const [value, setValue] = useControlled({
         controlled: valueProp,
         default: defaultValue,
@@ -67,6 +59,33 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
     const groupPrefixCls = `${prefixCls}-group`;
 
     console.log({ ...restProps });
+
+    const toggleOption = (option: CheckboxOptionType) => {
+        const optionIndex = value.indexOf(option.value);
+        const curOptions = options || [];
+
+        const curValue = [...value];
+
+        if (optionIndex === -1) {
+            curValue.push(option.value);
+        } else {
+            curValue.splice(optionIndex, 1);
+        }
+        setValue(curValue);
+        console.log(options);
+
+        if (onChange) {
+            onChange(
+                curValue.sort((a, b) => {
+                    const indexA = curOptions.findIndex((opt) => opt.value === a);
+                    const indexB = curOptions.findIndex((opt) => opt.value === b);
+                    return indexA - indexB;
+                })
+            );
+        }
+    };
+
+    // const register
 
     const options = (optionsProp as Array<CheckboxOptionType>)?.map((option) => {
         if (typeof option === "string") {
@@ -98,31 +117,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
 
     // let children = childrenProp;
     // if (options && options.length > 0) {
-
     // }
-
-    const toggleOption = (option: CheckboxOptionType) => {
-        const optionIndex = value.indexOf(option.value);
-
-        const curValue = [...value];
-
-        console.log(optionIndex);
-        if (optionIndex === -1) {
-            curValue.push(option.value);
-        } else {
-            curValue.splice(optionIndex, 1);
-        }
-        setValue(curValue);
-        if (onChange) {
-            onChange(
-                curValue.sort((a, b) => {
-                    const indexA = options.findIndex((opt) => opt.value === a);
-                    const indexB = options.findIndex((opt) => opt.value === b);
-                    return indexA - indexB;
-                })
-            );
-        }
-    };
 
     const contenxt = {
         toggleOption,

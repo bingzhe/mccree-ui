@@ -18,7 +18,7 @@ storiesOf("实验室", module).add("Checkbox", () => {
     // const handleChange1 = (e: any) => {
     //     console.log(e.target.checked);
     // };
-    const [v, setV] = React.useState(["a"]);
+    // const [v, setV] = React.useState(["a"]);
     const a = ["a", "b", "c"];
     // console.log(setCheckedA);
 
@@ -31,10 +31,10 @@ storiesOf("实验室", module).add("Checkbox", () => {
             <Checkbox.Group
                 onChange={(v: any) => {
                     console.log(v);
-                    setV(v);
+                    // setV(v);
                 }}
                 options={a}
-                value={v}
+                // value={v}
             />
 
             {/* <Checkbox checked={checkedA} onChange={handleChange}>
@@ -42,6 +42,25 @@ storiesOf("实验室", module).add("Checkbox", () => {
             </Checkbox> */}
 
             {/* <Checkbox onChange={handleChange1}>bbb</Checkbox> */}
+
+            {/* <Checkbox.Group
+                onChange={(v) => {
+                    console.log(v);
+                }}
+            >
+                <Checkbox.Button value="1">aaa</Checkbox.Button>
+                <Checkbox.Button value="2">bbb</Checkbox.Button>
+            </Checkbox.Group> */}
+
+            <Checkbox.Group
+                defaultValue={["1"]}
+                onChange={(v) => {
+                    console.log(v);
+                }}
+            >
+                <Checkbox.Button value="1">aaa</Checkbox.Button>
+                <Checkbox.Button value="2">bbb</Checkbox.Button>
+            </Checkbox.Group>
         </div>
     );
 });
