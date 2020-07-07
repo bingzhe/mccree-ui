@@ -1,4 +1,5 @@
 import * as React from "react";
+import classNames from "classnames";
 
 // import Checkbox from "./Checkbox";
 import { ConfigContext } from "../config-provider";
@@ -15,10 +16,10 @@ export interface CheckboxOptionType {
 }
 
 export interface CheckboxGroupProps {
-    prefixCls?: string;
     className?: string;
     options?: Array<CheckboxOptionType | string>;
     disabled?: boolean;
+    style?: React.CSSProperties;
     name?: string;
     defaultValue?: Array<CheckboxValueType>;
     value?: Array<CheckboxValueType>;
@@ -38,6 +39,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
     const {
         className,
         disabled,
+        style,
         options: optionsProp,
         children: childrenProp,
         value: valueProp,
@@ -52,13 +54,9 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
         name: "CheckboxGroup"
     });
 
-    console.log(setValue);
-
     const { getPrefixCls } = React.useContext(ConfigContext);
     const prefixCls = getPrefixCls("checkbox");
     const groupPrefixCls = `${prefixCls}-group`;
-
-    console.log({ ...restProps });
 
     const toggleOption = (option: CheckboxOptionType) => {
         const optionIndex = value.indexOf(option.value);
@@ -72,7 +70,6 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
             curValue.splice(optionIndex, 1);
         }
         setValue(curValue);
-        console.log(options);
 
         if (onChange) {
             onChange(
@@ -84,8 +81,6 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
             );
         }
     };
-
-    // const register
 
     const options = (optionsProp as Array<CheckboxOptionType>)?.map((option) => {
         if (typeof option === "string") {
@@ -113,11 +108,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
               </Checkbox>
           ));
 
-    console.log({ options });
-
-    // let children = childrenProp;
-    // if (options && options.length > 0) {
-    // }
+    const classes = classNames(groupPrefixCls, className);
 
     const contenxt = {
         toggleOption,
@@ -125,8 +116,12 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
         disabled: disabled,
         name: name
     };
-    // return <div>Group</div>;
-    return <GroupContext.Provider value={contenxt}>{children}</GroupContext.Provider>;
+
+    return (
+        <div className={classes} style={style} {...restProps}>
+            <GroupContext.Provider value={contenxt}>{children}</GroupContext.Provider>
+        </div>
+    );
 };
 
 export default CheckboxGroup;

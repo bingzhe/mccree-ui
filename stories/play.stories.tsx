@@ -53,14 +53,15 @@ storiesOf("实验室", module).add("Checkbox", () => {
             </Checkbox.Group> */}
 
             <Checkbox.Group
-                defaultValue={["1"]}
                 onChange={(v) => {
                     console.log(v);
                 }}
+                defaultValue={["1"]}
             >
                 <Checkbox.Button value="1">aaa</Checkbox.Button>
                 <Checkbox.Button value="2">bbb</Checkbox.Button>
             </Checkbox.Group>
+            
         </div>
     );
 });

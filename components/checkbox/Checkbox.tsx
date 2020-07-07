@@ -17,6 +17,7 @@ export interface CheckboxProps {
     checked?: boolean;
     defaultChecked?: boolean;
     indeterminate?: boolean;
+    style?: React.CSSProperties;
     disabled?: boolean;
     isButton?: boolean;
     color?: CheckboxColorType;
@@ -55,17 +56,10 @@ const Checkbox: CheckboxTypeProps = (props) => {
         children,
         name: nameProp,
         value,
+        style,
         ...restProps
     } = props;
 
-    // const [checked, setChecked] = React.useState<boolean>(false);
-    // const [prevChecked, setPrevChecked] = React.useState<boolean>(false);
-
-    // // getDerivedStateFromProps
-    // if (checkedProp !== prevChecked && checkedProp !== undefined) {
-    //     setPrevChecked(checkedProp);
-    //     setChecked(checkedProp);
-    // }
     const [checkedState, setChecked] = useControlled({
         controlled: checkedProp,
         default: !!defaultChecked,
@@ -75,7 +69,7 @@ const Checkbox: CheckboxTypeProps = (props) => {
 
     const groupContext = React.useContext(GroupContext);
 
-    const tttt = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleGroupContextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (onChangeProp) {
             onChangeProp(e);
         }
@@ -85,20 +79,8 @@ const Checkbox: CheckboxTypeProps = (props) => {
     // const disabled = !groupContext ? disabledProp : groupContext.disabled;
     const disabled = disabledProp || groupContext?.disabled;
     const name = groupContext?.name || nameProp;
-    const onChange = groupContext ? tttt : onChangeProp;
-
-    const checked = checkedState;
-
-    // const groupProp = {
-    //     disabled,
-    //     name,
-    //     checked,
-    //     onChange
-    // };
-
-    // if (groupContext) {
-    //     // groupProp
-    // }
+    const onChange = groupContext ? handleGroupContextChange : onChangeProp;
+    const checked = groupContext ? groupContext.value.indexOf(value) !== -1 : checkedState;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (disabled) return;
@@ -130,7 +112,7 @@ const Checkbox: CheckboxTypeProps = (props) => {
     const checkboxLabel = classNames(`${prefixCls}-label`);
 
     return (
-        <label className={checkboxRootClasses}>
+        <label className={checkboxRootClasses} style={style}>
             <Ripple centerRipple={true}>
                 <span className={checkboxClasses}>
                     <input

@@ -17,7 +17,7 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
     const [checkedF, setCheckedF] = React.useState(false);
     const [checkedG, setCheckedG] = React.useState(false);
     const [checkedH, setCheckedH] = React.useState(false);
-    const [checkedJ, setCheckedJ] = React.useState(false);
+    // const [checkedJ, setCheckedJ] = React.useState(false);
 
     type ET = React.ChangeEvent<HTMLInputElement>;
 
@@ -48,9 +48,113 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
                 setCheckedH(e.target.checked);
                 break;
             case "J":
-                setCheckedJ(e.target.checked);
+                // setCheckedJ(e.target.checked);
                 break;
         }
+    };
+
+    const renderCheckGroup = () => {
+        const optionsExample1 = ["A", "B", "C"];
+        const optionsExample2 = [
+            { label: "深圳", value: "深圳" },
+            { label: "西安", value: "西安" },
+            { label: "杭州", value: "杭州" }
+        ];
+
+        return (
+            <>
+                <h4>———— Group ————</h4>
+                <Checkbox.Group
+                    onChange={(v: any) => console.log(`checked=>`, v)}
+                    options={optionsExample1}
+                />
+                <br />
+                <Checkbox.Group
+                    onChange={(v: any) => console.log(`checked=>`, v)}
+                    options={optionsExample2}
+                />
+            </>
+        );
+    };
+
+    const renderAllCheckGroup = () => {
+        const options = ["深圳", "西安", "杭州"];
+        const defaultChecked = ["西安"];
+
+        const [checkList, setCheckList] = React.useState(defaultChecked);
+        const [indeterminate, setIndeterminate] = React.useState(true);
+        const [checkAll, setCheckAll] = React.useState(true);
+
+        const handleCheckAllChange = (e: ET) => {
+            setCheckAll(e.target.checked);
+            setCheckList(e.target.checked ? options : []);
+            setIndeterminate(false);
+        };
+
+        const handleGroupChange = (v: any) => {
+            setCheckList(v);
+            setIndeterminate(!!v.length && v.length < options.length);
+            setCheckAll(v.length !== 0);
+        };
+
+        React.useEffect(() => {
+            console.log("checked=>", checkList);
+        });
+
+        return (
+            <>
+                <h4>———— 全选 ————</h4>
+
+                <Checkbox
+                    color="primary"
+                    checked={checkAll}
+                    onChange={handleCheckAllChange}
+                    indeterminate={indeterminate}
+                >
+                    Check All
+                </Checkbox>
+                <br />
+                <Checkbox.Group
+                    onChange={handleGroupChange}
+                    options={options}
+                    value={checkList}
+                    defaultValue={defaultChecked}
+                />
+            </>
+        );
+    };
+
+    const renderCheckGroupButton = () => {
+        return (
+            <>
+                <h4>———— Group Button ————</h4>
+                <Checkbox.Group
+                    onChange={(v: any) => console.log(`checked=>`, v)}
+                    defaultValue={["西安"]}
+                >
+                    <Checkbox.Button value="深圳">深圳</Checkbox.Button>
+                    <Checkbox.Button value="西安">西安</Checkbox.Button>
+                    <Checkbox.Button value="杭州">杭州</Checkbox.Button>
+                </Checkbox.Group>
+
+                <div style={{ marginBottom: "10px" }} />
+
+                <Checkbox.Group
+                    onChange={(v: any) => console.log(`checked=>`, v)}
+                    defaultValue={["西安"]}
+                >
+                    <Checkbox.Button value="深圳" color="secondary">
+                        深圳
+                    </Checkbox.Button>
+                    <Checkbox.Button value="西安" color="secondary">
+                        西安
+                    </Checkbox.Button>
+                    <Checkbox.Button value="杭州" color="secondary">
+                        杭州
+                    </Checkbox.Button>
+                </Checkbox.Group>
+            </>
+        );
     };
 
     return (
@@ -90,12 +194,16 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
             <Checkbox color="error" checked={checkedH} onChange={(e) => handleChange(e, "H")}>
                 Checkbox
             </Checkbox>
-            <Checkbox color="info" checked={checkedJ} onChange={(e) => handleChange(e, "J")}>
+            <Checkbox color="info" onChange={(e) => console.log(e.target.checked)}>
                 Checkbox
             </Checkbox>
 
             <h4>———— Button ————</h4>
-            <Checkbox.Button checked={checkedD} onChange={(e) => handleChange(e, "D")}>
+            <Checkbox.Button
+                checked={checkedD}
+                onChange={(e) => handleChange(e, "D")}
+                style={{ marginRight: "10px" }}
+            >
                 Button
             </Checkbox.Button>
             <Checkbox.Button
@@ -105,6 +213,10 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
             >
                 Button
             </Checkbox.Button>
+
+            {renderCheckGroup()}
+            {renderAllCheckGroup()}
+            {renderCheckGroupButton()}
         </div>
     );
 });
