@@ -161,6 +161,8 @@ storiesOf("Checkbox", module).add("Checkbox", () => {
         <div className="page-wrapper">
             <h4>———— Default ————</h4>
 
+            <Checkbox defaultChecked={true} onChange={(e) => console.log(e.target.checked)} />
+
             <Checkbox checked={checkedA} onChange={(e) => handleChange(e, "A")} />
             <Checkbox indeterminate checked={checkedB} onChange={(e) => handleChange(e, "B")} />
             <Checkbox disabled checked={checkedC} onChange={(e) => handleChange(e, "C")} />

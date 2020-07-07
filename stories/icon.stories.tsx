@@ -34,7 +34,12 @@ storiesOf("Icon", module).add("Icon", () => {
         "smile",
         "alipay",
         "wechat",
-        "qq"
+        "qq",
+        "checkbox-outline",
+        "checkbox",
+        "checkbox-indeterminate",
+        "radio-checked",
+        "radio-unchecked"
     ];
 
     return (
@@ -69,16 +74,6 @@ storiesOf("Icon", module).add("Icon", () => {
                 </li>
                 <li className="icon-item">
                     <Icon name="qq" rotate={270} />
-                </li>
-
-                <li className="icon-item">
-                    <Icon name="checkbox-outline" />
-                </li>
-                <li className="icon-item">
-                    <Icon name="checkbox" />
-                </li>
-                <li className="icon-item">
-                    <Icon name="checkbox-indeterminate" />
                 </li>
             </ul>
         </div>

@@ -1,0 +1,24 @@
+@import "../../styles/vars.less";
+@import "../../styles/reset.less";
+
+@radio-prefix-cls: ~"@{mccree-prefix}-radio";
+
+
+.@{radio-prefix-cls}-icon-root{
+    position: relative;
+    display: flex;
+
+    .checked-icon{
+        position: absolute;
+        left:0;
+        transform: scale(0);
+        transition: transform 150ms cubic-bezier(0.4, 0, 1, 1) 0ms;
+    }
+
+    &.checked {
+        .checked-icon{
+            transform:scale(1);
+            transition:transform 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms
+        }
+    }
+}
