@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 import Button from "../components/button/index";
 import Icon from "../components/icon/index";
 import "../components/styles/index.less";
-import "../components/button/style/index";
+import "../components/button/style/index.less";
 
 import "./styles/common.less";
 import "./styles/button.less";

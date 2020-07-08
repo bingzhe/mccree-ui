@@ -3,8 +3,8 @@ import { storiesOf } from "@storybook/react";
 
 import Checkbox from "../components/checkbox/index";
 // import Icon from "../components/icon/index";
-import "../components/checkbox/style/index";
-import "../components/ripple-wrapper/style/index";
+import "../components/checkbox/style/index.less";
+import "../components/ripple-wrapper/style/index.less";
 
 import "./styles/common.less";
 
