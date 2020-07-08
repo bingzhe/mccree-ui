@@ -1,10 +1,11 @@
 import * as React from "react";
 import classNames from "classnames";
 
-import { tuple } from "../_util/type";
+import RadioGroup from "./RadioGroup";
 import RadioIcon from "./RadioIcon";
-import { ConfigContext } from "../config-provider";
 import Ripple from "../ripple-wrapper";
+import { tuple } from "../_util/type";
+import { ConfigContext } from "../config-provider";
 import { useControlled } from "../utils/useControlled";
 
 const CheckboxColorTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
@@ -27,10 +28,14 @@ export interface RadioProps {
     name?: string;
 }
 
+interface RadioFC extends React.FC<RadioProps> {
+    Group: typeof RadioGroup;
+}
+
 const defaultIcon = <RadioIcon />;
 const defaultCheckIcon = <RadioIcon checked />;
 
-const Radio: React.FC<RadioProps> = (props) => {
+const Radio: RadioFC = (props) => {
     const {
         name,
         checked: checkedProp,
@@ -97,5 +102,7 @@ const Radio: React.FC<RadioProps> = (props) => {
         </label>
     );
 };
+
+Radio.Group = RadioGroup;
 
 export default Radio;
