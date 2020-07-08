@@ -24,16 +24,17 @@ export interface CheckboxGroupProps {
     defaultValue?: Array<CheckboxValueType>;
     value?: Array<CheckboxValueType>;
     onChange?: (checkedValue: Array<CheckboxValueType>) => void;
+    children?: React.ReactNode;
 }
 
-export interface CheckboxGroupContent {
+export interface CheckboxGroupContext {
     toggleOption: (option: CheckboxOptionType) => void;
     value?: any;
     name?: string;
     disabled?: boolean;
 }
 
-export const GroupContext = React.createContext<CheckboxGroupContent | null>(null);
+export const GroupContext = React.createContext<CheckboxGroupContext | null>(null);
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
     const {

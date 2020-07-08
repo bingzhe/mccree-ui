@@ -3,6 +3,51 @@
 
 @radio-prefix-cls: ~"@{mccree-prefix}-radio";
 
+.@{radio-prefix-cls} {
+    .reset-component;
+
+    width: 100%;
+    display: flex;
+    align-items: inherit;
+    justify-content: initial;
+    position: relative;
+    padding: 9px;
+    font-size: 24px;
+    border-radius: 50%;
+    user-select: none;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: rgba(0, 0, 0, 0.54);
+
+
+    &-root{
+        .reset-component;
+
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+        justify-content: center;
+        text-decoration: none;
+        flex: 0 0 auto;
+        overflow: visible;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .@{radio-prefix-cls}-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        cursor: inherit;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        z-index: 1;
+    }
+}
 
 .@{radio-prefix-cls}-icon-root{
     position: relative;

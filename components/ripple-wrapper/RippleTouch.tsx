@@ -127,9 +127,9 @@ const TouchRipple = React.forwardRef((props: TouchRippleProps, ref) => {
                 rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
 
                 // For some reason the animation is broken on Mobile Chrome if the size if even.
-                if (rippleSize % 2 === 0) {
-                    rippleSize += 1;
-                }
+                // if (rippleSize % 2 === 0) {
+                //     rippleSize += 1;
+                // }
             } else {
                 const sizeX =
                     Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 +
