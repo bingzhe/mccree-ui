@@ -11,7 +11,7 @@ storiesOf("Radio", module).add("Radio", () => {
         return (
             <>
                 <h4>———— default ————</h4>
-                <Radio>Radio</Radio>
+                <Radio color="primary">Radio</Radio>
             </>
         );
     };

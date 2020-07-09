@@ -53,6 +53,102 @@
   padding: 0;
   z-index: 1;
 }
+.mccree-radio-primary .mccree-radio:hover {
+  background-color: rgba(25, 118, 210, 0.04);
+}
+.mccree-radio-primary.mccree-radio-checked .mccree-radio {
+  color: #1976d2;
+}
+.mccree-radio-primary.mccree-radio-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-radio-primary.mccree-radio-disabled .mccree-radio:hover {
+  background-color: transparent;
+}
+.mccree-radio-primary.mccree-radio-disabled .mccree-radio {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-radio-secondary .mccree-radio:hover {
+  background-color: rgba(220, 0, 78, 0.04);
+}
+.mccree-radio-secondary.mccree-radio-checked .mccree-radio {
+  color: #dc004e;
+}
+.mccree-radio-secondary.mccree-radio-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-radio-secondary.mccree-radio-disabled .mccree-radio:hover {
+  background-color: transparent;
+}
+.mccree-radio-secondary.mccree-radio-disabled .mccree-radio {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-radio-warning .mccree-radio:hover {
+  background-color: rgba(255, 152, 0, 0.04);
+}
+.mccree-radio-warning.mccree-radio-checked .mccree-radio {
+  color: #ff9800;
+}
+.mccree-radio-warning.mccree-radio-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-radio-warning.mccree-radio-disabled .mccree-radio:hover {
+  background-color: transparent;
+}
+.mccree-radio-warning.mccree-radio-disabled .mccree-radio {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-radio-success .mccree-radio:hover {
+  background-color: rgba(76, 175, 80, 0.04);
+}
+.mccree-radio-success.mccree-radio-checked .mccree-radio {
+  color: #4caf50;
+}
+.mccree-radio-success.mccree-radio-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-radio-success.mccree-radio-disabled .mccree-radio:hover {
+  background-color: transparent;
+}
+.mccree-radio-success.mccree-radio-disabled .mccree-radio {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-radio-error .mccree-radio:hover {
+  background-color: rgba(244, 67, 54, 0.04);
+}
+.mccree-radio-error.mccree-radio-checked .mccree-radio {
+  color: #f44336;
+}
+.mccree-radio-error.mccree-radio-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-radio-error.mccree-radio-disabled .mccree-radio:hover {
+  background-color: transparent;
+}
+.mccree-radio-error.mccree-radio-disabled .mccree-radio {
+  color: rgba(0, 0, 0, 0.26);
+}
+.mccree-radio-info .mccree-radio:hover {
+  background-color: rgba(33, 150, 243, 0.04);
+}
+.mccree-radio-info.mccree-radio-checked .mccree-radio {
+  color: #2196f3;
+}
+.mccree-radio-info.mccree-radio-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mccree-radio-info.mccree-radio-disabled .mccree-radio:hover {
+  background-color: transparent;
+}
+.mccree-radio-info.mccree-radio-disabled .mccree-radio {
+  color: rgba(0, 0, 0, 0.26);
+}
 .mccree-radio-icon-root {
   position: relative;
   display: flex;

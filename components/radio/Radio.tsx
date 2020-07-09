@@ -43,7 +43,7 @@ const Radio: RadioFC = (props) => {
         children,
         isButton,
         disabled: disabledProp,
-        color,
+        color = "primary",
         icon: iconProp,
         checkIcon: checkIconProp,
         onChange: onChangeProp,
