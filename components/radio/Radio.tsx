@@ -1,7 +1,7 @@
 import * as React from "react";
 import classNames from "classnames";
 
-import RadioGroup from "./RadioGroup";
+import RadioGroup, { GroupContext } from "./RadioGroup";
 import RadioIcon from "./RadioIcon";
 import Ripple from "../ripple-wrapper";
 import { tuple } from "../_util/type";
@@ -37,16 +37,17 @@ const defaultCheckIcon = <RadioIcon checked />;
 
 const Radio: RadioFC = (props) => {
     const {
-        name,
+        name: nameProp,
         checked: checkedProp,
         defaultChecked,
         children,
         isButton,
-        disabled,
+        disabled: disabledProp,
         color,
         icon: iconProp,
         checkIcon: checkIconProp,
-        onChange: onChangeProp
+        onChange: onChangeProp,
+        value
     } = props;
 
     const [checkedState, setChecked] = useControlled({
@@ -56,13 +57,23 @@ const Radio: RadioFC = (props) => {
         state: "checked"
     });
 
+    const groupContext = React.useContext(GroupContext);
+
+    const groupContextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChangeProp?.(e);
+        groupContext?.onChange(e);
+    };
+
+    const disabled = disabledProp || groupContext?.disabled;
+    const name = groupContext?.name || nameProp;
+    const onChange = groupContext ? groupContextChange : onChangeProp;
+    const checked = groupContext ? groupContext.value === value : checkedState;
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (disabled) return;
         setChecked(e.target.checked);
-        onChangeProp?.(e);
+        onChange?.(e);
     };
-
-    const checked = checkedState;
 
     const icon = iconProp || defaultIcon;
     const checkIcon = checkIconProp || defaultCheckIcon;
@@ -82,9 +93,6 @@ const Radio: RadioFC = (props) => {
     const radioInputClasses = classNames(`${prefixCls}-input`);
     const radioLabel = classNames(`${prefixCls}-label`);
 
-    console.log({ radioRootClasses });
-    console.log({ radioClasses });
-
     return (
         <label className={radioRootClasses}>
             <Ripple centerRipple={true}>
@@ -93,6 +101,9 @@ const Radio: RadioFC = (props) => {
                         className={radioInputClasses}
                         type="radio"
                         onChange={handleChange}
+                        disabled={disabled}
+                        value={value}
+                        checked={checked}
                         name={name}
                     />
                     {checked ? checkIcon : icon}

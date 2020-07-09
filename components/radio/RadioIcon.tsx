@@ -20,8 +20,6 @@ const RadioIcon: React.FC<RadioIconProps> = (props) => {
         checked: checked
     });
 
-    console.log({ classes });
-
     return (
         <div className={classes} {...restProps}>
             <Icon className="checked-icon" name="radio-checked" />

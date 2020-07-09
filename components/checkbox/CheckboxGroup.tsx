@@ -111,7 +111,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
 
     const classes = classNames(groupPrefixCls, className);
 
-    const contenxt = {
+    const context = {
         toggleOption,
         value: value,
         disabled: disabled,
@@ -120,7 +120,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
 
     return (
         <div className={classes} style={style} {...restProps}>
-            <GroupContext.Provider value={contenxt}>{children}</GroupContext.Provider>
+            <GroupContext.Provider value={context}>{children}</GroupContext.Provider>
         </div>
     );
 };

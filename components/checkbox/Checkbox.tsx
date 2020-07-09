@@ -69,7 +69,7 @@ const Checkbox: CheckboxTypeProps = (props) => {
 
     const groupContext = React.useContext(GroupContext);
 
-    const handleGroupContextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const groupContextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (onChangeProp) {
             onChangeProp(e);
         }
@@ -79,7 +79,7 @@ const Checkbox: CheckboxTypeProps = (props) => {
     // const disabled = !groupContext ? disabledProp : groupContext.disabled;
     const disabled = disabledProp || groupContext?.disabled;
     const name = groupContext?.name || nameProp;
-    const onChange = groupContext ? handleGroupContextChange : onChangeProp;
+    const onChange = groupContext ? groupContextChange : onChangeProp;
     const checked = groupContext ? groupContext.value.indexOf(value) !== -1 : checkedState;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

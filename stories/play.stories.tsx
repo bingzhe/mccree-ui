@@ -4,14 +4,18 @@ import { storiesOf } from "@storybook/react";
 import Radio from "../components/radio/index";
 // import "../components/radio/style/index";
 
-import "./styles/common.less";
+// import "./styles/common.less";
 
 storiesOf("实验室", module).add("Radio", () => {
-    const [checked, setChecked] = React.useState(false);
+    // const [checked, setChecked] = React.useState(false);
+    const [value, setValue] = React.useState("西安");
+
+    console.log(setValue);
+    const options = ["深圳", "西安", "杭州"];
 
     return (
         <div className="page-wrapper">
-            <Radio
+            {/* <Radio
                 checked={checked}
                 name="test"
                 onChange={(e) => {
@@ -19,7 +23,17 @@ storiesOf("实验室", module).add("Radio", () => {
                     setChecked(e.target.checked);
                 }}
             />
-            <Radio name="test" />
+            <Radio name="test" /> */}
+
+            <Radio.Group
+                onChange={(e) => {
+                    console.log("play:", e.target.value);
+                    setValue(e.target.value);
+                }}
+                options={options}
+                defaultValue="深圳"
+                value={value}
+            />
         </div>
     );
 });

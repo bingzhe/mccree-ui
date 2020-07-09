@@ -33,14 +33,14 @@ module.exports = {
         });
 
         config.module.rules.push({
-            test: /\.less$/,
-            use: ["style-loader", "css-loader", "less-loader"],
-            include: path.resolve(__dirname, "../")
+            test: /\.svg$/,
+            use: ["svg-sprite-loader"]
         });
 
         config.module.rules.push({
-            test: /\.svg$/,
-            use: ["svg-sprite-loader"]
+            test: /\.less$/,
+            use: ["style-loader", "css-loader", "less-loader"],
+            include: path.resolve(__dirname, "../")
         });
 
         config.resolve.extensions.push(".ts", ".tsx");
