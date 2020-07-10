@@ -4,13 +4,9 @@ import { storiesOf } from "@storybook/react";
 import Ripple from "../components/ripple/index";
 import Button from "../components/button/index";
 import { action } from "@storybook/addon-actions";
-// import "../components/styles/index.less";
-import "../components/ripple/style/index.less";
-// import "../components/button/style/index.less";
 
 import RippleNew from "../components/ripple-wrapper/index";
 
-import "./styles/common.less";
 import "./styles/ripple.less";
 
 storiesOf("Ripple", module).add("Ripple", () => {

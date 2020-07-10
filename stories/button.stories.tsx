@@ -4,11 +4,6 @@ import { action } from "@storybook/addon-actions";
 
 import Button from "../components/button/index";
 import Icon from "../components/icon/index";
-import "../components/button/style/index.less";
-import "../components/styles/index.less";
-
-import "./styles/common.less";
-import "./styles/button.less";
 
 storiesOf("Button", module)
     .add("Button", () => {

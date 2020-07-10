@@ -40,7 +40,10 @@ module.exports = {
         config.module.rules.push({
             test: /\.less$/,
             use: ["style-loader", "css-loader", "less-loader"],
-            include: path.resolve(__dirname, "../")
+            include: [
+                path.resolve(__dirname, "../components"),
+                path.resolve(__dirname, "../stories")
+            ]
         });
 
         config.resolve.extensions.push(".ts", ".tsx");

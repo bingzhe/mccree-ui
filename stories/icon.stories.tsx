@@ -3,10 +3,6 @@ import { storiesOf } from "@storybook/react";
 // import { action } from "@storybook/addon-actions";
 
 import Icon from "../components/icon/index";
-import "../components/icon/style/index.less";
-
-import "./styles/common.less";
-import "./styles/icon.less";
 
 storiesOf("Icon", module).add("Icon", () => {
     const IconList = [
