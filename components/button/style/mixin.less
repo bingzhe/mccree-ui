@@ -65,6 +65,7 @@
     user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
+    text-decoration: none;
 
     .btn-size(@btn-height-base; @btn-padding-horizontal-base; @font-size-base; @btn-border-radius-base );
 
@@ -85,6 +86,7 @@
     &.disabled,
     &[disabled] {
         cursor: not-allowed;
+        pointer-events: none;
 
         > * {
             pointer-events: none;
