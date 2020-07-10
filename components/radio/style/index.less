@@ -1,5 +1,5 @@
-@import "../../styles/vars.less";
 @import "../../styles/reset.less";
+@import "../../styles/vars.less";
 
 @radio-prefix-cls: ~"@{mccree-prefix}-radio";
 
@@ -11,12 +11,12 @@
     align-items: inherit;
     justify-content: initial;
     position: relative;
-    padding: 9px;
+    padding: @radio-padding;
     font-size: 24px;
     border-radius: 50%;
     user-select: none;
-    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    color: rgba(0, 0, 0, 0.54);
+    transition: background-color 150ms @ease-in-out 0ms;
+    color: @radio-color;
 
     &-root {
         .reset-component;
@@ -29,7 +29,6 @@
         text-decoration: none;
         flex: 0 0 auto;
         overflow: visible;
-        font-size: 14px;
         text-align: center;
         cursor: pointer;
     }
@@ -65,6 +64,72 @@
     &-info {
         .radio-info;
     }
+    &-button-root {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: @font-weight;
+        white-space: nowrap;
+        text-align: center;
+        background-image: none;
+        border: @radio-btn-border-width @radio-btn-border-style transparent;
+        cursor: pointer;
+        transition: all 0.3s @ease-in-out;
+        user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+
+        .btn-size(@radio-btn-height-base; @radio-btn-padding-horizontal-base; @font-size-base; @radio-btn-border-radius-base );
+
+        .@{radio-prefix-cls}-button{
+            display: none;
+        }
+        
+        &.@{radio-prefix-cls}-primary {
+            .radio-btn-primary;
+        }
+        &.@{radio-prefix-cls}-secondary {
+            .radio-btn-secondary;
+        }
+        &.@{radio-prefix-cls}-warning {
+            .radio-btn-warning;
+        }
+        &.@{radio-prefix-cls}-success {
+            .radio-btn-success;
+        }
+        &.@{radio-prefix-cls}-error {
+            .radio-btn-error;
+        }
+        &.@{radio-prefix-cls}-info {
+            .radio-btn-info;
+        }
+    }
+}
+
+.@{radio-prefix-cls}-group {
+    .reset-component;
+
+    display: inline-block;
+
+    .@{radio-prefix-cls}-button-root {
+        border-radius: 0;
+        margin: 0;
+        &:first-child {
+          border-top-left-radius: @radio-btn-border-radius-base;
+          border-bottom-left-radius: @radio-btn-border-radius-base;
+        }
+        &:last-child {
+          border-bottom-right-radius: @radio-btn-border-radius-base;
+          border-top-right-radius: @radio-btn-border-radius-base;
+        }
+        & + .@{radio-prefix-cls}-button-root  {
+          border-left: 1px solid transparent;
+        }
+        &.@{radio-prefix-cls}-disabled:not(:first-child) {
+          border-left: 1px solid transparent;
+        }
+      }
 }
 
 .@{radio-prefix-cls}-icon-root {
@@ -86,25 +151,7 @@
     }
 }
 
-.radio-primary() {
-    .radio-color(@radio-primary-color,@radio-primary-bg-hover);
-}
-.radio-secondary() {
-    .radio-color(@radio-secondary-color,@radio-secondary-bg-hover);
-}
-.radio-warning() {
-    .radio-color(@radio-warning-color,@radio-warning-bg-hover);
-}
-.radio-success() {
-    .radio-color(@radio-success-color,@radio-success-bg-hover);
-}
-.radio-error() {
-    .radio-color(@radio-error-color,@radio-error-bg-hover);
-}
-.radio-info() {
-    .radio-color(@radio-info-color,@radio-info-bg-hover);
-}
-
+//color functions
 .radio-color(@color, @bg-hover-color) {
     .@{radio-prefix-cls}:hover {
         background-color: @bg-hover-color;
@@ -127,4 +174,94 @@
             color: @radio-disable-color;
         }
     }
+}
+
+
+.radio-primary() {
+    .radio-color(@radio-primary-color,@radio-primary-bg-hover);
+}
+.radio-secondary() {
+    .radio-color(@radio-secondary-color,@radio-secondary-bg-hover);
+}
+.radio-warning() {
+    .radio-color(@radio-warning-color,@radio-warning-bg-hover);
+}
+.radio-success() {
+    .radio-color(@radio-success-color,@radio-success-bg-hover);
+}
+.radio-error() {
+    .radio-color(@radio-error-color,@radio-error-bg-hover);
+}
+.radio-info() {
+    .radio-color(@radio-info-color,@radio-info-bg-hover);
+}
+
+.btn-size(@height; @padding-horizontal; @font-size; @border-radius) {
+    @padding-vertical: max(
+        round((@height - @font-size * @line-height-base) / 2 * 10) / 10 - @border-width-base,
+        0
+    );
+
+    height: @height;
+    padding: @padding-vertical @padding-horizontal;
+    font-size: @font-size;
+    border-radius: @border-radius;
+}
+
+.btn-outline(@color) {
+    .btn-color(@color, transparent, fade(@color, 50%));
+    box-shadow: none;
+
+    &:hover {
+        background-color: fade(@color, 4%);
+    }
+
+    .btn-disabled(@btn-disable-color, transparent, @btn-disable-border);
+
+    &.@{radio-prefix-cls}-checked {
+        background: @color;
+        color: @white;
+    }
+
+    &.@{radio-prefix-cls}-checked + &.@{radio-prefix-cls}-checked {
+        border-left: 1px solid @grey-400;
+    }
+}
+.btn-disabled(@color; @background; @border) {
+    &-disabled,
+    &.disabled,
+    &[disabled] {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            .btn-color(@color; @background; @border);
+        }
+    }
+}
+
+.radio-btn-primary() {
+    .btn-outline(@radio-primary-color);
+}
+.radio-btn-secondary() {
+    .btn-outline(@radio-secondary-color);
+}
+.radio-btn-warning() {
+    .btn-outline(@radio-warning-color);
+}
+.radio-btn-success() {
+    .btn-outline(@radio-success-color);
+}
+.radio-btn-error() {
+    .btn-outline(@radio-error-color);
+}
+.radio-btn-info() {
+    .btn-outline(@radio-info-color);
+}
+
+.btn-color(@color; @background; @border) {
+    color: @color;
+    background-color: @background;
+    border-color: @border;
 }

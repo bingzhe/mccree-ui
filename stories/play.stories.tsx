@@ -5,24 +5,21 @@ import Radio from "../components/radio/index";
 
 storiesOf("实验室", module).add("Radio", () => {
     // const [checked, setChecked] = React.useState(false);
-    const [value, setValue] = React.useState("西安");
+    // const [value, setValue] = React.useState("西安");
 
-    console.log(setValue);
-    const options = ["深圳", "西安", "杭州"];
+    // const options = ["深圳", "西安", "杭州"];
 
     return (
         <div className="page-wrapper">
-            {/* <Radio
-                checked={checked}
-                name="test"
+            <Radio.Button
                 onChange={(e) => {
                     console.log(e.target.checked);
-                    setChecked(e.target.checked);
                 }}
-            />
-            <Radio name="test" /> */}
+            >
+                Radio
+            </Radio.Button>
 
-            <Radio.Group
+            {/* <Radio.Group
                 onChange={(e) => {
                     console.log("play:", e.target.value);
                     setValue(e.target.value);
@@ -30,7 +27,7 @@ storiesOf("实验室", module).add("Radio", () => {
                 options={options}
                 defaultValue="深圳"
                 value={value}
-            />
+            /> */}
         </div>
     );
 });

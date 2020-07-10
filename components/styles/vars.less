@@ -64,6 +64,8 @@
 @font-size-lg: 16px;
 @font-size-sm: 12px;
 
+@font-weight: 400;
+
 @line-height-base: 1.5715;
 @border-radius-base: 2px;
 @border-radius-sm: @border-radius-base;
@@ -123,8 +125,8 @@
 @background-color-base: hsv(0, 0, 96%);
 
 //Disabled states
-@disabled-color: fade(#333, 25%);
-@disabled-bg: @background-color-base;
+@disabled-color: fade(#000, 26%);
+@disabled-bg: ade(#000, 12%);
 @disabled-color-dark: fade(#fff, 35%);
 
 // Shadow
@@ -164,7 +166,6 @@
     0px 4px 18px 3px rgba(0, 0, 0, 0.12);
 
 //Buttons
-@btn-font-weight: 400;
 @btn-border-radius-base: 4px;
 @btn-border-radius-sm: @border-radius-base;
 @btn-border-width: @border-width-base;
@@ -204,11 +205,9 @@
 @btn-info-bg: @info-color;
 @btn-info-bg-hover: @info-dark-color;
 
-// @btn-disable-color : @disabled-color;
-// @btn-disable-bg    : @disabled-bg;
-@btn-disable-color: rgba(0, 0, 0, 0.26);
-@btn-disable-bg: rgba(0, 0, 0, 0.12);
-@btn-disable-border: rgba(0, 0, 0, 0.26);
+@btn-disable-color: @disabled-color;
+@btn-disable-bg: @disabled-bg;
+@btn-disable-border: @disabled-color;
 
 @btn-default-ghost-color: @component-background;
 @btn-default-ghost-bg: transparent;
@@ -244,6 +243,9 @@
 @btn-link-ghost-color: @component-background;
 
 //Checkbox
+@checkbox-color: fade(@black, 54%);
+@checkbox-padding: @padding-xs + 1px;
+
 @checkbox-primary-color: @primary-color;
 @checkbox-primary-bg: @primary-color;
 @checkbox-primary-bg-hover: fade(@primary-color, 4%);
@@ -268,11 +270,29 @@
 @checkbox-info-bg: @info-color;
 @checkbox-info-bg-hover: fade(@info-color, 4%);
 
-@checkbox-disable-color: rgba(0, 0, 0, 0.26);
-@checkbox-disable-bg: rgba(0, 0, 0, 0.12);
-@checkbox-disable-border: rgba(0, 0, 0, 0.26);
+@checkbox-disable-color: @disabled-color;
+@checkbox-disable-bg: @disabled-bg;
+@checkbox-disable-border: @disabled-color;
+
+@checkbox-btn-border-radius-base: 4px;
+@checkbox-btn-border-radius-sm: @border-radius-base;
+@checkbox-btn-border-width: @border-width-base;
+@checkbox-btn-border-style: @border-style-base;
+
+@checkbox-btn-height-base: @height-base;
+@checkbox-btn-height-lg: @height-lg;
+@checkbox-btn-height-sm: @height-sm;
+
+@checkbox-btn-font-size-lg: @font-size-lg;
+@checkbox-btn-font-size-sm: @font-size-base;
+@checkbox-btn-padding-horizontal-base: @padding-md - 1px;
+@checkbox-btn-padding-horizontal-lg: @checkbox-btn-padding-horizontal-base;
+@checkbox-btn-padding-horizontal-sm: @padding-xs - 1px;
 
 //Radio
+@radio-color: fade(@black, 54%);
+@radio-padding: @padding-xs + 1px;
+
 @radio-primary-color: @primary-color;
 @radio-primary-bg: @primary-color;
 @radio-primary-bg-hover: fade(@primary-color, 4%);
@@ -297,6 +317,21 @@
 @radio-info-bg: @info-color;
 @radio-info-bg-hover: fade(@info-color, 4%);
 
-@radio-disable-color: rgba(0, 0, 0, 0.26);
-@radio-disable-bg: rgba(0, 0, 0, 0.12);
-@radio-disable-border: rgba(0, 0, 0, 0.26);
+@radio-disable-color: @disabled-color;
+@radio-disable-bg: @disabled-bg;
+@radio-disable-border: @disabled-color;
+
+@radio-btn-border-radius-base: 4px;
+@radio-btn-border-radius-sm: @border-radius-base;
+@radio-btn-border-width: @border-width-base;
+@radio-btn-border-style: @border-style-base;
+
+@radio-btn-height-base: @height-base;
+@radio-btn-height-lg: @height-lg;
+@radio-btn-height-sm: @height-sm;
+
+@radio-btn-font-size-lg: @font-size-lg;
+@radio-btn-font-size-sm: @font-size-base;
+@radio-btn-padding-horizontal-base: @padding-md - 1px;
+@radio-btn-padding-horizontal-lg: @radio-btn-padding-horizontal-base;
+@radio-btn-padding-horizontal-sm: @padding-xs - 1px;

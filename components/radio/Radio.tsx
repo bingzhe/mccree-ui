@@ -2,6 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 import RadioGroup, { GroupContext } from "./RadioGroup";
+import RadioButton from "./RadioButton";
 import RadioIcon from "./RadioIcon";
 import Ripple from "../ripple-wrapper";
 import { tuple } from "../_util/type";
@@ -30,6 +31,7 @@ export interface RadioProps {
 
 interface RadioFC extends React.FC<RadioProps> {
     Group: typeof RadioGroup;
+    Button: typeof RadioButton;
 }
 
 const defaultIcon = <RadioIcon />;
@@ -82,7 +84,7 @@ const Radio: RadioFC = (props) => {
     const prefixCls = getPrefixCls("radio");
 
     const radioRootClasses = classNames(`${prefixCls}-root`, {
-        [`${prefixCls}-button`]: isButton,
+        [`${prefixCls}-button-root`]: isButton,
         [`${prefixCls}-checked`]: checked,
         [`${prefixCls}-disabled`]: disabled,
         [`${prefixCls}-${color}`]: color
@@ -115,5 +117,6 @@ const Radio: RadioFC = (props) => {
 };
 
 Radio.Group = RadioGroup;
+Radio.Button = RadioButton;
 
 export default Radio;
