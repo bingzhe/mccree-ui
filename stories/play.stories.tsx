@@ -1,14 +1,22 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import CodeExample from "./CodeExample/CodeExample";
+// import CodeExample from "./CodeExample/CodeExample";
+import MarkdownElement from "./components/MarkdownElement";
 // import Button from "../components/index";
 
-const exampleCode = `
-    <Button type="primary">Primary</Button>
-`;
+// const exampleCode = `
+//     <Button type="primary">Primary</Button>
+// `;
 
-const example = (config: any) => CodeExample({ ...config });
+// const example = (config: any) => CodeExample({ ...config });
 
-storiesOf("实验室", module).add("Radio", () => {
-    return <div className="page-wrapper">{example({ code: exampleCode })}</div>;
+storiesOf("实验室", module).add("codedemo", () => {
+    const childrenNode = (
+        <React.Fragment>
+            <pre>
+                <code className="language-js"> console.log(1) </code>
+            </pre>
+        </React.Fragment>
+    );
+    return <MarkdownElement>{childrenNode}</MarkdownElement>;
 });
