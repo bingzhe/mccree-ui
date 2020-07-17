@@ -1,5 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
+import { Collapse } from "react-collapse";
 
 import HighLightedCode from "../HighlightedCode";
 import { Button } from "../../../components/index";
@@ -17,9 +18,13 @@ interface DemoProps {
 
 const Demo: React.FC<DemoProps> = (props) => {
     const { className, demo, ...restProps } = props;
-
     const { tsx: Component, rawTs: code } = demo;
 
+    const [openDemoSource, setOpenDemoSoure] = React.useState(false);
+
+    const handleClick = () => {
+        setOpenDemoSoure(!openDemoSource);
+    };
     const classes = classNames(className, "demo-root");
     return (
         <div className={classes} {...restProps}>
@@ -27,12 +32,14 @@ const Demo: React.FC<DemoProps> = (props) => {
                 <Component />
             </div>
             <div className="demo-toolbar">
-                <Button variant="text" type="primary">
-                    显示代码
+                <Button variant="text" type="primary" onClick={handleClick}>
+                    {openDemoSource ? "隐藏代码" : "显示代码"}
                 </Button>
             </div>
 
-            <HighLightedCode code={code} language="tsx" />
+            <Collapse isOpened={openDemoSource}>
+                <HighLightedCode code={code} language="tsx" />
+            </Collapse>
         </div>
     );
 };
