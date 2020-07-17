@@ -35,5 +35,9 @@ storiesOf("实验室", module).add("codedemo", () => {
         rawTs: requireRaw("./CheckboxGroup.tsx").default
     };
 
-    return <Demo demo={demo} />;
+    return (
+        <div className="page-wrapper">
+            <Demo demo={demo} />
+        </div>
+    );
 });
