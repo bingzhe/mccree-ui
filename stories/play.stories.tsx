@@ -2,7 +2,8 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 // import CodeExample from "./CodeExample/CodeExample";
 // import MarkdownElement from "./components/MarkdownElement";
-import HighLightedCode from "./components/HighlightedCode";
+// import HighLightedCode from "./components/HighlightedCode";
+import Demo from "./components/Demo";
 // import Button from "../components/index";
 
 // const exampleCode = `
@@ -10,6 +11,9 @@ import HighLightedCode from "./components/HighlightedCode";
 // `;
 
 // const example = (config: any) => CodeExample({ ...config });
+
+const requireDemo = require.context("./pages/checkbox", false, /\.(tsx)$/);
+const requireRaw = require.context("!raw-loader!./pages/checkbox", false, /\.(tsx)$/);
 
 storiesOf("实验室", module).add("codedemo", () => {
     // const childrenNode = (
@@ -19,5 +23,17 @@ storiesOf("实验室", module).add("codedemo", () => {
     //         </pre>
     //     </React.Fragment>
     // );
-    return <HighLightedCode code="condole.log(123)" language="ts" />;
+
+    requireDemo.keys().forEach((name) => {
+        console.log("foreach", name);
+    });
+
+    // return <HighLightedCode code="condole.log(123)" language="ts" />;
+
+    const demo = {
+        tsx: requireDemo("./CheckboxGroup.tsx").default,
+        rawTs: requireRaw("./CheckboxGroup.tsx").default
+    };
+
+    return <Demo demo={demo} />;
 });

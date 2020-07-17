@@ -1,8 +1,6 @@
 import * as React from "react";
 
 import MarkdownElement from "../MarkdownElement";
-// import prism from "../../utils/prism";
-
 import prism from "../../utils/prism";
 
 interface Props {
