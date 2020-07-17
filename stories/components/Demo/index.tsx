@@ -2,6 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 import HighLightedCode from "../HighlightedCode";
+import { Button } from "../../../components/index";
 
 interface demoOptionProps {
     tsx: React.FC;
@@ -19,10 +20,17 @@ const Demo: React.FC<DemoProps> = (props) => {
 
     const { tsx: Component, rawTs: code } = demo;
 
-    const classes = classNames(className);
+    const classes = classNames(className, "demo-root");
     return (
         <div className={classes} {...restProps}>
-            <Component />
+            <div className="demo-sandboxed">
+                <Component />
+            </div>
+            <div className="demo-toolbar">
+                <Button variant="text" type="primary">
+                    显示代码
+                </Button>
+            </div>
 
             <HighLightedCode code={code} language="tsx" />
         </div>

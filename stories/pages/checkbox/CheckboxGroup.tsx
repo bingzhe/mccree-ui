@@ -10,18 +10,21 @@ const renderCheckGroup = () => {
     ];
 
     return (
-        <>
-            <h4>———— Group ————</h4>
-            <Checkbox.Group
-                onChange={(v: any) => console.log(`checked=>`, v)}
-                options={optionsExample1}
-            />
-            <br />
-            <Checkbox.Group
-                onChange={(v: any) => console.log(`checked=>`, v)}
-                options={optionsExample2}
-            />
-        </>
+        <div>
+            <div>
+                <Checkbox.Group
+                    onChange={(v: any) => console.log(`checked=>`, v)}
+                    options={optionsExample1}
+                />
+            </div>
+
+            <div>
+                <Checkbox.Group
+                    onChange={(v: any) => console.log(`checked=>`, v)}
+                    options={optionsExample2}
+                />
+            </div>
+        </div>
     );
 };
 
