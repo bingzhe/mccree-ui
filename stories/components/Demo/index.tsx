@@ -20,12 +20,14 @@ const Demo: React.FC<DemoProps> = (props) => {
     const { className, demo, ...restProps } = props;
     const { tsx: Component, rawTs: code } = demo;
 
-    const [openDemoSource, setOpenDemoSoure] = React.useState(false);
+    const [openDemoSource, setOpenDemoSoure] = React.useState(true);
 
     const handleClick = () => {
         setOpenDemoSoure(!openDemoSource);
     };
     const classes = classNames(className, "demo-root");
+    console.log(code);
+    console.log(HighLightedCode);
     return (
         <div className={classes} {...restProps}>
             <div className="demo-sandboxed">
