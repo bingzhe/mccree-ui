@@ -6,6 +6,8 @@ import { storiesOf } from "@storybook/react";
 import Demo from "./components/Demo";
 // import Button from "../components/index";
 
+import { prepareMarkdown } from "./utils/parseMarkdown";
+
 // const exampleCode = `
 //     <Button type="primary">Primary</Button>
 // `;
@@ -13,7 +15,7 @@ import Demo from "./components/Demo";
 // const example = (config: any) => CodeExample({ ...config });
 
 const requireDemo = require.context("./pages/checkbox", false, /\.(tsx)$/);
-const requireRaw = require.context("!raw-loader!./pages/checkbox", false, /\.(tsx)$/);
+const requireRaw = require.context("!raw-loader!./pages/checkbox", false, /\.(md|tsx)$/);
 
 storiesOf("实验室", module).add("codedemo", () => {
     // const childrenNode = (
@@ -24,9 +26,9 @@ storiesOf("实验室", module).add("codedemo", () => {
     //     </React.Fragment>
     // );
 
-    requireDemo.keys().forEach((name) => {
-        console.log("foreach", name);
-    });
+    // requireDemo.keys().forEach((name) => {
+    //     console.log("foreach", name);
+    // });
 
     // return <HighLightedCode code="condole.log(123)" language="ts" />;
 
@@ -34,6 +36,9 @@ storiesOf("实验室", module).add("codedemo", () => {
         tsx: requireDemo("./CheckboxGroup.tsx").default,
         rawTs: requireRaw("./CheckboxGroup.tsx").default
     };
+
+    const pageFilename = "checkbox";
+    console.log(prepareMarkdown({ pageFilename, requireRaw }));
 
     return (
         <div className="page-wrapper">

@@ -26,8 +26,7 @@ const Demo: React.FC<DemoProps> = (props) => {
         setOpenDemoSoure(!openDemoSource);
     };
     const classes = classNames(className, "demo-root");
-    console.log(code);
-    console.log(HighLightedCode);
+
     return (
         <div className={classes} {...restProps}>
             <div className="demo-sandboxed">
