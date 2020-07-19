@@ -216,7 +216,6 @@ export const prepareMarkdown = (config: PrePareMarkdownProps) => {
                 });
             });
 
-            console.log({ rendered });
             // fragment link symbol
             rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">

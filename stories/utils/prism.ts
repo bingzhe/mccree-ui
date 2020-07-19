@@ -40,6 +40,5 @@ export default function highlight(code: string, language: string) {
         }
     }
 
-    console.log(language);
     return prism.highlight(code, prismLanguage, language);
 }
