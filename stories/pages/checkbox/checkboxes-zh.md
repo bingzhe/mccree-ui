@@ -50,3 +50,24 @@ components: Checkbox
 按钮样式的多选组合
 
 {{"demo": "pages/checkbox/CheckboxGroupButton.js"}}
+
+## API
+
+### Checkbox
+
+<!-- prettier-ignore-start -->
+| 参数           | 类型              | 默认值 | 说明                                    |
+| :------------- | :---------------- | :----- | :-------------------------------------- |
+| checked        | boolean           | false  | 指定当前是否选中                        |
+| defaultChecked | boolean           | false  | 初始是否选中                            |
+| indeterminate  | boolean           | false  | 设置 indeterminate 状态，只负责样式控制 |
+| disabled       | boolean           | false  | 禁止状态                                |
+| onChange       | function(e:Event) | -      | 变化时回调函数                          |
+| color | 'primary'&#124;'secondary'<br>&#124;'success'&#124;'warning'<br>&#124;error'&#124;'info' | 'primary' | 变化时回调函数 |
+<!-- prettier-ignore-end -->
+
+### Checkbox.Button
+
+### Checkbox.Group
+
+## 方法
