@@ -23,7 +23,7 @@ const Demo: React.FC<DemoProps> = (props) => {
     const defaultComponent = () => <div />;
     const { tsx: Component = defaultComponent, rawTs: code } = demo;
 
-    const [openDemoSource, setOpenDemoSoure] = React.useState(true);
+    const [openDemoSource, setOpenDemoSoure] = React.useState(false);
 
     const handleClick = () => {
         setOpenDemoSoure(!openDemoSource);

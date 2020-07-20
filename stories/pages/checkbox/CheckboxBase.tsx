@@ -6,7 +6,13 @@ const CheckboxBase = () => {
         console.log(e.target.checked);
     };
 
-    return <Checkbox defaultChecked={true} onChange={handleChange} />;
+    return (
+        <>
+            <Checkbox defaultChecked={true} onChange={handleChange} />
+            <Checkbox onChange={handleChange} />
+            <Checkbox indeterminate onChange={handleChange} />
+        </>
+    );
 };
 
 export default CheckboxBase;
