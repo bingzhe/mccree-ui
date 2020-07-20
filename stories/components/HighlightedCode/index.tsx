@@ -3,12 +3,12 @@ import * as React from "react";
 import MarkdownElement from "../MarkdownElement";
 import prism from "../../utils/prism";
 
-interface Props {
+export interface HighLightedCodeProps {
     code: string;
     language: string;
 }
 
-const HighlightedCode: React.FC<Props> = (props) => {
+const HighlightedCode: React.FC<HighLightedCodeProps> = (props) => {
     const { code, language } = props;
 
     const renderedCode = React.useMemo(() => {

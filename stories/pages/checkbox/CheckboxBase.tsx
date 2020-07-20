@@ -1,9 +1,12 @@
 import * as React from "react";
-import Checkbox from "../../../components/checkbox";
+import { Checkbox } from "../../../components/index";
 
-const CheckboxBase = () => (
-    // prettierignore
-    <Checkbox defaultChecked={true} onChange={(e) => console.log(e.target.checked)} />
-);
+const CheckboxBase = () => {
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        console.log(e.target.checked);
+    };
+
+    return <Checkbox defaultChecked={true} onChange={handleChange} />;
+};
 
 export default CheckboxBase;

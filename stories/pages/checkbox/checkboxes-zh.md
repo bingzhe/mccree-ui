@@ -5,12 +5,12 @@ components: Checkbox
 
 # Checkbox 多选框
 
-<p class="description">在一个集合内，用户可以通过多选框组件进行一项或者多项选择。</p>
+<p class="description">多选框</p>
 
-[多选框](https://material.io/design/components/selection-controls.html#checkboxes)可以在打开或者关闭一个选项中切换。
+在一组可选项中进行多项选择时
 
-若一个列表存在多个选择项时，使用多选框替代开关控件，可以节省空间。 若只存在一个选择项，请避免使用多选框，而改用开关控件。
+单独使用可以表示两种状态之间的切换，和 `switch` 类似。区别在于切换 `switch` 会直接触发状态改变，而 `checkbox` 一般 于状态标记，需要和提交操作配
 
-## 简单多选框
+## 基本用法
 
-{{"demo": "pages/components/checkboxes/Checkboxes.js"}}
+{{"demo": "pages/checkbox/CheckboxBase.js"}}

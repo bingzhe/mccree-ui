@@ -5,20 +5,23 @@ import { Collapse } from "react-collapse";
 import HighLightedCode from "../HighlightedCode";
 import { Button } from "../../../components/index";
 
-interface demoOptionProps {
+import "./index.less";
+
+export interface DemoOptionProps {
     tsx: React.FC;
     rawTs: string;
 }
 
-interface DemoProps {
+export interface DemoProps {
     className?: string;
-    demo: demoOptionProps;
+    demo: DemoOptionProps;
     githubLocation?: string;
 }
 
 const Demo: React.FC<DemoProps> = (props) => {
     const { className, demo, ...restProps } = props;
-    const { tsx: Component, rawTs: code } = demo;
+    const defaultComponent = () => <div />;
+    const { tsx: Component = defaultComponent, rawTs: code } = demo;
 
     const [openDemoSource, setOpenDemoSoure] = React.useState(true);
 
@@ -39,7 +42,7 @@ const Demo: React.FC<DemoProps> = (props) => {
             </div>
 
             <Collapse isOpened={openDemoSource}>
-                <HighLightedCode code={code} language="tsx" />
+                <HighLightedCode code={code} language="ts" />
             </Collapse>
         </div>
     );

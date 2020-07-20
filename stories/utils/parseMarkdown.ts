@@ -234,7 +234,7 @@ export const prepareMarkdown = (config: PrePareMarkdownProps) => {
             demos[demoName] = {
                 ...demos[demoName],
                 moduleTS: filename,
-                rawTS: requireRaw(filename)
+                rawTS: requireRaw(filename).default
             };
         } else {
             const demoName = `pages/${pageFilename}/${filename.replace(/\.\//g, "")}`;
@@ -242,7 +242,7 @@ export const prepareMarkdown = (config: PrePareMarkdownProps) => {
             demos[demoName] = {
                 ...demos[demoName],
                 module: filename,
-                raw: requireRaw(filename)
+                raw: requireRaw(filename).default
             };
         }
     });
