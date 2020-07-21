@@ -178,7 +178,7 @@ const Button: ButtonTypeProps = ({ ...props }) => {
 
 Button.defaultProps = {
     variant: "contain",
-    size: "middle",
+    size: "medium",
     disabled: false,
     loading: false,
     block: false

@@ -53,7 +53,7 @@ components: Checkbox
 
 ## API
 
-### Checkbox
+### Checkbox/Checkbox.Button
 
 <!-- prettier-ignore-start -->
 | 参数           | 类型              | 默认值 | 说明                                    |
@@ -63,11 +63,34 @@ components: Checkbox
 | indeterminate  | boolean           | false  | 设置 indeterminate 状态，只负责样式控制 |
 | disabled       | boolean           | false  | 禁止状态                                |
 | onChange       | function(e:Event) | -      | 变化时回调函数                          |
-| color | 'primary'&#124;'secondary'<br>&#124;'success'&#124;'warning'<br>&#124;error'&#124;'info' | 'primary' | 变化时回调函数 |
+| icon | ReactNode | `<Icon name="checkbox-outline" />` | 未选中时候图标 |
+| checkIcon | ReactNode | `<Icon name="checkbox" />` | 选中时候图标 |
+| indeterminateIcon | ReactNode | `<Icon name="checkbox-indeterminate" />` | indeterminate 状态图标 |
+| color | 'primary'&#124;'secondary'<br>&#124;'success'&#124;'warning'<br>&#124;error'&#124;'info' | 'primary' | 组件的颜色|
 <!-- prettier-ignore-end -->
 
-### Checkbox.Button
-
 ### Checkbox.Group
+
+<!-- prettier-ignore-start -->
+| 参数         | 类型                   | 默认值 | 说明           |
+| :----------- | :--------------------- | :----- | :------------- |
+| defaultValue | string[]               | []     | 默认选中的选项 |
+| value        | string[]               | []     | 选中的选项     |
+| disabled     | boolean                | false  | 整组失效       |
+| options      | string[]&#124;Option[] | []     | 指定可选项     |
+| onChange     | function(checkValue)   | -      | 变化时回调函数 |
+| name | CheckboxGroup 下所有 <br>input[type="checkbox"] 的 name 属性 | - | string |
+<!-- prettier-ignore-end -->
+
+### Option
+
+```ts
+interface Option {
+    label: React.ReactNode;
+    value: string | number | boolean;
+    disabled?: boolean;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+```
 
 ## 方法

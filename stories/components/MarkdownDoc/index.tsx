@@ -36,9 +36,9 @@ const MarkdownDoc: React.FC<MarkdownDocProps> = (props) => {
     const { demos, docs, requireDemo } = props;
     const { description, rendered, title } = docs.zh;
 
-    console.log("docs demos", demos);
-    console.log("docs doc", docs);
-    console.log("docs rendered", rendered);
+    // console.log("docs demos", demos);
+    // console.log("docs doc", docs);
+    // console.log("docs rendered", rendered);
     console.log(description, title);
 
     return (

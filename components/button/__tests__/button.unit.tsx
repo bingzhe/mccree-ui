@@ -20,7 +20,7 @@ describe("button", () => {
 
                 <Button type="primary" loading>loading</Button>
                 <Button type="primary" size="large">大</Button>
-                <Button type="primary" size="middle">中</Button>
+                <Button type="primary" size="medium">中</Button>
                 <Button type="primary" size="small">小</Button>
 
                 <Button type="primary" block>loading</Button>

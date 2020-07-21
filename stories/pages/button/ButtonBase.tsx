@@ -1,28 +1,33 @@
 import * as React from "react";
-import Checkbox from "../../../components/checkbox";
+import { Button } from "../../../components/index";
 
-const renderCheckGroup = () => {
-    const optionsExample1 = ["A", "B", "C"];
-    const optionsExample2 = [
-        { label: "深圳", value: "深圳" },
-        { label: "西安", value: "西安" },
-        { label: "杭州", value: "杭州" }
-    ];
-
+const ButtonBase = () => {
+    const handleClick = () => {
+        console.log("click");
+    };
     return (
-        <>
-            <h4>———— Group ————</h4>
-            <Checkbox.Group
-                onChange={(v: any) => console.log(`checked=>`, v)}
-                options={optionsExample1}
-            />
-            <br />
-            <Checkbox.Group
-                onChange={(v: any) => console.log(`checked=>`, v)}
-                options={optionsExample2}
-            />
-        </>
+        <div className="button-wrapper">
+            <Button onClick={handleClick}>DEFAULT</Button>
+            <Button type="primary" onClick={handleClick}>
+                PRIMARY
+            </Button>
+            <Button type="secondary" onClick={handleClick}>
+                SECONDARY
+            </Button>
+            <Button type="success" onClick={handleClick}>
+                SUCCESS
+            </Button>
+            <Button type="error" onClick={handleClick}>
+                ERROR
+            </Button>
+            <Button type="warning" onClick={handleClick}>
+                WARNING
+            </Button>
+            <Button type="info" onClick={handleClick}>
+                INFO
+            </Button>
+        </div>
     );
 };
 
-export default renderCheckGroup;
+export default ButtonBase;

@@ -46,31 +46,27 @@ const RippleWrapper: React.FC<RippleProps> = (props) => {
     let ignoringMousedown = false;
 
     const handleMouseDown = (e: React.MouseEvent) => {
-        console.log("handleMouseDown");
+        // console.log("handleMouseDown");
         start(e);
     };
     const handleMouseUp = (e: React.MouseEvent) => {
-        console.log("handleMouseUp");
+        // console.log("handleMouseUp");
         stop(e);
     };
     const handleMouseLeave = (e: React.MouseEvent) => {
-        console.log("handleMouseLeave");
-
+        // console.log("handleMouseLeave");
         stop(e);
     };
     const handleTouchStart = (e: React.TouchEvent) => {
-        console.log("handleTouchStart");
-
+        // console.log("handleTouchStart");
         start(e);
     };
     const handleTouchEnd = (e: React.TouchEvent) => {
-        console.log("handleTouchEnd");
-
+        // console.log("handleTouchEnd");
         stop(e);
     };
     const handleTouchMove = (e: React.TouchEvent) => {
-        console.log("handleTouchMove");
-
+        // console.log("handleTouchMove");
         stop(e);
     };
 
