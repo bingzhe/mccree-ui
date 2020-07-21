@@ -68,3 +68,5 @@ components: Button
 设置`shape`为 `round` `circle` 控制样式
 
 {{"demo": "pages/button/ButtonShape.js"}}
+
+### API
