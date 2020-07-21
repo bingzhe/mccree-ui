@@ -24,7 +24,6 @@ export interface BaseButtonProps {
     variant?: ButtonVariant;
     shape?: ButtonShape;
     size: SizeType;
-    plain?: boolean;
     disabled?: boolean;
     className?: string;
     prefixCls?: string;

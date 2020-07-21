@@ -84,7 +84,7 @@ components: Checkbox
 
 ### Option
 
-```ts
+``` ts
 interface Option {
     label: React.ReactNode;
     value: string | number | boolean;
