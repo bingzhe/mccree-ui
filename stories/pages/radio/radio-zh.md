@@ -37,4 +37,8 @@ components: Radio
 
 {{"demo": "pages/radio/RadioButtonGroup.js"}}
 
-## api
+## API
+
+| 参数     | 类型              | 默认值 | 说明           |
+| :------- | :---------------- | :----- | :------------- |
+| onChange | function(e:Event) | -      | 变化时回调函数 |
