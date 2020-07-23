@@ -4,11 +4,11 @@ import { storiesOf } from "@storybook/react";
 import MarkdownDoc from "./components/MarkdownDoc";
 import { prepareMarkdown } from "./utils/parseMarkdown";
 
-const requireDemo = require.context("./pages/radio", false, /\.(tsx)$/);
-const requireRaw = require.context("!raw-loader!./pages/radio", false, /\.(md|tsx)$/);
+const requireDemo = require.context("./pages/icon", false, /\.(tsx)$/);
+const requireRaw = require.context("!raw-loader!./pages/icon", false, /\.(md|tsx)$/);
 
-storiesOf("实验室", module).add("Radio", () => {
-    const pageFilename = "radio";
+storiesOf("实验室", module).add("Icon", () => {
+    const pageFilename = "icon";
     const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
 
     return (

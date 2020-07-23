@@ -1,77 +1,19 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
-// import { action } from "@storybook/addon-actions";
 
-import Icon from "../components/icon/index";
+import MarkdownDoc from "./components/MarkdownDoc";
+import { prepareMarkdown } from "./utils/parseMarkdown";
+
+const requireDemo = require.context("./pages/icon", false, /\.(tsx)$/);
+const requireRaw = require.context("!raw-loader!./pages/icon", false, /\.(md|tsx)$/);
 
 storiesOf("Icon", module).add("Icon", () => {
-    const IconList = [
-        "step-backward",
-        "step-forward",
-        "backward",
-        "forward",
-        "fast-backward",
-        "fast-forward",
-        "down",
-        "up",
-        "left",
-        "right",
-        "caret-down",
-        "caret-up",
-        "caret-left",
-        "caret-right",
-        "question",
-        "question-circle",
-        "close",
-        "close-circle",
-        "loading",
-        "loading-3-quarters",
-        "reload",
-        "smile",
-        "alipay",
-        "wechat",
-        "qq",
-        "checkbox-outline",
-        "checkbox",
-        "checkbox-indeterminate",
-        "radio-checked",
-        "radio-unchecked"
-    ];
+    const pageFilename = "icon";
+    const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
 
     return (
         <div className="page-wrapper">
-            <h4>Icon</h4>
-            <ul className="icon-list-wrapper">
-                {IconList.map((icon) => (
-                    <li className="icon-item" key={icon}>
-                        <Icon name={icon} />
-                        <span className="icon-name">{icon}</span>
-                    </li>
-                ))}
-            </ul>
-
-            <h4>spin</h4>
-            <ul className="icon-list-wrapper">
-                <li className="icon-item">
-                    <Icon name="loading" spin />
-                </li>
-            </ul>
-
-            <h4>rotate</h4>
-            <ul className="icon-list-wrapper">
-                <li className="icon-item">
-                    <Icon name="qq" />
-                </li>
-                <li className="icon-item">
-                    <Icon name="qq" rotate={90} />
-                </li>
-                <li className="icon-item">
-                    <Icon name="qq" rotate={180} />
-                </li>
-                <li className="icon-item">
-                    <Icon name="qq" rotate={270} />
-                </li>
-            </ul>
+            <MarkdownDoc demos={demos} docs={docs} requireDemo={requireDemo} />
         </div>
     );
 });
