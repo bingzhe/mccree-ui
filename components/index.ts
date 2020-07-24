@@ -3,6 +3,7 @@ export { default as Button } from "./button/index";
 export { default as Ripple } from "./ripple/index";
 export { default as Checkbox } from "./checkbox/index";
 export { default as Radio } from "./radio/index";
+export { default as Input } from "./input/index";
 
 // import "../components/styles/index.tsx";
 // export { default as Layout } from "./layout/index";

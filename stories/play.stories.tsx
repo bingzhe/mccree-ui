@@ -1,19 +1,12 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 
-import MarkdownDoc from "./components/MarkdownDoc";
-import { prepareMarkdown } from "./utils/parseMarkdown";
+import { Input } from "../components/index";
 
-const requireDemo = require.context("./pages/icon", false, /\.(tsx)$/);
-const requireRaw = require.context("!raw-loader!./pages/icon", false, /\.(md|tsx)$/);
-
-storiesOf("实验室", module).add("Icon", () => {
-    const pageFilename = "icon";
-    const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-
+storiesOf("实验室", module).add("Play", () => {
     return (
         <div className="page-wrapper">
-            <MarkdownDoc demos={demos} docs={docs} requireDemo={requireDemo} />
+            <Input />
         </div>
     );
 });
