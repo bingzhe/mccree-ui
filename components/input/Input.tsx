@@ -3,7 +3,8 @@ import classNames from "classnames";
 
 import { ConfigContext } from "../config-provider";
 
-export interface InputProps {
+export interface InputProps
+    extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size1" | "prefix" | "type"> {
     className?: string;
     disabled?: boolean;
     defaultValue?: any;
@@ -15,7 +16,7 @@ export interface InputProps {
     variant?: "standard" | "outlined" | "filled";
 }
 
-const Input: React.FC<InputProps> = (props) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     const { className, variant = "standard" } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -29,11 +30,12 @@ const Input: React.FC<InputProps> = (props) => {
     console.log({ inputRootClasses });
     console.log({ inputClasses });
 
+    // const inputRef = React.useRef<HTMLInputElement>(null);
+    // React.useImperativeHandle(ref, () => inputRef.current);
     return (
         <div className={inputRootClasses}>
-            <input className={inputClasses} placeholder="123" />
+            <input className={inputClasses} placeholder="123" ref={ref} />
         </div>
     );
-};
-
+});
 export default Input;
