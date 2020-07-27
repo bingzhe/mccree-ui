@@ -1,0 +1,56 @@
+@import "../../styles/vars.less";
+
+@input-prefix-cls: ~"@{mccree-prefix}-input";
+
+.@{input-prefix-cls} {
+    position: relative;
+    // display: inline-block;
+    // width: 100%;
+    // min-width: 0;
+    // background-image: none;
+    padding: 4px 10px;
+
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    // padding: 6px 0 7px;
+    padding: 18.5px 14px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    -webkit-tap-highlight-color: transparent;
+    .placeholder();
+
+    &:focus {
+        outline: 0;
+    }
+
+    &-root {
+        border: 1px solid rgba(0, 0, 0, 0.23);
+        border-radius: 4px;
+        display: inline-flex;
+    }
+
+    &-outlined {
+        border-width: 2px;
+    }
+}
+
+// Placeholder text
+.placeholder() {
+    &::-moz-placeholder, // Firefox 19+
+    &:-ms-input-placeholder,  // IE 11
+    &::placeholder {
+        color: "currentColor";
+        opacity: 0.42;
+        transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    }
+
+    &:placeholder-shown {
+        text-overflow: ellipsis;
+    }
+}
