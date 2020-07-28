@@ -2,6 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 import { ConfigContext } from "../config-provider";
+import Icon from "../icon";
 
 export interface InputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size1" | "prefix" | "type"> {
@@ -13,29 +14,98 @@ export interface InputProps
     addonAfter?: React.ReactNode;
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
-    variant?: "standard" | "outlined" | "filled";
+    clearable?: boolean;
+    readOnly?: boolean;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const { className, variant = "standard" } = props;
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+    (props, ref: React.Ref<HTMLInputElement | null>) => {
+        const {
+            className,
+            defaultValue,
+            value: valueProp,
+            clearable = false,
+            disabled,
+            readOnly,
+            prefix,
+            suffix,
+            addonBefore,
+            addonAfter,
+            onChange
+        } = props;
+        const { current: isControlled } = React.useRef(valueProp !== undefined);
 
-    const { getPrefixCls } = React.useContext(ConfigContext);
-    const prefixCls = getPrefixCls("input");
+        console.log({ isControlled });
 
-    const inputRootClasses = classNames(`${prefixCls}-root`, {
-        [`${prefixCls}-outlined`]: variant === "outlined"
-    });
-    const inputClasses = classNames(prefixCls, className);
+        const inputRef = React.useRef<HTMLInputElement>(null);
+        React.useImperativeHandle(ref, () => inputRef.current);
 
-    console.log({ inputRootClasses });
-    console.log({ inputClasses });
+        const [selftValue, setSelfValue] = React.useState<string>(defaultValue);
+        // const [hover, setHover] = React.useState<boolean>(false);
 
-    // const inputRef = React.useRef<HTMLInputElement>(null);
-    // React.useImperativeHandle(ref, () => inputRef.current);
-    return (
-        <div className={inputRootClasses}>
-            <input className={inputClasses} placeholder="123" ref={ref} />
-        </div>
-    );
-});
+        const showClearIcon = React.useMemo(() => clearable && !readOnly && selftValue !== "", [
+            clearable,
+            selftValue,
+            readOnly
+        ]);
+
+        const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+            console.log(e.target.value);
+
+            if (disabled || readOnly) return;
+            if (!isControlled) {
+                setSelfValue(e.target.value);
+            }
+            onChange?.(e);
+        };
+
+        const { getPrefixCls } = React.useContext(ConfigContext);
+        const prefixCls = getPrefixCls("input");
+        const rootPrefixCls = `${prefixCls}-root`;
+
+        const inputRootClasses = classNames(`${rootPrefixCls}`, {
+            [`${rootPrefixCls}-disabled`]: disabled,
+            [`${rootPrefixCls}-readonly`]: readOnly,
+            [`${rootPrefixCls}-affix`]: prefix || suffix,
+            [`${rootPrefixCls}-addon`]: addonBefore || addonAfter
+        });
+        const inputClasses = classNames(prefixCls, className, {
+            [`${prefixCls}-disabled`]: disabled
+        });
+        const addonClassName = `${prefixCls}-addon`;
+
+        const addonBeforeNode = addonBefore ? (
+            <span className={addonClassName}>{addonBefore}</span>
+        ) : null;
+        const addonAfterNode = addonAfter ? (
+            <span className={addonClassName}>{addonAfter}</span>
+        ) : null;
+
+        const prefixNode = prefix ? <span className={`${prefixCls}-prefix`}>{prefix}</span> : null;
+        const suffixNode = suffix ? <span className={`${prefixCls}-suffix`}>{suffix}</span> : null;
+
+        console.log("=======================");
+        console.log({ inputRootClasses });
+        console.log({ inputClasses });
+
+        return (
+            <div className={inputRootClasses}>
+                {addonBeforeNode}
+                {prefixNode}
+                <input
+                    defaultValue={defaultValue}
+                    value={selftValue}
+                    className={inputClasses}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    onChange={handleChange}
+                    ref={inputRef}
+                />
+                {showClearIcon && <Icon name="close" />}
+                {suffixNode}
+                {addonAfterNode}
+            </div>
+        );
+    }
+);
 export default Input;

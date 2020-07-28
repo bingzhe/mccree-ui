@@ -5779,6 +5779,11 @@ eslint-plugin-html@^6.0.2:
   dependencies:
     htmlparser2 "^4.1.0"
 
+eslint-plugin-react-hooks@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-react-hooks/download/eslint-plugin-react-hooks-4.0.8.tgz#a9b1e3d57475ccd18276882eff3d6cba00da7a56"
+  integrity sha1-qbHj1XR1zNGCdogu/z1sugDaelY=
+
 eslint-plugin-react@^7.19.0:
   version "7.20.0"
   resolved "https://registry.npm.taobao.org/eslint-plugin-react/download/eslint-plugin-react-7.20.0.tgz#f98712f0a5e57dfd3e5542ef0604b8739cd47be3"
