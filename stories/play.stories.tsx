@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { Input, Icon } from "../components/index";
 
 storiesOf("实验室", module).add("Play", () => {
-    const [value, setValue] = React.useState("234");
+    const [value, setValue] = React.useState("");
     return (
         <div className="page-wrapper">
             <Input

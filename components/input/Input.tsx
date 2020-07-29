@@ -31,16 +31,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             suffix,
             addonBefore,
             addonAfter,
-            onChange
+            onChange,
+            onFocus,
+            onBlur
         } = props;
-        const { current: isControlled } = React.useRef(valueProp !== undefined);
 
-        console.log({ isControlled });
+        const { current: isControlled } = React.useRef(valueProp !== undefined);
 
         const inputRef = React.useRef<HTMLInputElement>(null);
         React.useImperativeHandle(ref, () => inputRef.current);
 
         const [selftValue, setSelfValue] = React.useState<string>(defaultValue);
+        const [focused, setFocused] = React.useState<Boolean>(false);
         // const [hover, setHover] = React.useState<boolean>(false);
 
         const showClearIcon = React.useMemo(() => clearable && !readOnly && selftValue !== "", [
@@ -50,13 +52,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ]);
 
         const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-            console.log(e.target.value);
-
             if (disabled || readOnly) return;
             if (!isControlled) {
                 setSelfValue(e.target.value);
             }
             onChange?.(e);
+        };
+
+        const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
+            setFocused(true);
+            onFocus?.(e);
+        };
+        const handleBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
+            setFocused(false);
+            onBlur?.(e);
         };
 
         const { getPrefixCls } = React.useContext(ConfigContext);
@@ -67,8 +76,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             [`${rootPrefixCls}-disabled`]: disabled,
             [`${rootPrefixCls}-readonly`]: readOnly,
             [`${rootPrefixCls}-affix`]: prefix || suffix,
-            [`${rootPrefixCls}-addon`]: addonBefore || addonAfter
+            [`${rootPrefixCls}-addon`]: addonBefore || addonAfter,
+            [`${rootPrefixCls}-focused`]: focused
         });
+
         const inputClasses = classNames(prefixCls, className, {
             [`${prefixCls}-disabled`]: disabled
         });
@@ -84,10 +95,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         const prefixNode = prefix ? <span className={`${prefixCls}-prefix`}>{prefix}</span> : null;
         const suffixNode = suffix ? <span className={`${prefixCls}-suffix`}>{suffix}</span> : null;
 
-        console.log("=======================");
-        console.log({ inputRootClasses });
-        console.log({ inputClasses });
-
         return (
             <div className={inputRootClasses}>
                 {addonBeforeNode}
@@ -99,6 +106,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     disabled={disabled}
                     readOnly={readOnly}
                     onChange={handleChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
                     ref={inputRef}
                 />
                 {showClearIcon && <Icon name="close" />}
