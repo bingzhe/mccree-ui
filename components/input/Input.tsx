@@ -41,6 +41,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         const inputRef = React.useRef<HTMLInputElement>(null);
         React.useImperativeHandle(ref, () => inputRef.current);
 
+        console.log(1);
         const [selftValue, setSelfValue] = React.useState<string>(defaultValue);
         const [focused, setFocused] = React.useState<Boolean>(false);
         // const [hover, setHover] = React.useState<boolean>(false);
