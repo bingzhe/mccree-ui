@@ -8,7 +8,7 @@
     // width: 100%;
     // min-width: 0;
     // background-image: none;
-    padding: 4px 10px;
+    padding: 0px 10px;
 
     font: inherit;
     color: currentColor;
@@ -18,7 +18,9 @@
     margin: 0;
     display: block;
     // padding: 6px 0 7px;
-    padding: 18.5px 14px;
+    // padding: 18.5px 14px;
+    height: 36px;
+    line-height: 36px;
     min-width: 0;
     background: none;
     box-sizing: content-box;
@@ -33,10 +35,44 @@
         border: 1px solid rgba(0, 0, 0, 0.23);
         border-radius: 4px;
         display: inline-flex;
+        font-size: 14px;
+        box-sizing: border-box;
+        position: relative;
+
+        &:hover {
+            border-color: rgba(0, 0, 0, 0.87);
+        }
     }
 
-    &-outlined {
-        border-width: 2px;
+    &-root-focused::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        left: -1px;
+        bottom: -1px;
+        border: 2px solid @primary-color;
+        border-radius: inherit;
+    }
+
+    // &-outlined {
+    //     border-width: 2px;
+    // }
+    &-root-disabled {
+        color: @input-disable-color;
+        border-color: @input-disable-border;
+        background-color: @input-disable-bg;
+        background-color: rgb(250, 250, 250);
+        cursor: not-allowed;
+        border-color: rgb(234, 234, 234);
+
+        &:hover {
+            border-color: rgb(234, 234, 234);
+        }
+
+        .@{input-prefix-cls}-disabled {
+            cursor: not-allowed;
+        }
     }
 }
 

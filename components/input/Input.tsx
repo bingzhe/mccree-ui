@@ -110,6 +110,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     ref={inputRef}
+                    placeholder="13"
                 />
                 {showClearIcon && <Icon name="close" />}
                 {suffixNode}
