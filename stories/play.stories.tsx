@@ -10,7 +10,6 @@ storiesOf("实验室", module).add("Play", () => {
         <div className="page-wrapper">
             <Input
                 value={value}
-                readOnly
                 onChange={(e) => {
                     setValue(e.target.value);
                     console.log(e.target.value);
