@@ -10,9 +10,10 @@ storiesOf("实验室", module).add("Play", () => {
         <div className="page-wrapper">
             <Input
                 value={value}
+                clearable
                 onChange={(e) => {
+                    console.log("++++++++++++", e.target.value);
                     setValue(e.target.value);
-                    console.log(e.target.value);
                 }}
             />
         </div>

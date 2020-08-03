@@ -41,7 +41,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         const inputRef = React.useRef<HTMLInputElement>(null);
         React.useImperativeHandle(ref, () => inputRef.current);
 
-        
         const [selftValue, setSelfValue] = React.useState<string>(defaultValue);
         const [focused, setFocused] = React.useState<Boolean>(false);
         // const [hover, setHover] = React.useState<boolean>(false);
@@ -110,9 +109,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     ref={inputRef}
-                    placeholder="13"
                 />
-                {showClearIcon && <Icon name="close" />}
+                {showClearIcon && (
+                    <span className="clear-icon">
+                        <Icon name="close" />
+                    </span>
+                )}
                 {suffixNode}
                 {addonAfterNode}
             </div>
