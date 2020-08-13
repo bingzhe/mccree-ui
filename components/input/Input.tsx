@@ -18,11 +18,22 @@ export interface InputProps
     readOnly?: boolean;
 }
 
+const simulateChangeEvent = (
+    el: HTMLInputElement,
+    event: React.MouseEvent<HTMLDivElement>
+): React.ChangeEvent<HTMLInputElement> => {
+    return {
+        ...event,
+        target: el,
+        currentTarget: el
+    };
+};
+
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (props, ref: React.Ref<HTMLInputElement | null>) => {
         const {
             className,
-            defaultValue,
+            defaultValue = "",
             value: valueProp,
             clearable = false,
             disabled,
@@ -36,27 +47,43 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onBlur
         } = props;
 
-        const { current: isControlled } = React.useRef(valueProp !== undefined);
+        // const { current: isControlled } = React.useRef(valueProp !== undefined);
 
         const inputRef = React.useRef<HTMLInputElement>(null);
         React.useImperativeHandle(ref, () => inputRef.current);
 
-        const [selftValue, setSelfValue] = React.useState<string>(defaultValue);
+        const [value, setValue] = React.useState<string>(defaultValue);
+
         const [focused, setFocused] = React.useState<Boolean>(false);
         // const [hover, setHover] = React.useState<boolean>(false);
 
-        const showClearIcon = React.useMemo(() => clearable && !readOnly && selftValue !== "", [
+        console.log({ value });
+        console.log({ valueProp });
+        React.useEffect(() => {
+            if (valueProp === undefined) return;
+            setValue(valueProp);
+        }, [valueProp]);
+
+        const showClearIcon = React.useMemo(() => clearable && !readOnly && value !== "", [
             clearable,
-            selftValue,
+            value,
             readOnly
         ]);
 
         const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
             if (disabled || readOnly) return;
-            if (!isControlled) {
-                setSelfValue(e.target.value);
-            }
+            setValue(e.target.value);
             onChange?.(e);
+        };
+        const handleClearClick: React.MouseEventHandler<HTMLElement> = (e) => {
+            setValue("");
+
+            if (!inputRef.current) return;
+
+            const changeEvent = simulateChangeEvent(inputRef.current, event);
+            changeEvent.target.value = "";
+            onChange && onChange(changeEvent);
+            inputRef.current.focus();
         };
 
         const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
@@ -101,7 +128,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 {prefixNode}
                 <input
                     defaultValue={defaultValue}
-                    value={selftValue}
+                    value={value}
                     className={inputClasses}
                     disabled={disabled}
                     readOnly={readOnly}
@@ -111,7 +138,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     ref={inputRef}
                 />
                 {showClearIcon && (
-                    <span className="clear-icon">
+                    <span className="clear-icon" onClick={handleClearClick}>
                         <Icon name="close" />
                     </span>
                 )}
