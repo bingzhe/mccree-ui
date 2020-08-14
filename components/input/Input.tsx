@@ -20,7 +20,7 @@ export interface InputProps
 
 const simulateChangeEvent = (
     el: HTMLInputElement,
-    event: React.MouseEvent<HTMLDivElement>
+    event: React.MouseEvent<HTMLElement>
 ): React.ChangeEvent<HTMLInputElement> => {
     return {
         ...event,
@@ -75,14 +75,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             setValue(e.target.value);
             onChange?.(e);
         };
-        const handleClearClick: React.MouseEventHandler<HTMLElement> = (e) => {
+        const handleClearClick: React.MouseEventHandler<HTMLElement> = (event) => {
             setValue("");
 
             if (!inputRef.current) return;
 
             const changeEvent = simulateChangeEvent(inputRef.current, event);
             changeEvent.target.value = "";
-            onChange && onChange(changeEvent);
+            onChange?.(changeEvent);
             inputRef.current.focus();
         };
 
