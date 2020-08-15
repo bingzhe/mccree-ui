@@ -75,6 +75,58 @@
             cursor: not-allowed;
         }
     }
+
+    // &-root-affix {
+    //     .@{input-prefix-cls}-prefix,
+    //     .@{input-prefix-cls}-suffix {
+    //     }
+    // }
+
+    &-root-addon {
+        .@{input-prefix-cls}-addon-after,
+        .@{input-prefix-cls}-addon-before{
+            display: inline-flex;
+            width:initial;
+            // height: 100%;
+            align-items: center;
+            pointer-events: none;
+            padding: 0 10px;
+            font-size: 14px;
+            color: #888;
+            background-color: #fafafa;
+            line-height: 1;
+        }
+        .@{input-prefix-cls}-addon-before{
+            border-radius: 4px 0 0 4px;
+        }
+        .@{input-prefix-cls}-addon-after{
+            border-radius: 0 4px 4px 0;
+        }
+    }
+
+    
+    &-root-affix {
+        .@{input-prefix-cls}-prefix,
+        .@{input-prefix-cls}-suffix{
+            display: inline-flex;
+            width:initial;
+            // height: 100%;
+            align-items: center;
+            pointer-events: none;
+            padding: 0 10px;
+            font-size: 18px;
+            // color: #888;
+            // background-color: #fafafa;
+            line-height: 1;
+        }
+        // .@{input-prefix-cls}-prefix{
+        //     border-radius: 4px 0 0 4px;
+        // }
+        // .@{input-prefix-cls}-suffix{
+        //     border-radius: 0 4px 4px 0;
+        // }
+    }
+
 }
 
 .clear-icon {

@@ -16,6 +16,7 @@ export interface InputProps
     suffix?: React.ReactNode;
     clearable?: boolean;
     readOnly?: boolean;
+    width?: string;
 }
 
 const simulateChangeEvent = (
@@ -44,7 +45,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             addonAfter,
             onChange,
             onFocus,
-            onBlur
+            onBlur,
+            width = "initial"
         } = props;
 
         // const { current: isControlled } = React.useRef(valueProp !== undefined);
@@ -109,25 +111,29 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         const inputClasses = classNames(prefixCls, className, {
             [`${prefixCls}-disabled`]: disabled
+            // [`${prefixCls}-affix`]: prefix,
+            // [`${prefixCls}-prefix`]: prefix,
         });
-        const addonClassName = `${prefixCls}-addon`;
+        // const addonClassName = `${prefixCls}-addon`;
 
         const addonBeforeNode = addonBefore ? (
-            <span className={addonClassName}>{addonBefore}</span>
+            <span className={`${prefixCls}-addon-before`}>{addonBefore}</span>
         ) : null;
         const addonAfterNode = addonAfter ? (
-            <span className={addonClassName}>{addonAfter}</span>
+            <span className={`${prefixCls}-addon-after`}>{addonAfter}</span>
         ) : null;
 
         const prefixNode = prefix ? <span className={`${prefixCls}-prefix`}>{prefix}</span> : null;
         const suffixNode = suffix ? <span className={`${prefixCls}-suffix`}>{suffix}</span> : null;
 
+        console.log({ inputRootClasses });
+        console.log({ inputClasses });
+
         return (
-            <div className={inputRootClasses}>
+            <div className={inputRootClasses} style={{ width: width }}>
                 {addonBeforeNode}
                 {prefixNode}
                 <input
-                    defaultValue={defaultValue}
                     value={value}
                     className={inputClasses}
                     disabled={disabled}
