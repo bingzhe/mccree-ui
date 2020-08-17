@@ -46,7 +46,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onChange,
             onFocus,
             onBlur,
-            width = "initial"
+            width = "initial",
+            placeholder
         } = props;
 
         // const { current: isControlled } = React.useRef(valueProp !== undefined);
@@ -116,6 +117,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         });
         // const addonClassName = `${prefixCls}-addon`;
 
+        const clearClasses = classNames(`${prefixCls}-clear`, {
+            show: showClearIcon
+        });
+
         const addonBeforeNode = addonBefore ? (
             <span className={`${prefixCls}-addon-before`}>{addonBefore}</span>
         ) : null;
@@ -142,9 +147,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     ref={inputRef}
+                    placeholder={placeholder}
                 />
-                {showClearIcon && (
-                    <span className="clear-icon" onClick={handleClearClick}>
+                {clearable && (
+                    <span className={clearClasses} onClick={handleClearClick}>
                         <Icon name="close" />
                     </span>
                 )}

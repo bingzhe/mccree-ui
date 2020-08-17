@@ -13,6 +13,7 @@ storiesOf("实验室", module).add("Play", () => {
                 value={value}
                 clearable
                 prefix={<Icon name="smile" />}
+                suffix="sfa"
                 onChange={(e) => {
                     setValue(e.target.value);
                     console.log("++++++++++++", e.target.value);
