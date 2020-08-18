@@ -60,8 +60,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         const [focused, setFocused] = React.useState<Boolean>(false);
         // const [hover, setHover] = React.useState<boolean>(false);
 
-        console.log({ value });
-        console.log({ valueProp });
         React.useEffect(() => {
             if (valueProp === undefined) return;
             setValue(valueProp);
@@ -130,9 +128,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         const prefixNode = prefix ? <span className={`${prefixCls}-prefix`}>{prefix}</span> : null;
         const suffixNode = suffix ? <span className={`${prefixCls}-suffix`}>{suffix}</span> : null;
-
-        console.log({ inputRootClasses });
-        console.log({ inputClasses });
 
         return (
             <div className={inputRootClasses} style={{ width: width }}>

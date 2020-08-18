@@ -42,3 +42,27 @@ components: Input
 添加前缀或后缀图标
 
 {{"demo": "pages/input/InputAffix.js"}}
+
+## 变化事件
+
+捕获输入框的文本变化。
+
+{{"demo": "pages/input/InputEvent.js"}}
+
+## API
+
+### Input
+
+| 参数         | 类型                  | 默认值    | 说明                   |
+| :----------- | :-------------------- | :-------- | :--------------------- |
+| defaultValue | string                | -         | 输入框默认内容         |
+| value        | string                | -         | 输入框内容             |
+| disabled     | boolean               | false     | 设置输入框为禁用       |
+| readOnly     | boolean               | false     | 设置输入框为只读       |
+| addonBefore  | string&#124;ReactNode | -         | 设置前置标签           |
+| addonAfter   | string&#124;ReactNode | -         | 设置后置标签           |
+| clearable    | boolean               | false     | 是否展示清除按钮       |
+| prefix       | string&#124;ReactNode | -         | 设置前缀图标           |
+| suffix       | string&#124;ReactNode | -         | 设置后缀图标           |
+| width        | string                | 'initial' | 设置输入框宽度         |
+| onChange     | function(e:Event)     | -         | 输入框内容变化时的回调 |
