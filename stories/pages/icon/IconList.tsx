@@ -32,7 +32,9 @@ const IconBasic = () => {
         "checkbox",
         "checkbox-indeterminate",
         "radio-checked",
-        "radio-unchecked"
+        "radio-unchecked",
+        "eye",
+        "eye-invisible"
     ];
 
     return (

@@ -3,6 +3,7 @@ import classNames from "classnames";
 
 import { ConfigContext } from "../config-provider";
 import Icon from "../icon";
+import InputPassword from "./Password";
 
 export interface InputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size1" | "prefix" | "type"> {
@@ -17,6 +18,8 @@ export interface InputProps
     clearable?: boolean;
     readOnly?: boolean;
     width?: string;
+    onIconClick?: React.MouseEventHandler<HTMLDivElement>;
+    iconClickable?: boolean;
 }
 
 const simulateChangeEvent = (
@@ -46,8 +49,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onChange,
             onFocus,
             onBlur,
+            onIconClick,
+            iconClickable = false,
             width = "initial",
-            placeholder
+            placeholder,
+            children,
+            ...restProps
         } = props;
 
         // const { current: isControlled } = React.useRef(valueProp !== undefined);
@@ -87,6 +94,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             inputRef.current.focus();
         };
 
+        const handleIconClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+            if (disabled) return;
+            onIconClick?.(e);
+        };
         const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
             setFocused(true);
             onFocus?.(e);
@@ -127,7 +138,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ) : null;
 
         const prefixNode = prefix ? <span className={`${prefixCls}-prefix`}>{prefix}</span> : null;
-        const suffixNode = suffix ? <span className={`${prefixCls}-suffix`}>{suffix}</span> : null;
+        const suffixNode = suffix ? (
+            <span className={`${prefixCls}-suffix`} onClick={handleIconClick}>
+                {suffix}
+            </span>
+        ) : null;
 
         return (
             <div className={inputRootClasses} style={{ width: width }}>
@@ -143,6 +158,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     onBlur={handleBlur}
                     ref={inputRef}
                     placeholder={placeholder}
+                    {...restProps}
                 />
                 {clearable && (
                     <span className={clearClasses} onClick={handleClearClick}>
@@ -155,4 +171,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         );
     }
 );
-export default Input;
+
+type InputComponent<T, P = {}> = React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<P> & React.RefAttributes<T>
+> & {
+    Password: typeof InputPassword;
+};
+
+export default Input as InputComponent<HTMLInputElement, InputProps>;

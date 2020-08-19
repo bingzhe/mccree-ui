@@ -1,3 +1,6 @@
-import Input from "./Input"
+import Input from "./Input";
+import Passwrod from "./Password";
 
-export default Input
+Input.Password = Passwrod;
+
+export default Input;
