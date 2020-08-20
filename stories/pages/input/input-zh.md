@@ -43,9 +43,15 @@ components: Input
 
 {{"demo": "pages/input/InputAffix.js"}}
 
+## 密码
+
+显示或隐藏密码文本
+
+{{"demo": "pages/input/InputPassword.js"}}
+
 ## 变化事件
 
-捕获输入框的文本变化。
+捕获输入框的文本变化
 
 {{"demo": "pages/input/InputEvent.js"}}
 

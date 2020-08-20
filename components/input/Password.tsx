@@ -5,6 +5,7 @@ import Icon from "../icon/index";
 export interface InputPasswordProp extends InputProps {
     hideToggle?: boolean;
 }
+
 const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProp>(
     (props, ref: React.Ref<HTMLInputElement | null>) => {
         const { hideToggle, children, ...restProps } = props;
