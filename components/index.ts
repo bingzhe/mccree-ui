@@ -4,6 +4,7 @@ export { default as Ripple } from "./ripple/index";
 export { default as Checkbox } from "./checkbox/index";
 export { default as Radio } from "./radio/index";
 export { default as Input } from "./input/index";
+export { default as Select } from "./select/index";
 
 // import "../components/styles/index.tsx";
 // export { default as Layout } from "./layout/index";
