@@ -1,67 +1,65 @@
-// /**
-//  * Create popper, based on `popper.js`
-//  *
-//  * Demo
-//  * import { usePopper } from '@fluent-ui/hooks'
-//  *
-//  * const [referenceRef, popperRef] = usePopper({ placement = 'bottom' })
-//  *
-//  * <button ref={referenceRef}></button>
-//  * <div ref={popperRef}>I am popper</div>
-//  */
+/**
+ * Create popper, based on `popper.js`
+ *
+ * const [referenceRef, popperRef] = usePopper({ placement = 'bottom' })
+ *
+ * <button ref={referenceRef}></button>
+ * <div ref={popperRef}>I am popper</div>
+ */
 
+import * as React from "react";
+import PopperJS from "popper.js";
 
-// import * as React from "react";
-// import PopperJS from "popper.js";
+type REf<R, P> = [React.RefObject<R>, React.RefObject<P>];
 
-// export function usePopper<Reference, Popper>({
-//     placement = "bottom",
-//     positionFixed = true,
-//     eventsEnabled = true,
-//     ...otherOptions
-// }: PopperJS.PopperOptions) {
-//     const popperInstance = React.useRef<PopperJS>(null);
-//     const referenceRef = React.useRef<Reference>(null);
-//     const popperRef = React.useRef<Popper>(null);
+export function usePopper<Reference, Popper>({
+    placement = "bottom",
+    positionFixed = true,
+    eventsEnabled = true,
+    ...otherOptions
+}: PopperJS.PopperOptions): REf<Reference, Popper> {
+    const popperInstance = React.useRef<PopperJS>(null);
+    const referenceRef = React.useRef<Reference>(null);
+    const popperRef = React.useRef<Popper>(null);
 
-//     React.useEffect((): (() => void) | void => {
-//         if (popperInstance.current !== null) {
-//             popperInstance.current.destroy();
-//         }
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    React.useEffect((): (() => void) | void => {
+        if (popperInstance.current !== null) {
+            popperInstance.current.destroy();
+        }
 
-//         if (referenceRef.current === null || popperRef.current === null) return;
+        if (referenceRef.current === null || popperRef.current === null) return;
 
-//         // @ts-ignore
-//         popperInstance.current = new PopperJS(referenceRef.current, popperRef.current, {
-//             placement,
-//             positionFixed,
-//             eventsEnabled,
-//             ...otherOptions
-//         });
+        // @ts-ignore
+        popperInstance.current = new PopperJS(referenceRef.current, popperRef.current, {
+            placement,
+            positionFixed,
+            eventsEnabled,
+            ...otherOptions
+        });
 
-//         return (): void => {
-//             if (popperInstance.current !== null) {
-//                 popperInstance.current.destroy();
-//             }
-//         };
+        return (): void => {
+            if (popperInstance.current !== null) {
+                popperInstance.current.destroy();
+            }
+        };
+    }, [placement, positionFixed, eventsEnabled, otherOptions]);
 
-//     }, [placement, positionFixed, eventsEnabled, otherOptions]);
+    React.useEffect((): void => {
+        if (popperInstance.current === null) return;
 
-//     React.useEffect((): void => {
-//         if (popperInstance.current === null) return;
+        if (eventsEnabled) {
+            popperInstance.current.enableEventListeners();
+        } else {
+            popperInstance.current.disableEventListeners();
+        }
+    }, [popperInstance, eventsEnabled]);
 
-//         if (eventsEnabled) {
-//             popperInstance.current.enableEventListeners();
-//         } else {
-//             popperInstance.current.disableEventListeners();
-//         }
-//     }, [popperInstance, eventsEnabled]);
+    React.useEffect((): void => {
+        if (popperInstance.current !== null) {
+            popperInstance.current.scheduleUpdate();
+        }
+    }, [popperInstance]);
 
-//     React.useEffect((): void => {
-//         if (popperInstance.current !== null) {
-//             popperInstance.current.scheduleUpdate();
-//         }
-//     }, [popperInstance]);
-
-//     return [referenceRef, popperRef];
-// }
+    return [referenceRef, popperRef];
+}

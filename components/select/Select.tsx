@@ -1,4 +1,5 @@
 import * as React from "react";
+import Dropdowm from "./Dropdown";
 
 type RawValue = string | number;
 type SelectValue = RawValue | RawValue[];
@@ -19,8 +20,11 @@ const Select: React.FC<SelectProps> = (props) => {
 
     return (
         <div>
-            <div onClick={handleSelectClick}>Select</div>
+            <div onClick={handleSelectClick} style={{ height: "900px" }}>
+                Select
+            </div>
             {visible ? <div>{children}</div> : null}
+            <Dropdowm />
         </div>
     );
 };
