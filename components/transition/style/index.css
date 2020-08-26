@@ -1,0 +1,22 @@
+.mccree-transition-fade {
+  transition: opacity 250ms cubic-bezier(0.7, 0.1, 0.33, 1) 0ms, visibility 250ms cubic-bezier(0.7, 0.1, 0.33, 1) 0ms;
+}
+.mccree-transition-fade.mccree-transition-fade-visible {
+  opacity: 1;
+}
+.mccree-transition-fade.mccree-transition-fade-hide {
+  opacity: 0;
+  visibility: hidden;
+}
+.mccree-transition-fade.fade-enter {
+  opacity: 0;
+}
+.mccree-transition-fade.fade-enter-active {
+  opacity: 1;
+}
+.mccree-transition-fade.fade-exit {
+  opacity: 1;
+}
+.mccree-transition-fade.fade-exit-active {
+  opacity: 0;
+}
