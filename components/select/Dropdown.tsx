@@ -9,20 +9,19 @@ interface DropdownProps {
     disableMatchWidth?: boolean;
 }
 
-interface ReactiveDomReact {
-    top: number;
-    left: number;
-    right: number;
-    bottom: number;
-}
+// interface ReactiveDomReact {
+//     top: number;
+//     left: number;
+//     right: number;
+//     bottom: number;
+// }
 
-const defaultRect: ReactiveDomReact = {
-    top: -1000,
-    left: -1000,
-    right: -1000,
-    bottom: 0
-};
-console.log(defaultRect);
+// const defaultRect: ReactiveDomReact = {
+//     top: -1000,
+//     left: -1000,
+//     right: -1000,
+//     bottom: 0
+// };
 
 const Dropdown: React.FC<DropdownProps> = () => {
     const el = usePortal("dropdown");

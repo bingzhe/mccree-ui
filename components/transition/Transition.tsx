@@ -1,25 +1,13 @@
 import * as React from "react";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
-import { CSSTransitionProps } from "react-transition-group/CSSTransition";
 
 import { ConfigContext } from "../config-provider";
-import { omit } from "../utils/omit";
+import { TransitionProps } from "./Transition.type";
 
-const { useState, useEffect, useRef, useContext } = React;
+const { useEffect, useRef, useContext } = React;
 
-export type TransitionClassProps = "root" | "fade" | "zoom" | "slide" | "collapse" | "grow";
-export type TransitionType = "fade" | "zoom" | "slide" | "collapse" | "grow" | "custom";
-
-export interface TransitionProps extends Omit<CSSTransitionProps, "in"> {
-    children: React.ReactElement;
-    type?: TransitionType;
-    visible?: boolean;
-    wrapper?: boolean;
-    // custom?: Style;
-}
-
-const Transition = React.forwardRef<HTMLDivElement, TransitionProps>((props, ref) => {
+const Transition: React.FC<TransitionProps> = (props) => {
     const {
         type = "fade",
         wrapper = true,
@@ -39,29 +27,33 @@ const Transition = React.forwardRef<HTMLDivElement, TransitionProps>((props, ref
         ...restProps
     } = props;
 
-    const otherProps = omit(restProps, ["custom"]);
-
-    const [wrapperHeight, setWrapperHeight] = useState(0);
+    const wrapperInnerRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
+    /**
+     * collapse 需要设置高度
+     */
     useEffect(() => {
-        if (wrapperRef?.current?.clientHeight) {
-            setWrapperHeight(wrapperRef.current.clientHeight);
+        if (wrapperInnerRef?.current?.clientHeight && wrapperRef.current && type === "collapse") {
+            wrapperRef.current.style.setProperty(
+                "--wrapper-height",
+                `${wrapperInnerRef.current.clientHeight}px`
+            );
         }
-    }, []);
+    }, [type]);
 
     const { getPrefixCls } = useContext(ConfigContext);
     const prefixCls = getPrefixCls("transition");
 
     const classes = classNames(prefixCls, {
         [`${prefixCls}-fade`]: type === "fade",
+        [`${prefixCls}-zoom`]: type === "zoom",
+        [`${prefixCls}-slide`]: type === "slide",
+        [`${prefixCls}-collapse`]: type === "collapse",
+        [`${prefixCls}-grow`]: type === "grow",
         [`${prefixCls}-${type}-visible`]: visible,
         [`${prefixCls}-${type}-hide`]: !visible
     });
-
-    console.log({ wrapperHeight });
-    console.log({ prefixCls });
-    console.log({ classes });
 
     return (
         <CSSTransition
@@ -78,20 +70,19 @@ const Transition = React.forwardRef<HTMLDivElement, TransitionProps>((props, ref
             onExit={onExit}
             onExiting={onExiting}
             onExited={onExited}
-            {...otherProps}
+            {...restProps}
         >
             {wrapper ? (
-                <div className={classes} ref={ref} {...otherProps}>
-                    <div ref={wrapperRef}>{children}</div>
+                <div className={classes} ref={wrapperRef} {...restProps}>
+                    <div ref={wrapperInnerRef}>{children}</div>
                 </div>
             ) : (
                 React.cloneElement(children, {
-                    ...otherProps,
+                    ...restProps,
                     className: classNames(children.props.className, classes)
                 })
             )}
         </CSSTransition>
     );
-});
-
+};
 export default Transition;
