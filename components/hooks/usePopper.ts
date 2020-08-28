@@ -12,7 +12,7 @@ import PopperJS from "popper.js";
 
 type REf<R, P> = [React.RefObject<R>, React.RefObject<P>];
 
-export function usePopper<Reference, Popper>({
+function usePopper<Reference, Popper>({
     placement = "bottom",
     positionFixed = true,
     eventsEnabled = true,
@@ -63,3 +63,5 @@ export function usePopper<Reference, Popper>({
 
     return [referenceRef, popperRef];
 }
+
+export default usePopper;
