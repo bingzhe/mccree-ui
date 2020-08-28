@@ -7,6 +7,9 @@ export { default as Input } from "./input/index";
 export { default as Select } from "./select/index";
 export { default as Transition } from "./transition/index";
 
+// hooks
+export { default as useClickOutside } from "./hooks/useClickOutside";
+
 // import "../components/styles/index.tsx";
 // export { default as Layout } from "./layout/index";
 // export { default as Input } from "./input/index";
