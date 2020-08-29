@@ -7,12 +7,12 @@ storiesOf("实验室", module).add("Play", () => {
     return (
         <div className="page-wrapper">
             <div style={{ border: "1px solid #ccc", height: "500px" }} />
-            <Select>
-                <div>111</div>
-                <div>222</div>
-                <div>333</div>
-                <div>444</div>
-                <div>555</div>
+            <Select defaultValue="1">
+                <Select.Option value="1">111</Select.Option>
+                <Select.Option value="2">222</Select.Option>
+                <Select.Option value="3" disabled>
+                    333
+                </Select.Option>
             </Select>
             <div style={{ border: "1px solid #ccc", height: "500px" }} />
         </div>

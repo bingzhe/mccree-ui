@@ -2,7 +2,8 @@ import * as React from "react";
 import { SelectContext, SelectContextProps } from "./SelectContext";
 import usePopper from "../hooks/usePopper";
 import useClickOutside from "../hooks/useClickOutside";
-import Dropdowm from "./SelectDropdown";
+import SelectDropdown from "./SelectDropdown";
+import SelectOption from "./SelectOption";
 
 const { useState, useMemo, useCallback } = React;
 
@@ -17,7 +18,11 @@ export interface SelectProps {
     onchange?: (value: string) => void;
 }
 
-const Select: React.FC<SelectProps> = (props) => {
+interface SelectFC extends React.FC<SelectProps> {
+    Option: typeof SelectOption;
+}
+
+const Select: SelectFC = (props) => {
     const { defaultValue, onchange, disabled, children } = props;
 
     const [visible, setVisible] = React.useState<boolean>(false);
@@ -67,11 +72,14 @@ const Select: React.FC<SelectProps> = (props) => {
             >
                 Select
             </div>
-            <Dropdowm popperRef={popperRef} visible={visible}>
+            <SelectDropdown popperRef={popperRef} visible={visible}>
                 {children}
-            </Dropdowm>
+            </SelectDropdown>
         </SelectContext.Provider>
     );
 };
+
+Select.displayName = "MR_Select";
+Select.Option = SelectOption;
 
 export default Select;
