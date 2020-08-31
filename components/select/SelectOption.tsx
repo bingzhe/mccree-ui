@@ -16,7 +16,15 @@ interface SelectOptionPros {
 }
 
 const SelectOption: React.FC<SelectOptionPros> = (props) => {
-    const { value: optionValue, disabled, children, label, divider, ...restProps } = props;
+    const {
+        value: optionValue,
+        disabled,
+        children,
+        label,
+        divider,
+        preventAllEvents,
+        ...restProps
+    } = props;
 
     const { value, updateValue, disabledAll } = useContext(SelectContext);
 
@@ -38,6 +46,7 @@ const SelectOption: React.FC<SelectOptionPros> = (props) => {
     }, [optionValue, value]);
 
     const handleOptionClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+        if (preventAllEvents) return;
         event.preventDefault();
         event.stopPropagation();
         event.nativeEvent.stopImmediatePropagation();
