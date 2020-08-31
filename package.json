@@ -59,6 +59,7 @@
         "@storybook/addon-links": "^5.3.18",
         "@storybook/addons": "^5.3.18",
         "@storybook/react": "^5.3.18",
+        "@storybook/theming": "^6.0.20",
         "@types/classnames": "^2.2.10",
         "@types/enzyme": "^3.10.5",
         "@types/jest": "^25.2.1",
