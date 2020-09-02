@@ -11,7 +11,12 @@ const requireRaw = require.context(
     /\.(md|tsx)$/
 );
 
-storiesOf("Hooks", module).add("useClickOutside", () => {
+export default {
+    title: "hooks/useClickOutside 点击他处",
+    parameters: { docs: { page: null } }
+};
+
+export const useClickOutside = () => {
     const pageFilename = "hooks/use-click-outside";
     const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
 
@@ -20,4 +25,4 @@ storiesOf("Hooks", module).add("useClickOutside", () => {
             <MarkdownDoc demos={demos} docs={docs} requireDemo={requireDemo} />
         </div>
     );
-});
+};

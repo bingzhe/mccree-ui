@@ -1,6 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import Ripple from "../ripple";
 import ButtonGroup from "./button-group";
@@ -25,9 +25,6 @@ export interface BaseButtonProps {
     variant?: ButtonVariant;
     shape?: ButtonShape;
     size: SizeType;
-    /**
-     * Checks if the button should be disabled
-     */
     disabled?: boolean;
     className?: string;
     prefixCls?: string;
@@ -189,15 +186,15 @@ Button.defaultProps = {
 
 Button.Group = ButtonGroup;
 
-// Button.propTypes = {
-//     /**
-//      * disabled
-//      */
-//     disabled: PropTypes.bool,
-//     /**
-//      * How large should the button be?
-//      */
-//     size: PropTypes.oneOf(["small", "medium", "large"])
-// };
+Button.propTypes = {
+    /**
+     * disabled
+     */
+    disabled: PropTypes.bool,
+    /**
+     * How large should the button be?
+     */
+    size: PropTypes.oneOf(["small", "medium", "large"])
+};
 
 export default Button;

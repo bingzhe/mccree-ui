@@ -28,17 +28,17 @@ module.exports = {
             return rule;
         });
         // do mutation to the config
-        config.module.rules.push({
-            test: /\.(ts|tsx)$/,
-            use: [
-                {
-                    loader: require.resolve("ts-loader")
-                },
-                {
-                    loader: require.resolve("react-docgen-typescript-loader")
-                }
-            ]
-        });
+        // config.module.rules.push({
+        //     test: /\.(ts|tsx)$/,
+        //     use: [
+        //         {
+        //             loader: require.resolve("ts-loader")
+        //         },
+        //         {
+        //             loader: require.resolve("react-docgen-typescript-loader")
+        //         }
+        //     ]
+        // });
 
         config.module.rules.push({
             test: /\.svg$/,
@@ -54,7 +54,7 @@ module.exports = {
             ]
         });
 
-        config.resolve.extensions.push(".ts", ".tsx");
+        // config.resolve.extensions.push(".ts", ".tsx");
 
         return config;
     }
