@@ -6,7 +6,7 @@ import CheckboxGroup, { GroupContext } from "./CheckboxGroup";
 import Icon from "../icon";
 import Ripple from "../ripple-wrapper";
 import { ConfigContext } from "../config-provider";
-import { tuple } from "../_util/type";
+import { tuple } from "../utils/type";
 import { useControlled } from "../utils/useControlled";
 
 const CheckboxColorTypes = tuple("primary", "secondary", "success", "warning", "error", "info");

@@ -8,7 +8,7 @@ import { ConfigContext } from "../config-provider";
 import SizeContext, { SizeType } from "../config-provider/SizeContext";
 
 import { omit } from "../utils/omit";
-import { Omit, tuple } from "../_util/type";
+import { Omit, tuple } from "../utils/type";
 import Icon from "../icon/index";
 
 const ButtonVariants = tuple("contain", "outline", "text");
