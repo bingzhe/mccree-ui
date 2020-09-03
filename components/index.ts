@@ -6,7 +6,7 @@ export { default as Radio } from "./radio/index";
 export { default as Input } from "./input/index";
 export { default as Select } from "./select/index";
 export { default as Transition } from "./transition/index";
-
+export { default as Grid } from "./grid/index";
 // hooks
 export { default as useClickOutside } from "./hooks/useClickOutside";
 
