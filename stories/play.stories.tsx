@@ -1,7 +1,7 @@
 import * as React from "react";
 // import { Button } from "../components/index";
 import { Story } from "@storybook/react/types-6-0";
-import { Grid } from "../components/index";
+import { Card } from "../components/index";
 
 export default {
     title: "实验室/Play",
@@ -21,47 +21,10 @@ export default {
 export const play = () => {
     return (
         <div>
-            <Grid.Container>
-                <Grid span={24}>
-                    <div style={{ background: "#eee" }}>24</div>
-                </Grid>
-            </Grid.Container>
-
-            <Grid.Container>
-                <Grid span={12}>
-                    <div style={{ background: "#eee" }}>12</div>
-                </Grid>
-                <Grid span={12}>
-                    <div style={{ background: "#eee" }}>12</div>
-                </Grid>
-            </Grid.Container>
-
-            <Grid.Container>
-                <Grid span={8}>
-                    <div style={{ background: "#eee" }}>8</div>
-                </Grid>
-                <Grid span={8}>
-                    <div style={{ background: "#eee" }}>8</div>
-                </Grid>
-                <Grid span={8}>
-                    <div style={{ background: "#eee" }}>8</div>
-                </Grid>
-            </Grid.Container>
-
-            <Grid.Container>
-                <Grid span={6}>
-                    <div style={{ background: "#eee" }}>6</div>
-                </Grid>
-                <Grid span={6}>
-                    <div style={{ background: "#eee" }}>6</div>
-                </Grid>
-                <Grid span={6}>
-                    <div style={{ background: "#eee" }}>6</div>
-                </Grid>
-                <Grid span={6}>
-                    <div style={{ background: "#eee" }}>6</div>
-                </Grid>
-            </Grid.Container>
+            <Card width="300px">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
         </div>
     );
 };

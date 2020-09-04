@@ -7,6 +7,7 @@ export { default as Input } from "./input/index";
 export { default as Select } from "./select/index";
 export { default as Transition } from "./transition/index";
 export { default as Grid } from "./grid/index";
+export { default as Card } from "./card/index";
 // hooks
 export { default as useClickOutside } from "./hooks/useClickOutside";
 

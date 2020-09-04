@@ -1,0 +1,30 @@
+@import "../../styles/vars.less";
+@import "../../styles/reset.less";
+
+@card-prefix-cls: ~"@{mccree-prefix}-card";
+
+.@{card-prefix-cls} {
+    .reset-component;
+
+    position: relative;
+    background: var(--white);
+    width: 100%;
+    transition: all 0.2s ease;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+
+    .@{card-prefix-cls}-content {
+        padding: var(--card-content-padding);
+    }
+    .@{card-prefix-cls}-footer {
+        display: flex;
+        align-items: center;
+        padding: var(--card-footer-padding);
+        overflow: hidden;
+        color: inherit;
+        background-color: inherit;
+        border-top: 1px solid #eaeaea;
+        border-bottom-left-radius: var(--card-radius);
+        border-bottom-right-radius: var(--card-radius);
+    }
+}
