@@ -1,5 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 import Ripple from "../ripple";
 import ButtonGroup from "./button-group";
@@ -7,7 +8,7 @@ import { ConfigContext } from "../config-provider";
 import SizeContext, { SizeType } from "../config-provider/SizeContext";
 
 import { omit } from "../utils/omit";
-import { Omit, tuple } from "../_util/type";
+import { Omit, tuple } from "../utils/type";
 import Icon from "../icon/index";
 
 const ButtonVariants = tuple("contain", "outline", "text");
@@ -184,5 +185,16 @@ Button.defaultProps = {
 };
 
 Button.Group = ButtonGroup;
+
+Button.propTypes = {
+    /**
+     * disabled
+     */
+    disabled: PropTypes.bool,
+    /**
+     * How large should the button be?
+     */
+    size: PropTypes.oneOf(["small", "medium", "large"])
+};
 
 export default Button;

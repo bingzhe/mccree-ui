@@ -1,19 +1,45 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
+// import { Button } from "../components/index";
+// import { Story } from "@storybook/react/types-6-0";
+import { Card } from "../components/index";
 
-import MarkdownDoc from "./components/MarkdownDoc";
-import { prepareMarkdown } from "./utils/parseMarkdown";
+export default {
+    title: "实验室/Play",
+    argTypes: {}
+};
 
-const requireDemo = require.context("./pages/radio", false, /\.(tsx)$/);
-const requireRaw = require.context("!raw-loader!./pages/radio", false, /\.(md|tsx)$/);
+// const Template: Story = (args) => <Button {...args} />;
 
-storiesOf("实验室", module).add("Radio", () => {
-    const pageFilename = "radio";
-    const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+// export const play = Template.bind({});
+// play.args = {
+//     size: "large",
+//     children: "222",
+//     disabled: false,
+//     type: "primary"
+// };
 
+export const play = () => {
     return (
-        <div className="page-wrapper">
-            <MarkdownDoc demos={demos} docs={docs} requireDemo={requireDemo} />
+        <div>
+            <Card width="300px" variant="outlined">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
+            <div style={{ marginBottom: "10px" }} />
+            <Card width="300px">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
+            <div style={{ marginBottom: "10px" }} />
+            <Card width="300px" type="primary">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
+            <div style={{ marginBottom: "10px" }} />
+            <Card width="300px" type="primary" variant="outlined">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
         </div>
     );
-});
+};

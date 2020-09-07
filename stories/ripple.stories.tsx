@@ -1,47 +1,30 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
+import { Button } from "../components/index";
 import Ripple from "../components/ripple/index";
-import Button from "../components/button/index";
-import { action } from "@storybook/addon-actions";
-
 import RippleNew from "../components/ripple-wrapper/index";
 
-import "./styles/ripple.less";
+export default {
+    title: "工具/Ripple 涟漪",
+    parameters: { docs: { page: null } }
+};
 
-storiesOf("Ripple", module).add("Ripple", () => {
+export const RippleDoc = () => {
     return (
         <div className="page-wrapper ripple-wrapper">
             <div>
                 <h4>默认Button启用 </h4>
-                <Button onClick={action("clicked")}>DEFAULT</Button>
-                <Button type="primary" onClick={action("clicked")}>
+                <Button>DEFAULT</Button>
+                <Button type="primary">PRIMARY</Button>
+                <Button type="secondary">SECONDARY</Button>
+                <Button type="success">SUCCESS</Button>
+                <Button type="error">ERROR</Button>
+                <Button type="warning">WARNING</Button>
+                <Button type="info">INFO</Button>
+                <Button disabled type="primary">
                     PRIMARY
                 </Button>
-                <Button type="secondary" onClick={action("clicked")}>
-                    SECONDARY
-                </Button>
-                <Button type="success" onClick={action("clicked")}>
-                    SUCCESS
-                </Button>
-                <Button type="error" onClick={action("clicked")}>
-                    ERROR
-                </Button>
-                <Button type="warning" onClick={action("clicked")}>
-                    WARNING
-                </Button>
-                <Button type="info" onClick={action("clicked")}>
-                    INFO
-                </Button>
-                <Button disabled type="primary" onClick={action("clicked")}>
-                    PRIMARY
-                </Button>
-                <Button
-                    target="block"
-                    href="http://bingzhe.github.io/"
-                    type="primary"
-                    onClick={action("clicked")}
-                >
+                <Button target="block" href="http://bingzhe.github.io/" type="primary">
                     LINK
                 </Button>
             </div>
@@ -76,4 +59,6 @@ storiesOf("Ripple", module).add("Ripple", () => {
             </RippleNew>
         </div>
     );
-});
+};
+
+RippleDoc.storyName = "Ripple";

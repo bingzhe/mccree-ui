@@ -2,7 +2,16 @@ const path = require("path");
 
 module.exports = {
     stories: ["../stories/**/*.stories.js", "../stories/**/*.stories.tsx"],
-    addons: ["@storybook/addon-actions", "@storybook/addon-links"],
+    addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
+    // typescript: {
+    //     check: false,
+    //     checkOptions: {},
+    //     reactDocgen: "react-docgen-typescript",
+    //     reactDocgenTypescriptOptions: {
+    //         shouldExtractLiteralValuesFromEnum: true,
+    //         propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
+    //     }
+    // },
     webpackFinal: async (config) => {
         config.module.rules = config.module.rules.map((rule) => {
             if (
@@ -45,7 +54,7 @@ module.exports = {
             ]
         });
 
-        config.resolve.extensions.push(".ts", ".tsx");
+        // config.resolve.extensions.push(".ts", ".tsx");
 
         return config;
     }

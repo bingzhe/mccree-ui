@@ -3,6 +3,13 @@ export { default as Button } from "./button/index";
 export { default as Ripple } from "./ripple/index";
 export { default as Checkbox } from "./checkbox/index";
 export { default as Radio } from "./radio/index";
+export { default as Input } from "./input/index";
+export { default as Select } from "./select/index";
+export { default as Transition } from "./transition/index";
+export { default as Grid } from "./grid/index";
+export { default as Card } from "./card/index";
+// hooks
+export { default as useClickOutside } from "./hooks/useClickOutside";
 
 // import "../components/styles/index.tsx";
 // export { default as Layout } from "./layout/index";

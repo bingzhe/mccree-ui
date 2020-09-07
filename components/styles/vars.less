@@ -51,7 +51,7 @@
     "Noto Color Emoji";
 @code-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
-@text-color: fade(@black, 65%);
+@text-color: fade(@black, 85%);
 @text-color-secondary: fade(@black, 45%);
 @text-color-inverse: @white;
 @icon-color: inherit;
@@ -335,3 +335,53 @@
 @radio-btn-padding-horizontal-base: @padding-md - 1px;
 @radio-btn-padding-horizontal-lg: @radio-btn-padding-horizontal-base;
 @radio-btn-padding-horizontal-sm: @padding-xs - 1px;
+
+//Input
+@input-disable-color: @disabled-color;
+@input-disable-bg: #fafafa;
+@input-disable-border: #eaeaea;
+
+@input-padding-horizontal-base: 7px;
+@input-padding-horizontal-lg: 8px;
+@input-padding-horizontal-sm: 8px;
+@input-padding-vertical-base: 10px;
+@input-padding-vertical-lg: 10px;
+@input-padding-vertical-sm: 10px;
+
+@input-color: @black;
+
+// Media queries breakpoints
+// Extra small screen / phone
+@screen-xs: 480px;
+@screen-xs-min: @screen-xs;
+
+// Small screen / tablet
+@screen-sm: 576px;
+@screen-sm-min: @screen-sm;
+
+// Medium screen / desktop
+@screen-md: 768px;
+@screen-md-min: @screen-md;
+
+// Large screen / wide desktop
+@screen-lg: 992px;
+@screen-lg-min: @screen-lg;
+
+// Extra large screen / full hd
+@screen-xl: 1200px;
+@screen-xl-min: @screen-xl;
+
+// Extra extra large screen / large desktop
+@screen-xxl: 1600px;
+@screen-xxl-min: @screen-xxl;
+
+// provide a maximum
+@screen-xs-max: (@screen-sm-min - 1px);
+@screen-sm-max: (@screen-md-min - 1px);
+@screen-md-max: (@screen-lg-min - 1px);
+@screen-lg-max: (@screen-xl-min - 1px);
+@screen-xl-max: (@screen-xxl-min - 1px);
+
+// Grid system
+@grid-columns: 24;
+@grid-gutter-width: 0;
