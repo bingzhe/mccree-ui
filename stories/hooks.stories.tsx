@@ -1,5 +1,4 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
 
 import MarkdownDoc from "./components/MarkdownDoc";
 import { prepareMarkdown } from "./utils/parseMarkdown";

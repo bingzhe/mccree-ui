@@ -1,37 +1,12 @@
 import * as React from "react";
 import classNames from "classnames";
-import { tuple } from "../utils/type";
 import { ConfigContext } from "../config-provider";
 import CardContent from "./CardContent";
 import CardFooter from "./CardFooter";
 import { hasChild, pickChild } from "../utils/collection";
+import { CardFC, defaultProps } from "./Card.type";
 
 const { useContext } = React;
-
-const CardTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
-export type CardType = typeof CardTypes[number];
-const VariantTypes = tuple("contained", "outlined");
-export type VariantType = typeof VariantTypes[number];
-
-interface CardProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
-    variant?: VariantType;
-    type?: CardType;
-    shadow?: boolean;
-    width?: string;
-    hoverable?: boolean;
-}
-
-type CardFC = React.FC<CardProps> & {
-    Content: typeof CardContent;
-    Footer: typeof CardFooter;
-    Actions: typeof CardFooter;
-};
-
-const defaultProps = {
-    variant: "contained" as VariantType,
-    shadow: false,
-    hoverable: false
-};
 
 const Card: CardFC = (props) => {
     const {
@@ -63,8 +38,6 @@ const Card: CardFC = (props) => {
         ...styleProp,
         width: width
     };
-
-    console.log("classes", classes);
 
     return (
         <div className={classes} style={style} {...restProps}>

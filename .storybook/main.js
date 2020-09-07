@@ -3,15 +3,15 @@ const path = require("path");
 module.exports = {
     stories: ["../stories/**/*.stories.js", "../stories/**/*.stories.tsx"],
     addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
-    typescript: {
-        check: false,
-        checkOptions: {},
-        reactDocgen: "react-docgen-typescript",
-        reactDocgenTypescriptOptions: {
-            shouldExtractLiteralValuesFromEnum: true,
-            propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
-        }
-    },
+    // typescript: {
+    //     check: false,
+    //     checkOptions: {},
+    //     reactDocgen: "react-docgen-typescript",
+    //     reactDocgenTypescriptOptions: {
+    //         shouldExtractLiteralValuesFromEnum: true,
+    //         propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
+    //     }
+    // },
     webpackFinal: async (config) => {
         config.module.rules = config.module.rules.map((rule) => {
             if (
@@ -28,17 +28,17 @@ module.exports = {
             return rule;
         });
         // do mutation to the config
-        // config.module.rules.push({
-        //     test: /\.(ts|tsx)$/,
-        //     use: [
-        //         {
-        //             loader: require.resolve("ts-loader")
-        //         },
-        //         {
-        //             loader: require.resolve("react-docgen-typescript-loader")
-        //         }
-        //     ]
-        // });
+        config.module.rules.push({
+            test: /\.(ts|tsx)$/,
+            use: [
+                {
+                    loader: require.resolve("ts-loader")
+                },
+                {
+                    loader: require.resolve("react-docgen-typescript-loader")
+                }
+            ]
+        });
 
         config.module.rules.push({
             test: /\.svg$/,

@@ -1,4 +1,5 @@
 import Card from "./Card";
+import { CardType, VariantType, CardProps, CardFC } from "./Card.type";
 
-export { CardType } from "./Card";
 export default Card;
+export { CardType, VariantType, CardProps, CardFC };

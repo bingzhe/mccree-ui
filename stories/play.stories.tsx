@@ -1,6 +1,6 @@
 import * as React from "react";
 // import { Button } from "../components/index";
-import { Story } from "@storybook/react/types-6-0";
+// import { Story } from "@storybook/react/types-6-0";
 import { Card } from "../components/index";
 
 export default {

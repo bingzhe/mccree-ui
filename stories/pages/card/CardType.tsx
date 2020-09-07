@@ -22,7 +22,7 @@ const CardTypes = () => {
                         style={{ margin: "0 20px 20px 0" }}
                         type={item as CardType}
                     >
-                        <h3>{locales[item]}</h3>
+                        <h3>{locales[item as CardType]}</h3>
                         <span>{item}</span>
                     </Card>
                 );
