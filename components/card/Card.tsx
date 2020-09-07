@@ -27,6 +27,12 @@ type CardFC = React.FC<CardProps> & {
     Actions: typeof CardFooter;
 };
 
+const defaultProps = {
+    variant: "contained" as VariantType,
+    shadow: false,
+    hoverable: false
+};
+
 const Card: CardFC = (props) => {
     const {
         variant,
@@ -76,5 +82,6 @@ Card.Content = CardContent;
 Card.Footer = CardFooter;
 Card.Actions = CardFooter;
 Card.displayName = "MR_Card";
+Card.defaultProps = defaultProps;
 
 export default Card;

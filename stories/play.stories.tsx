@@ -21,7 +21,22 @@ export default {
 export const play = () => {
     return (
         <div>
+            <Card width="300px" variant="outlined">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
+            <div style={{ marginBottom: "10px" }} />
             <Card width="300px">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
+            <div style={{ marginBottom: "10px" }} />
+            <Card width="300px" type="primary">
+                <Card.Actions>Footer</Card.Actions>
+                Card
+            </Card>
+            <div style={{ marginBottom: "10px" }} />
+            <Card width="300px" type="primary" variant="outlined">
                 <Card.Actions>Footer</Card.Actions>
                 Card
             </Card>
