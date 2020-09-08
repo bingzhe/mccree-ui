@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="52" failures="0" time="20.633">
-  <testsuite name="button" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:23" time="4.279" tests="7">
-    <testcase classname="button render &lt;Button/&gt; component" name="button render &lt;Button/&gt; component" time="0.082">
+<testsuites name="jest tests" tests="58" failures="0" time="53.867">
+  <testsuite name="button" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:14" time="20.797" tests="7">
+    <testcase classname="button render &lt;Button/&gt; component" name="button render &lt;Button/&gt; component" time="0.073">
     </testcase>
-    <testcase classname="button should find mccree-btn classnames" name="button should find mccree-btn classnames" time="0.132">
+    <testcase classname="button should find mccree-btn classnames" name="button should find mccree-btn classnames" time="0.15">
     </testcase>
-    <testcase classname="button should find type classnames" name="button should find type classnames" time="0.122">
+    <testcase classname="button should find type classnames" name="button should find type classnames" time="0.129">
     </testcase>
-    <testcase classname="button should find variant classnames" name="button should find variant classnames" time="0.01">
+    <testcase classname="button should find variant classnames" name="button should find variant classnames" time="0.018">
     </testcase>
-    <testcase classname="button should can trigger click event" name="button should can trigger click event" time="0.008">
+    <testcase classname="button should can trigger click event" name="button should can trigger click event" time="0.039">
     </testcase>
-    <testcase classname="button should can not trigger click event when button is disabled" name="button should can not trigger click event when button is disabled" time="0.026">
+    <testcase classname="button should can not trigger click event when button is disabled" name="button should can not trigger click event when button is disabled" time="0.01">
     </testcase>
-    <testcase classname="button should can not trigger click event when button is loading" name="button should can not trigger click event when button is loading" time="0.01">
+    <testcase classname="button should can not trigger click event when button is loading" name="button should can not trigger click event when button is loading" time="0.015">
     </testcase>
   </testsuite>
-  <testsuite name="required" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:23" time="11.516" tests="12">
-    <testcase classname="required works for array required=true" name="required works for array required=true" time="0.006">
+  <testsuite name="array" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:14" time="21.234" tests="12">
+    <testcase classname="array works for type" name="array works for type" time="0.027">
+    </testcase>
+    <testcase classname="array works for type and required" name="array works for type and required" time="0.001">
+    </testcase>
+    <testcase classname="array works for none required" name="array works for none required" time="0.001">
+    </testcase>
+    <testcase classname="array works for empty array" name="array works for empty array" time="0.003">
+    </testcase>
+    <testcase classname="array works for undefined array" name="array works for undefined array" time="0.001">
+    </testcase>
+    <testcase classname="array works for null array" name="array works for null array" time="0.001">
+    </testcase>
+    <testcase classname="array works for none empty" name="array works for none empty" time="0.003">
+    </testcase>
+    <testcase classname="array works for exactly array length err" name="array works for exactly array length err" time="0.007">
+    </testcase>
+    <testcase classname="array works for exactly array length" name="array works for exactly array length" time="0.001">
+    </testcase>
+    <testcase classname="array works for array length less than" name="array works for array length less than" time="0.001">
+    </testcase>
+    <testcase classname="array works for array length greater than" name="array works for array length greater than" time="0.002">
+    </testcase>
+    <testcase classname="array works for array length between range" name="array works for array length between range" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="required" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:14" time="21.223" tests="12">
+    <testcase classname="required works for array required=true" name="required works for array required=true" time="0.008">
     </testcase>
     <testcase classname="required works for array required=true &amp; custom message" name="required works for array required=true &amp; custom message" time="0.001">
     </testcase>
@@ -35,89 +61,77 @@
     </testcase>
     <testcase classname="required works for null required=true" name="required works for null required=true" time="0.001">
     </testcase>
-    <testcase classname="required works for null required=false" name="required works for null required=false" time="0.001">
+    <testcase classname="required works for null required=false" name="required works for null required=false" time="0">
     </testcase>
     <testcase classname="required works for undefined required=true" name="required works for undefined required=true" time="0.001">
     </testcase>
-    <testcase classname="required works for undefined required=false" name="required works for undefined required=false" time="0">
+    <testcase classname="required works for undefined required=false" name="required works for undefined required=false" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="array" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:23" time="11.628" tests="12">
-    <testcase classname="array works for type" name="array works for type" time="0.007">
+  <testsuite name="pattern" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:35" time="1.404" tests="7">
+    <testcase classname="pattern works for non-required empty string" name="pattern works for non-required empty string" time="0.004">
     </testcase>
-    <testcase classname="array works for type and required" name="array works for type and required" time="0.002">
+    <testcase classname="pattern work for non-required empty string with string regexp" name="pattern work for non-required empty string with string regexp" time="0.009">
     </testcase>
-    <testcase classname="array works for none required" name="array works for none required" time="0">
-    </testcase>
-    <testcase classname="array works for empty array" name="array works for empty array" time="0.001">
-    </testcase>
-    <testcase classname="array works for undefined array" name="array works for undefined array" time="0.001">
-    </testcase>
-    <testcase classname="array works for null array" name="array works for null array" time="0.001">
-    </testcase>
-    <testcase classname="array works for none empty" name="array works for none empty" time="0">
-    </testcase>
-    <testcase classname="array works for exactly array length err" name="array works for exactly array length err" time="0.001">
-    </testcase>
-    <testcase classname="array works for exactly array length" name="array works for exactly array length" time="0.001">
-    </testcase>
-    <testcase classname="array works for array length less than" name="array works for array length less than" time="0.001">
-    </testcase>
-    <testcase classname="array works for array length greater than" name="array works for array length greater than" time="0.001">
-    </testcase>
-    <testcase classname="array works for array length between range" name="array works for array length between range" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="messages" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:35" time="0.927" tests="2">
-    <testcase classname="messages can use options.messages" name="messages can use options.messages" time="0.003">
-    </testcase>
-    <testcase classname="messages message can be object" name="messages message can be object" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="pattern" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:35" time="1.189" tests="7">
-    <testcase classname="pattern works for non-required empty string" name="pattern works for non-required empty string" time="0.001">
-    </testcase>
-    <testcase classname="pattern work for non-required empty string with string regexp" name="pattern work for non-required empty string with string regexp" time="0.003">
-    </testcase>
-    <testcase classname="pattern works for required empty string" name="pattern works for required empty string" time="0.032">
+    <testcase classname="pattern works for required empty string" name="pattern works for required empty string" time="0.001">
     </testcase>
     <testcase classname="pattern works for non-required null" name="pattern works for non-required null" time="0.001">
     </testcase>
     <testcase classname="pattern works for non-required null" name="pattern works for non-required null" time="0.001">
     </testcase>
-    <testcase classname="pattern works" name="pattern works" time="0.002">
+    <testcase classname="pattern works" name="pattern works" time="0.001">
     </testcase>
-    <testcase classname="pattern works for RegExp with global flag" name="pattern works for RegExp with global flag" time="0.001">
+    <testcase classname="pattern works for RegExp with global flag" name="pattern works for RegExp with global flag" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="string" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:28" time="8.88" tests="6">
+  <testsuite name="string" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:35" time="1.19" tests="6">
     <testcase classname="string works for none require" name="string works for none require" time="0.003">
     </testcase>
     <testcase classname="string works for empty string" name="string works for empty string" time="0.002">
     </testcase>
     <testcase classname="string works for undefined string" name="string works for undefined string" time="0.001">
     </testcase>
-    <testcase classname="string works for null string" name="string works for null string" time="0.002">
+    <testcase classname="string works for null string" name="string works for null string" time="0">
     </testcase>
-    <testcase classname="string works for message" name="string works for message" time="0.002">
+    <testcase classname="string works for message" name="string works for message" time="0.001">
     </testcase>
-    <testcase classname="string works for whitespace empty" name="string works for whitespace empty" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="number" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:36" time="1.085" tests="4">
-    <testcase classname="number works" name="number works" time="0.003">
-    </testcase>
-    <testcase classname="number works for no-requred" name="number works for no-requred" time="0.001">
-    </testcase>
-    <testcase classname="number works for no-required in case of empty string" name="number works for no-required in case of empty string" time="0.001">
-    </testcase>
-    <testcase classname="number works for required" name="number works for required" time="0.002">
+    <testcase classname="string works for whitespace empty" name="string works for whitespace empty" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="enum" errors="0" failures="0" skipped="0" timestamp="2020-06-12T05:46:36" time="1.015" tests="2">
+  <testsuite name="messages" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:36" time="1.177" tests="2">
+    <testcase classname="messages can use options.messages" name="messages can use options.messages" time="0.002">
+    </testcase>
+    <testcase classname="messages message can be object" name="messages message can be object" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="number" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:36" time="1.176" tests="4">
+    <testcase classname="number works" name="number works" time="0.002">
+    </testcase>
+    <testcase classname="number works for no-requred" name="number works for no-requred" time="0">
+    </testcase>
+    <testcase classname="number works for no-required in case of empty string" name="number works for no-required in case of empty string" time="0.002">
+    </testcase>
+    <testcase classname="number works for required" name="number works for required" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="enum" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:37" time="0.778" tests="2">
     <testcase classname="enum value must be one of 1,2,3" name="enum value must be one of 1,2,3" time="0.002">
     </testcase>
-    <testcase classname="enum value must be one of 1,2,3 err" name="enum value must be one of 1,2,3 err" time="0.013">
+    <testcase classname="enum value must be one of 1,2,3 err" name="enum value must be one of 1,2,3 err" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Card" errors="0" failures="0" skipped="0" timestamp="2020-09-07T10:18:35" time="3.453" tests="6">
+    <testcase classname="Card should render correctly" name="Card should render correctly" time="0.033">
+    </testcase>
+    <testcase classname="Card should render Card.Footer/Card.Actions/Card.Content correctly" name="Card should render Card.Footer/Card.Actions/Card.Content correctly" time="0.006">
+    </testcase>
+    <testcase classname="Card shoulid find mccree-card classnames" name="Card shoulid find mccree-card classnames" time="0.051">
+    </testcase>
+    <testcase classname="Card shoulid find mccree-card-hoverable classnames" name="Card shoulid find mccree-card-hoverable classnames" time="0.005">
+    </testcase>
+    <testcase classname="Card shoulid find mccree-card-shadow classnames" name="Card shoulid find mccree-card-shadow classnames" time="0.003">
+    </testcase>
+    <testcase classname="Card shoulid find mccree-card-outlined classnames" name="Card shoulid find mccree-card-outlined classnames" time="0.005">
     </testcase>
   </testsuite>
 </testsuites>

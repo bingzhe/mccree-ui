@@ -43,7 +43,7 @@ example.args = {
     width: "400px"
 };
 
-export const CheckboxDoc = () => {
+export const CardDoc = () => {
     const pageFilename = "card";
     const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
 
@@ -53,4 +53,4 @@ export const CheckboxDoc = () => {
         </div>
     );
 };
-CheckboxDoc.storyName = "Card";
+CardDoc.storyName = "Card";

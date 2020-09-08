@@ -1,6 +1,6 @@
 ---
-title: React Checkbox 多选框组件
-components: Checkbox
+title: React Card 卡片组件
+components: Card
 ---
 
 # Card 卡片
