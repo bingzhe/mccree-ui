@@ -4,39 +4,9 @@ import { ConfigContext } from "../config-provider";
 import { GridContext } from "./GridContext";
 import { Breakpoint } from "./responsiveObserve";
 import GridContainer from "./GridContainer";
+import { GridFC, GridSize, FlexType } from "./Grid.type";
 
 const { useContext } = React;
-
-type GridSpanType = number | string;
-type FlexType = number | "none" | "auto" | string;
-
-export interface GridSize {
-    span?: GridSpanType;
-    order?: GridSpanType;
-    offset?: GridSpanType;
-    push?: GridSpanType;
-    pull?: GridSpanType;
-}
-
-export interface GridProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
-    span?: GridSpanType;
-    order?: GridSpanType;
-    offset?: GridSpanType;
-    push?: GridSpanType;
-    pull?: GridSpanType;
-    xs?: GridSpanType | GridSize;
-    sm?: GridSpanType | GridSize;
-    md?: GridSpanType | GridSize;
-    lg?: GridSpanType | GridSize;
-    xl?: GridSpanType | GridSize;
-    xxl?: GridSpanType | GridSize;
-    prefixCls?: string;
-    flex?: FlexType;
-}
-
-type GridFC = React.FC<GridProps> & {
-    Container: typeof GridContainer;
-};
 
 const parseFlex = (flex: FlexType): string => {
     if (typeof flex === "number") {
@@ -116,7 +86,6 @@ const Grid: GridFC = (props) => {
         style.flex = parseFlex(flex);
     }
 
-    console.log("classes", classes);
     return (
         <div className={classes} style={style} {...restProps}>
             {children}
@@ -125,5 +94,6 @@ const Grid: GridFC = (props) => {
 };
 
 Grid.Container = GridContainer;
+Grid.displayName = "MR_Grid";
 
 export default Grid;

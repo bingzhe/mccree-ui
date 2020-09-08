@@ -1,21 +1,11 @@
 import * as React from "react";
 import classNames from "classnames";
-import ResponsiveObserve, { Breakpoint, ScreenMap, responsiveArray } from "./responsiveObserve";
-import { tuple } from "../utils/type";
+import ResponsiveObserve, { ScreenMap, responsiveArray } from "./responsiveObserve";
 import { ConfigContext } from "../config-provider";
 import { GridContext } from "./GridContext";
+import { GridContainerProps } from "./Grid.type";
 
 const { useState, useEffect, useCallback, useContext } = React;
-
-const ContainerAligns = tuple("top", "middle", "bottom", "stretch");
-const ContainerJustify = tuple("start", "end", "center", "space-around", "space-between");
-
-export type Gutter = number | Partial<Record<Breakpoint, number>>;
-export interface GridContainerProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
-    gutter?: Gutter | [Gutter, Gutter];
-    align?: typeof ContainerAligns[number];
-    justify?: typeof ContainerJustify[number];
-}
 
 const GridContainer: React.FC<GridContainerProps> = (props) => {
     const {
@@ -46,7 +36,6 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
             ) {
                 setScreens(screens);
             }
-            console.log(screens);
         });
         return () => {
             ResponsiveObserve.unsubscribe(token);
@@ -89,9 +78,6 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
         ...styleProp
     };
 
-    // console.log("gutter", gutter);
-    // console.log("classes", classes);
-    // console.log("style", style);
     return (
         <GridContext.Provider value={{ gutter }}>
             <div className={classes} style={style} {...restProps}>

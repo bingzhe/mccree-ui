@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Grid } from "../components/index";
+import { Grid, Card } from "../components/index";
 import { Story } from "@storybook/react/types-6-0";
 
 import MarkdownDoc from "./components/MarkdownDoc";
@@ -10,24 +10,60 @@ const requireRaw = require.context("!raw-loader!./pages/grid", false, /\.(md|tsx
 
 export default {
     title: "布局/Grid 栅格",
-    argTypes: {
-        // variant: {
-        //     control: {
-        //         type: "select",
-        //         options: ["contained", "outlined"]
-        //     }
-        // },
-        // type: {
-        //     control: {
-        //         type: "select",
-        //         options: ["primary", "secondary", "success", "warning", "error", "info"]
-        //     }
-        // }
-    }
+    argTypes: {}
 };
 
-const Template: Story = (args) => {
-    return <Grid {...args} />;
+const Template: Story = () => {
+    const DemoCard: React.FC = (props) => {
+        return (
+            <Card hoverable style={{ margin: "8px 0" }}>
+                {props.children}
+            </Card>
+        );
+    };
+
+    return (
+        <>
+            <Grid.Container>
+                <Grid span={24}>
+                    <DemoCard>24</DemoCard>
+                </Grid>
+            </Grid.Container>
+            <Grid.Container gutter={16}>
+                <Grid span={12}>
+                    <DemoCard>12</DemoCard>
+                </Grid>
+                <Grid span={12}>
+                    <DemoCard>12</DemoCard>
+                </Grid>
+            </Grid.Container>
+            <Grid.Container gutter={16}>
+                <Grid span={8}>
+                    <DemoCard>8</DemoCard>
+                </Grid>
+                <Grid span={8}>
+                    <DemoCard>8</DemoCard>
+                </Grid>
+                <Grid span={8}>
+                    <DemoCard>8</DemoCard>
+                </Grid>
+            </Grid.Container>
+            <Grid.Container gutter={16}>
+                <Grid span={6}>
+                    <DemoCard>6</DemoCard>
+                </Grid>
+                <Grid span={6}>
+                    <DemoCard>6</DemoCard>
+                </Grid>
+                <Grid span={6}>
+                    <DemoCard>6</DemoCard>
+                </Grid>
+                <Grid span={6}>
+                    <DemoCard>6</DemoCard>
+                </Grid>
+            </Grid.Container>
+        </>
+    );
 };
 
 export const example = Template.bind({});

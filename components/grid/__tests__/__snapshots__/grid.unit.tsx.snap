@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid should render Grid 1`] = `
+<div
+  class="mccree-grid mccree-grid-12"
+/>
+`;
+
+exports[`Grid should render Grid.Container 1`] = `
+<div
+  class="mccree-grid-container"
+/>
+`;
