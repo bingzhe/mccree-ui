@@ -1,0 +1,14 @@
+@import "../../styles/vars.less";
+
+@space-prefix-cls: ~"@{mccree-prefix}-space";
+
+.@{space-prefix-cls} {
+    display: inline-flex;
+
+    &-horizontal {
+        align-items: center;
+    }
+    &-vertical {
+        flex-direction: column;
+    }
+}
