@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Space should render correct with children 1`] = `
+<div
+  class="mccree-space mccree-space-horizontal"
+>
+  <div
+    class="mccree-space-item"
+    style="margin-right:8px"
+  >
+    text1
+  </div>
+  <div
+    class="mccree-space-item"
+    style="margin-right:8px"
+  >
+    <span>
+      text1
+    </span>
+  </div>
+  <div
+    class="mccree-space-item"
+  >
+    text3
+  </div>
+</div>
+`;
