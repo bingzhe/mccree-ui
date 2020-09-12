@@ -9,17 +9,18 @@ interface DropdownProps {
     disableMatchWidth?: boolean;
     popperRef?: React.RefObject<HTMLDivElement>;
     children?: React.ReactNode;
+    className?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-    const { visible, popperRef, children } = props;
+    const { visible, popperRef, className, children, ...restProps } = props;
 
     const el = usePortal("dropdown");
     if (!el) return null;
 
     return createPortal(
         <Transition visible={visible}>
-            <div ref={popperRef} style={{ border: "1px solid #ccc", background: "#fff" }}>
+            <div className={className} ref={popperRef} {...restProps}>
                 {children}
             </div>
         </Transition>,

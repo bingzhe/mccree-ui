@@ -1,0 +1,42 @@
+@import "../../styles/vars.less";
+@import "../../styles/reset.less";
+
+@select-prefix-cls: ~"@{mccree-prefix}-select";
+@selector-prefix-cls: ~"@{select-prefix-cls}-selector";
+@dropdown-prefix-cls: ~"@{select-prefix-cls}-dropdown";
+@option-prefix-cls: ~"@{select-prefix-cls}-option";
+
+.@{selector-prefix-cls} {
+    .reset-component;
+
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    border-radius: 4px;
+    line-height: 30px;
+    width: 300px;
+    padding: 0 28px 0 8px;
+
+    &:hover {
+        border-color: var(--primary-color);
+    }
+
+    &-open::after {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        left: -1px;
+        bottom: -1px;
+        border-radius: inherit;
+        border: 2px solid var(--primary-color);
+    }
+}
+
+.@{dropdown-prefix-cls} {
+    box-shadow: var(--shadow-5);
+    background: var(--white);
+    width: 300px;
+    border-radius: 4px;
+    top: 2px !important;
+}

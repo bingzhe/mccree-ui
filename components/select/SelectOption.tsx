@@ -1,21 +1,13 @@
 import * as React from "react";
 import classNames from "classnames";
-import { SelectContext } from "./SelectContext";
 import { ConfigContext } from "../config-provider";
 import { warning } from "../utils/warning";
+import { SelectContext } from "./SelectContext";
+import { SelectOptionProps } from "./Select.type";
 
 const { useContext, useMemo } = React;
 
-interface SelectOptionPros {
-    value?: string;
-    disabled?: boolean;
-    className?: string;
-    divider?: boolean;
-    label?: boolean;
-    preventAllEvents?: boolean;
-}
-
-const SelectOption: React.FC<SelectOptionPros> = (props) => {
+const SelectOption: React.FC<SelectOptionProps> = (props) => {
     const {
         value: optionValue,
         disabled,

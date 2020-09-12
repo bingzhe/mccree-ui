@@ -1,12 +1,14 @@
 import * as React from "react";
-import { SelectContext, SelectContextProps } from "./SelectContext";
+import classNames from "classnames";
+import { ConfigContext } from "../config-provider";
 import usePopper from "../hooks/usePopper";
 import useClickOutside from "../hooks/useClickOutside";
+import { SelectContext, SelectContextProps } from "./SelectContext";
 import SelectDropdown from "./SelectDropdown";
 import SelectOption from "./SelectOption";
 import SelectMultipleValue from "./SelectMultipleValue";
 
-const { useState, useMemo, useCallback } = React;
+const { useState, useContext, useMemo, useCallback } = React;
 
 type RawValue = string;
 type SelectValue = RawValue | RawValue[];
@@ -18,6 +20,7 @@ export interface SelectProps {
     disabled?: boolean;
     onchange?: (value: string) => void;
     multiple?: boolean;
+    placeholder?: string;
 }
 
 interface SelectFC extends React.FC<SelectProps> {
@@ -25,7 +28,15 @@ interface SelectFC extends React.FC<SelectProps> {
 }
 
 const Select: SelectFC = (props) => {
-    const { defaultValue, onchange, disabled, children, multiple, ...restProps } = props;
+    const {
+        defaultValue,
+        onchange,
+        disabled,
+        children,
+        multiple,
+        placeholder,
+        ...restProps
+    } = props;
 
     const [visible, setVisible] = React.useState<boolean>(false);
     const [value, setValue] = useState<SelectValue | undefined>(() => {
@@ -33,6 +44,11 @@ const Select: SelectFC = (props) => {
         if (Array.isArray(defaultValue)) return defaultValue;
         return typeof defaultValue === "undefined" ? [] : [defaultValue];
     });
+
+    const isEmpty = useMemo(() => {
+        if (!Array.isArray(value)) return !value;
+        return value.length === 0;
+    }, [value]);
 
     const [referenceRef, popperRef] = usePopper<HTMLDivElement, HTMLDivElement>({
         placement: "bottom"
@@ -112,21 +128,36 @@ const Select: SelectFC = (props) => {
         [value, updateValue, visible, updateVisible]
     );
 
+    const { getPrefixCls } = useContext(ConfigContext);
+    const prefixCls = getPrefixCls("select");
+
+    const selectClasses = classNames(prefixCls);
+    const selectorClasses = classNames(`${prefixCls}-selector`, {
+        [`${prefixCls}-selector-open`]: visible
+    });
+    const dropdownClasses = classNames(`${prefixCls}-dropdown`);
+
+    console.log({ selectClasses });
+    console.log({ selectorClasses });
+    console.log({ dropdownClasses });
+
     return (
         <SelectContext.Provider value={initialValue}>
-            <div
-                ref={referenceRef}
-                onClick={handleOpenDropdowm}
-                style={{ background: "yellow", width: "200px" }}
-                {...restProps}
-            >
-                Select
-                {value && multiple && selectChild}
-                {value && !multiple && <span>{selectChild}</span>}
+            <div className={selectClasses}>
+                <div
+                    ref={referenceRef}
+                    onClick={handleOpenDropdowm}
+                    className={selectorClasses}
+                    {...restProps}
+                >
+                    {isEmpty && <span>{placeholder}</span>}
+                    {value && multiple && selectChild}
+                    {value && !multiple && <span>{selectChild}</span>}
+                </div>
+                <SelectDropdown popperRef={popperRef} visible={visible} className={dropdownClasses}>
+                    {children}
+                </SelectDropdown>
             </div>
-            <SelectDropdown popperRef={popperRef} visible={visible}>
-                {children}
-            </SelectDropdown>
         </SelectContext.Provider>
     );
 };
