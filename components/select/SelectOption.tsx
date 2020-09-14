@@ -58,7 +58,7 @@ const SelectOption: React.FC<SelectOptionProps> = (props) => {
 
     return (
         <div onClick={handleOptionClick} {...restProps} className={classes}>
-            {children} {selected ? "selected" : ""} {isDisabled ? "disabled" : ""}
+            {children} {isDisabled ? "disabled" : ""}
         </div>
     );
 };

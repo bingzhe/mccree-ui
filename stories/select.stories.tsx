@@ -25,15 +25,18 @@ export const play = () => {
                 <Select.Option value="1">11</Select.Option>
                 <Select.Option value="2">22</Select.Option>
                 <Select.Option value="3">33</Select.Option>
-                <Select.Option value="4">44</Select.Option>
-                <Select.Option value="5">11</Select.Option>
-                <Select.Option value="6">22</Select.Option>
-                <Select.Option value="7">33</Select.Option>
-                <Select.Option value="8">44</Select.Option>
-                <Select.Option value="9">11</Select.Option>
-                <Select.Option value="10">22</Select.Option>
-                <Select.Option value="11">33</Select.Option>
-                <Select.Option value="12">44</Select.Option>
+                <Select.Option value="12" disabled>
+                    44
+                </Select.Option>
+            </Select>
+
+            <Select placeholder="请选择" width="300px">
+                <Select.Option value="1">11</Select.Option>
+                <Select.Option value="2">22</Select.Option>
+                <Select.Option value="3">33</Select.Option>
+                <Select.Option value="12" disabled>
+                    44
+                </Select.Option>
             </Select>
         </div>
     );

@@ -10,17 +10,18 @@ interface DropdownProps {
     popperRef?: React.RefObject<HTMLDivElement>;
     children?: React.ReactNode;
     className?: string;
+    style?: React.CSSProperties;
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-    const { visible, popperRef, className, children, ...restProps } = props;
+    const { visible, popperRef, className, children, style, ...restProps } = props;
 
     const el = usePortal("dropdown");
     if (!el) return null;
 
     return createPortal(
         <Transition visible={visible}>
-            <div className={className} ref={popperRef} {...restProps}>
+            <div className={className} ref={popperRef} style={style} {...restProps}>
                 {children}
             </div>
         </Transition>,

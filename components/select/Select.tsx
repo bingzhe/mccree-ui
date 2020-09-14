@@ -7,25 +7,9 @@ import { SelectContext, SelectContextProps } from "./SelectContext";
 import SelectDropdown from "./SelectDropdown";
 import SelectOption from "./SelectOption";
 import SelectMultipleValue from "./SelectMultipleValue";
+import { SelectValue, SelectFC } from "./Select.type";
 
-const { useState, useContext, useMemo, useCallback } = React;
-
-type RawValue = string;
-type SelectValue = RawValue | RawValue[];
-
-export interface SelectProps {
-    className?: string;
-    value?: SelectValue;
-    defaultValue?: string;
-    disabled?: boolean;
-    onchange?: (value: string) => void;
-    multiple?: boolean;
-    placeholder?: string;
-}
-
-interface SelectFC extends React.FC<SelectProps> {
-    Option: typeof SelectOption;
-}
+const { useState, useContext, useRef, useMemo, useCallback, useEffect } = React;
 
 const Select: SelectFC = (props) => {
     const {
@@ -35,6 +19,8 @@ const Select: SelectFC = (props) => {
         children,
         multiple,
         placeholder,
+        width,
+        style: styleProp,
         ...restProps
     } = props;
 
@@ -45,6 +31,15 @@ const Select: SelectFC = (props) => {
         return typeof defaultValue === "undefined" ? [] : [defaultValue];
     });
 
+    const [dropdownWidth, setDropDownWidth] = useState<number>(0);
+    const selectRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (selectRef.current === null) return;
+        setDropDownWidth(selectRef.current.clientWidth);
+    }, [width]);
+
+    console.log({ dropdownWidth });
     const isEmpty = useMemo(() => {
         if (!Array.isArray(value)) return !value;
         return value.length === 0;
@@ -137,13 +132,18 @@ const Select: SelectFC = (props) => {
     });
     const dropdownClasses = classNames(`${prefixCls}-dropdown`);
 
+    const style = {
+        ...styleProp,
+        width: width
+    };
+
     console.log({ selectClasses });
     console.log({ selectorClasses });
     console.log({ dropdownClasses });
 
     return (
         <SelectContext.Provider value={initialValue}>
-            <div className={selectClasses}>
+            <div className={selectClasses} style={style} ref={selectRef}>
                 <div
                     ref={referenceRef}
                     onClick={handleOpenDropdowm}
@@ -154,7 +154,12 @@ const Select: SelectFC = (props) => {
                     {value && multiple && selectChild}
                     {value && !multiple && <span>{selectChild}</span>}
                 </div>
-                <SelectDropdown popperRef={popperRef} visible={visible} className={dropdownClasses}>
+                <SelectDropdown
+                    popperRef={popperRef}
+                    visible={visible}
+                    className={dropdownClasses}
+                    style={{ width: dropdownWidth }}
+                >
                     {children}
                 </SelectDropdown>
             </div>
