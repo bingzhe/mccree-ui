@@ -1,15 +1,8 @@
 import * as React from "react";
-
-interface SelectMultipleValueProps {
-    disabled?: boolean;
-    size?: string;
-}
+import { SelectMultipleValueProps } from "./Select.type";
 
 const SelectMultipleValue: React.FC<SelectMultipleValueProps> = (props) => {
-    const { disabled, size, children } = props;
-
-    console.log(disabled, size);
-    return <span>{children}</span>;
+    return <span className="multiple-select-item">{props.children}</span>;
 };
 
 export default SelectMultipleValue;

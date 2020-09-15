@@ -1,53 +1,57 @@
 import * as React from "react";
 import classNames from "classnames";
+import Icon from "../icon/index";
+import Space from "../space/index";
 import { ConfigContext } from "../config-provider";
 import usePopper from "../hooks/usePopper";
 import useClickOutside from "../hooks/useClickOutside";
+import useCurrentState from "../hooks/useCurrentState";
 import { SelectContext, SelectContextProps } from "./SelectContext";
 import SelectDropdown from "./SelectDropdown";
 import SelectOption from "./SelectOption";
 import SelectMultipleValue from "./SelectMultipleValue";
-import { SelectValue, SelectFC } from "./Select.type";
+import { SelectValue, SelectFC, defaultSelectProps } from "./Select.type";
 
-const { useState, useContext, useRef, useMemo, useCallback, useEffect } = React;
+const { useState, useContext, useMemo, useCallback, useEffect } = React;
 
 const Select: SelectFC = (props) => {
     const {
         defaultValue,
-        onchange,
+        onChange,
         disabled,
         children,
         multiple,
         placeholder,
         width,
         style: styleProp,
+        pure,
+        clearable,
         ...restProps
     } = props;
 
     const [visible, setVisible] = React.useState<boolean>(false);
-    const [value, setValue] = useState<SelectValue | undefined>(() => {
+
+    const [value, setValue, valueRef] = useCurrentState<SelectValue | undefined>(() => {
         if (!multiple) return defaultValue;
         if (Array.isArray(defaultValue)) return defaultValue;
         return typeof defaultValue === "undefined" ? [] : [defaultValue];
     });
 
     const [dropdownWidth, setDropDownWidth] = useState<number>(0);
-    const selectRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (selectRef.current === null) return;
-        setDropDownWidth(selectRef.current.clientWidth);
-    }, [width]);
-
-    console.log({ dropdownWidth });
-    const isEmpty = useMemo(() => {
-        if (!Array.isArray(value)) return !value;
-        return value.length === 0;
-    }, [value]);
 
     const [referenceRef, popperRef] = usePopper<HTMLDivElement, HTMLDivElement>({
         placement: "bottom"
     });
+
+    useEffect(() => {
+        if (referenceRef.current === null) return;
+        setDropDownWidth(referenceRef.current.clientWidth);
+    }, [referenceRef, width]);
+
+    const isEmpty = useMemo(() => {
+        if (!Array.isArray(value)) return !value;
+        return value.length === 0;
+    }, [value]);
 
     const handleOpenDropdowm = () => {
         if (disabled) return;
@@ -61,19 +65,30 @@ const Select: SelectFC = (props) => {
     }, []);
 
     const updateValue = useCallback(
-        (next: string) => {
-            setValue((last) => {
-                if (!Array.isArray(last)) return next;
-                if (!last.includes(next)) return [...last, next];
-                return last.filter((item) => item !== next);
-            });
-            onchange?.(next);
+        (next: string, clear?: boolean) => {
+            if (clear) {
+                setValue((last) => {
+                    if (!Array.isArray(last)) return "";
+                    return [];
+                });
+            } else {
+                setValue((last) => {
+                    if (!Array.isArray(last)) return next;
+                    if (!last.includes(next)) return [...last, next];
+                    return last.filter((item) => item !== next);
+                });
+            }
+            onChange?.(valueRef.current);
             if (!multiple) {
                 setVisible(false);
             }
         },
-        [onchange, multiple]
+        [onChange, valueRef, multiple, setValue]
     );
+
+    const handleClearClick = () => {
+        updateValue("", true);
+    };
 
     const pickChildByProps = useCallback(
         (children: React.ReactNode | undefined, key: string, value: any) => {
@@ -126,38 +141,41 @@ const Select: SelectFC = (props) => {
     const { getPrefixCls } = useContext(ConfigContext);
     const prefixCls = getPrefixCls("select");
 
-    const selectClasses = classNames(prefixCls);
-    const selectorClasses = classNames(`${prefixCls}-selector`, {
-        [`${prefixCls}-selector-open`]: visible
+    const selectClasses = classNames(prefixCls, {
+        [`${prefixCls}-open`]: visible,
+        [`${prefixCls}-disabled`]: disabled
     });
-    const dropdownClasses = classNames(`${prefixCls}-dropdown`);
 
     const style = {
         ...styleProp,
         width: width
     };
 
-    console.log({ selectClasses });
-    console.log({ selectorClasses });
-    console.log({ dropdownClasses });
-
     return (
         <SelectContext.Provider value={initialValue}>
-            <div className={selectClasses} style={style} ref={selectRef}>
-                <div
-                    ref={referenceRef}
-                    onClick={handleOpenDropdowm}
-                    className={selectorClasses}
-                    {...restProps}
-                >
+            <div className={selectClasses} style={style} ref={referenceRef} {...restProps}>
+                <div className={`${prefixCls}-selector`} onClick={handleOpenDropdowm}>
                     {isEmpty && <span>{placeholder}</span>}
-                    {value && multiple && selectChild}
+                    {value && multiple && <Space style={{ flexWrap: "wrap" }}>{selectChild}</Space>}
                     {value && !multiple && <span>{selectChild}</span>}
                 </div>
+
+                {clearable && value && (
+                    <span className={`${prefixCls}-clear`} onClick={handleClearClick}>
+                        <Icon name="close" />
+                    </span>
+                )}
+
+                {!pure && (
+                    <span className={`${prefixCls}-arrow`}>
+                        <Icon name="down" rotate={visible ? 180 : 0} />
+                    </span>
+                )}
+
                 <SelectDropdown
                     popperRef={popperRef}
                     visible={visible}
-                    className={dropdownClasses}
+                    className={`${prefixCls}-dropdown`}
                     style={{ width: dropdownWidth }}
                 >
                     {children}
@@ -168,6 +186,7 @@ const Select: SelectFC = (props) => {
 };
 
 Select.displayName = "MR_Select";
+Select.defaultProps = defaultSelectProps;
 Select.Option = SelectOption;
 
 export default Select;
