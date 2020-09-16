@@ -33,16 +33,16 @@
         line-height: 1;
         padding: 0 8px;
         background-color: #eaeaea;
-        border-radius: 4px;
+        border-radius: var(--border-radius);
         height: 28px;
     }
 
     &-selector {
-        border: 1px solid rgba(0, 0, 0, 0.23);
-        padding: 0 11px;
-        border-radius: 4px;
-        min-height: 36px;
-        line-height: 36px;
+        border: 1px solid var(--border-color-base);
+        padding: 0 10px;
+        border-radius: var(--border-radius);
+        min-height: var(--height-base);
+        line-height: var(--height-base);
 
         &:hover {
             border-color: var(--primary-color);
@@ -61,7 +61,7 @@
         }
 
         .@{select-prefix-cls}-disabled & {
-            background-color: var(--disabled-bg);
+            background-color: var(--disabled-color);
             color: var(--disabled-color);
             border-color: transparent;
             cursor: not-allowed;
@@ -97,7 +97,7 @@
     box-shadow: var(--shadow-5);
     background: var(--white);
     width: 100%;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     top: 2px !important;
     padding: 5px 0;
 }
@@ -105,9 +105,9 @@
 .@{option-prefix-cls} {
     .reset-component;
 
-    padding: 0 11px;
-    height: 36px;
-    line-height: 36px;
+    padding: 0 10px;
+    height: var(--height-base);
+    line-height: var(--height-base);
 
     &:hover {
         background: #faf9f8;

@@ -3,6 +3,5 @@ import Theme from "./theme";
 
 addons.setConfig({
     theme: Theme,
-    sidebarAnimations: true
 });
 
