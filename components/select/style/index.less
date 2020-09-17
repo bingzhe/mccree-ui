@@ -2,9 +2,6 @@
 @import "../../styles/reset.less";
 
 @select-prefix-cls: ~"@{mccree-prefix}-select";
-@selector-prefix-cls: ~"@{select-prefix-cls}-selector";
-@dropdown-prefix-cls: ~"@{select-prefix-cls}-dropdown";
-@option-prefix-cls: ~"@{select-prefix-cls}-option";
 
 .@{select-prefix-cls} {
     .reset-component;
@@ -14,7 +11,7 @@
     cursor: pointer;
     width: 100%;
 
-    .@{option-prefix-cls} {
+    .@{select-prefix-cls}-option {
         padding: 0;
         margin: 0;
         background-color: transparent;
@@ -61,7 +58,7 @@
         }
 
         .@{select-prefix-cls}-disabled & {
-            background-color: var(--disabled-color);
+            background-color: var(--disabled-bg);
             color: var(--disabled-color);
             border-color: transparent;
             cursor: not-allowed;
@@ -93,7 +90,7 @@
     }
 }
 
-.@{dropdown-prefix-cls} {
+.@{select-prefix-cls}-dropdown {
     box-shadow: var(--shadow-5);
     background: var(--white);
     width: 100%;
@@ -102,7 +99,7 @@
     padding: 5px 0;
 }
 
-.@{option-prefix-cls} {
+.@{select-prefix-cls}-option {
     .reset-component;
 
     padding: 0 10px;
@@ -110,11 +107,11 @@
     line-height: var(--height-base);
 
     &:hover {
-        background: #faf9f8;
+        background: var(--select-option-hover);
     }
 
     &-selected {
-        background: #edebe9;
+        background: var(--select-option-selected);
     }
 
     &-disabled {
@@ -138,6 +135,6 @@
     &-divider {
         height: 0;
         line-height: 0;
-        border-top: 1px solid #eee;
+        border-top: 1px solid var(--border-color-base);
     }
 }
