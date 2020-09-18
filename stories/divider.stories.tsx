@@ -2,6 +2,12 @@ import * as React from "react";
 import { Story } from "@storybook/react/types-6-0";
 import { Divider } from "../components/index";
 
+import MarkdownDoc from "./components/MarkdownDoc";
+import { prepareMarkdown } from "./utils/parseMarkdown";
+
+const requireDemo = require.context("./pages/divider", false, /\.(tsx)$/);
+const requireRaw = require.context("!raw-loader!./pages/divider", false, /\.(md|tsx)$/);
+
 export default {
     title: "布局/Divider 分割线",
     argTypes: {
@@ -19,8 +25,7 @@ export default {
         },
         color: {
             control: {
-                type: "select",
-                options: ["primary", "secondary", "success", "warning", "error", "info"]
+                type: "color"
             }
         }
     }
@@ -42,39 +47,45 @@ export const Base: Story = (args) => {
     );
 };
 Base.args = {
-    children: "",
+    children: "divider",
     align: "center",
     dashed: false,
-    plain: false
+    plain: false,
 };
+Base.parameters = { docs: { storyDescription: "默认为水平分割线，可在中间加入文字。" } };
 
-export const align = () => {
+export const Align = () => {
     return (
         <div>
-            <Divider align="left">Divider</Divider>
-            <Divider align="center">Divider</Divider>
-            <Divider align="right">Divider</Divider>
+            <Divider align="left">divider</Divider>
+            <Divider align="center">divider</Divider>
+            <Divider align="right">divider</Divider>
         </div>
     );
 };
+Align.parameters = { docs: { storyDescription: "可以用 align 指定文字位置。" } };
+
 
 export const Color = () => {
     return (
         <div>
-            <Divider color="primary">Divider</Divider>
-            <Divider color="secondary">Divider</Divider>
-            <Divider color="success">Divider</Divider>
-            <Divider color="warning">Divider</Divider>
-            <Divider color="error">Divider</Divider>
-            <Divider color="info">Divider</Divider>
+            <Divider color="primary">divider</Divider>
+            <Divider color="secondary">divider</Divider>
+            <Divider color="success">divider</Divider>
+            <Divider color="warning">divider</Divider>
+            <Divider color="error">divider</Divider>
+            <Divider color="info">divider</Divider>
+            <Divider color="rgba(172,17,236,1)">divider</Divider>
+            <Divider color="#1ED39A">divider</Divider>
         </div>
     );
 };
+Color.parameters = { docs: { storyDescription: "可以用 Color 设置组件颜色" } };
 
 export const Type = () => {
     return (
         <div>
-            <Divider type="horizontal">Divider</Divider>
+            <Divider type="horizontal">divider</Divider>
             <div>
                 <span>Text</span>
                 <Divider type="vertical" />
@@ -83,19 +94,33 @@ export const Type = () => {
         </div>
     );
 };
+Type.parameters = { docs: { storyDescription: "使用 type='vertical' 设置为行内的垂直分割线。" } };
 
 export const Dashed = () => {
     return (
         <div>
-            <Divider dashed>Divider</Divider>
+            <Divider dashed>divider</Divider>
         </div>
     );
 };
+Dashed.parameters = { docs: { storyDescription: "是否虚线。" } };
 
 export const Plain = () => {
     return (
         <div>
-            <Divider plain>Divider</Divider>
+            <Divider plain>divider</Divider>
+        </div>
+    );
+};
+Plain.parameters = { docs: { storyDescription: "文字是否显示为普通正文样式" } };
+
+export const API = () => {
+    const pageFilename = "divider";
+    const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+
+    return (
+        <div>
+            <MarkdownDoc demos={demos} docs={docs} requireDemo={requireDemo} />
         </div>
     );
 };

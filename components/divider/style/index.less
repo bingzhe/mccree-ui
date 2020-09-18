@@ -5,32 +5,11 @@
 
 .@{divider-prefix-cls} {
     .reset-component;
+    --mccree-border-color: var(--border-color-base);
+    --mccree-text-color: var(--text-color);
 
-    border-top: 1px solid var(--border-color-base);
-
-    &-primary {
-        .divider-color(var(--primary-color));
-    }
-
-    &-secondary {
-        .divider-color(var(--secondary-color));
-    }
-
-    &-warning {
-        .divider-color(var(--warning-color));
-    }
-
-    &-success {
-        .divider-color(var(--success-color));
-    }
-
-    &-error {
-        .divider-color(var(--error-color));
-    }
-
-    &-info {
-        .divider-color(var(--info-color));
-    }
+    color: var(--mccree-text-color);
+    border-top: 1px solid var(--mccree-border-color);
 
     &-vertical {
         position: relative;
@@ -40,7 +19,7 @@
         margin: 0 8px;
         vertical-align: middle;
         border-top: 0;
-        border-left: 1px solid var(--border-color-base);
+        border-left: 1px solid var(--mccree-border-color);
     }
 
     &-horizontal {
@@ -54,9 +33,8 @@
     &-horizontal&-text {
         display: flex;
         margin: 16px 0;
-        // color: @heading-color;
         font-weight: 500;
-        font-size: @font-size-lg;
+        font-size: var(--font-size-lg);
         white-space: nowrap;
         text-align: center;
         border-top: 0;
@@ -65,7 +43,7 @@
             position: relative;
             top: 50%;
             width: 50%;
-            border-top: 1px solid var(--border-color-base);
+            border-top: 1px solid var(--mccree-border-color);
             transform: translateY(50%);
             content: "";
         }
@@ -100,7 +78,7 @@
 
     &-dashed {
         background: none;
-        border-color: var(--border-color-base);
+        border-color: var(--mccree-border-color);
         border-style: dashed;
         border-width: 1px 0 0;
     }
@@ -118,20 +96,7 @@
     }
 
     &-plain&-text {
-        // color: @text-color;
         font-weight: normal;
-        font-size: @font-size-base;
-    }
-}
-
-.divider-color(@color) {
-    border-color: @color;
-    color: @color;
-
-    &.@{divider-prefix-cls}-text.@{divider-prefix-cls} {
-        &::before,
-        &::after {
-            border-color: @color;
-        }
+        font-size: var(--font-size-base);
     }
 }
