@@ -10,6 +10,7 @@ export { default as Grid } from "./grid/index";
 export { default as Card } from "./card/index";
 export { default as Space } from "./space/index";
 export { default as Divider } from "./divider";
+export { default as Modal } from "./modal";
 // hooks
 export { default as useClickOutside } from "./hooks/useClickOutside";
 
