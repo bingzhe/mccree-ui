@@ -111,7 +111,5 @@
 //     const close = modal(content, buttons, no);
 // };
 
-
-
 // export { alert, confirm, modal };
 // export default Dialog;
