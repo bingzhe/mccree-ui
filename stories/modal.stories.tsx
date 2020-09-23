@@ -18,10 +18,16 @@ export default {
 //     type: "primary"
 // };
 
-export const play = () => {
+export const Play = () => {
+    const [visible, setVisible] = React.useState(false);
+    const closeHandler = () => {
+        setVisible(false);
+        console.log("closed");
+    };
     return (
         <div>
-            <Modal />
+            <button onClick={() => setVisible((v) => !v)}>test</button>
+            <Modal visible={visible} onClose={closeHandler} />
         </div>
     );
 };
