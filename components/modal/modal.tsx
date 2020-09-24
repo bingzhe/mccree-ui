@@ -4,6 +4,9 @@ import usePortal from "../hooks/usePortal";
 import useGetPrefix from "../hooks/useGetPrefix";
 import Backdrop from "../Backdrop";
 import useCurrentState from "../hooks/useCurrentState";
+import { hasChild, pickChild } from "../utils/collection";
+import ModalHeader from "./ModalHeader";
+import ModalContent from "./ModalContent";
 
 const { useEffect } = React;
 
@@ -15,10 +18,17 @@ export interface ModalProps {
     onOpen?: () => void;
 }
 
-const Modal: React.FC<ModalProps> = (props) => {
-    const { visible: visibleProp, onOpen, onClose } = props;
+export type ModalFC = React.FC<ModalProps> & {
+    Header: typeof ModalHeader;
+    Content: typeof ModalContent;
+};
+
+const Modal: ModalFC = (props) => {
+    const { visible: visibleProp, onOpen, onClose, children } = props;
 
     const [visible, setVisible, visibleRef] = useCurrentState<boolean>(false);
+    const [withoutHeaderChildren, headerChildren] = pickChild(children, ModalHeader);
+    const hasContent = hasChild(withoutHeaderChildren, ModalContent);
 
     const portal = usePortal("modal");
     const prefixCls = useGetPrefix("modal");
@@ -47,15 +57,20 @@ const Modal: React.FC<ModalProps> = (props) => {
         <div className="">
             <Backdrop visible={visible} onClick={closeModal}>
                 <div style={{ background: "#fff" }}>
-                    <div>title</div>
-                    <div>subTitle</div>
-                    <div>content</div>
-                    <div>action</div>
+                    {headerChildren}
+                    {hasContent ? (
+                        withoutHeaderChildren
+                    ) : (
+                        <ModalContent>{withoutHeaderChildren}</ModalContent>
+                    )}
                 </div>
             </Backdrop>
         </div>,
         portal
     );
 };
+
+Modal.Header = ModalHeader;
+Modal.Content = ModalContent;
 
 export default Modal;

@@ -27,7 +27,10 @@ export const Play = () => {
     return (
         <div>
             <button onClick={() => setVisible((v) => !v)}>test</button>
-            <Modal visible={visible} onClose={closeHandler} />
+            <Modal visible={visible} onClose={closeHandler}>
+                <Modal.Header>Basic Modal</Modal.Header>
+                <div>123</div>
+            </Modal>
         </div>
     );
 };

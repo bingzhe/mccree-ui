@@ -38,16 +38,14 @@ const Backdrop: React.FC<BackdropProps> = (props) => {
         <Transition visible={visible} type={transitionType}>
             <div className={prefixCls} onClick={handleClick} onMouseUp={handleMouseUp}>
                 <div className={`${prefixCls}-layer`} />
-                <Transition visible={visible} type="fade">
-                    <div
-                        onClick={handleChildrenClick}
-                        onMouseDown={handleMouseDowm}
-                        className={`${prefixCls}-content`}
-                        style={{ width: width }}
-                    >
-                        {children}
-                    </div>
-                </Transition>
+                <div
+                    onClick={handleChildrenClick}
+                    onMouseDown={handleMouseDowm}
+                    className={`${prefixCls}-content`}
+                    style={{ width: width }}
+                >
+                    {children}
+                </div>
                 <div onClick={handleChildrenClick} className={`${prefixCls}-offset`} />
             </div>
         </Transition>

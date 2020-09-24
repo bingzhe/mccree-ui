@@ -1,0 +1,28 @@
+@import "../../styles/vars.less";
+
+@modal-prefix-cls: ~"@{mccree-prefix}-modal";
+
+.@{modal-prefix-cls} {
+    &-header {
+        background: #fff;
+        border-bottom: 1px solid var(--border-color-base);
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        padding: 16px 24px;
+        color: var(--text-color);
+    }
+    &-title {
+        font-size: var(--font-size-lg);
+        color: var(--text-color);
+        font-weight: 500;
+        line-height: 22px;
+        word-wrap: break-word;
+        margin: 0;
+    }
+    &-body {
+        padding: 24px;
+        word-wrap: break-word;
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+        color: var(--text-color);
+    }
+}
