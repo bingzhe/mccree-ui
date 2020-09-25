@@ -1,5 +1,5 @@
 import * as React from "react";
-import Transition, { TransitionType } from "../transition";
+import Transition from "../transition";
 import useGetPrefix from "../hooks/useGetPrefix";
 import useCurrentState from "../hooks/useCurrentState";
 
@@ -7,11 +7,10 @@ interface BackdropProps {
     visible?: boolean;
     onClick?: React.MouseEventHandler<HTMLElement>;
     width?: string;
-    transitionType?: TransitionType;
 }
 
 const Backdrop: React.FC<BackdropProps> = (props) => {
-    const { visible, onClick, transitionType, width, children } = props;
+    const { visible, onClick, width, children, ...restProps } = props;
 
     const prefixCls = useGetPrefix("backdrop");
     const [, setIsContentMouseDown, IsContentMouseDownRef] = useCurrentState(false);
@@ -35,8 +34,13 @@ const Backdrop: React.FC<BackdropProps> = (props) => {
     };
 
     return (
-        <Transition visible={visible} type={transitionType}>
-            <div className={prefixCls} onClick={handleClick} onMouseUp={handleMouseUp}>
+        <Transition visible={visible}>
+            <div
+                className={prefixCls}
+                onClick={handleClick}
+                onMouseUp={handleMouseUp}
+                {...restProps}
+            >
                 <div className={`${prefixCls}-layer`} />
                 <div
                     onClick={handleChildrenClick}
@@ -53,8 +57,7 @@ const Backdrop: React.FC<BackdropProps> = (props) => {
 };
 
 Backdrop.defaultProps = {
-    width: "520px",
-    transitionType: "fade"
+    width: "520px"
 };
 
 export default Backdrop;

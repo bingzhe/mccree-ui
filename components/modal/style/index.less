@@ -3,6 +3,14 @@
 @modal-prefix-cls: ~"@{mccree-prefix}-modal";
 
 .@{modal-prefix-cls} {
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: var(--border-radius);
+    pointer-events: auto;
+    box-shadow: var(--shadow-3);
+
     &-header {
         background: #fff;
         border-bottom: 1px solid var(--border-color-base);
@@ -24,5 +32,16 @@
         font-size: var(--font-size-base);
         line-height: var(--line-height-base);
         color: var(--text-color);
+    }
+    &-actions {
+        padding: 10px 16px;
+        text-align: right;
+        background: transparent;
+        border-top: 1px solid var(--border-color-base);
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+
+        button + button {
+            margin-left: 8px;
+        }
     }
 }

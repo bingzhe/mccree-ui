@@ -1,7 +1,7 @@
 import * as React from "react";
 // import { Button } from "../components/index";
 // import { Story } from "@storybook/react/types-6-0";
-import { Modal } from "../components/index";
+import { Modal, Button } from "../components/index";
 
 export default {
     title: "实验室/modal",
@@ -30,6 +30,10 @@ export const Play = () => {
             <Modal visible={visible} onClose={closeHandler}>
                 <Modal.Header>Basic Modal</Modal.Header>
                 <div>123</div>
+                <Modal.Actions>
+                    <Button>确认</Button>
+                    <Button>取消</Button>
+                </Modal.Actions>
             </Modal>
         </div>
     );
