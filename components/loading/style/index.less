@@ -1,0 +1,46 @@
+@import "../../styles/vars.less";
+@import "./animate.less";
+
+@loading-prefix-cls: ~"@{mccree-prefix}-loading";
+
+.@{loading-prefix-cls} {
+    &-dot {
+        position: relative;
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        font-size: 20px;
+
+        &-item {
+            position: absolute;
+            display: block;
+            width: 9px;
+            height: 9px;
+            background-color: var(--primary-color);
+            border-radius: 100%;
+            transform: scale(0.75);
+            transform-origin: 50% 50%;
+            opacity: 0.3;
+            animation: antSpinMove 1s infinite linear alternate;
+            &:nth-child(1) {
+                top: 0;
+                left: 0;
+            }
+            &:nth-child(2) {
+                top: 0;
+                right: 0;
+                animation-delay: 0.4s;
+            }
+            &:nth-child(3) {
+                right: 0;
+                bottom: 0;
+                animation-delay: 0.8s;
+            }
+            &:nth-child(4) {
+                bottom: 0;
+                left: 0;
+                animation-delay: 1.2s;
+            }
+        }
+    }
+}

@@ -11,6 +11,7 @@ export { default as Card } from "./card/index";
 export { default as Space } from "./space/index";
 export { default as Divider } from "./divider";
 export { default as Modal } from "./modal";
+export { default as Loading } from "./loading";
 // hooks
 export { default as useClickOutside } from "./hooks/useClickOutside";
 
