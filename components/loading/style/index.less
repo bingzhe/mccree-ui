@@ -4,6 +4,8 @@
 @loading-prefix-cls: ~"@{mccree-prefix}-loading";
 
 .@{loading-prefix-cls} {
+    display: inline-block;
+
     &-dot {
         position: relative;
         display: inline-block;
@@ -42,5 +44,10 @@
                 animation-delay: 1.2s;
             }
         }
+    }
+
+    &-dot-spin {
+        transform: rotate(45deg);
+        animation: antRotate 1.2s linear infinite;
     }
 }

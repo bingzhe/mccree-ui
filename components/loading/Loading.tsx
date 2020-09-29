@@ -24,7 +24,7 @@ interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Loading: React.FC<LoadingProps> = (props) => {
-    const { children } = props;
+    const { loading, text, children } = props;
 
     const isNestedPattern = !!children;
     const prefixCls = useGetPrefix("loading");
@@ -43,7 +43,20 @@ const Loading: React.FC<LoadingProps> = (props) => {
         );
     };
 
-    return <div>{renderDots()}</div>;
+    if (isNestedPattern) {
+        return (
+            <div className={`${prefixCls}-nested-loading`}>
+                {loading ? <div>{renderDots()}</div> : null}
+            </div>
+        );
+    }
+
+    return (
+        <div className={prefixCls}>
+            {renderDots()}
+            {text ? <div className={`${prefixCls}-text`}>{text}</div> : null}
+        </div>
+    );
 };
 
 export default Loading;

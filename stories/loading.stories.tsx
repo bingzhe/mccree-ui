@@ -24,3 +24,11 @@ export const Play = () => {
         </div>
     );
 };
+
+export const containter = () => {
+    return (
+        <div style={{ width: "200px", height: "200px", border: "1px solid #ccc" }}>
+            <Loading />
+        </div>
+    );
+};
