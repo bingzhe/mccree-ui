@@ -32,3 +32,27 @@ export const containter = () => {
         </div>
     );
 };
+
+export const nestPattern = () => {
+    return (
+        <Loading spinning>
+            <div style={{ height: "200px", border: "1px solid #ccc", background: "blue" }}>123</div>
+        </Loading>
+    );
+};
+
+export const nestPatternWidth = () => {
+    return (
+        <Loading spinning>
+            <div style={{ height: "200px", width: "200px", border: "1px solid #ccc" }}>123</div>
+        </Loading>
+    );
+};
+
+export const tip = () => {
+    return (
+        <Loading spinning tip="loading...">
+            <div style={{ height: "200px", width: "200px", border: "1px solid #ccc" }}>123</div>
+        </Loading>
+    );
+};
