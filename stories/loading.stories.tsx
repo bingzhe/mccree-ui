@@ -21,6 +21,10 @@ export const Play = () => {
     return (
         <div>
             <Loading />
+            <Loading type="waves" />
+            <Loading type="corners" />
+            <Loading type="border" />
+            <Loading type="points" />
         </div>
     );
 };

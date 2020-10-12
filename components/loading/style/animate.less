@@ -9,3 +9,56 @@
         transform: rotate(405deg);
     }
 }
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes waves {
+    0% {
+        width: 0px;
+        height: 0px;
+    }
+    100% {
+        height: 50px;
+        width: 50px;
+        opacity: 0;
+    }
+}
+
+@keyframes corners {
+    0% {
+        border-radius: 50%;
+        transform: rotate(0deg);
+    }
+    25% {
+        border-radius: 50% 50% 50% 15%;
+    }
+    50% {
+        border-radius: 50% 50% 15% 30%;
+    }
+    75% {
+        border-radius: 50% 15% 30% 30%;
+    }
+    100% {
+        border-radius: 50%;
+        transform: rotate(-180deg);
+    }
+}
+
+@keyframes points {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(0, -15px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}

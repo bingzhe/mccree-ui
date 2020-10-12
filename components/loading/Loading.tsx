@@ -3,6 +3,7 @@ import classNames from "classnames";
 import useGetPrefix from "../hooks/useGetPrefix";
 
 type LoadingType =
+    | "default"
     | "waves"
     | "corners"
     | "border"
@@ -24,7 +25,7 @@ interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Loading: React.FC<LoadingProps> = (props) => {
-    const { spinning, tip, children } = props;
+    const { spinning, tip, type, children } = props;
 
     const isNestedPattern = !!children;
     const prefixCls = useGetPrefix("loading");
@@ -41,9 +42,20 @@ const Loading: React.FC<LoadingProps> = (props) => {
         </span>
     );
 
+    const animationElement = (
+        <div className={`${prefixCls}-animation`}>
+            <div className={`${prefixCls}-animation-1`} />
+            <div className={`${prefixCls}-animation-2`} />
+            <div className={`${prefixCls}-animation-3`} />
+            <div className={`${prefixCls}-animation-4`} />
+        </div>
+    );
+
+    console.log(dotsElement);
+
     const spinElement = (
-        <div className={`${prefixCls}`}>
-            {dotsElement}
+        <div className={classNames(`${prefixCls}`, { [`${prefixCls}-${type}`]: type })}>
+            {animationElement}
             {tip ? <div className={`${prefixCls}-text`}>{tip}</div> : null}
         </div>
     );
@@ -64,4 +76,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
     return spinElement;
 };
 
+Loading.defaultProps = {
+    type: "default"
+};
 export default Loading;
