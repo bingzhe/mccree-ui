@@ -25,6 +25,11 @@ export const Play = () => {
             <Loading type="corners" />
             <Loading type="border" />
             <Loading type="points" />
+            <Loading type="square" />
+            <Loading type="gradient" />
+            <Loading type="rectangle" />
+            <Loading type="circles" />
+            <Loading type="scale" />
         </div>
     );
 };

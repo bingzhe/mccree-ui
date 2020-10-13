@@ -12,7 +12,6 @@ type LoadingType =
     | "gradient"
     | "rectangle"
     | "circles"
-    | "square-rotate"
     | "scale"
     | "dots";
 
