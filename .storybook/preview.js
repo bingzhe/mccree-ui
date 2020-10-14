@@ -22,7 +22,7 @@ export const parameters = {
     },
     options: {
         storySort: {
-            order: ["通用", "布局", "数据录入", "数据展示", "工具", "hooks", "实验室"]
+            order: ["通用", "布局", "数据录入", "数据展示", "反馈", "工具", "hooks", "实验室"]
         }
     }
 };

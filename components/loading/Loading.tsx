@@ -1,8 +1,9 @@
 import * as React from "react";
 import classNames from "classnames";
 import useGetPrefix from "../hooks/useGetPrefix";
+import useSetColor from "../hooks/useSetColor";
 
-type LoadingType =
+export type LoadingType =
     | "default"
     | "waves"
     | "corners"
@@ -15,31 +16,21 @@ type LoadingType =
     | "scale"
     | "dots";
 
-interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
     spinning?: boolean;
     type?: LoadingType;
     color?: string;
-    background?: string;
     tip?: string;
 }
 
 const Loading: React.FC<LoadingProps> = (props) => {
-    const { spinning, tip, type, children } = props;
+    const { spinning, tip, type, children, color, ...restProps } = props;
 
     const isNestedPattern = !!children;
     const prefixCls = useGetPrefix("loading");
+    const loadingRef = React.useRef<HTMLDivElement>(null);
 
-    console.log({ prefixCls });
-    console.log({ isNestedPattern });
-
-    const dotsElement = (
-        <span className={classNames(`${prefixCls}-dot`, `${prefixCls}-dot-spin`)}>
-            <i className={`${prefixCls}-dot-item`} />
-            <i className={`${prefixCls}-dot-item`} />
-            <i className={`${prefixCls}-dot-item`} />
-            <i className={`${prefixCls}-dot-item`} />
-        </span>
-    );
+    useSetColor(loadingRef, "color", color, true);
 
     const animationElement = (
         <div className={`${prefixCls}-animation`}>
@@ -50,10 +41,12 @@ const Loading: React.FC<LoadingProps> = (props) => {
         </div>
     );
 
-    console.log(dotsElement);
-
     const spinElement = (
-        <div className={classNames(`${prefixCls}`, { [`${prefixCls}-${type}`]: type })}>
+        <div
+            className={classNames(`${prefixCls}`, { [`${prefixCls}-${type}`]: type })}
+            ref={loadingRef}
+            {...restProps}
+        >
             {animationElement}
             {tip ? <div className={`${prefixCls}-text`}>{tip}</div> : null}
         </div>
@@ -65,7 +58,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
         });
 
         return (
-            <div className={`${prefixCls}-nested`}>
+            <div className={`${prefixCls}-nested`} {...restProps}>
                 {spinning ? <div>{spinElement}</div> : null}
                 <div className={containerClassName}>{children}</div>
             </div>
@@ -75,7 +68,9 @@ const Loading: React.FC<LoadingProps> = (props) => {
     return spinElement;
 };
 
+Loading.displayName = "MR_Loading";
 Loading.defaultProps = {
-    type: "default"
+    type: "default",
+    spinning: true
 };
 export default Loading;

@@ -1,11 +1,16 @@
 @import "../../styles/vars.less";
+@import "../../styles/reset.less";
 @import "./animate.less";
 
 @loading-prefix-cls: ~"@{mccree-prefix}-loading";
 
 .@{loading-prefix-cls} {
-    display: inline-block;
+    .reset-component;
     --mccree-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     &-animation {
         position: relative;
@@ -16,49 +21,9 @@
         justify-content: center;
     }
 
-    &-dot {
-        position: relative;
-        display: inline-block;
-        width: 1em;
-        height: 1em;
-        font-size: 20px;
-
-        &-item {
-            position: absolute;
-            display: block;
-            width: 9px;
-            height: 9px;
-            background-color: var(--primary-color);
-            border-radius: 100%;
-            transform: scale(0.75);
-            transform-origin: 50% 50%;
-            opacity: 0.3;
-            animation: antSpinMove 1s infinite linear alternate;
-            &:nth-child(1) {
-                top: 0;
-                left: 0;
-            }
-            &:nth-child(2) {
-                top: 0;
-                right: 0;
-                animation-delay: 0.4s;
-            }
-            &:nth-child(3) {
-                right: 0;
-                bottom: 0;
-                animation-delay: 0.8s;
-            }
-            &:nth-child(4) {
-                bottom: 0;
-                left: 0;
-                animation-delay: 1.2s;
-            }
-        }
-    }
-
-    &-dot-spin {
-        transform: rotate(45deg);
-        animation: antRotate 1.2s linear infinite;
+    &-text {
+        padding-top: 5px;
+        color: var(--mccree-color);
     }
 
     &-nested {
@@ -68,16 +33,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            display: block;
             width: 100%;
             height: 100%;
-        }
-
-        .@{loading-prefix-cls}-dot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -10px;
         }
     }
 
@@ -433,7 +390,7 @@
 .@{loading-prefix-cls}-scale {
     .@{loading-prefix-cls}-animation {
         &-1 {
-            position: relative;
+            // position: relative;
             width: 5px;
             height: 5px;
             background: var(--mccree-color);
@@ -442,7 +399,7 @@
             border-radius: 5px;
         }
         &-2 {
-            position: relative;
+            // position: relative;
             width: 5px;
             height: 5px;
             background: var(--mccree-color);
@@ -451,7 +408,7 @@
             border-radius: 5px;
         }
         &-3 {
-            position: relative;
+            // position: relative;
             width: 5px;
             height: 5px;
             background: var(--mccree-color);
@@ -461,6 +418,74 @@
         }
         &-4 {
             display: none;
+        }
+    }
+}
+
+.@{loading-prefix-cls}-dots {
+    .@{loading-prefix-cls}-animation {
+        transform: rotate(45deg);
+        animation: dotRotate 1.2s linear infinite;
+        height: 24px;
+        width: 24px;
+        &-1 {
+            position: absolute;
+            display: block;
+            width: 9px;
+            height: 9px;
+            background-color: var(--mccree-color);
+            border-radius: 100%;
+            transform: scale(0.75);
+            transform-origin: 50% 50%;
+            opacity: 0.3;
+            animation: dotSpinMove 1s infinite linear alternate;
+            top: 0;
+            left: 0;
+        }
+        &-2 {
+            position: absolute;
+            display: block;
+            width: 9px;
+            height: 9px;
+            background-color: var(--mccree-color);
+            border-radius: 100%;
+            transform: scale(0.75);
+            transform-origin: 50% 50%;
+            opacity: 0.3;
+            animation: dotSpinMove 1s infinite linear alternate;
+            top: 0;
+            right: 0;
+            animation-delay: 0.4s;
+        }
+        &-3 {
+            position: absolute;
+            display: block;
+            width: 9px;
+            height: 9px;
+            background-color: var(--mccree-color);
+            border-radius: 100%;
+            transform: scale(0.75);
+            transform-origin: 50% 50%;
+            opacity: 0.3;
+            animation: dotSpinMove 1s infinite linear alternate;
+            right: 0;
+            bottom: 0;
+            animation-delay: 0.8s;
+        }
+        &-4 {
+            position: absolute;
+            display: block;
+            width: 9px;
+            height: 9px;
+            background-color: var(--mccree-color);
+            border-radius: 100%;
+            transform: scale(0.75);
+            transform-origin: 50% 50%;
+            opacity: 0.3;
+            animation: dotSpinMove 1s infinite linear alternate;
+            bottom: 0;
+            left: 0;
+            animation-delay: 1.2s;
         }
     }
 }

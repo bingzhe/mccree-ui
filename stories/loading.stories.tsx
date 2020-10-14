@@ -1,67 +1,120 @@
 import * as React from "react";
-// import { Story } from "@storybook/react/types-6-0";
-import { Loading } from "../components/index";
+import { Story } from "@storybook/react/types-6-0";
+import { Loading, Checkbox } from "../components/index";
 
 export default {
-    title: "实验室/Loading",
-    argTypes: {}
+    title: "反馈/Loading 加载中",
+    argTypes: {
+        type: {
+            control: {
+                type: "select",
+                options: [
+                    "default",
+                    "waves",
+                    "corners",
+                    "border",
+                    "points",
+                    "square",
+                    "gradient",
+                    "rectangle",
+                    "circles",
+                    "scale",
+                    "dots"
+                ]
+            }
+        },
+        color: {
+            control: {
+                type: "color"
+            }
+        }
+    }
 };
 
-// const Template: Story = (args) => <Button {...args} />;
+export const Base: Story = (args) => {
+    return <Loading {...args} />;
+};
+Base.args = {
+    tip: "Loading..."
+};
+Base.parameters = { docs: { storyDescription: "用于页面和区块的加载中状态。" } };
 
-// export const play = Template.bind({});
-// play.args = {
-//     size: "large",
-//     children: "222",
-//     disabled: false,
-//     type: "primary"
-// };
-
-export const Play = () => {
+export const Type = () => {
+    const typeList = [
+        "default",
+        "waves",
+        "corners",
+        "border",
+        "points",
+        "square",
+        "gradient",
+        "rectangle",
+        "circles",
+        "scale",
+        "dots"
+    ] as any;
     return (
-        <div>
-            <Loading />
-            <Loading type="waves" />
-            <Loading type="corners" />
-            <Loading type="border" />
-            <Loading type="points" />
-            <Loading type="square" />
-            <Loading type="gradient" />
-            <Loading type="rectangle" />
-            <Loading type="circles" />
-            <Loading type="scale" />
+        <div className="loading-demo">
+            {typeList.map((type) => (
+                <div className="loading-demo-item" key={type}>
+                    <Loading type={type} tip={type} />
+                </div>
+            ))}
         </div>
     );
 };
+Type.parameters = { docs: { storyDescription: "使用type更改加载动画类型" } };
 
-export const containter = () => {
+export const Color = () => {
+    const typeList = [
+        "default",
+        "waves",
+        "corners",
+        "border",
+        "points",
+        "square",
+        "gradient",
+        "rectangle",
+        "circles",
+        "scale",
+        "dots"
+    ] as any;
     return (
-        <div style={{ width: "200px", height: "200px", border: "1px solid #ccc" }}>
-            <Loading />
+        <div className="loading-demo">
+            {typeList.map((type) => (
+                <div className="loading-demo-item" key={type}>
+                    <Loading type={type} tip={type} color="#d5397b" />
+                </div>
+            ))}
         </div>
     );
 };
+Color.parameters = { docs: { storyDescription: "可以用 Color 设置组件颜色" } };
 
 export const nestPattern = () => {
     return (
-        <Loading spinning>
-            <div style={{ height: "200px", border: "1px solid #ccc", background: "blue" }}>123</div>
+        <Loading tip="tip....">
+            <div style={{ height: "200px", border: "1px solid #ccc" }}>123</div>
         </Loading>
     );
 };
 
 export const nestPatternWidth = () => {
-    return (
-        <Loading spinning>
-            <div style={{ height: "200px", width: "200px", border: "1px solid #ccc" }}>123</div>
-        </Loading>
-    );
-};
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [loading, setLoading] = React.useState<boolean>(false);
 
-export const tip = () => {
     return (
-        <Loading spinning tip="loading...">
-            <div style={{ height: "200px", width: "200px", border: "1px solid #ccc" }}>123</div>
-        </Loading>
+        <>
+            <Loading spinning={loading}>
+                <div style={{ height: "200px", border: "1px solid #ccc" }}>123</div>
+                <Checkbox />
+            </Loading>
+            <Checkbox
+                value={loading}
+                onChange={(e) => {
+                    setLoading(e.target.checked);
+                }}
+            />
+        </>
     );
 };
