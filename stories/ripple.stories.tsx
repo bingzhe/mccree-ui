@@ -57,6 +57,17 @@ export const RippleDoc = () => {
             <RippleNew>
                 <Button type="secondary">test</Button>
             </RippleNew>
+
+            <RippleNew centerRipple>
+                <div
+                    style={{
+                        color: "#fff",
+                        border: "1px solid #ccc",
+                        width: "100px",
+                        height: "100px"
+                    }}
+                />
+            </RippleNew>
         </div>
     );
 };

@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Backdrop from "../backdrop";
 import Transition from "../transition";
 import Icon from "../icon";
+import Button from "../button";
 import usePortal from "../hooks/usePortal";
 import useGetPrefix from "../hooks/useGetPrefix";
 import useCurrentState from "../hooks/useCurrentState";
@@ -66,7 +67,9 @@ const Modal: ModalFC = (props) => {
         <Backdrop visible={visible} onClick={closeModal}>
             <Transition visible={visible} type="fade">
                 <div className={modalClasses} {...restProps}>
-                    <Icon name="close" />
+                    <Button className={`${prefixCls}-close`} shape="circle" variant="text">
+                        <Icon name="close" />
+                    </Button>
                     {headerChildren}
                     {hasContent ? (
                         withoutActionsChildren

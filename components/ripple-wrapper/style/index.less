@@ -1,5 +1,4 @@
 @import "../../styles/vars.less";
-@import "../../styles/animate.less";
 
 @ripple-prefix-cls: ~"@{mccree-prefix}-ripple";
 
@@ -25,7 +24,7 @@
         display: inline-block;
         overflow: hidden;
         pointer-events: none;
-        z-index: -1;
+        // z-index: -1;
 
         .@{ripple-prefix-cls} {
             opacity: 0;
@@ -65,5 +64,35 @@
                 animation: ripple-pulsate 2500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
             }
         }
+    }
+}
+
+@keyframes ripple-enter {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes ripple-exit {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ripple-pulsate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.92);
+    }
+    100% {
+        transform: scale(1);
     }
 }
