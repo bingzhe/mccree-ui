@@ -2,6 +2,12 @@ import * as React from "react";
 import { Story } from "@storybook/react/types-6-0";
 import { Loading, Checkbox } from "../components/index";
 
+import MarkdownDoc from "./components/MarkdownDoc";
+import { prepareMarkdown } from "./utils/parseMarkdown";
+
+const requireDemo = require.context("./pages/loading", false, /\.(tsx)$/);
+const requireRaw = require.context("!raw-loader!./pages/loading", false, /\.(md|tsx)$/);
+
 export default {
     title: "反馈/Loading 加载中",
     argTypes: {
@@ -55,7 +61,7 @@ export const Type = () => {
     ] as any;
     return (
         <div className="loading-demo">
-            {typeList.map((type) => (
+            {typeList.map((type: any) => (
                 <div className="loading-demo-item" key={type}>
                     <Loading type={type} tip={type} />
                 </div>
@@ -81,7 +87,7 @@ export const Color = () => {
     ] as any;
     return (
         <div className="loading-demo">
-            {typeList.map((type) => (
+            {typeList.map((type: any) => (
                 <div className="loading-demo-item" key={type}>
                     <Loading type={type} tip={type} color="#d5397b" />
                 </div>
@@ -142,4 +148,15 @@ export const Nested = () => {
 
 Nested.parameters = {
     docs: { storyDescription: "可以直接把内容内嵌到 Loading 中，将现有容器变为加载状态" }
+};
+
+export const API = () => {
+    const pageFilename = "loading";
+    const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+
+    return (
+        <div>
+            <MarkdownDoc demos={demos} docs={docs} requireDemo={requireDemo} />
+        </div>
+    );
 };
