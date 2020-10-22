@@ -4,7 +4,7 @@ import classNames from "classnames";
 import RadioGroup, { GroupContext } from "./RadioGroup";
 import RadioButton from "./RadioButton";
 import RadioIcon from "./RadioIcon";
-import Ripple from "../ripple-wrapper";
+import Ripple from "../ripple";
 import { tuple } from "../utils/type";
 import { ConfigContext } from "../config-provider";
 import { useControlled } from "../utils/useControlled";

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import CheckboxButton from "./CheckboxButton";
 import CheckboxGroup, { GroupContext } from "./CheckboxGroup";
 import Icon from "../icon";
-import Ripple from "../ripple-wrapper";
+import Ripple from "../ripple";
 import { ConfigContext } from "../config-provider";
 import { tuple } from "../utils/type";
 import { useControlled } from "../utils/useControlled";

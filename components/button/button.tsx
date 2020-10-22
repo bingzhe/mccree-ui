@@ -2,7 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
-import Ripple from "../ripple-wrapper";
+import Ripple from "../ripple";
 import ButtonGroup from "./button-group";
 import { ConfigContext } from "../config-provider";
 import SizeContext, { SizeType } from "../config-provider/SizeContext";

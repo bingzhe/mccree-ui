@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button } from "../components/index";
 // import Ripple from "../components/ripple/index";
-import RippleNew from "../components/ripple-wrapper/index";
+import RippleNew from "../components/ripple/index";
 
 export default {
     title: "工具/Ripple 涟漪",
