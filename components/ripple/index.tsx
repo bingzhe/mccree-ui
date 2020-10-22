@@ -1,3 +1,3 @@
-import RippleWrapper from "./RippleWrapper";
+import Ripple from "./RippleWrapper";
 
-export default RippleWrapper;
+export default Ripple;

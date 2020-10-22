@@ -1,75 +1,79 @@
-import React from "react";
-
-import { Button } from "../components/index";
-// import Ripple from "../components/ripple/index";
-import RippleNew from "../components/ripple/index";
+import * as React from "react";
+import { Button, Ripple } from "../components/index";
 
 export default {
     title: "工具/Ripple 涟漪",
-    parameters: { docs: { page: null } }
+    argTypes: {
+        color: {
+            control: {
+                type: "color"
+            }
+        }
+    }
 };
 
-export const RippleDoc = () => {
+export const Base = (args: any) => {
     return (
-        <div className="page-wrapper ripple-wrapper">
-            <div>
-                <h4>默认Button启用 </h4>
-                <Button>DEFAULT</Button>
-                <Button type="primary">PRIMARY</Button>
-                <Button type="secondary">SECONDARY</Button>
-                <Button type="success">SUCCESS</Button>
-                <Button type="error">ERROR</Button>
-                <Button type="warning">WARNING</Button>
-                <Button type="info">INFO</Button>
-                <Button disabled type="primary">
-                    PRIMARY
-                </Button>
-                <Button target="block" href="http://bingzhe.github.io/" type="primary">
-                    LINK
-                </Button>
-            </div>
+        <Ripple {...args}>
+            <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
+        </Ripple>
+    );
+};
+Base.args = {
+    center: false
+};
 
-            <div>
-                <h4>其他地方使用 </h4>
-            </div>
+export const Center = () => {
+    return (
+        <Ripple center color="primary">
+            <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
+        </Ripple>
+    );
+};
+Center.parameters = { docs: { storyDescription: "涟漪居中，从中间向四周扩散，默认在鼠标点击处" } };
 
-            <div className="ripple-box-wrapper">
-                <div className="ripple-box" />
-                {/* <Ripple /> */}
-            </div>
+export const Color = () => {
+    return (
+        <>
+            <Ripple color="primary">
+                <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
+            </Ripple>
+            <span style={{ marginRight: "10px" }} />
+            <Ripple color="#c473e5">
+                <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
+            </Ripple>
+        </>
+    );
+};
+Color.parameters = {
+    docs: {
+        storyDescription:
+            "涟漪颜色，可以设置为`primary`,`secondary`,`success`,`warning`,`error`,`info`,`RGB`,`HEX`"
+    }
+};
 
-            <div>
-                <h4>other color</h4>
-            </div>
-
-            <div className="ripple-box-wrapper">
-                <div className="ripple-box" />
-                {/* <Ripple color="red" /> */}
-            </div>
-            <div className="ripple-box-wrapper">
-                <div className="ripple-box" />
-                {/* <Ripple color="rgb(255, 152, 0)" /> */}
-            </div>
-            <div className="ripple-box-wrapper">
-                <div className="ripple-box" />
-                {/* <Ripple color="#f5222d" center /> */}
-            </div>
-            <RippleNew>
-                <Button type="secondary">test</Button>
-            </RippleNew>
-
-            <RippleNew center>
-                <div
-                    style={{
-                        color: "#fff",
-                        border: "1px solid #ccc",
-                        width: "100px",
-                        height: "100px"
-                    }}
-                />
-            </RippleNew>
+export const ButtonDoc = () => {
+    return (
+        <div className="ripple-button-demo-wrapper">
+            <h4>默认Button启用 </h4>
+            <Button>DEFAULT</Button>
+            <Button type="primary">PRIMARY</Button>
+            <Button type="secondary">SECONDARY</Button>
+            <Button type="success">SUCCESS</Button>
+            <Button type="error">ERROR</Button>
+            <Button type="warning">WARNING</Button>
+            <Button type="info">INFO</Button>
+            <Button disabled type="primary">
+                PRIMARY
+            </Button>
         </div>
     );
 };
 
-RippleDoc.storyName = "Ripple";
+ButtonDoc.parameters = {
+    docs: {
+        storyDescription: "`Button`中默认启用"
+    }
+};
+
+ButtonDoc.storyName = "Button";

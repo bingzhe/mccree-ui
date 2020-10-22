@@ -2,6 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 import useEventCallback from "../utils/useEventCallback";
+
 import { ConfigContext } from "../config-provider";
 
 const useEnhancedEffect = typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
@@ -11,7 +12,6 @@ interface RippleProps {
     rippleX: number;
     rippleY: number;
     rippleSize: number;
-    color: string;
     timeout: number;
     in?: boolean;
     solid: boolean;
@@ -27,8 +27,7 @@ const Ripple: React.FC<RippleProps> = (props) => {
         in: inProp,
         onExited = () => {},
         timeout,
-        solid,
-        color
+        solid
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -72,7 +71,7 @@ const Ripple: React.FC<RippleProps> = (props) => {
 
     return (
         <span className={rippleClassName} style={rippleStyles}>
-            <span className={childClassName} style={{ background: color }} />
+            <span className={childClassName} />
         </span>
     );
 };

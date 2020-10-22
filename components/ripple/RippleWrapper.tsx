@@ -3,6 +3,7 @@ import classNames from "classnames";
 
 import TouchRipple from "./RippleTouch";
 import useEventCallback from "../utils/useEventCallback";
+import useSetColor from "../hooks/useSetColor";
 import { ConfigContext } from "../config-provider";
 
 export interface ButtonBaseProps {
@@ -56,6 +57,9 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
     const classes = classNames(prefixCls, className);
 
     const rippleRef = React.useRef<any>(null);
+    const rippleWrapperRef = React.useRef<HTMLSpanElement>(null);
+
+    useSetColor(rippleWrapperRef, "color", color);
 
     // 焦点相关
     // React.useEffect(() => {
@@ -101,6 +105,7 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
 
     return (
         <span
+            ref={rippleWrapperRef}
             className={classes}
             onClick={onClick}
             onMouseDown={handleMouseDown}
@@ -115,7 +120,7 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
         >
             {children}
             {enableTouchRipple ? (
-                <TouchRipple ref={rippleRef} center={center} color={color} solid={solid} />
+                <TouchRipple ref={rippleRef} center={center} solid={solid} />
             ) : null}
         </span>
     );

@@ -11,18 +11,11 @@ export const DELAY_RIPPLE = 80;
 interface TouchRippleProps {
     center?: boolean;
     className?: string;
-    color?: string;
     solid?: boolean;
 }
 
 const TouchRipple = React.forwardRef((props: TouchRippleProps, ref) => {
-    const {
-        center: centerProp = false,
-        className,
-        solid = false,
-        color = "currentColor",
-        ...other
-    } = props;
+    const { center: centerProp = false, className, solid = false, ...other } = props;
     const [ripples, setRipples] = React.useState<any[]>([]);
     const nextKey = React.useRef(0);
     const rippleCallback = React.useRef<any>(null);
@@ -69,13 +62,12 @@ const TouchRipple = React.forwardRef((props: TouchRippleProps, ref) => {
                     rippleY={rippleY}
                     rippleSize={rippleSize}
                     solid={solid}
-                    color={color}
                 />
             ]);
             nextKey.current += 1;
             rippleCallback.current = cb;
         },
-        [classes]
+        [solid]
     );
 
     const start = React.useCallback(
@@ -205,7 +197,7 @@ const TouchRipple = React.forwardRef((props: TouchRippleProps, ref) => {
         }),
         [pulsate, start, stop]
     );
-    
+
     return (
         <span className={classes} ref={container} {...other}>
             <TransitionGroup component={null} exit>
