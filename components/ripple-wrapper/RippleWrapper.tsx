@@ -6,7 +6,7 @@ import useEventCallback from "../utils/useEventCallback";
 import { ConfigContext } from "../config-provider";
 
 export interface ButtonBaseProps {
-    centerRipple?: boolean;
+    center?: boolean;
     children?: React.ReactNode;
     className?: string;
     component?: string;
@@ -30,7 +30,7 @@ export interface ButtonBaseProps {
  */
 const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
     const {
-        centerRipple = false,
+        center = false,
         children,
         className,
         component = "button",
@@ -115,7 +115,7 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
         >
             {children}
             {enableTouchRipple ? (
-                <TouchRipple ref={rippleRef} center={centerRipple} color={color} solid={solid} />
+                <TouchRipple ref={rippleRef} center={center} color={color} solid={solid} />
             ) : null}
         </span>
     );

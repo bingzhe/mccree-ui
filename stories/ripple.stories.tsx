@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Button } from "../components/index";
-import Ripple from "../components/ripple/index";
+// import Ripple from "../components/ripple/index";
 import RippleNew from "../components/ripple-wrapper/index";
 
 export default {
@@ -35,7 +35,7 @@ export const RippleDoc = () => {
 
             <div className="ripple-box-wrapper">
                 <div className="ripple-box" />
-                <Ripple />
+                {/* <Ripple /> */}
             </div>
 
             <div>
@@ -44,21 +44,21 @@ export const RippleDoc = () => {
 
             <div className="ripple-box-wrapper">
                 <div className="ripple-box" />
-                <Ripple color="red" />
+                {/* <Ripple color="red" /> */}
             </div>
             <div className="ripple-box-wrapper">
                 <div className="ripple-box" />
-                <Ripple color="rgb(255, 152, 0)" />
+                {/* <Ripple color="rgb(255, 152, 0)" /> */}
             </div>
             <div className="ripple-box-wrapper">
                 <div className="ripple-box" />
-                <Ripple color="#f5222d" center />
+                {/* <Ripple color="#f5222d" center /> */}
             </div>
             <RippleNew>
                 <Button type="secondary">test</Button>
             </RippleNew>
 
-            <RippleNew centerRipple>
+            <RippleNew center>
                 <div
                     style={{
                         color: "#fff",

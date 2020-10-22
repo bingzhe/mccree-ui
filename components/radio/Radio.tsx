@@ -97,7 +97,7 @@ const Radio: RadioFC = (props) => {
 
     return (
         <label className={radioRootClasses}>
-            <Ripple centerRipple={true}>
+            <Ripple center>
                 <span className={radioClasses}>
                     <input
                         className={radioInputClasses}

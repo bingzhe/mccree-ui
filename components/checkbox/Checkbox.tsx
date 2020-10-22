@@ -113,7 +113,7 @@ const Checkbox: CheckboxTypeProps = (props) => {
 
     return (
         <label className={checkboxRootClasses} style={style}>
-            <Ripple centerRipple={true}>
+            <Ripple center>
                 <span className={checkboxClasses}>
                     <input
                         name={name}
