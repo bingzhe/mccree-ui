@@ -1,5 +1,10 @@
 import * as React from "react";
 import { Button, Ripple } from "../components/index";
+import MarkdownDoc from "./components/MarkdownDoc";
+import { prepareMarkdown } from "./utils/parseMarkdown";
+
+const requireDemo = require.context("./pages/ripple", false, /\.(tsx)$/);
+const requireRaw = require.context("!raw-loader!./pages/ripple", false, /\.(md|tsx)$/);
 
 export default {
     title: "工具/Ripple 涟漪",
@@ -23,12 +28,15 @@ Base.args = {
     center: false
 };
 
-export const Center = () => {
+export const Center = (args: any) => {
     return (
-        <Ripple center color="primary">
+        <Ripple center {...args}>
             <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
         </Ripple>
     );
+};
+Center.args = {
+    color: "primary"
 };
 Center.parameters = { docs: { storyDescription: "涟漪居中，从中间向四周扩散，默认在鼠标点击处" } };
 
@@ -77,3 +85,14 @@ ButtonDoc.parameters = {
 };
 
 ButtonDoc.storyName = "Button";
+
+export const API = () => {
+    const pageFilename = "ripple";
+    const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+
+    return (
+        <div>
+            <MarkdownDoc demos={demos} docs={docs} requireDemo={requireDemo} />
+        </div>
+    );
+};

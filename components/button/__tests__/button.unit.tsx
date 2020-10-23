@@ -2,7 +2,7 @@ import * as React from "react";
 import { render, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 
-import Button from "../button";
+import Button from "../button_del";
 
 describe("button", () => {
     it("render <Button/> component", () => {
