@@ -1,6 +1,6 @@
-import Button, { ButtonProps } from "./button_del";
+import Button, { ButtonProps } from "./Button";
 
 export { ButtonProps };
-export { ButtonShape, ButtonType } from "./button_del";
+export { ButtonShape, ButtonType } from "./Button";
 export { SizeType as ButtonSize } from "../config-provider/SizeContext";
 export default Button;
