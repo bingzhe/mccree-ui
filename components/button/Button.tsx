@@ -70,6 +70,7 @@ const Button: ButtonFC = (props) => {
         startIcon: startIconProp,
         endIcon: endIconProp,
         loading: loadingProp,
+        onClick,
         ...restProps
     } = props;
 
@@ -92,7 +93,6 @@ const Button: ButtonFC = (props) => {
     }, [loading, loadingProp]);
 
     const handleClick: React.MouseEventHandler<HTMLElement> = (e) => {
-        const { onClick } = props;
         if (loading) return;
         onClick?.(e);
     };
