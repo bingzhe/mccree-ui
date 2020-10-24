@@ -6,7 +6,7 @@ import useEventCallback from "../utils/useEventCallback";
 import useSetColor from "../hooks/useSetColor";
 import { ConfigContext } from "../config-provider";
 
-export interface ButtonBaseProps {
+export interface RippleProps {
     center?: boolean;
     children?: React.ReactNode;
     className?: string;
@@ -24,12 +24,14 @@ export interface ButtonBaseProps {
     tabIndex?: number;
     color?: string;
     solid?: boolean;
+    style?: React.CSSProperties;
+    block?: boolean;
 }
 
 /**
  * todo 添加焦点逻辑
  */
-const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
+const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
     const {
         center = false,
         children,
@@ -48,13 +50,17 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
         tabIndex = 0,
         color,
         solid,
+        style,
+        block,
         ...other
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
     const prefixCls = getPrefixCls("ripple-wrapper-root");
 
-    const classes = classNames(prefixCls, className);
+    const classes = classNames(prefixCls, className, {
+        [`${prefixCls}-block`]: block
+    });
 
     const rippleRef = React.useRef<any>(null);
     const rippleWrapperRef = React.useRef<HTMLSpanElement>(null);
@@ -99,8 +105,6 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
     const handleTouchEnd = useRippleHandler("stop", onTouchEnd);
     const handleTouchMove = useRippleHandler("stop", onTouchMove);
 
-    // let ComponentProp = component;
-
     const enableTouchRipple = !disableRipple;
 
     return (
@@ -120,7 +124,7 @@ const RippleWrapper = React.forwardRef((props: ButtonBaseProps, ref) => {
         >
             {children}
             {enableTouchRipple ? (
-                <TouchRipple ref={rippleRef} center={center} solid={solid} />
+                <TouchRipple ref={rippleRef} center={center} solid={solid} style={style} />
             ) : null}
         </span>
     );

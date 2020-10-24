@@ -8,13 +8,15 @@ import { ConfigContext } from "../config-provider";
 import SizeContext, { SizeType } from "../config-provider/SizeContext";
 
 import { omit } from "../utils/omit";
-import { Omit, tuple } from "../utils/type";
+import { tuple } from "../utils/type";
 import Icon from "../icon/index";
 
 const ButtonVariants = tuple("contain", "outline", "text");
 export type ButtonVariant = typeof ButtonVariants[number];
 const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
 export type ButtonType = typeof ButtonTypes[number];
+const ButtonColors = tuple("primary", "secondary", "success", "warning", "error", "info");
+export type ButtonColor = typeof ButtonColors[number];
 const ButtonHTMLTypes = tuple("submit", "button", "reset");
 export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
 const ButtonShapes = tuple("circle", "round");
@@ -22,6 +24,7 @@ export type ButtonShape = typeof ButtonShapes[number];
 
 export interface BaseButtonProps {
     type?: ButtonType;
+    color?: ButtonColor;
     variant?: ButtonVariant;
     shape?: ButtonShape;
     size: SizeType;
@@ -50,27 +53,43 @@ export type NativeButtonProps = {
 
 export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
-interface ButtonTypeProps extends React.FC<ButtonProps> {
+interface ButtonFC extends React.FC<ButtonProps> {
     Group: typeof ButtonGroup;
 }
-const Button: ButtonTypeProps = ({ ...props }) => {
-    const [loading, setLoading] = React.useState(props.loading);
+
+const Button: ButtonFC = (props) => {
+    const {
+        type,
+        color,
+        shape,
+        size: sizeProp,
+        className,
+        children,
+        block,
+        variant,
+        startIcon: startIconProp,
+        endIcon: endIconProp,
+        loading: loadingProp,
+        ...restProps
+    } = props;
+
+    const [loading, setLoading] = React.useState(loadingProp);
     const { getPrefixCls } = React.useContext(ConfigContext);
-    // const buttonRef = React.createRef<HTMLButtonElement>();
-    let delayTimeout: number;
+    const sizeContext = React.useContext(SizeContext);
+    const delayTimeout = React.useRef<number>();
 
     React.useEffect(() => {
-        if (props.loading && typeof props.loading !== "boolean") {
-            clearTimeout(delayTimeout);
+        if (loadingProp && typeof loadingProp !== "boolean") {
+            clearTimeout(delayTimeout.current);
         }
-        if (props.loading && typeof props.loading !== "boolean" && props.loading.delay) {
-            delayTimeout = window.setTimeout(() => {
-                setLoading(props.loading);
-            }, props.loading.delay);
-        } else if (props.loading !== loading) {
-            setLoading(props.loading);
+        if (loadingProp && typeof loadingProp !== "boolean" && loadingProp.delay) {
+            delayTimeout.current = window.setTimeout(() => {
+                setLoading(loadingProp);
+            }, loadingProp.delay);
+        } else if (loadingProp !== loading) {
+            setLoading(loadingProp);
         }
-    }, [props.loading]);
+    }, [loading, loadingProp]);
 
     const handleClick: React.MouseEventHandler<HTMLElement> = (e) => {
         const { onClick } = props;
@@ -78,102 +97,88 @@ const Button: ButtonTypeProps = ({ ...props }) => {
         onClick?.(e);
     };
 
-    return (
-        <SizeContext.Consumer>
-            {(size) => {
-                const {
-                    prefixCls: customizePrefixCls,
-                    type,
-                    shape,
-                    size: customizeSize,
-                    className,
-                    children,
-                    block,
-                    variant,
-                    startIcon: startIconProp,
-                    endIcon: endIconProp,
-                    ...rest
-                } = props;
+    const prefixCls = getPrefixCls("btn");
+    const rootPrefixCls = getPrefixCls("btn-root");
 
-                const prefixCls = getPrefixCls("btn", customizePrefixCls);
+    const rootClasses = classNames(rootPrefixCls, className);
 
-                let sizeCls = "";
-                switch (customizeSize || size) {
-                    case "large":
-                        sizeCls = "lg";
-                        break;
-                    case "small":
-                        sizeCls = "sm";
-                        break;
-                    default:
-                        break;
-                }
+    let sizeCls = "";
+    switch (sizeProp || sizeContext) {
+        case "large":
+            sizeCls = "lg";
+            break;
+        case "small":
+            sizeCls = "sm";
+            break;
+        default:
+            break;
+    }
 
-                const classes = classNames(prefixCls, className, {
-                    [`${prefixCls}-${type}`]: type,
-                    [`${prefixCls}-${variant}`]: variant,
-                    [`${prefixCls}-${shape}`]: shape,
-                    [`${prefixCls}-${sizeCls}`]: sizeCls,
-                    [`${prefixCls}-loading`]: loading,
-                    [`${prefixCls}-icon`]: startIconProp || endIconProp,
-                    [`${prefixCls}-block`]: block
-                });
+    const classes = classNames(prefixCls, {
+        [`${prefixCls}-${color}`]: color,
+        [`${prefixCls}-${variant}`]: variant,
+        [`${prefixCls}-${shape}`]: shape,
+        [`${prefixCls}-${sizeCls}`]: sizeCls,
+        [`${prefixCls}-loading`]: loading,
+        [`${prefixCls}-icon`]: startIconProp || endIconProp,
+        [`${prefixCls}-block`]: block
+    });
 
-                const loadingIcon = loading && (
-                    <span className={`${prefixCls}-icon-loading`}>
-                        <Icon name="loading" spin />
-                    </span>
-                );
-                const startIcon = !loading && startIconProp && (
-                    <span
-                        className={classNames(`${prefixCls}-prefix-icon`, {
-                            [`${prefixCls}-icon-${sizeCls}`]: sizeCls
-                        })}
-                    >
-                        {startIconProp}
-                    </span>
-                );
-                const endIcon = !loading && endIconProp && (
-                    <span
-                        className={classNames(`${prefixCls}-suffix-icon`, {
-                            [`${prefixCls}-icon-${sizeCls}`]: sizeCls
-                        })}
-                    >
-                        {endIconProp}
-                    </span>
-                );
-
-                const linkButtonRestProps = omit(rest as AnchorButtonProps, ["loading"]);
-
-                if (linkButtonRestProps.href !== undefined) {
-                    return (
-                        <a {...linkButtonRestProps} className={classes} onClick={handleClick}>
-                            {children}
-                        </a>
-                    );
-                }
-
-                const { htmlType, ...otherProps } = rest as NativeButtonProps;
-
-                const buttonNode = (
-                    <button
-                        {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
-                        type={htmlType}
-                        className={classes}
-                        onClick={handleClick}
-                    >
-                        {loadingIcon}
-                        {startIcon}
-                        {children}
-                        {endIcon}
-                        <Ripple />
-                    </button>
-                );
-
-                return buttonNode;
-            }}
-        </SizeContext.Consumer>
+    const loadingIcon = loading && (
+        <span className={`${prefixCls}-icon-loading`}>
+            <Icon name="loading" spin />
+        </span>
     );
+    const startIcon = !loading && startIconProp && (
+        <span
+            className={classNames(`${prefixCls}-prefix-icon`, {
+                [`${prefixCls}-icon-${sizeCls}`]: sizeCls
+            })}
+        >
+            {startIconProp}
+        </span>
+    );
+    const endIcon = !loading && endIconProp && (
+        <span
+            className={classNames(`${prefixCls}-suffix-icon`, {
+                [`${prefixCls}-icon-${sizeCls}`]: sizeCls
+            })}
+        >
+            {endIconProp}
+        </span>
+    );
+
+    const linkButtonRestProps = omit(restProps as AnchorButtonProps, ["loading"]);
+
+    if (linkButtonRestProps.href !== undefined) {
+        return (
+            <a {...linkButtonRestProps} className={classes} onClick={handleClick}>
+                {children}
+            </a>
+        );
+    }
+
+    const { htmlType, ...otherProps } = restProps as NativeButtonProps;
+
+    const buttonNode = (
+        <span className={rootClasses}>
+            <Ripple block={block} style={{ borderRadius: "2px" }}>
+                <button
+                    {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
+                    type={htmlType}
+                    className={classes}
+                    onClick={handleClick}
+                >
+                    {loadingIcon}
+                    {startIcon}
+                    {children}
+                    {endIcon}
+                </button>
+            </Ripple>
+        </span>
+    );
+
+    return buttonNode;
 };
 
 Button.defaultProps = {
@@ -187,13 +192,7 @@ Button.defaultProps = {
 Button.Group = ButtonGroup;
 
 Button.propTypes = {
-    /**
-     * disabled
-     */
     disabled: PropTypes.bool,
-    /**
-     * How large should the button be?
-     */
     size: PropTypes.oneOf(["small", "medium", "large"])
 };
 
