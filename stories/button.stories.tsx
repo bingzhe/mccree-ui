@@ -291,6 +291,21 @@ IconDoc.parameters = {
 };
 IconDoc.storyName = "Icon";
 
+export const IconButton = () => {
+    return (
+        <Space>
+            <Button.IconButton color="primary">
+                <Icon name="caret-right" />
+            </Button.IconButton>
+        </Space>
+    );
+};
+IconButton.parameters = {
+    docs: {
+        storyDescription: "设置`shape`为 `round` `circle` 控制样式"
+    }
+};
+
 export const Shape = () => {
     return (
         <Space>

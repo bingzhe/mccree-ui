@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import Ripple from "../ripple";
 import ButtonGroup from "./ButtonGroup";
+import IconButton from "./IconButton";
 import { ConfigContext } from "../config-provider";
 import SizeContext, { SizeType } from "../config-provider/SizeContext";
 
@@ -36,6 +37,7 @@ export interface BaseButtonProps {
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
     children?: React.ReactNode;
+    centerRipple?: boolean;
 }
 
 export type AnchorButtonProps = {
@@ -55,6 +57,7 @@ export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
 interface ButtonFC extends React.FC<ButtonProps> {
     Group: typeof ButtonGroup;
+    IconButton: typeof IconButton;
 }
 
 const Button: ButtonFC = (props) => {
@@ -71,6 +74,7 @@ const Button: ButtonFC = (props) => {
         endIcon: endIconProp,
         loading: loadingProp,
         onClick,
+        centerRipple,
         ...restProps
     } = props;
 
@@ -162,7 +166,7 @@ const Button: ButtonFC = (props) => {
 
     const buttonNode = (
         <span className={rootClasses}>
-            <Ripple block={block} style={{ borderRadius: "2px" }}>
+            <Ripple block={block} style={{ borderRadius: "2px" }} center={centerRipple}>
                 <button
                     {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
                     type={htmlType}
@@ -186,10 +190,12 @@ Button.defaultProps = {
     size: "medium",
     disabled: false,
     loading: false,
-    block: false
+    block: false,
+    centerRipple: false
 };
 
 Button.Group = ButtonGroup;
+Button.IconButton = IconButton;
 
 Button.propTypes = {
     disabled: PropTypes.bool,
