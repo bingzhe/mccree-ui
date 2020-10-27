@@ -165,21 +165,25 @@ const Button: ButtonFC = (props) => {
     const { htmlType, ...otherProps } = restProps as NativeButtonProps;
 
     const buttonNode = (
-        <span className={rootClasses}>
-            <Ripple block={block} style={{ borderRadius: "2px" }} center={centerRipple}>
-                <button
-                    {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
-                    type={htmlType}
-                    className={classes}
-                    onClick={handleClick}
-                >
-                    {loadingIcon}
-                    {startIcon}
-                    {children}
-                    {endIcon}
-                </button>
-            </Ripple>
-        </span>
+        <Ripple
+            block={block}
+            style={{ borderRadius: "2px" }}
+            center={centerRipple}
+            className={rootClasses}
+            color="primary"
+        >
+            <button
+                {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
+                type={htmlType}
+                className={classes}
+                onClick={handleClick}
+            >
+                {loadingIcon}
+                {startIcon}
+                {children}
+                {endIcon}
+            </button>
+        </Ripple>
     );
 
     return buttonNode;

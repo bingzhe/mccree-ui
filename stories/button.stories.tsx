@@ -217,7 +217,7 @@ export const Block = () => {
         </Space>
     );
 };
-Block.parameters = {
+Block.parameters = { 
     docs: {
         storyDescription: "`block`属性将使按钮宽度调整为其父宽度"
     }
@@ -294,7 +294,12 @@ IconDoc.storyName = "Icon";
 export const IconButton = () => {
     return (
         <Space>
-            <Button.IconButton color="primary">
+            <Button.IconButton
+                color="primary"
+                onClick={(e) => {
+                    console.log(e);
+                }}
+            >
                 <Icon name="caret-right" />
             </Button.IconButton>
         </Space>
