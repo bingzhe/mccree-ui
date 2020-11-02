@@ -118,6 +118,10 @@ const Button: ButtonFC = (props) => {
             break;
     }
 
+    let rippleColor = "";
+
+    console.log(rippleColor)
+
     const classes = classNames(prefixCls, {
         [`${prefixCls}-${color}`]: color,
         [`${prefixCls}-${variant}`]: variant,
@@ -170,7 +174,6 @@ const Button: ButtonFC = (props) => {
             style={{ borderRadius: "2px" }}
             center={centerRipple}
             className={rootClasses}
-            color="primary"
         >
             <button
                 {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
