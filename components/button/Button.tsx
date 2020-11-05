@@ -113,12 +113,14 @@ const Button: ButtonFC = (props) => {
     switch (sizeProp || sizeContext) {
         case "large":
             sizeCls = "lg";
+            rippleBorderRadius = shape === 'round' ? "40px" : "4px"
             break;
         case "small":
             sizeCls = "sm";
-            rippleBorderRadius = "2px";
+            rippleBorderRadius = shape === 'round' ? "24px" : "2px";
             break;
         default:
+            rippleBorderRadius = shape === 'round' ? "32px" : "4px";
             break;
     }
 
