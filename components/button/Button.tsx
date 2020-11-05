@@ -106,21 +106,34 @@ const Button: ButtonFC = (props) => {
 
     const rootClasses = classNames(rootPrefixCls, className);
 
+    let rippleColor: string | undefined;
+    let rippleBorderRadius = "4px";
     let sizeCls = "";
+
     switch (sizeProp || sizeContext) {
         case "large":
             sizeCls = "lg";
             break;
         case "small":
             sizeCls = "sm";
+            rippleBorderRadius = "2px";
             break;
         default:
             break;
     }
 
-    let rippleColor = "";
+    // console.log(rippleColor);
 
-    console.log(rippleColor)
+    if (variant === "outline" || variant === "text") {
+        rippleColor = color;
+    } else if (variant === "contain") {
+        if (!color) {
+            rippleColor = "#000";
+        } else {
+            rippleColor = "#FFF";
+        }
+    }
+    let rippleStyle: React.CSSProperties = { borderRadius: rippleBorderRadius };
 
     const classes = classNames(prefixCls, {
         [`${prefixCls}-${color}`]: color,
@@ -171,9 +184,10 @@ const Button: ButtonFC = (props) => {
     const buttonNode = (
         <Ripple
             block={block}
-            style={{ borderRadius: "2px" }}
+            style={rippleStyle}
             center={centerRipple}
             className={rootClasses}
+            color={rippleColor}
         >
             <button
                 {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
