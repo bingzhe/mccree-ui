@@ -78,6 +78,8 @@ const Button: ButtonFC = (props) => {
         ...restProps
     } = props;
 
+    const { disabled } = restProps;
+
     const [loading, setLoading] = React.useState(loadingProp);
     const { getPrefixCls } = React.useContext(ConfigContext);
     const sizeContext = React.useContext(SizeContext);
@@ -113,18 +115,16 @@ const Button: ButtonFC = (props) => {
     switch (sizeProp || sizeContext) {
         case "large":
             sizeCls = "lg";
-            rippleBorderRadius = shape === 'round' ? "40px" : "4px"
+            rippleBorderRadius = shape === "round" ? "40px" : "4px";
             break;
         case "small":
             sizeCls = "sm";
-            rippleBorderRadius = shape === 'round' ? "24px" : "2px";
+            rippleBorderRadius = shape === "round" ? "24px" : "2px";
             break;
         default:
-            rippleBorderRadius = shape === 'round' ? "32px" : "4px";
+            rippleBorderRadius = shape === "round" ? "32px" : "4px";
             break;
     }
-
-    // console.log(rippleColor);
 
     if (variant === "outline" || variant === "text") {
         rippleColor = color;
@@ -190,6 +190,7 @@ const Button: ButtonFC = (props) => {
             center={centerRipple}
             className={rootClasses}
             color={rippleColor}
+            disableRipple={disabled}
         >
             <button
                 {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
@@ -197,6 +198,7 @@ const Button: ButtonFC = (props) => {
                 className={classes}
                 onClick={handleClick}
             >
+                {/* disabled={disabled} */}
                 {loadingIcon}
                 {startIcon}
                 {children}
