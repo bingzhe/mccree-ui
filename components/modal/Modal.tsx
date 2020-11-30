@@ -67,9 +67,9 @@ const Modal: ModalFC = (props) => {
         <Backdrop visible={visible} onClick={closeModal}>
             <Transition visible={visible} type="fade">
                 <div className={modalClasses} {...restProps}>
-                    <Button className={`${prefixCls}-close`} shape="circle" variant="text">
+                    <Button.IconButton className={`${prefixCls}-close`} variant="text">
                         <Icon name="close" />
-                    </Button>
+                    </Button.IconButton>
                     {headerChildren}
                     {hasContent ? (
                         withoutActionsChildren
