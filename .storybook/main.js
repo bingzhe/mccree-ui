@@ -50,6 +50,7 @@ module.exports = {
             use: ["style-loader", "css-loader", "less-loader"],
             include: [
                 path.resolve(__dirname, "../components"),
+                path.resolve(__dirname, "../../components"),
                 path.resolve(__dirname, "../stories")
             ]
         });
