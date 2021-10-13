@@ -13,8 +13,8 @@
     ],
     "typings": "lib/index.d.ts",
     "scripts": {
-        "storybook": "start-storybook -p 6006",
-        "start": "yarn storybook",
+        "start": "pnpm -C ./packages/story storybook",
+        "dev": "pnpm -C ./packages/story storybook",
         "build": "yarn compile && yarn dist",
         "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand",
         "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.ci.js",
