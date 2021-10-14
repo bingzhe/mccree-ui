@@ -6,6 +6,9 @@
         "popper.js": "^1.16.1",
         "react-transition-group": "^4.4.2"
     },
+    "devDependencies": {
+        "@types/react-transition-group": "^4.4.3"
+    },
     "peerDependencies": {
         "react": ">=16.9.0",
         "react-dom": ">=16.9.0"
