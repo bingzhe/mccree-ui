@@ -65,3 +65,18 @@ Color.parameters = {
 //         </div>
 //     );
 // };
+
+export const Foo: React.FC<{ Component: React.Component }> = (props) => {
+    const { Component } = props;
+
+    const Aa = "button";
+    type y = keyof JSX.IntrinsicElements;
+    let Bb: y;
+    // return (
+    //     <>
+    //         <Aa>dd</Aa>
+    //     </>
+    // );
+
+    return <Bb>123</Bb>;
+};

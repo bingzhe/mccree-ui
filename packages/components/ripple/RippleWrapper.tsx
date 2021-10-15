@@ -5,11 +5,12 @@ import TouchRipple from "./RippleTouch";
 import { useEventCallback, useSetColor } from "@mccree-ui/hooks";
 import { ConfigContext } from "../config-provider";
 
+type ComponentPropsType = "button" | "span" | "div";
 export interface RippleProps {
     center?: boolean;
     children?: React.ReactNode;
     className?: string;
-    component?: string;
+    component?: ComponentPropsType;
     disableRipple?: boolean;
     disableTouchRipple?: boolean;
     onClick?: React.MouseEventHandler;
@@ -62,7 +63,7 @@ const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
     });
 
     const rippleRef = React.useRef<any>(null);
-    const rippleWrapperRef = React.useRef<HTMLSpanElement>(null);
+    const rippleWrapperRef = React.useRef<any>(null);
 
     useSetColor(rippleWrapperRef, "color", color);
 
@@ -106,8 +107,10 @@ const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
 
     const enableTouchRipple = !disableRipple;
 
+    const ComponentProp = component;
+
     return (
-        <span
+        <ComponentProp
             ref={rippleWrapperRef}
             className={classes}
             onClick={onClick}
@@ -119,13 +122,14 @@ const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
             onTouchMove={handleTouchMove}
             onTouchStart={handleTouchStart}
             tabIndex={tabIndex}
+            style={style}
             {...other}
         >
             {children}
             {enableTouchRipple ? (
-                <TouchRipple ref={rippleRef} center={center} solid={solid} style={style} />
+                <TouchRipple ref={rippleRef} center={center} solid={solid} />
             ) : null}
-        </span>
+        </ComponentProp>
     );
 });
 

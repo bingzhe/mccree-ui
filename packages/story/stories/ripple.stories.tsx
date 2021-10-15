@@ -30,12 +30,23 @@ Base.args = {
 };
 
 export const Center = (args: any) => {
+    const a = () => {
+        return <div></div>;
+    };
+    const b = {
+        a: a
+    };
+    console.log(b);
     return (
-        <Ripple center {...args}>
-            <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
-        </Ripple>
+        <Ripple
+            center
+            {...args}
+            component="div"
+            style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}
+        ></Ripple>
     );
 };
+
 // Center.args = {
 //     color: "primary"
 // };
