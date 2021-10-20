@@ -4,13 +4,13 @@ import classNames from "classnames";
 import TouchRipple from "./RippleTouch";
 import { useEventCallback, useSetColor } from "@mccree-ui/hooks";
 import { ConfigContext } from "../config-provider";
+import { HTMLTagStringType } from "./Ripple.type";
 
-type ComponentPropsType = "button" | "span" | "div";
 export interface RippleProps {
     center?: boolean;
     children?: React.ReactNode;
     className?: string;
-    component?: ComponentPropsType;
+    component?: HTMLTagStringType | React.ReactNode;
     disableRipple?: boolean;
     disableTouchRipple?: boolean;
     onClick?: React.MouseEventHandler;
@@ -29,14 +29,15 @@ export interface RippleProps {
 }
 
 /**
- * todo 添加焦点逻辑
+ * TODO 添加焦点逻辑
  */
-const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
+// const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
+const RippleWrapper: React.FC<RippleProps> = (props) => {
     const {
         center = false,
         children,
         className,
-        component = "button",
+        component = "span",
         disableRipple = false,
         disableTouchRipple = false,
         onClick,
@@ -107,30 +108,60 @@ const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
 
     const enableTouchRipple = !disableRipple;
 
+    console.log(React.isValidElement(component));
     const ComponentProp = component;
 
-    return (
-        <ComponentProp
-            ref={rippleWrapperRef}
-            className={classes}
-            onClick={onClick}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onDragLeave={handleDragLeave}
-            onTouchEnd={handleTouchEnd}
-            onTouchMove={handleTouchMove}
-            onTouchStart={handleTouchStart}
-            tabIndex={tabIndex}
-            style={style}
-            {...other}
-        >
-            {children}
-            {enableTouchRipple ? (
-                <TouchRipple ref={rippleRef} center={center} solid={solid} />
-            ) : null}
-        </ComponentProp>
-    );
-});
+    const asIsString = typeof component;
+
+    if (asIsString) {
+        return (
+            <ComponentProp
+                ref={rippleWrapperRef}
+                className={classes}
+                onClick={onClick}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onDragLeave={handleDragLeave}
+                onTouchEnd={handleTouchEnd}
+                onTouchMove={handleTouchMove}
+                onTouchStart={handleTouchStart}
+                tabIndex={tabIndex}
+                style={style}
+                {...other}
+            >
+                {children}
+                {enableTouchRipple ? (
+                    <TouchRipple ref={rippleRef} center={center} solid={solid} />
+                ) : null}
+            </ComponentProp>
+        );
+    } else {
+        return ComponentProp;
+    }
+
+    // return (
+    //     <ComponentProp
+    //         ref={rippleWrapperRef}
+    //         className={classes}
+    //         onClick={onClick}
+    //         onMouseDown={handleMouseDown}
+    //         onMouseLeave={handleMouseLeave}
+    //         onMouseUp={handleMouseUp}
+    //         onDragLeave={handleDragLeave}
+    //         onTouchEnd={handleTouchEnd}
+    //         onTouchMove={handleTouchMove}
+    //         onTouchStart={handleTouchStart}
+    //         tabIndex={tabIndex}
+    //         style={style}
+    //         {...other}
+    //     >
+    //         {children}
+    //         {enableTouchRipple ? (
+    //             <TouchRipple ref={rippleRef} center={center} solid={solid} />
+    //         ) : null}
+    //     </ComponentProp>
+    // );
+};
 
 export default RippleWrapper;

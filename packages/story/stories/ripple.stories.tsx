@@ -29,14 +29,22 @@ Base.args = {
     center: false
 };
 
+export const demo1 = (args: any) => {
+    return (
+        <Ripple center {...args}>
+            <div
+                style={{
+                    border: "1px solid #ccc",
+                    width: "100px",
+                    height: "100px",
+                    marginBottom: "20px"
+                }}
+            ></div>
+        </Ripple>
+    );
+};
+
 export const Center = (args: any) => {
-    const a = () => {
-        return <div></div>;
-    };
-    const b = {
-        a: a
-    };
-    console.log(b);
     return (
         <Ripple
             center
@@ -47,30 +55,48 @@ export const Center = (args: any) => {
     );
 };
 
-// Center.args = {
-//     color: "primary"
-// };
-// Center.parameters = { docs: { storyDescription: "涟漪居中，从中间向四周扩散，默认在鼠标点击处" } };
+Center.args = {
+    color: "primary"
+};
+Center.parameters = { docs: { storyDescription: "涟漪居中，从中间向四周扩散，默认在鼠标点击处" } };
 
-// export const Color = () => {
-//     return (
-//         <>
-//             <Ripple color="primary">
-//                 <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
-//             </Ripple>
-//             <span style={{ marginRight: "10px" }} />
-//             <Ripple color="#c473e5">
-//                 <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
-//             </Ripple>
-//         </>
-//     );
-// };
-// Color.parameters = {
-//     docs: {
-//         storyDescription:
-//             "涟漪颜色，可以设置为`primary`,`secondary`,`success`,`warning`,`error`,`info`,`RGB`,`HEX`"
-//     }
-// };
+export const Color = () => {
+    return (
+        <>
+            <Ripple color="primary">
+                <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
+            </Ripple>
+            <span style={{ marginRight: "10px" }} />
+            <Ripple color="#c473e5">
+                <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
+            </Ripple>
+        </>
+    );
+};
+Color.parameters = {
+    docs: {
+        storyDescription:
+            "涟漪颜色，可以设置为`primary`,`secondary`,`success`,`warning`,`error`,`info`,`RGB`,`HEX`"
+    }
+};
+
+const CardDemo = (props: any) => {
+    return (
+        <div {...props} style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}></div>
+    );
+};
+
+export const Demo2: React.FC = (args: any) => {
+    const CardNode = <CardDemo />;
+    return (
+        <Ripple
+            center
+            {...args}
+            component={CardNode}
+            style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}
+        ></Ripple>
+    );
+};
 
 // export const ButtonDoc = () => {
 //     return (
