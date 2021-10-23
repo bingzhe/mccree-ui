@@ -4,13 +4,13 @@ import classNames from "classnames";
 import TouchRipple from "./RippleTouch";
 import { useEventCallback, useSetColor } from "@mccree-ui/hooks";
 import { ConfigContext } from "../config-provider";
-import { HTMLTagStringType } from "./Ripple.type";
+import { RippleRootHTMLTag } from "./Ripple.type";
 
 export interface RippleProps {
     center?: boolean;
     children?: React.ReactNode;
     className?: string;
-    component?: HTMLTagStringType | React.ReactNode;
+    as?: RippleRootHTMLTag | React.ReactNode;
     disableRipple?: boolean;
     disableTouchRipple?: boolean;
     onClick?: React.MouseEventHandler;
@@ -37,7 +37,7 @@ const RippleWrapper: React.FC<RippleProps> = (props) => {
         center = false,
         children,
         className,
-        component = "span",
+        as = "span",
         disableRipple = false,
         disableTouchRipple = false,
         onClick,
@@ -108,37 +108,35 @@ const RippleWrapper: React.FC<RippleProps> = (props) => {
 
     const enableTouchRipple = !disableRipple;
 
-    console.log(React.isValidElement(component));
-    const ComponentProp = component;
+    console.log(React.isValidElement(as));
+    const ComponentProp = as;
 
-    const asIsString = typeof component;
-
-    if (asIsString) {
-        return (
-            <ComponentProp
-                ref={rippleWrapperRef}
-                className={classes}
-                onClick={onClick}
-                onMouseDown={handleMouseDown}
-                onMouseLeave={handleMouseLeave}
-                onMouseUp={handleMouseUp}
-                onDragLeave={handleDragLeave}
-                onTouchEnd={handleTouchEnd}
-                onTouchMove={handleTouchMove}
-                onTouchStart={handleTouchStart}
-                tabIndex={tabIndex}
-                style={style}
-                {...other}
-            >
-                {children}
-                {enableTouchRipple ? (
-                    <TouchRipple ref={rippleRef} center={center} solid={solid} />
-                ) : null}
-            </ComponentProp>
-        );
-    } else {
+    const asIsString = typeof as;
+    if (React.isValidElement(as)) {
         return ComponentProp;
     }
+    return (
+        <ComponentProp
+            className={classes}
+            ref={rippleWrapperRef}
+            onClick={onClick}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onDragLeave={handleDragLeave}
+            onTouchEnd={handleTouchEnd}
+            onTouchMove={handleTouchMove}
+            onTouchStart={handleTouchStart}
+            tabIndex={tabIndex}
+            style={style}
+            {...other}
+        >
+            {children}
+            {enableTouchRipple ? (
+                <TouchRipple ref={rippleRef} center={center} solid={solid} />
+            ) : null}
+        </ComponentProp>
+    );
 
     // return (
     //     <ComponentProp
