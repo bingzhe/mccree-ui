@@ -63,7 +63,7 @@ Center.parameters = { docs: { storyDescription: "涟漪居中，从中间向四�
 export const Color = () => {
     return (
         <>
-            <Ripple color="primary" >
+            <Ripple color="primary">
                 <div style={{ border: "1px solid #ccc", width: "100px", height: "100px" }} />
             </Ripple>
             <span style={{ marginRight: "10px" }} />
@@ -86,17 +86,21 @@ const CardDemo = (props: any) => {
     );
 };
 
-// export const Demo2: React.FC = (args: any) => {
-//     const CardNode = <CardDemo />;
-//     return (
-//         <Ripple
-//             center
-//             {...args}
-//             component={CardNode}
-//             style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}
-//         ></Ripple>
-//     );
-// };
+export const Demo2: React.FC = (args: any) => {
+    const test = (e) => {
+        console.log("EEEEEEEEEEEEEEEEEEEEE");
+    };
+    const CardNode = <CardDemo onClick={test} />;
+    return (
+        <Ripple
+            className="sadfa"
+            color="primary"
+            {...args}
+            component={CardNode}
+            style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}
+        ></Ripple>
+    );
+};
 
 // export const ButtonDoc = () => {
 //     return (

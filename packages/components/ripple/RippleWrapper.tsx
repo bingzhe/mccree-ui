@@ -10,7 +10,7 @@ export interface RippleProps {
     center?: boolean;
     children?: React.ReactNode;
     className?: string;
-    as?: RippleRootHTMLTag | React.ReactNode;
+    component?: RippleRootHTMLTag | React.ReactElement;
     disableRipple?: boolean;
     disableTouchRipple?: boolean;
     onClick?: React.MouseEventHandler;
@@ -31,13 +31,13 @@ export interface RippleProps {
 /**
  * TODO 添加焦点逻辑
  */
-// const RippleWrapper = React.forwardRef((props: RippleProps, ref) => {
+// const RippleWrapper = React.forwardRef<HTMLElement, RippleProps>((props, ref) => {
 const RippleWrapper: React.FC<RippleProps> = (props) => {
     const {
         center = false,
         children,
         className,
-        as = "span",
+        component = "span",
         disableRipple = false,
         disableTouchRipple = false,
         onClick,
@@ -108,13 +108,35 @@ const RippleWrapper: React.FC<RippleProps> = (props) => {
 
     const enableTouchRipple = !disableRipple;
 
-    console.log(React.isValidElement(as));
-    const ComponentProp = as;
+    console.log(React.isValidElement(component));
+    const ComponentProp = component;
 
-    const asIsString = typeof as;
-    if (React.isValidElement(as)) {
-        return ComponentProp;
+    if (React.isValidElement(ComponentProp)) {
+        const childNode = (
+            <>
+                {children}
+                {enableTouchRipple ? (
+                    <TouchRipple ref={rippleRef} center={center} solid={solid} />
+                ) : null}
+            </>
+        );
+        const customProps = {
+            className: classes,
+            onClick: onClick,
+            onMouseDown: handleMouseDown,
+            onMouseLeave: handleMouseLeave,
+            onMouseUp: handleMouseUp,
+            onDragLeave: handleDragLeave,
+            onTouchEnd: handleTouchEnd,
+            onTouchMove: handleTouchMove,
+            onTouchStart: handleTouchStart,
+            tabIndex: tabIndex,
+            children: childNode
+        };
+
+        return React.cloneElement(ComponentProp as React.ReactElement, customProps);
     }
+
     return (
         <ComponentProp
             className={classes}
@@ -137,29 +159,6 @@ const RippleWrapper: React.FC<RippleProps> = (props) => {
             ) : null}
         </ComponentProp>
     );
-
-    // return (
-    //     <ComponentProp
-    //         ref={rippleWrapperRef}
-    //         className={classes}
-    //         onClick={onClick}
-    //         onMouseDown={handleMouseDown}
-    //         onMouseLeave={handleMouseLeave}
-    //         onMouseUp={handleMouseUp}
-    //         onDragLeave={handleDragLeave}
-    //         onTouchEnd={handleTouchEnd}
-    //         onTouchMove={handleTouchMove}
-    //         onTouchStart={handleTouchStart}
-    //         tabIndex={tabIndex}
-    //         style={style}
-    //         {...other}
-    //     >
-    //         {children}
-    //         {enableTouchRipple ? (
-    //             <TouchRipple ref={rippleRef} center={center} solid={solid} />
-    //         ) : null}
-    //     </ComponentProp>
-    // );
 };
 
 export default RippleWrapper;
