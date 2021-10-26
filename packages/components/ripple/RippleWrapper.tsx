@@ -1,5 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 import TouchRipple from "./RippleTouch";
 import { useEventCallback, useSetColor } from "@mccree-ui/hooks";
@@ -10,7 +11,7 @@ export interface RippleProps {
     center?: boolean;
     children?: React.ReactNode;
     className?: string;
-    component?: RippleRootHTMLTag | React.ReactElement;
+    component?: RippleRootHTMLTag;
     disableRipple?: boolean;
     disableTouchRipple?: boolean;
     onClick?: React.MouseEventHandler;
@@ -31,7 +32,6 @@ export interface RippleProps {
 /**
  * TODO 添加焦点逻辑
  */
-// const RippleWrapper = React.forwardRef<HTMLElement, RippleProps>((props, ref) => {
 const RippleWrapper: React.FC<RippleProps> = (props) => {
     const {
         center = false,
@@ -108,34 +108,7 @@ const RippleWrapper: React.FC<RippleProps> = (props) => {
 
     const enableTouchRipple = !disableRipple;
 
-    console.log(React.isValidElement(component));
     const ComponentProp = component;
-
-    if (React.isValidElement(ComponentProp)) {
-        const childNode = (
-            <>
-                {children}
-                {enableTouchRipple ? (
-                    <TouchRipple ref={rippleRef} center={center} solid={solid} />
-                ) : null}
-            </>
-        );
-        const customProps = {
-            className: classes,
-            onClick: onClick,
-            onMouseDown: handleMouseDown,
-            onMouseLeave: handleMouseLeave,
-            onMouseUp: handleMouseUp,
-            onDragLeave: handleDragLeave,
-            onTouchEnd: handleTouchEnd,
-            onTouchMove: handleTouchMove,
-            onTouchStart: handleTouchStart,
-            tabIndex: tabIndex,
-            children: childNode
-        };
-
-        return React.cloneElement(ComponentProp as React.ReactElement, customProps);
-    }
 
     return (
         <ComponentProp
@@ -159,6 +132,12 @@ const RippleWrapper: React.FC<RippleProps> = (props) => {
             ) : null}
         </ComponentProp>
     );
+};
+
+RippleWrapper.propTypes = {
+    center: PropTypes.bool,
+    disableRipple: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool
 };
 
 export default RippleWrapper;

@@ -1,8 +1,11 @@
 {
-    "name": "@mccree-ui/hooks",
+    "name": "@mccree-ui/icons",
     "version": "0.0.1",
     "peerDependencies": {
         "react": ">=16.9.0",
         "react-dom": ">=16.9.0"
+    },
+    "dependencies": {
+        "classnames": "^2.3.1"
     }
 }

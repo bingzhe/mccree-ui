@@ -80,27 +80,27 @@ Color.parameters = {
     }
 };
 
-const CardDemo = (props: any) => {
-    return (
-        <div {...props} style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}></div>
-    );
-};
+// const CardDemo = (props: any) => {
+//     return (
+//         <div {...props} style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}></div>
+//     );
+// };
 
-export const Demo2: React.FC = (args: any) => {
-    const test = (e) => {
-        console.log("EEEEEEEEEEEEEEEEEEEEE");
-    };
-    const CardNode = <CardDemo onClick={test} />;
-    return (
-        <Ripple
-            className="sadfa"
-            color="primary"
-            {...args}
-            component={CardNode}
-            style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}
-        ></Ripple>
-    );
-};
+// export const Demo2: React.FC = (args: any) => {
+//     const test = (e) => {
+//         console.log("EEEEEEEEEEEEEEEEEEEEE");
+//     };
+//     const CardNode = <CardDemo onClick={test} />;
+//     return (
+//         <Ripple
+//             className="sadfa"
+//             color="primary"
+//             {...args}
+//             component={CardNode}
+//             style={{ border: "1px solid #ccc", width: "100px", height: "100px" }}
+//         ></Ripple>
+//     );
+// };
 
 // export const ButtonDoc = () => {
 //     return (

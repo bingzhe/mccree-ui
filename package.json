@@ -40,7 +40,8 @@
     "homepage": "https://github.com/bingzhe/mccree-ui",
     "dependencies": {
         "@mccree-ui/components": "workspace:*",
-        "@mccree-ui/hooks": "workspace:*"
+        "@mccree-ui/hooks": "workspace:*",
+        "@mccree-ui/icons": "workspace:*"
     },
     "devDependencies": {
         "@types/jest": "^27.0.2",
