@@ -2,7 +2,7 @@ import { updateCss } from "@mccree-ui/util/dom/dynamicCss";
 import { useEffect } from "react";
 
 export const iconStyles = `
-.mccreee-icon {
+.mccree-icon {
     width: 1em;
     height: 1em;
     vertical-align: -0.15em;
@@ -10,7 +10,7 @@ export const iconStyles = `
     overflow: hidden;
     transition: transform 200ms ease;
 }
-.mccreee-icon-spin {
+.mccree-icon-spin {
     animation: mccree-spin 1.5s linear infinite;
 }
 @keyframes mccree-spin {

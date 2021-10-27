@@ -4,21 +4,13 @@ module.exports = {
     stories: ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
     addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
     webpackFinal: async (config) => {
-        // config.module.rules = config.module.rules.map((rule) => {
-        //     if (
-        //         String(rule.test) ===
-        //         String(
-        //             /\.(svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/
-        //         )
-        //     ) {
-        //         return {
-        //             ...rule,
-        //             test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/
-        //         };
-        //     }
-
-        //     return rule;
-        // });
+        config.module.rules = config.module.rules.map((rule) => {
+            if (/svg/.test(rule.test)) {
+                // Silence the Storybook loaders for SVG files
+                return { ...rule, exclude: /\.svg$/i };
+            }
+            return rule;
+        });
 
         config.module.rules.push({
             test: /\.svg$/,
