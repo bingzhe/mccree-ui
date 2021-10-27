@@ -20,10 +20,10 @@ module.exports = {
         //     return rule;
         // });
 
-        // config.module.rules.push({
-        //     test: /\.svg$/,
-        //     use: ["svg-sprite-loader"]
-        // });
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ["svg-sprite-loader"]
+        });
 
         config.module.rules.push({
             test: /\.less$/,
