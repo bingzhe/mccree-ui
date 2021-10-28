@@ -1,5 +1,4 @@
 export function updateCss(css: string) {
-    console.log(css);
     const styleNode = document.createElement("style");
     styleNode.innerHTML = css;
 
