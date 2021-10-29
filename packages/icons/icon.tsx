@@ -1,6 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
-import "./importIcons";
+// import "./importIcons";
 import { IconContext } from "./Context";
 import { useInsertStyles } from "./iconStyle";
 

@@ -53,8 +53,10 @@ importers:
 
   packages/icons:
     specifiers:
+      '@ant-design/icons-svg': ^4.2.1
       classnames: ^2.3.1
     dependencies:
+      '@ant-design/icons-svg': 4.2.1
       classnames: 2.3.1
 
   packages/story:
@@ -79,6 +81,10 @@ importers:
     specifiers: {}
 
 packages:
+
+  /@ant-design/icons-svg/4.2.1:
+    resolution: {integrity: sha512-EB0iwlKDGpG93hW8f85CTJTs4SvMX7tt5ceupvhALp1IF44SeUFOMhKUOYqpsoYWQKAOuTRDMqn75rEaKDp0Xw==}
+    dev: false
 
   /@babel/code-frame/7.10.4:
     resolution: {integrity: sha512-vG6SvB6oYEhvgisZNFRmRCUkLz11c7rp+tbNTynGqc6mS1d5ATd/sGyV6W0KZZnXRKMTzZDRgQT3Ou9jhpAfUg==}
