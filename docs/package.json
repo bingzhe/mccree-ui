@@ -1,0 +1,10 @@
+{
+    "name": "@mccree-ui/docs",
+    "version": "0.0.1",
+    "devDependencies": {
+        "dumi": "^1.1.40"
+    },
+    "scripts": {
+        "start": "dumi dev"
+    }
+}

@@ -23,3 +23,7 @@ components/*/*.jsx
 .eslintignore
 **/*.yml
 components/style/color/*.less
+
+.umi
+.umi-production
+.umi-test
