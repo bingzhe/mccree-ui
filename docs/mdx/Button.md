@@ -15,12 +15,18 @@ Demo:
 
 ## Foo
 
-Demo:
+<!-- Demo: -->
 
 ```tsx
-import React from 'react';
+import React from "react";
+import { Foo } from "mccree-ui/components";
 
+const a = () => {
+    return <Foo title="demo title" />;
+    // return <div>adf</div>;
+};
+
+export default a;
 ```
 
-More skills for writing demo: https://d.umijs.org/guide/basic#write-component-demo
-
+<code src="../demo/test.tsx"></code>

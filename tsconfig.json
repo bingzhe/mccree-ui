@@ -5,10 +5,7 @@
         "baseUrl": ".",
         "module": "esnext",
         "target": "es5",
-        "lib": [
-            "es6",
-            "dom"
-        ],
+        "lib": ["es6", "dom"],
         "sourceMap": true,
         "jsx": "react",
         "moduleResolution": "node",
@@ -21,16 +18,12 @@
         "strictNullChecks": true,
         "esModuleInterop": true,
         "noUnusedLocals": true,
-        "types": [
-            "react",
-            "jest",
-            "node",
-            "webpack-env"
-        ]
+        "types": ["react", "jest", "node"],
+        "paths": {
+            "mccree-ui/components": ["packages/components"]
+        }
     },
-    "include": [
-        "components/**/*"
-    ],
+    "include": ["components/**/*", "packages/**/*", "docs/**/*"],
     "exclude": [
         "node_modules",
         "build",
