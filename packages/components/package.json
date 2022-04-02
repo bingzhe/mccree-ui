@@ -1,7 +1,6 @@
 {
     "name": "@mccree-ui/components",
     "version": "0.0.1",
-    "license": "MIT",
     "dependencies": {
         "classnames": "^2.3.1",
         "popper.js": "^1.16.1",

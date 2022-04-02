@@ -1,7 +1,6 @@
 {
     "name": "@mccree-ui/icons",
     "version": "0.0.1",
-    "license": "MIT",
     "peerDependencies": {
         "react": ">=16.9.0",
         "react-dom": ">=16.9.0"
