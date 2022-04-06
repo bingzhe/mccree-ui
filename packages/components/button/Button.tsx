@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import Ripple from "../ripple";
 import ButtonGroup from "./ButtonGroup";
 import IconButton from "./IconButton";
-import { ConfigContext } from "../config-provider";
-import SizeContext, { SizeType } from "../config-provider/SizeContext";
+import { ConfigContext } from "../ConfigProvider";
+import SizeContext, { SizeType } from "../ConfigProvider/SizeContext";
 
 import { omit } from "../utils/omit";
 import { tuple } from "../utils/type";
