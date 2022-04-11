@@ -1,19 +1,42 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 import { ConfigProviderProps } from "./Context.type";
-
-// export interface ConfigConsumerProps {
-//     getPrefixCls: (suffixCls: string, customizePrefixCls?: string) => string;
-// }
+import { useMergeProps } from "@mccree-ui/hooks";
+import { omit } from "@mccree-ui/util/omit";
 
 const defaultProps: ConfigProviderProps = {
     prefixCls: "mccree",
     size: "default"
 };
 
+const componentConfig = {};
+
 export const ConfigContext = createContext<ConfigProviderProps>({
     getPrefixCls: (componentName: string, customPrefix?: string) =>
         `${customPrefix || "mccree"}-${componentName}`,
     ...defaultProps
 });
+
+function ConfigProvider(baseProps: ConfigProviderProps) {
+    const props = useMergeProps<ConfigProviderProps>(baseProps, defaultProps, componentConfig);
+
+    const { prefixCls, children } = props;
+
+    function getPrefixCls(componentName: string, customPrefix?: string) {
+        return `${customPrefix || prefixCls}-${componentName}`;
+    }
+
+    const config = {
+        ...omit(props, ["children"]),
+        getPrefixCls
+    };
+
+    return <ConfigContext.Provider value={config}>{children}</ConfigContext.Provider>;
+}
+
+ConfigProvider.ConfigContext = ConfigContext;
+
+ConfigProvider.displayName = "ConfigProvider";
+
+export default ConfigProvider;
 
 export const ConfigConsumer = ConfigContext.Consumer;

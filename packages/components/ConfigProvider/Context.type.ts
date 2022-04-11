@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 export type ComponentConfig = {};
 
 export interface ConfigProviderProps {
@@ -16,4 +17,5 @@ export interface ConfigProviderProps {
      * @defaultValue 'default'
      */
     size?: "small" | "default" | "large";
+    children?: ReactNode;
 }
