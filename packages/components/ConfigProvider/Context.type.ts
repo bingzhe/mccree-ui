@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
-export type ComponentConfig = {};
+import { ButtonProps } from "../Button";
+import { SpaceProps } from "../Space";
+
+export type ComponentConfig = {
+    Button?: ButtonProps;
+    Space?: SpaceProps;
+};
 
 export interface ConfigProviderProps {
     /**

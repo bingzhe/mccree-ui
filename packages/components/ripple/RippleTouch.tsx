@@ -3,7 +3,7 @@ import { TransitionGroup } from "react-transition-group";
 
 import classNames from "classnames";
 import Ripple from "./ripple";
-import { ConfigContext } from "../config-provider";
+import { ConfigContext } from "../ConfigProvider";
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;

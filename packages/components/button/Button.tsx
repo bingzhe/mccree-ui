@@ -1,66 +1,76 @@
-import * as React from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
+import React, { useContext, forwardRef, useRef } from "react";
+import cs from "@mccree-ui/util/classnames";
+// import PropTypes from "prop-types";
 
-import Ripple from "../ripple";
+// import Ripple from "../ripple";
 import ButtonGroup from "./ButtonGroup";
-import IconButton from "./IconButton";
+// import IconButton from "./IconButton";
 import { ConfigContext } from "../ConfigProvider";
 import SizeContext, { SizeType } from "../ConfigProvider/SizeContext";
+import { ButtonProps, NativeButtonProps, AnchorButtonProps } from "./Button.type";
 
 import { omit } from "../utils/omit";
-import { tuple } from "../utils/type";
+// import { tuple } from "../utils/type";
 import Icon from "@mccree-ui/icons/icon";
+import { useMergeProps } from "@mccree-ui/hooks";
 
-const ButtonVariants = tuple("contain", "outline", "text");
-export type ButtonVariant = typeof ButtonVariants[number];
-const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
-export type ButtonType = typeof ButtonTypes[number];
-const ButtonColors = tuple("primary", "secondary", "success", "warning", "error", "info");
-export type ButtonColor = typeof ButtonColors[number];
-const ButtonHTMLTypes = tuple("submit", "button", "reset");
-export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
-const ButtonShapes = tuple("circle", "round");
-export type ButtonShape = typeof ButtonShapes[number];
+// const ButtonVariants = tuple("contain", "outline", "text");
+// export type ButtonVariant = typeof ButtonVariants[number];
+// const ButtonTypes = tuple("primary", "secondary", "success", "warning", "error", "info");
+// export type ButtonType = typeof ButtonTypes[number];
+// const ButtonColors = tuple("primary", "secondary", "success", "warning", "error", "info");
+// export type ButtonColor = typeof ButtonColors[number];
+// const ButtonHTMLTypes = tuple("submit", "button", "reset");
+// export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
+// const ButtonShapes = tuple("circle", "round");
+// export type ButtonShape = typeof ButtonShapes[number];
 
-export interface BaseButtonProps {
-    type?: ButtonType;
-    color?: ButtonColor;
-    variant?: ButtonVariant;
-    shape?: ButtonShape;
-    size: SizeType;
-    disabled?: boolean;
-    className?: string;
-    prefixCls?: string;
-    loading?: boolean | { delay?: number };
-    block?: boolean;
-    startIcon?: React.ReactNode;
-    endIcon?: React.ReactNode;
-    children?: React.ReactNode;
-    centerRipple?: boolean;
-}
+// export interface BaseButtonProps {
+//     type?: ButtonType;
+//     color?: ButtonColor;
+//     variant?: ButtonVariant;
+//     shape?: ButtonShape;
+//     size: SizeType;
+//     disabled?: boolean;
+//     className?: string;
+//     prefixCls?: string;
+//     loading?: boolean | { delay?: number };
+//     block?: boolean;
+//     startIcon?: React.ReactNode;
+//     endIcon?: React.ReactNode;
+//     children?: React.ReactNode;
+//     centerRipple?: boolean;
+// }
 
-export type AnchorButtonProps = {
-    href: string;
-    target?: string;
-    onClick: React.MouseEventHandler<HTMLElement>;
-} & BaseButtonProps &
-    Omit<React.AnchorHTMLAttributes<any>, "type" | "onClick">;
+// export type AnchorButtonProps = {
+//     href: string;
+//     target?: string;
+//     onClick: React.MouseEventHandler<HTMLElement>;
+// } & BaseButtonProps &
+//     Omit<React.AnchorHTMLAttributes<any>, "type" | "onClick">;
 
-export type NativeButtonProps = {
-    htmlType?: ButtonHTMLType;
-    onClick?: React.MouseEventHandler<HTMLElement>;
-} & BaseButtonProps &
-    Omit<React.ButtonHTMLAttributes<any>, "type" | "onClick">;
+// export type NativeButtonProps = {
+//     htmlType?: ButtonHTMLType;
+//     onClick?: React.MouseEventHandler<HTMLElement>;
+// } & BaseButtonProps &
+//     Omit<React.ButtonHTMLAttributes<any>, "type" | "onClick">;
 
-export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
+// export type ButtonProps = Partial<AnchorButtonProps | NativeButtonProps>;
 
-interface ButtonFC extends React.FC<ButtonProps> {
-    Group: typeof ButtonGroup;
-    IconButton: typeof IconButton;
-}
+// interface ButtonFC extends React.FC<ButtonProps> {
+//     Group: typeof ButtonGroup;
+//     IconButton: typeof IconButton;
+// }
 
-const Button: ButtonFC = (props) => {
+const defaultProps: ButtonProps = {
+    htmlType: "button",
+    type: "default"
+};
+
+const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (baseProps, ref) => {
+    const { getPrefixCls, size: ctxSize, componentConfig } = useContext(ConfigContext);
+    const props = useMergeProps(baseProps, defaultProps, componentConfig?.Button);
+
     const {
         type,
         color,
@@ -69,83 +79,87 @@ const Button: ButtonFC = (props) => {
         className,
         children,
         block,
-        variant,
-        startIcon: startIconProp,
-        endIcon: endIconProp,
-        loading: loadingProp,
+        leftIcon: startIconProp,
+        rightIcon: endIconProp,
+        loading,
+        disabled,
         onClick,
-        centerRipple,
         ...restProps
     } = props;
 
-    const { disabled } = restProps;
+    const prefixCls = getPrefixCls("btn");
+    const _type = type === "default" ? "secondary" : type;
 
-    const [loading, setLoading] = React.useState(loadingProp);
-    const { getPrefixCls } = React.useContext(ConfigContext);
+    const innerButtonRef = useRef();
+    const buttonRef = ref || innerButtonRef;
+    // const [loading, setLoading] = React.useState(loadingProp);
+
     const sizeContext = React.useContext(SizeContext);
-    const delayTimeout = React.useRef<number>();
+    // const delayTimeout = React.useRef<number>();
 
-    React.useEffect(() => {
-        if (loadingProp && typeof loadingProp !== "boolean") {
-            clearTimeout(delayTimeout.current);
-        }
-        if (loadingProp && typeof loadingProp !== "boolean" && loadingProp.delay) {
-            delayTimeout.current = window.setTimeout(() => {
-                setLoading(loadingProp);
-            }, loadingProp.delay);
-        } else if (loadingProp !== loading) {
-            setLoading(loadingProp);
-        }
-    }, [loading, loadingProp]);
+    // React.useEffect(() => {
+    //     if (loadingProp && typeof loadingProp !== "boolean") {
+    //         clearTimeout(delayTimeout.current);
+    //     }
+    //     if (loadingProp && typeof loadingProp !== "boolean" && loadingProp.delay) {
+    //         delayTimeout.current = window.setTimeout(() => {
+    //             setLoading(loadingProp);
+    //         }, loadingProp.delay);
+    //     } else if (loadingProp !== loading) {
+    //         setLoading(loadingProp);
+    //     }
+    // }, [loading, loadingProp]);
 
     const handleClick: React.MouseEventHandler<HTMLElement> = (e) => {
         if (loading) return;
         onClick?.(e);
     };
 
-    const prefixCls = getPrefixCls("btn");
-    const rootPrefixCls = getPrefixCls("btn-root");
+    // const prefixCls = getPrefixCls("btn");
+    // const rootPrefixCls = getPrefixCls("btn-root");
 
-    const rootClasses = classNames(rootPrefixCls, className);
+    // const rootClasses = classNames(rootPrefixCls, className);
 
-    let rippleColor: string | undefined;
-    let rippleBorderRadius = "4px";
+    // let rippleColor: string | undefined;
+    // let rippleBorderRadius = "4px";
     let sizeCls = "";
 
     switch (sizeProp || sizeContext) {
         case "large":
             sizeCls = "lg";
-            rippleBorderRadius = shape === "round" ? "40px" : "4px";
+            // rippleBorderRadius = shape === "round" ? "40px" : "4px";
             break;
         case "small":
             sizeCls = "sm";
-            rippleBorderRadius = shape === "round" ? "24px" : "2px";
+            // rippleBorderRadius = shape === "round" ? "24px" : "2px";
             break;
         default:
-            rippleBorderRadius = shape === "round" ? "32px" : "4px";
+            // rippleBorderRadius = shape === "round" ? "32px" : "4px";
             break;
     }
 
-    if (variant === "outline" || variant === "text") {
-        rippleColor = color;
-    } else if (variant === "contain") {
-        if (!color) {
-            rippleColor = "#000";
-        } else {
-            rippleColor = "#FFF";
-        }
-    }
-    let rippleStyle: React.CSSProperties = { borderRadius: rippleBorderRadius };
+    // if (variant === "outline" || variant === "text") {
+    //     rippleColor = color;
+    // } else if (variant === "contain") {
+    //     if (!color) {
+    //         rippleColor = "#000";
+    //     } else {
+    //         rippleColor = "#FFF";
+    //     }
+    // }
+    // let rippleStyle: React.CSSProperties = { borderRadius: rippleBorderRadius };
 
-    const classes = classNames(prefixCls, {
-        [`${prefixCls}-${color}`]: color,
-        [`${prefixCls}-${variant}`]: variant,
+    const classes = cs(prefixCls, {
+        [`${prefixCls}-${_type}`]: !!_type,
+        // [`${prefixCls}-${variant}`]: variant,
         [`${prefixCls}-${shape}`]: shape,
         [`${prefixCls}-${sizeCls}`]: sizeCls,
         [`${prefixCls}-loading`]: loading,
         [`${prefixCls}-icon`]: startIconProp || endIconProp,
         [`${prefixCls}-block`]: block
     });
+
+    console.log("classes", classes);
 
     const loadingIcon = loading && (
         <span className={`${prefixCls}-icon-loading`}>
@@ -154,7 +168,7 @@ const Button: ButtonFC = (props) => {
     );
     const startIcon = !loading && startIconProp && (
         <span
-            className={classNames(`${prefixCls}-prefix-icon`, {
+            className={cs(`${prefixCls}-prefix-icon`, {
                 [`${prefixCls}-icon-${sizeCls}`]: sizeCls
             })}
         >
@@ -163,7 +177,7 @@ const Button: ButtonFC = (props) => {
     );
     const endIcon = !loading && endIconProp && (
         <span
-            className={classNames(`${prefixCls}-suffix-icon`, {
+            className={cs(`${prefixCls}-suffix-icon`, {
                 [`${prefixCls}-icon-${sizeCls}`]: sizeCls
             })}
         >
@@ -183,48 +197,57 @@ const Button: ButtonFC = (props) => {
 
     const { htmlType, ...otherProps } = restProps as NativeButtonProps;
 
+    // <Ripple
+    //     block={block}
+    //     style={rippleStyle}
+    //     center={centerRipple}
+    //     className={rootClasses}
+    //     color={rippleColor}
+    //     disableRipple={disabled}
+    // >
     const buttonNode = (
-        <Ripple
-            block={block}
-            style={rippleStyle}
-            center={centerRipple}
-            className={rootClasses}
-            color={rippleColor}
-            disableRipple={disabled}
+        <button
+            {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
+            type={htmlType}
+            className={classes}
+            onClick={handleClick}
+            ref={buttonRef}
         >
-            <button
-                {...(omit(otherProps, ["loading"]) as NativeButtonProps)}
-                type={htmlType}
-                className={classes}
-                onClick={handleClick}
-            >
-                {/* disabled={disabled} */}
-                {loadingIcon}
-                {startIcon}
-                {children}
-                {endIcon}
-            </button>
-        </Ripple>
+            {/* disabled={disabled} */}
+            {loadingIcon}
+            {startIcon}
+            {children}
+            {endIcon}
+        </button>
     );
+    // {/* </Ripple> */}
 
     return buttonNode;
 };
 
-Button.defaultProps = {
-    variant: "contain",
-    size: "medium",
-    disabled: false,
-    loading: false,
-    block: false,
-    centerRipple: false
+// Button.defaultProps = {
+//     variant: "contain",
+//     size: "medium",
+//     disabled: false,
+//     loading: false,
+//     block: false,
+//     centerRipple: false
+// };
+
+const ForwardRefButton = forwardRef(InternalButton);
+const Button = ForwardRefButton as typeof ForwardRefButton & {
+    Group: typeof ButtonGroup;
+    __MC_BUTTON: boolean;
 };
 
 Button.Group = ButtonGroup;
-Button.IconButton = IconButton;
+Button.__MC_BUTTON = true;
 
-Button.propTypes = {
-    disabled: PropTypes.bool,
-    size: PropTypes.oneOf(["small", "medium", "large"])
-};
+// Button.IconButton = IconButton;
+
+// Button.propTypes = {
+//     disabled: PropTypes.bool,
+//     size: PropTypes.oneOf(["small", "medium", "large"])
+// };
 
 export default Button;

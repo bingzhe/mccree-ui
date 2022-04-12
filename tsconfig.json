@@ -16,6 +16,7 @@
         "noImplicitAny": true,
         "strictNullChecks": false,
         "esModuleInterop": true,
+        "downlevelIteration": true,
         "noUnusedLocals": true,
         "types": ["react", "jest", "node"],
         "paths": {

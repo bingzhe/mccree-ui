@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import TouchRipple from "./RippleTouch";
 import { useEventCallback, useSetColor } from "@mccree-ui/hooks";
-import { ConfigContext } from "../config-provider";
+import { ConfigContext } from "../ConfigProvider";
 import { RippleRootHTMLTag } from "./Ripple.type";
 
 export interface RippleProps {

@@ -19,11 +19,11 @@ Demo:
 
 ```tsx
 import React from "react";
-import { Foo } from "mccree-ui/components";
+import { Button } from "mccree-ui/components";
+import "@mccree-ui/components/Button/style/index"
 
 const a = () => {
-    return <Foo title="demo title" />;
-    // return <div>adf</div>;
+    return <Button>default</Button>;
 };
 
 export default a;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import Icon from "../icon/index";
-import Space from "../space/index";
+import Space from "@mccree-ui/components/Space";
 import { ConfigContext } from "../config-provider";
 import usePopper from "../hooks/usePopper";
 import useClickOutside from "../hooks/useClickOutside";

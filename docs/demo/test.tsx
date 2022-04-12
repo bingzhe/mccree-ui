@@ -1,6 +1,6 @@
 import React from "react";
-import { Foo } from "mccree-ui/components";
+import { Button } from "mccree-ui/components";
 
 export default () => {
-    return <Foo title="demo title" />;
+    return <Button>primary</Button>;
 };

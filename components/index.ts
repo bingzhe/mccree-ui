@@ -8,7 +8,6 @@ export { default as Select } from "./select/index";
 export { default as Transition } from "./transition/index";
 export { default as Grid } from "./grid/index";
 export { default as Card } from "./card/index";
-export { default as Space } from "./space/index";
 export { default as Divider } from "./divider";
 export { default as Modal } from "./modal";
 export { default as Loading } from "./loading";

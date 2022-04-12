@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import { useEventCallback } from "@mccree-ui/hooks";
 
-import { ConfigContext } from "../config-provider";
+import { ConfigContext } from "../ConfigProvider";
 
 const useEnhancedEffect = typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
 
