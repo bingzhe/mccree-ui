@@ -22,6 +22,7 @@ const Space: React.ForwardRefRenderFunction<unknown, SpaceProps> = (baseProps, r
 
     const prefixCls = getPrefixCls("space");
 
+    console.log("children", children)
     const ChildrenList = React.Children.toArray(children);
     const len = ChildrenList.length;
 
@@ -53,6 +54,5 @@ const Space: React.ForwardRefRenderFunction<unknown, SpaceProps> = (baseProps, r
 };
 
 Space.displayName = "MR_Space";
-Space.defaultProps = defaultProps;
 
 export default Space;

@@ -12,6 +12,66 @@ export default defineConfig({
         // 配置 dumi 嗅探的文档目录
         includes: ["mdx", "demo"]
     },
+    mode: "site",
+
+    // navs: [
+    //     { title: "首页", path: "/index" },
+    //     { title: "组件", path: "/components" },
+    //     {
+    //         title: "GitHub",
+    //         path: "https://github.com/umijs/dumi"
+    //     }
+    // ],
+    locales: [
+        ["zh-CN", "中文"],
+        ["en-US", "English"]
+    ],
+    navs: {
+        "zh-CN": [
+            { title: "组件", path: "/components" },
+            { title: "Github", path: "https://github.com/mccree-ui/mccree-ui" }
+        ],
+        "en-US": [
+            { title: "components", path: "/en-US/components" },
+            { title: "Github", path: "https://github.com/mccree-ui/mccree-ui" }
+        ]
+    },
+
+    menus: {
+        "/": [
+            {
+                title: "首页",
+                path: "/index"
+            }
+        ],
+        "/en-US": [
+            {
+                title: "Home",
+                path: "/index"
+            }
+        ],
+        "/components": [
+            {
+                title: "通用",
+                children: ["/Button"]
+            },
+            {
+                title: "布局",
+                children: ["/Space"]
+            }
+        ],
+        "/en-US/components": [
+            {
+                title: "General",
+                children: ["/Button"]
+            },
+            {
+                title: "Layout",
+                children: ["/Space"]
+            }
+        ]
+    },
+
     webpack5: {},
 
     chainWebpack: (memo) => {
@@ -24,6 +84,7 @@ export default defineConfig({
 
         memo.module.rule("js").include.add(path.join(__dirname, "../packages")).end();
     },
+
     styles: [
         `/** Logo Style **/
         // .__dumi-default-menu-header .__dumi-default-menu-logo{

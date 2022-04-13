@@ -1,26 +1,18 @@
 ---
-title: Button 按钮
-order: 0
+title: Button
 mobile: true
-group:
-    title: 基础组件
-    order: 0
+nav:
+    path: /components
 ---
 
   <!-- path: base -->
 
-## Butt
-
-Demo:
-
-## Foo
-
-<!-- Demo: -->
+## Button  en-us
 
 ```tsx
 import React from "react";
 import { Button } from "mccree-ui/components";
-import "@mccree-ui/components/Button/style/index"
+// import "@mccree-ui/components/Button/style/index";
 
 const a = () => {
     return <Button>default</Button>;
@@ -28,5 +20,3 @@ const a = () => {
 
 export default a;
 ```
-
-<code src="../demo/test.tsx"></code>

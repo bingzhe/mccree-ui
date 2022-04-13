@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "dumi-test",
+  "name": "@mccree-ui/docs",
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",

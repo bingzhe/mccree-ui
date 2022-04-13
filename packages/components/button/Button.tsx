@@ -237,11 +237,11 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (ba
 const ForwardRefButton = forwardRef(InternalButton);
 const Button = ForwardRefButton as typeof ForwardRefButton & {
     Group: typeof ButtonGroup;
-    __MC_BUTTON: boolean;
+    __MR_BUTTON: boolean;
 };
 
 Button.Group = ButtonGroup;
-Button.__MC_BUTTON = true;
+Button.__MR_BUTTON = true;
 
 // Button.IconButton = IconButton;
 
