@@ -9,19 +9,9 @@ export default defineConfig({
     logo: "https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png",
     outputPath: "docs-dist",
     resolve: {
-        // 配置 dumi 嗅探的文档目录
-        includes: ["mdx", "demo"]
+        includes: ["mdx"] // 配置 dumi 嗅探的文档目录
     },
     mode: "site",
-
-    // navs: [
-    //     { title: "首页", path: "/index" },
-    //     { title: "组件", path: "/components" },
-    //     {
-    //         title: "GitHub",
-    //         path: "https://github.com/umijs/dumi"
-    //     }
-    // ],
     locales: [
         ["zh-CN", "中文"],
         ["en-US", "English"]

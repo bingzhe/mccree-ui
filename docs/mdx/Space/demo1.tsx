@@ -1,16 +1,5 @@
----
-title: Space 间距
-mobile: true
-nav:
-    path: /components
----
-
-## Space
-
-<!-- ```tsx
 import React from "react";
 import { Space } from "mccree-ui/components";
-
 import "@mccree-ui/components/Space/style/index";
 
 export default () => {
@@ -23,6 +12,3 @@ export default () => {
         </Space>
     );
 };
-``` -->
-
-<code src="./demo1.tsx" />

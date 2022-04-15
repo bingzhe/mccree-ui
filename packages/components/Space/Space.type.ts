@@ -1,19 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
 
-import { SizeType } from "../../../components/config-provider/SizeContext";
-
-type DirectionType = "horizontal" | "vertical";
-
-// export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
-//     size?: SizeType | number;
-//     direction?: DirectionType;
-// }
-
-export const defaultProps = {
-    size: "small" as SizeType | number,
-    direction: "horizontal" as DirectionType
-};
-
+export type SpaceSize = "small" | "default" | "large" | number;
 export interface SpaceProps {
     style?: CSSProperties;
     className?: string;
@@ -30,7 +17,7 @@ export interface SpaceProps {
      * @zh 尺寸
      * @defaultValue default
      */
-    size?: "small" | "default" | "large";
+    size?: SpaceSize;
     /**
      * @zh 换行。
      */

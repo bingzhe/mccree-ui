@@ -1,58 +1,87 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext, forwardRef } from "react";
 import cs from "@mccree-ui/util/classnames";
-import { ConfigContext } from "../ConfigProvider";
-import { SpaceProps } from "./Space.type";
 import { useMergeProps } from "@mccree-ui/hooks";
+import { isNumber } from "@mccree-ui/util/is";
+import { ConfigContext } from "../ConfigProvider";
+import { SpaceProps, SpaceSize } from "./Space.type";
 
 const spaceSize = {
     small: 8,
-    medium: 16,
+    default: 16,
     large: 24
 };
+
+function getMerge(size: SpaceSize) {
+    if (isNumber(size)) return size;
+    return spaceSize[size] || spaceSize.default;
+}
 
 const defaultProps: SpaceProps = {
     size: "small",
     direction: "horizontal"
 };
 
-const Space: React.ForwardRefRenderFunction<unknown, SpaceProps> = (baseProps, ref) => {
+const InternalSpace: React.ForwardRefRenderFunction<HTMLDivElement, SpaceProps> = (
+    baseProps,
+    ref
+) => {
     const { getPrefixCls, componentConfig } = useContext(ConfigContext);
     const props = useMergeProps(baseProps, defaultProps, componentConfig?.Space);
-    const { className, size, direction, children, ...rest } = props;
+    const { className, style, size, align, split, direction, wrap, children, ...rest } = props;
 
     const prefixCls = getPrefixCls("space");
 
-    console.log("children", children)
+    const classNames = cs(prefixCls, className, {
+        [`${prefixCls}-${direction}`]: direction,
+        [`${prefixCls}-aling-${align}`]: align,
+        [`${prefixCls}-wrap`]: wrap
+    });
+
     const ChildrenList = React.Children.toArray(children);
     const len = ChildrenList.length;
 
-    // const { getPrefixCls } = React.useContext(ConfigContext);
+    function getMergeStyle(index: number) {
+        const isLast = index === len - 1;
 
-    const classes = cs(prefixCls, className, `${prefixCls}-${direction}`);
-    const itemClassName = `${prefixCls}-item`;
+        // if (isString(size) || isNumber(size)) {} else if (isArray(size)) {}
+        const margin = getMerge(size);
+        if (wrap) {
+            return isLast
+                ? { marginBottom: margin }
+                : { marginRight: margin, marginBottom: margin };
+        }
+
+        return !isLast
+            ? {
+                  [direction === "vertical" ? "marginBottom" : "marginRight"]: margin
+              }
+            : {};
+    }
 
     return (
-        <div className={classes} {...rest}>
-            {ChildrenList.map((child, i) => (
-                <div
-                    className={itemClassName}
-                    key={`${itemClassName}-${i}`}
-                    style={
-                        i === len - 1
-                            ? {}
-                            : {
-                                  [direction === "vertical" ? "marginBottom" : "marginRight"]:
-                                      typeof size === "string" ? spaceSize[size] : size
-                              }
-                    }
-                >
-                    {child}
-                </div>
-            ))}
+        <div ref={ref} className={classNames} style={style} {...rest}>
+            {ChildrenList.map((child, index) => {
+                const showSplit = split && index > 0;
+
+                return (
+                    <Fragment key={index}>
+                        {showSplit && <div className={`${prefixCls}-item-split`}>{split}</div>}
+                        <div className={`${prefixCls}-item`} style={getMergeStyle(index)}>
+                            {child}
+                        </div>
+                    </Fragment>
+                );
+            })}
         </div>
     );
 };
 
-Space.displayName = "MR_Space";
+const ForwardRefSpace = forwardRef(InternalSpace);
+const Space = ForwardRefSpace as typeof ForwardRefSpace & {
+    __MR_SPACE: boolean;
+};
+
+Space.displayName = "Space";
+Space.__MR_SPACE = true;
 
 export default Space;

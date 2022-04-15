@@ -242,6 +242,7 @@ const Button = ForwardRefButton as typeof ForwardRefButton & {
 
 Button.Group = ButtonGroup;
 Button.__MR_BUTTON = true;
+Button.displayName = "Button";
 
 // Button.IconButton = IconButton;
 
