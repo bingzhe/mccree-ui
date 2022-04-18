@@ -2,8 +2,7 @@
 // RequireContext
 
 function importAll(requireContext: any) {
-    console.log(12313)
-    console.log(requireContext.keys())
+    console.log(requireContext.keys());
     requireContext.keys().forEach(requireContext);
 }
 try {

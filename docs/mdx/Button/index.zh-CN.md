@@ -18,6 +18,5 @@ const a = () => {
 export default a;
 ```
 
-<code src="../../demo/test.tsx"></code>
 
 // import "@mccree-ui/components/Button/style/index";

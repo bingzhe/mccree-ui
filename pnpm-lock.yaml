@@ -76,10 +76,8 @@ importers:
   packages/icons:
     specifiers:
       '@ant-design/icons-svg': ^4.2.1
-      classnames: ^2.3.1
     dependencies:
       '@ant-design/icons-svg': 4.2.1
-      classnames: 2.3.1
 
   packages/util:
     specifiers: {}

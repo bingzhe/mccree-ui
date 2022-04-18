@@ -1,8 +1,8 @@
-import * as React from "react";
-import classNames from "classnames";
-// import "./importIcons";
+import React, { useContext } from "react";
 import { IconContext } from "./Context";
 import { useInsertStyles } from "./iconStyle";
+
+import cs from "@mccree-ui/util/classnames";
 
 interface IconProps extends React.SVGAttributes<SVGElement> {
     name: string;
@@ -12,14 +12,13 @@ interface IconProps extends React.SVGAttributes<SVGElement> {
 
 const Icon: React.FC<IconProps> = (props) => {
     const { className, name, spin, rotate, ...restProps } = props;
-    
+
     useInsertStyles();
 
-    const { getPrefixCls } = React.useContext(IconContext);
-    console.log(getPrefixCls);
+    const { getPrefixCls } = useContext(IconContext);
 
     const prefixCls = getPrefixCls("icon");
-    const classes = classNames(prefixCls, className, {
+    const classes = cs(prefixCls, className, {
         [`${prefixCls}-spin`]: spin
     });
 
