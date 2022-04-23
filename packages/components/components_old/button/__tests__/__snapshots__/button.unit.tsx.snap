@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`button render <Button/> component 1`] = `
+Array [
+  <button
+    class="mccree-btn mccree-btn-contain"
+  >
+    DEFAULT
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain"
+  >
+    PRIMARY
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-secondary mccree-btn-contain"
+  >
+    SECONDARY
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-success mccree-btn-contain"
+  >
+    SUCCESS
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-error mccree-btn-contain"
+  >
+    ERROE
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-warning mccree-btn-contain"
+  >
+    WARNING
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-info mccree-btn-contain"
+  >
+    INFO
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-contain"
+    disabled=""
+  >
+    DISABLED
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <a
+    class="mccree-btn mccree-btn-primary mccree-btn-contain"
+    href="http://bingzhe.github.io/"
+    target="block"
+  >
+    LINK
+  </a>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-loading"
+  >
+    <span
+      class="mccree-btn-icon-loading"
+    >
+      <svg
+        class="mccree-icon mccree-icon-spin"
+        name="loading"
+      >
+        <use
+          href="#loading"
+        />
+      </svg>
+    </span>
+    loading
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-lg"
+  >
+    大
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain"
+  >
+    中
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-sm"
+  >
+    小
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-block"
+  >
+    loading
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-circle"
+  >
+    circle
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+  <button
+    class="mccree-btn mccree-btn-primary mccree-btn-contain mccree-btn-round"
+  >
+    loading
+    <span
+      class="mccree-ripple-root"
+    />
+  </button>,
+]
+`;

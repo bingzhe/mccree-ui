@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should render Card.Footer/Card.Actions/Card.Content correctly 1`] = `
+Array [
+  <div
+    class="mccree-card mccree-card-contained"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      XX
+    </div>
+    <footer
+      class="mccree-card-footer"
+    >
+      YY
+    </footer>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      XX
+    </div>
+    <footer
+      class="mccree-card-footer"
+    >
+      YY
+    </footer>
+  </div>,
+]
+`;
+
+exports[`Card should render correctly 1`] = `
+Array [
+  <div
+    class="mccree-card mccree-card-contained"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-outlined"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-shadow"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-hoverable"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-primary"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-secondary"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-success"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-info"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-warning"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+  <div
+    class="mccree-card mccree-card-contained mccree-card-error"
+  >
+    <div
+      class="mccree-card-content"
+    >
+      xx
+    </div>
+  </div>,
+]
+`;

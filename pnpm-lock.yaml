@@ -4,15 +4,6 @@ importers:
 
   .:
     specifiers:
-      '@babel/core': ^7.17.9
-      '@babel/plugin-transform-arrow-functions': ^7.16.7
-      '@babel/plugin-transform-destructuring': ^7.17.7
-      '@babel/plugin-transform-modules-commonjs': ^7.17.9
-      '@babel/plugin-transform-runtime': ^7.17.0
-      '@babel/plugin-transform-spread': ^7.16.7
-      '@babel/preset-env': ^7.16.11
-      '@babel/preset-react': ^7.16.7
-      '@babel/runtime': ^7.17.9
       '@mccree-ui/components': workspace:*
       '@mccree-ui/hooks': workspace:*
       '@mccree-ui/icons': workspace:*
@@ -30,7 +21,6 @@ importers:
       less: ^4.1.2
       less-loader: ^7.3.0
       lodash: ^4.17.21
-      nunjucks: ^3.2.3
       react: ^17.0.2
       react-dom: ^17.0.2
       rimraf: ^3.0.2
@@ -45,15 +35,6 @@ importers:
       '@mccree-ui/icons': link:packages/icons
       '@mccree-ui/util': link:packages/util
     devDependencies:
-      '@babel/core': 7.17.9
-      '@babel/plugin-transform-arrow-functions': 7.16.7_@babel+core@7.17.9
-      '@babel/plugin-transform-destructuring': 7.17.7_@babel+core@7.17.9
-      '@babel/plugin-transform-modules-commonjs': 7.17.9_@babel+core@7.17.9
-      '@babel/plugin-transform-runtime': 7.17.0_@babel+core@7.17.9
-      '@babel/plugin-transform-spread': 7.16.7_@babel+core@7.17.9
-      '@babel/preset-env': 7.16.11_@babel+core@7.17.9
-      '@babel/preset-react': 7.16.7_@babel+core@7.17.9
-      '@babel/runtime': 7.17.9
       '@types/fs-extra': 9.0.13
       '@types/gulp': 4.0.9
       '@types/jest': 27.4.1
@@ -67,7 +48,6 @@ importers:
       less: 4.1.2
       less-loader: 7.3.0_less@4.1.2
       lodash: 4.17.21
-      nunjucks: 3.2.3
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       rimraf: 3.0.2
@@ -117,9 +97,27 @@ importers:
 
   packages/icons:
     specifiers:
-      '@ant-design/icons-svg': ^4.2.1
-    dependencies:
-      '@ant-design/icons-svg': 4.2.1
+      '@babel/core': ^7.17.9
+      '@babel/plugin-transform-arrow-functions': ^7.16.7
+      '@babel/plugin-transform-destructuring': ^7.17.7
+      '@babel/plugin-transform-modules-commonjs': ^7.17.9
+      '@babel/plugin-transform-runtime': ^7.17.0
+      '@babel/plugin-transform-spread': ^7.16.7
+      '@babel/preset-env': ^7.16.11
+      '@babel/preset-react': ^7.16.7
+      '@babel/runtime': ^7.17.9
+      nunjucks: ^3.2.3
+    devDependencies:
+      '@babel/core': 7.17.9
+      '@babel/plugin-transform-arrow-functions': 7.16.7_@babel+core@7.17.9
+      '@babel/plugin-transform-destructuring': 7.17.7_@babel+core@7.17.9
+      '@babel/plugin-transform-modules-commonjs': 7.17.9_@babel+core@7.17.9
+      '@babel/plugin-transform-runtime': 7.17.0_@babel+core@7.17.9
+      '@babel/plugin-transform-spread': 7.16.7_@babel+core@7.17.9
+      '@babel/preset-env': 7.16.11_@babel+core@7.17.9
+      '@babel/preset-react': 7.16.7_@babel+core@7.17.9
+      '@babel/runtime': 7.17.9
+      nunjucks: 3.2.3
 
   packages/util:
     specifiers: {}
@@ -132,10 +130,6 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.4
     dev: true
-
-  /@ant-design/icons-svg/4.2.1:
-    resolution: {integrity: sha512-EB0iwlKDGpG93hW8f85CTJTs4SvMX7tt5ceupvhALp1IF44SeUFOMhKUOYqpsoYWQKAOuTRDMqn75rEaKDp0Xw==}
-    dev: false
 
   /@babel/code-frame/7.12.11:
     resolution: {integrity: sha512-Zt1yodBx1UcyiePMSkWnU4hPqhwq7hGi2nFL1LeA3EUl+q2LQx16MISgJ0+z7dnmgvP9QtIleuETGOiOH1RcIw==}
