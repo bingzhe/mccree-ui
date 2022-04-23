@@ -1,6 +1,11 @@
 {
     "name": "@mccree-ui/icons",
     "version": "0.0.1",
+    "main": "./index.js",
+    "module": "./index.es.js",
+    "scripts": {
+        "generate": "cross-env NODE_ENV=production gulp --require ts-node/register/transpile-only"
+    },
     "peerDependencies": {
         "react": ">=16.9.0",
         "react-dom": ">=16.9.0"
