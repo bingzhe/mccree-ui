@@ -48,7 +48,7 @@ const config = {
             params: {
                 attributes: [
                     {
-                        fill: "none"
+                        fill: "currentColor"
                     },
                     {
                         stroke: "currentColor"
