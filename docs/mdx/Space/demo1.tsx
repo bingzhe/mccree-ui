@@ -1,5 +1,5 @@
 import React from "react";
-import { Space } from "mccree-ui/components";
+import { Space } from "@mccree-ui/components";
 import "@mccree-ui/components/Space/style/index";
 import { IconAlipay, IconCaretDown, IconBackward } from "@mccree-ui/icons";
 

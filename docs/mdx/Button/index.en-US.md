@@ -5,13 +5,13 @@ nav:
     path: /components
 ---
 
-  <!-- path: base -->
+<!-- path: base -->
 
 ## Button  en-us
 
 ```tsx
 import React from "react";
-import { Button } from "mccree-ui/components";
+import { Button } from "@mccree-ui/components";
 // import "@mccree-ui/components/Button/style/index";
 
 const a = () => {

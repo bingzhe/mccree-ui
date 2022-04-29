@@ -1,9 +1,52 @@
 const fs = require("fs");
 const path = require("path");
+const maps = require("./maps");
 
-//TODO  这里的来源可能需要修改
-const svgs = ["direction", "tips"];
+// const svgs = ["direction", "tips"];
+const svgs = Object.keys(maps["zh-CN"]);
 
+// svgDataPure
+// {
+//     direction: {
+//         outline: [
+//             {
+//                 "name": "backward",
+//             },
+//             ...
+//         ],
+//         ...
+//     },
+//     ...
+// };
+
+// svgDataFlat
+// [
+//      {
+//          "name": "backward",
+//          "componentName": "IconBackward",
+//          "file": "C:\\projects\\mccree-ui\\packages\\icons\\svgs\\direction\\outline\\backward.svg"
+//      },
+//       ...
+//  ],
+
+/**
+ * svgData
+ * {
+ *     direction: {
+ *         outline: [
+ *             {
+ *                 "name": "backward",
+ *                 "componentName": "IconBackward",
+ *                 "file": "C:\\projects\\mccree-ui\\packages\\icons\\svgs\\direction\\outline\\backward.svg"
+ *             },
+ *             ...
+ *         ],
+ *         ...
+ *     },
+ *     ...
+ * };
+ *
+ */
 const svgData = {};
 const svgDataPure = {};
 const svgDataFlat = [];
@@ -61,6 +104,7 @@ svgs.forEach((svg) => {
 
             setDirData(dirData);
             setDirData(dirDataPure, true);
+
             svgData[svg] = dirData;
             svgDataPure[svg] = dirDataPure;
         });

@@ -43,7 +43,7 @@ export default defineConfig({
         "/components": [
             {
                 title: "通用",
-                children: ["/Button"]
+                children: ["/Button", "/Icon"]
             },
             {
                 title: "布局",
@@ -53,7 +53,7 @@ export default defineConfig({
         "/en-US/components": [
             {
                 title: "General",
-                children: ["/Button"]
+                children: ["/Button", "/Icon"]
             },
             {
                 title: "Layout",
@@ -63,12 +63,24 @@ export default defineConfig({
     },
 
     webpack5: {},
+    extraBabelPlugins: [
+        "import",
+        {
+            libraryName: "@mccree-ui/components",
+            camel2DashComponentName: false,
+            libraryDirectory: "/",
+            customStyleName: (name) => {
+                return `./style/index.less`; // 注意：这里 ./ 不可省略
+            }
+        },
+        "@mccree-ui/components"
+    ],
 
     chainWebpack: (memo) => {
         // 设置 alias
         // https://github.com/umijs/dumi/issues/151
         memo.resolve.alias.set(
-            "mccree-ui/components",
+            "@mccree-ui/components",
             path.join(__dirname, "../packages/components")
         );
 
