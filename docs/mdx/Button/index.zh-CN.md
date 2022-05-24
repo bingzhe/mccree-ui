@@ -10,6 +10,7 @@ nav:
 ```tsx
 import React from "react";
 import { Button } from "@mccree-ui/components";
+import "@mccree-ui/components/Button/style/index"
 
 const a = () => {
     return <Button>default</Button>;

@@ -63,18 +63,18 @@ export default defineConfig({
     },
 
     webpack5: {},
-    extraBabelPlugins: [
-        "import",
-        {
-            libraryName: "@mccree-ui/components",
-            camel2DashComponentName: false,
-            libraryDirectory: "/",
-            customStyleName: (name) => {
-                return `./style/index.less`; // 注意：这里 ./ 不可省略
-            }
-        },
-        "@mccree-ui/components"
-    ],
+    // extraBabelPlugins: [
+    //     "import",
+    //     {
+    //         libraryName: "@mccree-ui/components",
+    //         camel2DashComponentName: false,
+    //         libraryDirectory: "",
+    //         customStyleName: (name) => {
+    //             return `./style/index.less`; // 注意：这里 ./ 不可省略
+    //         },
+    //     },
+    //     "@mccree-ui/components"
+    // ],
 
     chainWebpack: (memo) => {
         // 设置 alias
