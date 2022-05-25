@@ -4,22 +4,23 @@
     "main": "./index.js",
     "module": "./index.es.js",
     "scripts": {
-        "generate": "cross-env NODE_ENV=production gulp --require ts-node/register/transpile-only"
+        "generate": "cross-env NODE_ENV=production gulp --require ts-node/register/transpile-only",
+        "icon": "rimraf react-icon && rimraf react-icon-cjs && cd build/ && node generate.js && node genDemo.js"
     },
     "peerDependencies": {
         "react": ">=16.9.0",
         "react-dom": ">=16.9.0"
     },
     "devDependencies": {
-        "@babel/core": "^7.17.9",
-        "@babel/plugin-transform-arrow-functions": "^7.16.7",
-        "@babel/plugin-transform-destructuring": "^7.17.7",
-        "@babel/plugin-transform-modules-commonjs": "^7.17.9",
-        "@babel/plugin-transform-runtime": "^7.17.0",
-        "@babel/plugin-transform-spread": "^7.16.7",
-        "@babel/preset-env": "^7.16.11",
-        "@babel/preset-react": "^7.16.7",
-        "@babel/runtime": "^7.17.9",
+        "@babel/core": "^7.18.2",
+        "@babel/plugin-transform-arrow-functions": "^7.17.12",
+        "@babel/plugin-transform-destructuring": "^7.18.0",
+        "@babel/plugin-transform-modules-commonjs": "^7.18.2",
+        "@babel/plugin-transform-runtime": "^7.18.2",
+        "@babel/plugin-transform-spread": "^7.17.12",
+        "@babel/preset-env": "^7.18.2",
+        "@babel/preset-react": "^7.17.12",
+        "@babel/runtime": "^7.18.2",
         "nunjucks": "^3.2.3"
     }
 }
