@@ -1,29 +1,27 @@
-@mccree-prefix: mccree;
+@mccree-prefix: mc;
+@mccree-cssvars-prefix: --mc;
 
-// --------- Colors --------
-@primary-color: #1976d2;
-@primary-light-color: #4791db;
-@primary-dark-color: #115293;
+// --------- 颜色扩展 --------
 
-@secondary-color: #dc004e;
-@secondary-light-color: #e33371;
-@secondary-dark-color: #9a0036;
+@primary-color: var(~'@{mccree-cssvars-prefix}-color-primary-6');
+@primary-color-hover: var(~'@{mccree-cssvars-prefix}-color-primary-5');
+@primary-color-active: var(~'@{mccree-cssvars-prefix}-color-primary-7');
+@primary-color-disabled: var(~'@{mccree-cssvars-prefix}-color-primary-3');
 
-@warning-color: #ff9800;
-@warning-light-color: #ffb74d;
-@warning-dark-color: #f57c00;
+@danger-color: var(~'@{mccree-cssvars-prefix}-color-danger-6');
+@danger-color-hover: var(~'@{mccree-cssvars-prefix}-color-danger-5');
+@danger-color-active: var(~'@{mccree-cssvars-prefix}-color-danger-7');
+@danger-color-disabled: var(~'@{mccree-cssvars-prefix}-color-danger-3');
 
-@success-color: #4caf50;
-@success-light-color: #81c784;
-@success-dark-color: #388e3c;
+@warning-color: var(~'@{mccree-cssvars-prefix}-color-warning-6');
+@warning-color-hover: var(~'@{mccree-cssvars-prefix}-color-warning-5');
+@warning-color-active: var(~'@{mccree-cssvars-prefix}-color-warning-7');
+@warning-color-disabled: var(~'@{mccree-cssvars-prefix}-color-warning-3');
 
-@error-color: #f44336;
-@error-light-color: #e57373;
-@error-dark-color: #d32f2f;
-
-@info-color: #2196f3;
-@info-light-color: #64b5f6;
-@info-dark-color: #1976d2;
+@success-color: var(~'@{mccree-cssvars-prefix}-color-success-6');
+@success-color-hover: var(~'@{mccree-cssvars-prefix}-color-success-5');
+@success-color-active: var(~'@{mccree-cssvars-prefix}-color-success-7');
+@success-color-disabled: var(~'@{mccree-cssvars-prefix}-color-success-3');
 
 @grey-50: #fafafa;
 @grey-100: #f5f5f5;
@@ -67,8 +65,11 @@
 @font-weight: 400;
 
 @line-height-base: 1.5715;
-@border-radius-base: 2px;
-@border-radius-sm: @border-radius-base;
+
+// radius
+@border-radius-base: 3px;
+@border-radius-sm: 2px;
+@border-radius-lg: 4px;
 
 // vertical paddings
 @padding-lg: 24px;
@@ -165,223 +166,146 @@
 @shadow-10: 0px 6px 6px -3px rgba(0, 0, 0, 0.2), 0px 10px 14px 1px rgba(0, 0, 0, 0.14),
     0px 4px 18px 3px rgba(0, 0, 0, 0.12);
 
-//Buttons
-@btn-border-radius-base: 4px;
-@btn-border-radius-sm: @border-radius-base;
-@btn-border-width: @border-width-base;
-@btn-border-style: @border-style-base;
-@btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
-@btn-primary-shadow: @shadow-2;
-@btn-primary-shadow-hover: @shadow-4;
-@btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+// //Checkbox
+// @checkbox-color: fade(@black, 54%);
+// @checkbox-padding: @padding-xs + 1px;
 
-@btn-default-color: @black;
-@btn-default-bg: @grey-300;
-@btn-default-bg-hover: @grey-A100;
-@btn-default-border: @border-color-base;
+// @checkbox-primary-color: @primary-color;
+// @checkbox-primary-bg: @primary-color;
+// @checkbox-primary-bg-hover: fade(@primary-color, 4%);
 
-@btn-primary-color: @white;
-@btn-primary-bg: @primary-color;
-@btn-primary-bg-hover: @primary-dark-color;
+// @checkbox-secondary-color: @secondary-color;
+// @checkbox-secondary-bg: @secondary-color;
+// @checkbox-secondary-bg-hover: fade(@secondary-color, 4%);
 
-@btn-secondary-color: @white;
-@btn-secondary-bg: @secondary-color;
-@btn-secondary-bg-hover: @secondary-dark-color;
+// @checkbox-warning-color: @warning-color;
+// @checkbox-warning-bg: @warning-color;
+// @checkbox-warning-bg-hover: fade(@warning-color, 4%);
 
-@btn-warning-color: @white;
-@btn-warning-bg: @warning-color;
-@btn-warning-bg-hover: @warning-dark-color;
+// @checkbox-success-color: @success-color;
+// @checkbox-success-bg: @success-color;
+// @checkbox-success-bg-hover: fade(@success-color, 4%);
 
-@btn-success-color: @white;
-@btn-success-bg: @success-color;
-@btn-success-bg-hover: @success-dark-color;
+// @checkbox-error-color: @error-color;
+// @checkbox-error-bg: @error-color;
+// @checkbox-error-bg-hover: fade(@error-color, 4%);
 
-@btn-error-color: @white;
-@btn-error-bg: @error-color;
-@btn-error-bg-hover: @error-dark-color;
-@btn-error-border: @error-color;
+// @checkbox-info-color: @info-color;
+// @checkbox-info-bg: @info-color;
+// @checkbox-info-bg-hover: fade(@info-color, 4%);
 
-@btn-info-color: @white;
-@btn-info-bg: @info-color;
-@btn-info-bg-hover: @info-dark-color;
+// @checkbox-disable-color: @disabled-color;
+// @checkbox-disable-bg: @disabled-bg;
+// @checkbox-disable-border: @disabled-color;
 
-@btn-disable-color: @disabled-color;
-@btn-disable-bg: @disabled-bg;
-@btn-disable-border: @disabled-color;
+// @checkbox-btn-border-radius-base: 4px;
+// @checkbox-btn-border-radius-sm: @border-radius-base;
+// @checkbox-btn-border-width: @border-width-base;
+// @checkbox-btn-border-style: @border-style-base;
 
-@btn-default-ghost-color: @component-background;
-@btn-default-ghost-bg: transparent;
-@btn-default-ghost-border: @component-background;
+// @checkbox-btn-height-base: @height-base;
+// @checkbox-btn-height-lg: @height-lg;
+// @checkbox-btn-height-sm: @height-sm;
 
-@btn-font-size-lg: @font-size-lg;
-@btn-font-size-sm: @font-size-base;
-@btn-padding-horizontal-base: @padding-md - 1px;
-@btn-padding-horizontal-lg: @btn-padding-horizontal-base;
-@btn-padding-horizontal-sm: @padding-xs - 1px;
+// @checkbox-btn-font-size-lg: @font-size-lg;
+// @checkbox-btn-font-size-sm: @font-size-base;
+// @checkbox-btn-padding-horizontal-base: @padding-md - 1px;
+// @checkbox-btn-padding-horizontal-lg: @checkbox-btn-padding-horizontal-base;
+// @checkbox-btn-padding-horizontal-sm: @padding-xs - 1px;
 
-@btn-height-base: @height-base;
-@btn-height-lg: @height-lg;
-@btn-height-sm: @height-sm;
+// //Radio
+// @radio-color: fade(@black, 54%);
+// @radio-padding: @padding-xs + 1px;
 
-@btn-circle-size: @btn-height-base;
-@btn-circle-size-lg: @btn-height-lg;
-@btn-circle-size-sm: @btn-height-sm;
+// @radio-primary-color: @primary-color;
+// @radio-primary-bg: @primary-color;
+// @radio-primary-bg-hover: fade(@primary-color, 4%);
 
-@btn-square-size: @btn-height-base;
-@btn-square-size-lg: @btn-height-lg;
-@btn-square-size-sm: @btn-height-sm;
-@btn-square-only-icon-size: @font-size-base + 2px;
-@btn-square-only-icon-size-sm: @font-size-base;
-@btn-square-only-icon-size-lg: @btn-font-size-lg + 2px;
+// @radio-secondary-color: @secondary-color;
+// @radio-secondary-bg: @secondary-color;
+// @radio-secondary-bg-hover: fade(@secondary-color, 4%);
 
-@btn-icon-font-size: 20px;
-@btn-icon-font-size-lg: @btn-icon-font-size + 2px;
-@btn-icon-font-size-sm: @btn-icon-font-size - 2px;
+// @radio-warning-color: @warning-color;
+// @radio-warning-bg: @warning-color;
+// @radio-warning-bg-hover: fade(@warning-color, 4%);
 
-@btn-group-border: @primary-color;
+// @radio-success-color: @success-color;
+// @radio-success-bg: @success-color;
+// @radio-success-bg-hover: fade(@success-color, 4%);
 
-@btn-link-ghost-color: @component-background;
+// @radio-error-color: @error-color;
+// @radio-error-bg: @error-color;
+// @radio-error-bg-hover: fade(@error-color, 4%);
 
-//Checkbox
-@checkbox-color: fade(@black, 54%);
-@checkbox-padding: @padding-xs + 1px;
+// @radio-info-color: @info-color;
+// @radio-info-bg: @info-color;
+// @radio-info-bg-hover: fade(@info-color, 4%);
 
-@checkbox-primary-color: @primary-color;
-@checkbox-primary-bg: @primary-color;
-@checkbox-primary-bg-hover: fade(@primary-color, 4%);
+// @radio-disable-color: @disabled-color;
+// @radio-disable-bg: @disabled-bg;
+// @radio-disable-border: @disabled-color;
 
-@checkbox-secondary-color: @secondary-color;
-@checkbox-secondary-bg: @secondary-color;
-@checkbox-secondary-bg-hover: fade(@secondary-color, 4%);
+// @radio-btn-border-radius-base: 4px;
+// @radio-btn-border-radius-sm: @border-radius-base;
+// @radio-btn-border-width: @border-width-base;
+// @radio-btn-border-style: @border-style-base;
 
-@checkbox-warning-color: @warning-color;
-@checkbox-warning-bg: @warning-color;
-@checkbox-warning-bg-hover: fade(@warning-color, 4%);
+// @radio-btn-height-base: @height-base;
+// @radio-btn-height-lg: @height-lg;
+// @radio-btn-height-sm: @height-sm;
 
-@checkbox-success-color: @success-color;
-@checkbox-success-bg: @success-color;
-@checkbox-success-bg-hover: fade(@success-color, 4%);
+// @radio-btn-font-size-lg: @font-size-lg;
+// @radio-btn-font-size-sm: @font-size-base;
+// @radio-btn-padding-horizontal-base: @padding-md - 1px;
+// @radio-btn-padding-horizontal-lg: @radio-btn-padding-horizontal-base;
+// @radio-btn-padding-horizontal-sm: @padding-xs - 1px;
 
-@checkbox-error-color: @error-color;
-@checkbox-error-bg: @error-color;
-@checkbox-error-bg-hover: fade(@error-color, 4%);
+// //Input
+// @input-disable-color: @disabled-color;
+// @input-disable-bg: #fafafa;
+// @input-disable-border: #eaeaea;
 
-@checkbox-info-color: @info-color;
-@checkbox-info-bg: @info-color;
-@checkbox-info-bg-hover: fade(@info-color, 4%);
+// @input-padding-horizontal-base: 7px;
+// @input-padding-horizontal-lg: 8px;
+// @input-padding-horizontal-sm: 8px;
+// @input-padding-vertical-base: 10px;
+// @input-padding-vertical-lg: 10px;
+// @input-padding-vertical-sm: 10px;
 
-@checkbox-disable-color: @disabled-color;
-@checkbox-disable-bg: @disabled-bg;
-@checkbox-disable-border: @disabled-color;
+// @input-color: @black;
 
-@checkbox-btn-border-radius-base: 4px;
-@checkbox-btn-border-radius-sm: @border-radius-base;
-@checkbox-btn-border-width: @border-width-base;
-@checkbox-btn-border-style: @border-style-base;
+// // Media queries breakpoints
+// // Extra small screen / phone
+// @screen-xs: 480px;
+// @screen-xs-min: @screen-xs;
 
-@checkbox-btn-height-base: @height-base;
-@checkbox-btn-height-lg: @height-lg;
-@checkbox-btn-height-sm: @height-sm;
+// // Small screen / tablet
+// @screen-sm: 576px;
+// @screen-sm-min: @screen-sm;
 
-@checkbox-btn-font-size-lg: @font-size-lg;
-@checkbox-btn-font-size-sm: @font-size-base;
-@checkbox-btn-padding-horizontal-base: @padding-md - 1px;
-@checkbox-btn-padding-horizontal-lg: @checkbox-btn-padding-horizontal-base;
-@checkbox-btn-padding-horizontal-sm: @padding-xs - 1px;
+// // Medium screen / desktop
+// @screen-md: 768px;
+// @screen-md-min: @screen-md;
 
-//Radio
-@radio-color: fade(@black, 54%);
-@radio-padding: @padding-xs + 1px;
+// // Large screen / wide desktop
+// @screen-lg: 992px;
+// @screen-lg-min: @screen-lg;
 
-@radio-primary-color: @primary-color;
-@radio-primary-bg: @primary-color;
-@radio-primary-bg-hover: fade(@primary-color, 4%);
+// // Extra large screen / full hd
+// @screen-xl: 1200px;
+// @screen-xl-min: @screen-xl;
 
-@radio-secondary-color: @secondary-color;
-@radio-secondary-bg: @secondary-color;
-@radio-secondary-bg-hover: fade(@secondary-color, 4%);
+// // Extra extra large screen / large desktop
+// @screen-xxl: 1600px;
+// @screen-xxl-min: @screen-xxl;
 
-@radio-warning-color: @warning-color;
-@radio-warning-bg: @warning-color;
-@radio-warning-bg-hover: fade(@warning-color, 4%);
+// // provide a maximum
+// @screen-xs-max: (@screen-sm-min - 1px);
+// @screen-sm-max: (@screen-md-min - 1px);
+// @screen-md-max: (@screen-lg-min - 1px);
+// @screen-lg-max: (@screen-xl-min - 1px);
+// @screen-xl-max: (@screen-xxl-min - 1px);
 
-@radio-success-color: @success-color;
-@radio-success-bg: @success-color;
-@radio-success-bg-hover: fade(@success-color, 4%);
-
-@radio-error-color: @error-color;
-@radio-error-bg: @error-color;
-@radio-error-bg-hover: fade(@error-color, 4%);
-
-@radio-info-color: @info-color;
-@radio-info-bg: @info-color;
-@radio-info-bg-hover: fade(@info-color, 4%);
-
-@radio-disable-color: @disabled-color;
-@radio-disable-bg: @disabled-bg;
-@radio-disable-border: @disabled-color;
-
-@radio-btn-border-radius-base: 4px;
-@radio-btn-border-radius-sm: @border-radius-base;
-@radio-btn-border-width: @border-width-base;
-@radio-btn-border-style: @border-style-base;
-
-@radio-btn-height-base: @height-base;
-@radio-btn-height-lg: @height-lg;
-@radio-btn-height-sm: @height-sm;
-
-@radio-btn-font-size-lg: @font-size-lg;
-@radio-btn-font-size-sm: @font-size-base;
-@radio-btn-padding-horizontal-base: @padding-md - 1px;
-@radio-btn-padding-horizontal-lg: @radio-btn-padding-horizontal-base;
-@radio-btn-padding-horizontal-sm: @padding-xs - 1px;
-
-//Input
-@input-disable-color: @disabled-color;
-@input-disable-bg: #fafafa;
-@input-disable-border: #eaeaea;
-
-@input-padding-horizontal-base: 7px;
-@input-padding-horizontal-lg: 8px;
-@input-padding-horizontal-sm: 8px;
-@input-padding-vertical-base: 10px;
-@input-padding-vertical-lg: 10px;
-@input-padding-vertical-sm: 10px;
-
-@input-color: @black;
-
-// Media queries breakpoints
-// Extra small screen / phone
-@screen-xs: 480px;
-@screen-xs-min: @screen-xs;
-
-// Small screen / tablet
-@screen-sm: 576px;
-@screen-sm-min: @screen-sm;
-
-// Medium screen / desktop
-@screen-md: 768px;
-@screen-md-min: @screen-md;
-
-// Large screen / wide desktop
-@screen-lg: 992px;
-@screen-lg-min: @screen-lg;
-
-// Extra large screen / full hd
-@screen-xl: 1200px;
-@screen-xl-min: @screen-xl;
-
-// Extra extra large screen / large desktop
-@screen-xxl: 1600px;
-@screen-xxl-min: @screen-xxl;
-
-// provide a maximum
-@screen-xs-max: (@screen-sm-min - 1px);
-@screen-sm-max: (@screen-md-min - 1px);
-@screen-md-max: (@screen-lg-min - 1px);
-@screen-lg-max: (@screen-xl-min - 1px);
-@screen-xl-max: (@screen-xxl-min - 1px);
-
-// Grid system
-@grid-columns: 24;
-@grid-gutter-width: 0;
+// // Grid system
+// @grid-columns: 24;
+// @grid-gutter-width: 0;

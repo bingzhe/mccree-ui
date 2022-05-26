@@ -4,7 +4,7 @@ import { useMergeProps } from "@mccree-ui/hooks";
 import { omit } from "@mccree-ui/util/omit";
 
 const defaultProps: ConfigProviderProps = {
-    prefixCls: "mccree",
+    prefixCls: "mc",
     size: "default"
 };
 
@@ -12,7 +12,7 @@ const componentConfig = {};
 
 export const ConfigContext = createContext<ConfigProviderProps>({
     getPrefixCls: (componentName: string, customPrefix?: string) =>
-        `${customPrefix || "mccree"}-${componentName}`,
+        `${customPrefix || "mc"}-${componentName}`,
     ...defaultProps
 });
 
