@@ -5,88 +5,135 @@
 @import "./mixin.less";
 
 .@{btn-prefix-cls} {
-    .reset-component;
-    .btn;
-    .btn-default;
-
-    &-primary {
-        .btn-primary;
-    }
-
-    &-secondary {
-        .btn-secondary;
-    }
-
-    &-success {
-        .btn-success;
-    }
-
-    &-warning {
-        .btn-warning;
-    }
-
-    &-error {
-        .btn-error;
-    }
-
-    &-info {
-        .btn-info;
-    }
-
-    &-round {
-        .btn-round(@btn-prefix-cls);
-    }
-
-    &-circle {
-        .btn-circle(@btn-prefix-cls);
-    }
-
-    &&-loading {
-        position: relative;
-
-        &:not([disabled]) {
-            pointer-events: none;
-        }
-
-        &::before {
-            display: block;
-        }
-
-        .@{btn-prefix-cls}-icon-loading {
-            margin-right: 8px;
-        }
-    }
-
-    &&-icon {
-        .@{btn-prefix-cls}-prefix-icon {
-            font-size: @btn-icon-font-size;
-            margin-right: 8px;
-            margin-left: -4px;
-        }
-
-        .@{btn-prefix-cls}-suffix-icon {
-            font-size: @btn-icon-font-size;
-            margin-left: 8px;
-            margin-right: -4px;
-        }
-
-        .@{btn-prefix-cls}-icon-lg {
-            font-size: @btn-icon-font-size-lg;
-        }
-
-        .@{btn-prefix-cls}-icon-sm {
-            font-size: @btn-icon-font-size-sm;
-        }
-    }
-
-    &-group {
-        .btn-group(@btn-prefix-cls);
-    }
-
-    &-block {
-        width: 100%;
-    }
+    box-sizing: border-box;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: @font-weight;
+    white-space: nowrap;
+    text-align: center;
+    background-image: none;
+    // border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
 }
+
+.btn-theme(default, default);
+.btn-theme(default, primary);
+.btn-theme(default, danger);
+.btn-theme(default, warning);
+.btn-theme(default, success);
+
+.btn-theme(outline, default);
+.btn-theme(outline, primary);
+.btn-theme(outline, danger);
+.btn-theme(outline, warning);
+.btn-theme(outline, success);
+
+.btn-theme(dashed, default);
+.btn-theme(dashed, primary);
+.btn-theme(dashed, danger);
+.btn-theme(dashed, warning);
+.btn-theme(dashed, success);
+
+.btn-theme(text, default);
+.btn-theme(text, primary);
+.btn-theme(text, danger);
+.btn-theme(text, warning);
+.btn-theme(text, success);
+
+.btn-size(small);
+.btn-size(default);
+.btn-size(large);
+
+// .@{btn-prefix-cls} {
+//     .reset-component;
+//     .btn;
+//     .btn-default;
+
+//     &-primary {
+//         .btn-primary;
+//     }
+
+//     &-secondary {
+//         .btn-secondary;
+//     }
+
+//     &-success {
+//         .btn-success;
+//     }
+
+//     &-warning {
+//         .btn-warning;
+//     }
+
+//     &-error {
+//         .btn-error;
+//     }
+
+//     &-info {
+//         .btn-info;
+//     }
+
+//     &-round {
+//         .btn-round(@btn-prefix-cls);
+//     }
+
+//     &-circle {
+//         .btn-circle(@btn-prefix-cls);
+//     }
+
+//     &&-loading {
+//         position: relative;
+
+//         &:not([disabled]) {
+//             pointer-events: none;
+//         }
+
+//         &::before {
+//             display: block;
+//         }
+
+//         .@{btn-prefix-cls}-icon-loading {
+//             margin-right: 8px;
+//         }
+//     }
+
+//     &&-icon {
+//         .@{btn-prefix-cls}-prefix-icon {
+//             font-size: @btn-icon-font-size;
+//             margin-right: 8px;
+//             margin-left: -4px;
+//         }
+
+//         .@{btn-prefix-cls}-suffix-icon {
+//             font-size: @btn-icon-font-size;
+//             margin-left: 8px;
+//             margin-right: -4px;
+//         }
+
+//         .@{btn-prefix-cls}-icon-lg {
+//             font-size: @btn-icon-font-size-lg;
+//         }
+
+//         .@{btn-prefix-cls}-icon-sm {
+//             font-size: @btn-icon-font-size-sm;
+//         }
+//     }
+
+//     &-group {
+//         .btn-group(@btn-prefix-cls);
+//     }
+
+//     &-block {
+//         width: 100%;
+//     }
+// }
 
 // .@{btn-prefix-cls}-root {
 //     // --mccree-color: #1976d2;

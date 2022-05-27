@@ -20,36 +20,324 @@
 @btn-border-width: @border-width-base;
 @btn-border-style: @border-style-base;
 
-// 主色
-@btn-color-primary: @color-primary;
-@btn-color-primary-hover: @color-primary-hover;
-@btn-color-primary-active: @color-primary-active;
-@btn-color-primary-disabled: @color-primary-disabled;
+// Size
+@btn-size-small-height: @height-sm;
+@btn-size-default-height: @height-base;
+@btn-size-large-height: @height-lg;
 
-// 警告
-@btn-color-warning: @color-warning;
-@btn-color-warning-hover: @color-warning-hover;
-@btn-color-warning-active: @color-warning-active;
-@btn-color-warning-disabled: @color-warning-disabled;
+// Radius
+@btn-size-small-radius: @border-radius-base;
+@btn-size-default-radius: @border-radius-base;
+@btn-size-large-radius: @border-radius-base;
 
-// 危险
-@btn-color-danger: @color-danger;
-@btn-color-danger-hover: @color-danger-hover;
-@btn-color-danger-active: @color-danger-active;
-@btn-color-danger-disabled: @color-danger-disabled;
+@btn-size-small-icon-spacing: 6px;
+@btn-size-default-icon-spacing: 8px;
+@btn-size-large-icon-spacing: 8px;
 
-// 成功
-@btn-color-success: @color-success;
-@btn-color-success-hover: @color-success-hover;
-@btn-color-success-active: @color-success-active;
-@btn-color-success-disabled: @color-success-disabled;
+@btn-size-small-icon-vertical-align: -2px;
+@btn-size-default-icon-vertical-align: -2px;
+@btn-size-large-icon-vertical-align: -2px;
 
+@btn-size-small-padding-horizontal: 15px;
+@btn-size-default-padding-horizontal: 15px;
+@btn-size-large-padding-horizontal: 19px;
+
+@btn-size-small-font-size: @font-size-sm;
+@btn-size-default-font-size: @font-size-base;
+@btn-size-large-font-size: @font-size-base;
+
+// default border
+@btn-default-border-style: solid;
+// variant-theme default-default
+@btn-default-color-text_default: @text-color-primary;
+@btn-default-color-text_default_disabled: @text-color-disabled;
+@btn-default-color-text_default_hover: @text-color-primary;
+@btn-default-color-text_default_active: @text-color-primary;
+@btn-default-color-bg_default: @color-gray;
+@btn-default-color-bg_default_disabled: @color-gray-disabled;
+@btn-default-color-bg_default_hover: @color-gray-hover;
+@btn-default-color-bg_default_active: @color-gray-active;
+@btn-default-color-border_default: @color-gray;
+@btn-default-color-border_default_disabled: @color-gray-disabled;
+@btn-default-color-border_default_hover: @color-gray-hover;
+@btn-default-color-border_default_active: @color-gray-active;
+
+// variant-theme default-primary
+@btn-default-color-text_primary: @text-color-inverse;
+@btn-default-color-text_primary_disabled: @text-color-inverse;
+@btn-default-color-text_primary_hover: @text-color-inverse;
+@btn-default-color-text_primary_active: @text-color-inverse;
+@btn-default-color-bg_primary: @color-primary;
+@btn-default-color-bg_primary_disabled: @color-primary-disabled;
+@btn-default-color-bg_primary_hover: @color-primary-hover;
+@btn-default-color-bg_primary_active: @color-primary-active;
+@btn-default-color-border_primary: @color-primary;
+@btn-default-color-border_primary_disabled: @color-primary-disabled;
+@btn-default-color-border_primary_hover: @color-primary-hover;
+@btn-default-color-border_primary_active: @color-primary-active;
+
+// variant-theme default-danger
+@btn-default-color-text_danger: @text-color-inverse;
+@btn-default-color-text_danger_disabled: @text-color-inverse;
+@btn-default-color-text_danger_hover: @text-color-inverse;
+@btn-default-color-text_danger_active: @text-color-inverse;
+@btn-default-color-bg_danger: @color-danger;
+@btn-default-color-bg_danger_disabled: @color-danger-disabled;
+@btn-default-color-bg_danger_hover: @color-danger-hover;
+@btn-default-color-bg_danger_active: @color-danger-active;
+@btn-default-color-border_danger: @color-danger;
+@btn-default-color-border_danger_disabled: @color-danger-disabled;
+@btn-default-color-border_danger_hover: @color-danger-hover;
+@btn-default-color-border_danger_active: @color-danger-active;
+
+// variant-theme default-warning
+@btn-default-color-text_warning: @text-color-inverse;
+@btn-default-color-text_warning_disabled: @text-color-inverse;
+@btn-default-color-text_warning_hover: @text-color-inverse;
+@btn-default-color-text_warning_active: @text-color-inverse;
+@btn-default-color-bg_warning: @color-warning;
+@btn-default-color-bg_warning_disabled: @color-warning-disabled;
+@btn-default-color-bg_warning_hover: @color-warning-hover;
+@btn-default-color-bg_warning_active: @color-warning-active;
+@btn-default-color-border_warning: @color-warning;
+@btn-default-color-border_warning_disabled: @color-warning-disabled;
+@btn-default-color-border_warning_hover: @color-warning-hover;
+@btn-default-color-border_warning_active: @color-warning-active;
+
+// variant-theme default-success
+@btn-default-color-text_success: @text-color-inverse;
+@btn-default-color-text_success_disabled: @text-color-inverse;
+@btn-default-color-text_success_hover: @text-color-inverse;
+@btn-default-color-text_success_active: @text-color-inverse;
+@btn-default-color-bg_success: @color-success;
+@btn-default-color-bg_success_disabled: @color-success-disabled;
+@btn-default-color-bg_success_hover: @color-success-hover;
+@btn-default-color-bg_success_active: @color-success-active;
+@btn-default-color-border_success: @color-success;
+@btn-default-color-border_success_disabled: @color-success-disabled;
+@btn-default-color-border_success_hover: @color-success-hover;
+@btn-default-color-border_success_active: @color-success-active;
+
+// outline border
+@btn-outline-border-style: solid;
+// variant-theme outline-default
+@btn-outline-color-text_default: @text-color-primary;
+@btn-outline-color-text_default_disabled: @text-color-disabled;
+@btn-outline-color-text_default_hover: @color-primary-hover;
+@btn-outline-color-text_default_active: @color-primary-active;
+@btn-outline-color-bg_default: @color-transparent;
+@btn-outline-color-bg_default_disabled: @color-transparent;
+@btn-outline-color-bg_default_hover: @color-transparent;
+@btn-outline-color-bg_default_active: @color-transparent;
+@btn-outline-color-border_default: @component-border-color;
+@btn-outline-color-border_default_disabled: @component-border-color;
+@btn-outline-color-border_default_hover: @color-primary-hover;
+@btn-outline-color-border_default_active: @color-primary-active;
+
+// variant-theme outline-primary
+@btn-outline-color-text_primary: @color-primary;
+@btn-outline-color-text_primary_disabled: @color-primary-disabled;
+@btn-outline-color-text_primary_hover: @color-primary-hover;
+@btn-outline-color-text_primary_active: @color-primary-active;
+@btn-outline-color-bg_primary: @color-transparent;
+@btn-outline-color-bg_primary_disabled: @color-transparent;
+@btn-outline-color-bg_primary_hover: @color-transparent;
+@btn-outline-color-bg_primary_active: @color-transparent;
+@btn-outline-color-border_primary: @color-primary;
+@btn-outline-color-border_primary_disabled: @color-primary-disabled;
+@btn-outline-color-border_primary_hover: @color-primary-hover;
+@btn-outline-color-border_primary_active: @color-primary-active;
+
+// variant-theme outline-danger
+@btn-outline-color-text_danger: @color-danger;
+@btn-outline-color-text_danger_disabled: @color-danger-disabled;
+@btn-outline-color-text_danger_hover: @color-danger-hover;
+@btn-outline-color-text_danger_active: @color-danger-active;
+@btn-outline-color-bg_danger: @color-transparent;
+@btn-outline-color-bg_danger_disabled: @color-transparent;
+@btn-outline-color-bg_danger_hover: @color-transparent;
+@btn-outline-color-bg_danger_active: @color-transparent;
+@btn-outline-color-border_danger: @color-danger;
+@btn-outline-color-border_danger_disabled: @color-danger-disabled;
+@btn-outline-color-border_danger_hover: @color-danger-hover;
+@btn-outline-color-border_danger_active: @color-danger-active;
+
+// variant-theme outline-warning
+@btn-outline-color-text_warning: @color-warning;
+@btn-outline-color-text_warning_disabled: @color-warning-disabled;
+@btn-outline-color-text_warning_hover: @color-warning-hover;
+@btn-outline-color-text_warning_active: @color-warning-active;
+@btn-outline-color-bg_warning: @color-transparent;
+@btn-outline-color-bg_warning_disabled: @color-transparent;
+@btn-outline-color-bg_warning_hover: @color-transparent;
+@btn-outline-color-bg_warning_active: @color-transparent;
+@btn-outline-color-border_warning: @color-warning;
+@btn-outline-color-border_warning_disabled: @color-warning-disabled;
+@btn-outline-color-border_warning_hover: @color-warning-hover;
+@btn-outline-color-border_warning_active: @color-warning-active;
+
+// variant-theme outline-success
+@btn-outline-color-text_success: @color-success;
+@btn-outline-color-text_success_disabled: @color-success-disabled;
+@btn-outline-color-text_success_hover: @color-success-hover;
+@btn-outline-color-text_success_active: @color-success-active;
+@btn-outline-color-bg_success: @color-transparent;
+@btn-outline-color-bg_success_disabled: @color-transparent;
+@btn-outline-color-bg_success_hover: @color-transparent;
+@btn-outline-color-bg_success_active: @color-transparent;
+@btn-outline-color-border_success: @color-success;
+@btn-outline-color-border_success_disabled: @color-success-disabled;
+@btn-outline-color-border_success_hover: @color-success-hover;
+@btn-outline-color-border_success_active: @color-success-active;
+
+// dashed border
+@btn-dashed-border-style: dashed;
+// variant-theme dashed-default
+@btn-dashed-color-text_default: @text-color-primary;
+@btn-dashed-color-text_default_disabled: @text-color-disabled;
+@btn-dashed-color-text_default_hover: @color-primary-hover;
+@btn-dashed-color-text_default_active: @color-primary-active;
+@btn-dashed-color-bg_default: @color-transparent;
+@btn-dashed-color-bg_default_disabled: @color-transparent;
+@btn-dashed-color-bg_default_hover: @color-transparent;
+@btn-dashed-color-bg_default_active: @color-transparent;
+@btn-dashed-color-border_default: @component-border-color;
+@btn-dashed-color-border_default_disabled: @component-border-color;
+@btn-dashed-color-border_default_hover: @color-primary-hover;
+@btn-dashed-color-border_default_active: @color-primary-active;
+
+// variant-theme dashed-primary
+@btn-dashed-color-text_primary: @color-primary;
+@btn-dashed-color-text_primary_disabled: @color-primary-disabled;
+@btn-dashed-color-text_primary_hover: @color-primary-hover;
+@btn-dashed-color-text_primary_active: @color-primary-active;
+@btn-dashed-color-bg_primary: @color-transparent;
+@btn-dashed-color-bg_primary_disabled: @color-transparent;
+@btn-dashed-color-bg_primary_hover: @color-transparent;
+@btn-dashed-color-bg_primary_active: @color-transparent;
+@btn-dashed-color-border_primary: @color-primary;
+@btn-dashed-color-border_primary_disabled: @color-primary-disabled;
+@btn-dashed-color-border_primary_hover: @color-primary-hover;
+@btn-dashed-color-border_primary_active: @color-primary-active;
+
+// variant-theme dashed-danger
+@btn-dashed-color-text_danger: @color-danger;
+@btn-dashed-color-text_danger_disabled: @color-danger-disabled;
+@btn-dashed-color-text_danger_hover: @color-danger-hover;
+@btn-dashed-color-text_danger_active: @color-danger-active;
+@btn-dashed-color-bg_danger: @color-transparent;
+@btn-dashed-color-bg_danger_disabled: @color-transparent;
+@btn-dashed-color-bg_danger_hover: @color-transparent;
+@btn-dashed-color-bg_danger_active: @color-transparent;
+@btn-dashed-color-border_danger: @color-danger;
+@btn-dashed-color-border_danger_disabled: @color-danger-disabled;
+@btn-dashed-color-border_danger_hover: @color-danger-hover;
+@btn-dashed-color-border_danger_active: @color-danger-active;
+
+// variant-theme dashed-warning
+@btn-dashed-color-text_warning: @color-warning;
+@btn-dashed-color-text_warning_disabled: @color-warning-disabled;
+@btn-dashed-color-text_warning_hover: @color-warning-hover;
+@btn-dashed-color-text_warning_active: @color-warning-active;
+@btn-dashed-color-bg_warning: @color-transparent;
+@btn-dashed-color-bg_warning_disabled: @color-transparent;
+@btn-dashed-color-bg_warning_hover: @color-transparent;
+@btn-dashed-color-bg_warning_active: @color-transparent;
+@btn-dashed-color-border_warning: @color-warning;
+@btn-dashed-color-border_warning_disabled: @color-warning-disabled;
+@btn-dashed-color-border_warning_hover: @color-warning-hover;
+@btn-dashed-color-border_warning_active: @color-warning-active;
+
+// variant-theme dashed-success
+@btn-dashed-color-text_success: @color-success;
+@btn-dashed-color-text_success_disabled: @color-success-disabled;
+@btn-dashed-color-text_success_hover: @color-success-hover;
+@btn-dashed-color-text_success_active: @color-success-active;
+@btn-dashed-color-bg_success: @color-transparent;
+@btn-dashed-color-bg_success_disabled: @color-transparent;
+@btn-dashed-color-bg_success_hover: @color-transparent;
+@btn-dashed-color-bg_success_active: @color-transparent;
+@btn-dashed-color-border_success: @color-success;
+@btn-dashed-color-border_success_disabled: @color-success-disabled;
+@btn-dashed-color-border_success_hover: @color-success-hover;
+@btn-dashed-color-border_success_active: @color-success-active;
+
+// text border
+@btn-text-border-style: solid;
+// variant-theme text-default
+@btn-text-color-text_default: @text-color-primary;
+@btn-text-color-text_default_disabled: @text-color-disabled;
+@btn-text-color-text_default_hover: @text-color-primary;
+@btn-text-color-text_default_active: @text-color-primary;
+@btn-text-color-bg_default: @color-transparent;
+@btn-text-color-bg_default_disabled: @color-transparent;
+@btn-text-color-bg_default_hover: var(~"@{mccree-cssvars-prefix}-color-gray-2");
+@btn-text-color-bg_default_active: @color-gray;
+@btn-text-color-border_default: @color-transparent;
+@btn-text-color-border_default_disabled: @color-transparent;
+@btn-text-color-border_default_hover: @color-transparent;
+@btn-text-color-border_default_active: @color-transparent;
+
+// variant-theme text-primary
+@btn-text-color-text_primary: @color-primary;
+@btn-text-color-text_primary_disabled: @color-primary-disabled;
+@btn-text-color-text_primary_hover: @color-primary-hover;
+@btn-text-color-text_primary_active: @color-primary-active;
+@btn-text-color-bg_primary: @color-transparent;
+@btn-text-color-bg_primary_disabled: @color-transparent;
+@btn-text-color-bg_primary_hover: var(~"@{mccree-cssvars-prefix}-color-gray-2");
+@btn-text-color-bg_primary_active: @color-gray;
+@btn-text-color-border_primary: @color-transparent;
+@btn-text-color-border_primary_disabled: @color-transparent;
+@btn-text-color-border_primary_hover: @color-transparent;
+@btn-text-color-border_primary_active: @color-transparent;
+
+// variant-theme text-danger
+@btn-text-color-text_danger: @color-danger;
+@btn-text-color-text_danger_disabled: @color-danger-disabled;
+@btn-text-color-text_danger_hover: @color-danger-hover;
+@btn-text-color-text_danger_active: @color-danger-active;
+@btn-text-color-bg_danger: @color-transparent;
+@btn-text-color-bg_danger_disabled: @color-transparent;
+@btn-text-color-bg_danger_hover: var(~"@{mccree-cssvars-prefix}-color-gray-2");
+@btn-text-color-bg_danger_active: @color-gray;
+@btn-text-color-border_danger: @color-transparent;
+@btn-text-color-border_danger_disabled: @color-transparent;
+@btn-text-color-border_danger_hover: @color-transparent;
+@btn-text-color-border_danger_active: @color-transparent;
+
+// variant-theme text-warning
+@btn-text-color-text_warning: @color-warning;
+@btn-text-color-text_warning_disabled: @color-warning-disabled;
+@btn-text-color-text_warning_hover: @color-warning-hover;
+@btn-text-color-text_warning_active: @color-warning-active;
+@btn-text-color-bg_warning: @color-transparent;
+@btn-text-color-bg_warning_disabled: @color-transparent;
+@btn-text-color-bg_warning_hover: var(~"@{mccree-cssvars-prefix}-color-gray-2");
+@btn-text-color-bg_warning_active: @color-gray;
+@btn-text-color-border_warning: @color-transparent;
+@btn-text-color-border_warning_disabled: @color-transparent;
+@btn-text-color-border_warning_hover: @color-transparent;
+@btn-text-color-border_warning_active: @color-transparent;
+
+// variant-theme text-success
+@btn-text-color-text_success: @color-success;
+@btn-text-color-text_success_disabled: @color-success-disabled;
+@btn-text-color-text_success_hover: @color-success-hover;
+@btn-text-color-text_success_active: @color-success-active;
+@btn-text-color-bg_success: @color-transparent;
+@btn-text-color-bg_success_disabled: @color-transparent;
+@btn-text-color-bg_success_hover: var(~"@{mccree-cssvars-prefix}-color-gray-2");
+@btn-text-color-bg_success_active: @color-gray;
+@btn-text-color-border_success: @color-transparent;
+@btn-text-color-border_success_disabled: @color-transparent;
+@btn-text-color-border_success_hover: @color-transparent;
+@btn-text-color-border_success_active: @color-transparent;
 
 // @btn-default-color: @black;
 // @btn-default-bg: @grey-300;
 // @btn-default-bg-hover: @grey-A100;
 // @btn-default-border: @border-color-base;
-
 
 // @btn-default-ghost-color: @component-background;
 // @btn-default-ghost-bg: transparent;

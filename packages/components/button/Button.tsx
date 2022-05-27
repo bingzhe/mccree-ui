@@ -63,9 +63,10 @@ const InternalButton: React.ForwardRefRenderFunction<any, ButtonProps> = (basePr
         prefixCls,
         `${prefixCls}-variant-${variant}`,
         `${prefixCls}-theme-${theme}`,
+        `${prefixCls}-size-${size || ctxSize}`,
         {
             [`${prefixCls}-shape-${shape}`]: shape !== "square",
-            [`${prefixCls}-size-${size || ctxSize}`]: (size || ctxSize) !== "default",
+            // [`${prefixCls}-size-${size || ctxSize}`]: (size || ctxSize) !== "default",
             [`${prefixCls}-loading`]: loading,
             [`${prefixCls}-ghost`]: ghost,
             [`${prefixCls}-disabled`]: disabled,

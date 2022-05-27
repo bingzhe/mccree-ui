@@ -13,7 +13,202 @@ import { Button } from "@mccree-ui/components";
 import "@mccree-ui/components/Button/style/index";
 
 export default () => {
-    return <Button>default</Button>;
+    return (
+        <>
+            <Button>default</Button>
+            <Button variant="outline">default</Button>
+            <Button variant="dashed">default</Button>
+            <Button variant="text">default</Button>
+        </>
+    );
+};
+```
+
+## theme
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+export default () => {
+    return (
+        <>
+            <Button>default</Button>
+
+            <Button theme="primary">default</Button>
+            <Button theme="danger">danger</Button>
+            <Button theme="warning">warning</Button>
+            <Button theme="success">success</Button>
+            <br />
+            <Button disabled>default</Button>
+            <Button theme="primary" disabled>
+                disabled
+            </Button>
+            <Button theme="danger" disabled>
+                danger
+            </Button>
+            <Button theme="warning" disabled>
+                warning
+            </Button>
+            <Button theme="success" disabled>
+                success
+            </Button>
+        </>
+    );
+};
+```
+
+## outline
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+export default () => {
+    return (
+        <>
+            <Button variant="outline">default</Button>
+            <Button variant="outline" theme="primary">
+                default
+            </Button>
+            <Button variant="outline" theme="danger">
+                danger
+            </Button>
+            <Button variant="outline" theme="warning">
+                warning
+            </Button>
+            <Button variant="outline" theme="success">
+                success
+            </Button>
+            <br />
+            <Button variant="outline" disabled>
+                default
+            </Button>
+            <Button variant="outline" theme="primary" disabled>
+                disabled
+            </Button>
+            <Button variant="outline" theme="danger" disabled>
+                danger
+            </Button>
+            <Button variant="outline" theme="warning" disabled>
+                warning
+            </Button>
+            <Button variant="outline" theme="success" disabled>
+                success
+            </Button>
+        </>
+    );
+};
+```
+
+
+## dashed
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+export default () => {
+    return (
+        <>
+            <Button variant="dashed" href="https://www.baidu.com">default</Button>
+            <Button variant="dashed" theme="primary">
+                default
+            </Button>
+            <Button variant="dashed" theme="danger">
+                danger
+            </Button>
+            <Button variant="dashed" theme="warning">
+                warning
+            </Button>
+            <Button variant="dashed" theme="success">
+                success
+            </Button>
+            <br />
+            <Button variant="dashed" disabled>
+                default
+            </Button>
+            <Button variant="dashed" theme="primary" disabled>
+                disabled
+            </Button>
+            <Button variant="dashed" theme="danger" disabled>
+                danger
+            </Button>
+            <Button variant="dashed" theme="warning" disabled>
+                warning
+            </Button>
+            <Button variant="dashed" theme="success" disabled>
+                success
+            </Button>
+        </>
+    );
+};
+```
+
+## text
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+export default () => {
+    return (
+        <>
+            <Button variant="text">default</Button>
+            <Button variant="text" theme="primary">
+                default
+            </Button>
+            <Button variant="text" theme="danger">
+                danger
+            </Button>
+            <Button variant="text" theme="warning">
+                warning
+            </Button>
+            <Button variant="text" theme="success">
+                success
+            </Button>
+            <br />
+            <Button variant="text" disabled>
+                default
+            </Button>
+            <Button variant="text" theme="primary" disabled>
+                disabled
+            </Button>
+            <Button variant="text" theme="danger" disabled>
+                danger
+            </Button>
+            <Button variant="text" theme="warning" disabled>
+                warning
+            </Button>
+            <Button variant="text" theme="success" disabled>
+                success
+            </Button>
+        </>
+    );
+};
+```
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+export default () => {
+    return (
+        <>
+            <Button variant="outline" theme="primary">
+                primary
+            </Button>
+            <Button variant="outline" theme="danger">
+                danger
+            </Button>
+            <Button variant="outline" theme="warning">
+                warning
+            </Button>
+            <Button variant="outline" theme="success">
+                success
+            </Button>
+        </>
+    );
 };
 ```
 
