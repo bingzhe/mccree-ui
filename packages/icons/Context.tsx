@@ -8,7 +8,7 @@ export const IconContext = React.createContext<IconContextProps>({
     getPrefixCls: (suffixCls: string, customizePrefixCls?: string) => {
         if (customizePrefixCls) return customizePrefixCls;
 
-        return suffixCls ? `mccree-${suffixCls}` : "mccree";
+        return suffixCls ? `mc-${suffixCls}` : "mc";
     }
 });
 

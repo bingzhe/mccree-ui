@@ -24,6 +24,7 @@ export default function () {
                             return (
                                 <li className="icon-cell" key={item.componentName}>
                                     <Tag></Tag>
+                                    {item.componentName}
                                 </li>
                             );
                         })}

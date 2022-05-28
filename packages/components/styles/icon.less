@@ -1,0 +1,36 @@
+.@{mccree-prefix}-icon {
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    width: 1em;
+    height: 1em;
+    vertical-align: -2px;
+    stroke: currentColor;
+}
+
+.@{mccree-prefix}-icon[fill="currentColor"] {
+    fill: currentColor;
+    stroke: none;
+}
+
+.@{mccree-prefix}-icon[stroke="currentColor"] {
+    stroke: currentColor;
+    fill: none;
+}
+
+.@{mccree-prefix}-icon[fill="currentColor"][stroke="currentColor"] {
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.@{mccree-prefix}-icon-loading {
+    animation: ~"@{mccree-prefix}-loading-circle" 1.5s linear infinite;
+}
+@keyframes ~'@{mccree-prefix}-loading-circle' {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

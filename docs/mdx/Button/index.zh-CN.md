@@ -12,9 +12,12 @@ import React from "react";
 import { Button } from "@mccree-ui/components";
 import "@mccree-ui/components/Button/style/index";
 
+import { IconLoading } from "@mccree-ui/icons";
+
 export default () => {
     return (
         <>
+            <IconLoading spin/>
             <Button>default</Button>
             <Button variant="outline">default</Button>
             <Button variant="dashed">default</Button>
@@ -101,7 +104,6 @@ export default () => {
 };
 ```
 
-
 ## dashed
 
 ```tsx
@@ -111,7 +113,9 @@ import { Button } from "@mccree-ui/components";
 export default () => {
     return (
         <>
-            <Button variant="dashed" href="https://www.baidu.com">default</Button>
+            <Button variant="dashed" href="https://www.baidu.com">
+                default
+            </Button>
             <Button variant="dashed" theme="primary">
                 default
             </Button>

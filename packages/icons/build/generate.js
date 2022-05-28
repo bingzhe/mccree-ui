@@ -48,7 +48,7 @@ const config = {
             params: {
                 attributes: [
                     {
-                        fill: "currentColor"
+                        fill: "none"
                     },
                     {
                         stroke: "currentColor"
@@ -109,7 +109,7 @@ fs.outputFile("../index.js", babel.transform(entryCodeCjs, babelConfigCjs).code,
 const contextJsx = `import { createContext } from 'react';
 
 export var IconContext = createContext({
-  prefixCls: 'mccree',
+  prefixCls: 'mc',
 });
 `;
 
