@@ -26,6 +26,22 @@ export default () => {
     );
 };
 ```
+## Loading
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+
+export default () => {
+    return (
+        <>
+            <Button loading>default</Button>
+            <Button loading theme="primary">default</Button>
+
+        </>
+    );
+};
+```
 
 ## theme
 

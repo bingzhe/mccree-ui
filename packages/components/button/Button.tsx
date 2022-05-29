@@ -4,6 +4,7 @@ import ButtonGroup from "./ButtonGroup";
 import { ConfigContext } from "../ConfigProvider";
 import { ButtonProps } from "./Button.type";
 import { useMergeProps } from "@mccree-ui/hooks";
+import { IconLoading } from "@mccree-ui/icons";
 
 // TODO 引入Loading Icon
 // import Icon from "@mccree-ui/icons/icon";
@@ -43,8 +44,8 @@ const InternalButton: React.ForwardRefRenderFunction<any, ButtonProps> = (basePr
         ...restProps
     } = props;
 
-    // TODO 换成组件
-    const IconLoading = "loading";
+    // // TODO 换成组件
+    // const IconLoading = <IconLoading spin/>;
 
     const iconNode = loading ? <IconLoading /> : icon;
 

@@ -21,6 +21,27 @@
     touch-action: manipulation;
     vertical-align: middle;
     text-decoration: none;
+
+    &-loading {
+        cursor: default;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            bottom: -1px;
+            left: -1px;
+            z-index: 1;
+            display: block;
+            background: #fff;
+            border-radius: inherit;
+            opacity: 0.4;
+            // transition: opacity @transition-duration-1 @transition-timing-function-linear;
+            pointer-events: none;
+        }
+    }
 }
 
 .btn-theme(default, default);
