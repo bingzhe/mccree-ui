@@ -12,12 +12,9 @@ import React from "react";
 import { Button } from "@mccree-ui/components";
 import "@mccree-ui/components/Button/style/index";
 
-import { IconLoading } from "@mccree-ui/icons";
-
 export default () => {
     return (
         <>
-            <IconLoading spin/>
             <Button>default</Button>
             <Button variant="outline">default</Button>
             <Button variant="dashed">default</Button>
@@ -26,18 +23,100 @@ export default () => {
     );
 };
 ```
+
 ## Loading
+
 ```tsx
 import React from "react";
 import { Button } from "@mccree-ui/components";
-
 
 export default () => {
     return (
         <>
             <Button loading>default</Button>
-            <Button loading theme="primary">default</Button>
+            <Button loading theme="primary">
+                default
+            </Button>
+        </>
+    );
+};
+```
 
+## shape
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+import { IconCheckSquare } from "@mccree-ui/icons"
+
+export default () => {
+    return (
+        <>
+            <Button shape="circle" theme="primary">
+                circle
+            </Button>
+            <Button shape="round" theme="primary">
+                proundrimary
+            </Button>
+            <Button shape="square" theme="primary">
+                square
+            </Button>
+            <Button icon={<IconCheckSquare />} />
+            <Button icon={<IconCheckSquare />} theme="primary"/>
+
+                        <Button shape="circle" theme="primary" size="large">
+                circle
+            </Button>
+            <Button shape="round" theme="primary" size="large">
+                proundrimary
+            </Button>
+            <Button shape="square" theme="primary" size="large">
+                square
+            </Button>
+            <Button icon={<IconCheckSquare />}  size="large"/>
+            <Button icon={<IconCheckSquare />} theme="primary" size="large"/>
+
+        </>
+    );
+};
+```
+
+## size
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+export default () => {
+    return (
+        <>
+            <Button size="small" theme="primary">
+                default
+            </Button>
+                        <Button  theme="primary">
+                default
+            </Button>
+                        <Button size="large" theme="primary">
+                default
+            </Button>
+        </>
+    );
+};
+```
+
+## block
+
+```tsx
+import React from "react";
+import { Button } from "@mccree-ui/components";
+
+export default () => {
+    return (
+        <>
+            <Button block>default</Button>
+            <Button block theme="primary">
+                default
+            </Button>
         </>
     );
 };
@@ -214,7 +293,7 @@ import { Button } from "@mccree-ui/components";
 
 export default () => {
     return (
-        <>
+        <div style={{background: "#000", padding: "30px"}}>
             <Button variant="outline" theme="primary">
                 primary
             </Button>
@@ -227,7 +306,19 @@ export default () => {
             <Button variant="outline" theme="success">
                 success
             </Button>
-        </>
+                        <Button  theme="primary">
+                primary
+            </Button>
+            <Button  theme="danger">
+                danger
+            </Button>
+            <Button  theme="warning">
+                warning
+            </Button>
+            <Button  theme="success">
+                success
+            </Button>
+        </div>
     );
 };
 ```

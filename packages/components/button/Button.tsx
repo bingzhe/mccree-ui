@@ -6,9 +6,6 @@ import { ButtonProps } from "./Button.type";
 import { useMergeProps } from "@mccree-ui/hooks";
 import { IconLoading } from "@mccree-ui/icons";
 
-// TODO 引入Loading Icon
-// import Icon from "@mccree-ui/icons/icon";
-
 // interface ButtonFC extends React.FC<ButtonProps> {
 //     Group: typeof ButtonGroup;
 //     IconButton: typeof IconButton;
@@ -19,8 +16,6 @@ const defaultProps: ButtonProps = {
     theme: "default",
     shape: "square"
 };
-// htmlType: "button"
-// type: "default"
 
 const InternalButton: React.ForwardRefRenderFunction<any, ButtonProps> = (baseProps, ref) => {
     const { getPrefixCls, size: ctxSize, componentConfig } = useContext(ConfigContext);
@@ -38,14 +33,12 @@ const InternalButton: React.ForwardRefRenderFunction<any, ButtonProps> = (basePr
         block,
         ghost,
         icon,
+        iconOnly,
         href,
         anchorProps,
         onClick,
         ...restProps
     } = props;
-
-    // // TODO 换成组件
-    // const IconLoading = <IconLoading spin/>;
 
     const iconNode = loading ? <IconLoading /> : icon;
 
@@ -72,12 +65,10 @@ const InternalButton: React.ForwardRefRenderFunction<any, ButtonProps> = (basePr
             [`${prefixCls}-ghost`]: ghost,
             [`${prefixCls}-disabled`]: disabled,
             [`${prefixCls}-icon`]: iconNode,
+            [`${prefixCls}-icon-only`]: iconOnly || (!children && children !== 0 && iconNode),
             [`${prefixCls}-block`]: block
         }
     );
-
-    console.log("============");
-    console.log(classes);
 
     const InnerContent = (
         <>

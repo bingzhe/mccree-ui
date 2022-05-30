@@ -49,6 +49,7 @@ export interface BaseButtonProps {
      * @zh 按钮图标
      */
     icon?: ReactNode;
+    iconOnly?: boolean;
     /**
      * @zh 点击按钮的回调
      */
