@@ -27,7 +27,8 @@
         "docs:dev": "pnpm -C docs start",
         "icon:generate": "pnpm -C packages/icons icon",
         "release": "cd scripts && gulp release",
-        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+        "testbuild": "gulp -f scripts/gulpfile.ts"
     },
     "repository": {
         "type": "git",
