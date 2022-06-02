@@ -1,7 +1,7 @@
 import { rollup } from "rollup";
 import type { OutputOptions } from "rollup";
 import glob from "fast-glob";
-import { mcRoot, pkgRoot } from "./utils/paths";
+import { mcRoot, pkgRoot, compRoot, hookRoot, utilRoot, iconRoot } from "./utils/paths";
 import { excludeFiles } from "./utils/pkg";
 import { writeBundles } from "./utils/rollup";
 import { buildConfigEntries, target } from "./build-info";
@@ -9,8 +9,9 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import esbuild from "rollup-plugin-esbuild";
 import babel from "@rollup/plugin-babel";
+import alias from "@rollup/plugin-alias";
 import { DEFAULT_EXTENSIONS } from "@babel/core";
-import { ElementPlusAlias } from './element-plus-alias'
+// import { ElementPlusAlias } from "./element-plus-alias";
 
 export const buildModules = async () => {
     const inputList = [
@@ -32,10 +33,19 @@ export const buildModules = async () => {
         })
     );
 
+    // ElementPlusAlias(),
     const bundle = await rollup({
         input,
         plugins: [
-            ElementPlusAlias(),
+            alias({
+                entries: [
+                    { find: "@mccree-ui/components", replacement: compRoot },
+                    { find: "@mccree-ui/hooks", replacement: hookRoot },
+                    { find: "@mccree-ui/utils", replacement: utilRoot },
+                    { find: "@mccree-ui/icons", replacement: iconRoot },
+
+                ]
+            }),
             nodeResolve(),
             commonjs(),
             esbuild({ sourceMap: true, target }),

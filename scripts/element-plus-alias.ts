@@ -7,6 +7,8 @@ export function ElementPlusAlias(): Plugin {
     return {
         name: "element-plus-alias-plugin",
         resolveId(id, importer, options) {
+            console.log("++++++++++++++++++++")
+            console.log(id,importer,options)
             if (!id.startsWith(MC_PKG)) {
                 return;
             }
