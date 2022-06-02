@@ -5,15 +5,14 @@ import { projRoot } from "./paths";
 export const run = async (command: string, cwd: string = projRoot) =>
     new Promise<void>((resolve, reject) => {
         const args = command.split(" ");
-        console.log(args);
         const cmd = args.shift()!;
-        console.log(args.shift())
-        console.log(cmd);
 
-        chalk.green(`run: ${cmd} ${args.join(" ")}`);
+        console.log(chalk.green(`run: ${cmd} ${args.join(" ")}`));
+
         const app = spawn(cmd, args, {
             cwd,
-            stdio: "inherit"
+            stdio: "inherit",
+            shell: process.platform === "win32"
         });
 
         const onProcessExit = () => app.kill("SIGHUP");
