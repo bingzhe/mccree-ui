@@ -1,5 +1,5 @@
 import React, { useContext, forwardRef, useRef } from "react";
-import cs from "@mccree-ui/util/classnames";
+import { cs } from "@mccree-ui/util";
 import ButtonGroup from "./ButtonGroup";
 import { ConfigContext } from "../ConfigProvider";
 import { ButtonProps } from "./Button.type";

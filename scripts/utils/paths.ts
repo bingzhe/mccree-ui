@@ -5,7 +5,7 @@ export const pkgRoot = resolve(projRoot, "packages");
 export const mcRoot = resolve(pkgRoot, "mccree-ui");
 export const compRoot = resolve(pkgRoot, "components");
 export const hookRoot = resolve(pkgRoot, "hooks");
-export const utilRoot = resolve(pkgRoot, "utils");
+export const utilRoot = resolve(pkgRoot, "util");
 export const iconRoot = resolve(pkgRoot, "icons");
 // dist
 export const buildOutput = resolve(projRoot, "dist");

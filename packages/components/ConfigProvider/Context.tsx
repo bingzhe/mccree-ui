@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { ConfigProviderProps } from "./Context.type";
 import { useMergeProps } from "@mccree-ui/hooks";
-import { omit } from "@mccree-ui/util/omit";
+import { omit } from "@mccree-ui/util";
 
 const defaultProps: ConfigProviderProps = {
     prefixCls: "mc",

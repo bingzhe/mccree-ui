@@ -9,6 +9,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import esbuild from "rollup-plugin-esbuild";
 import babel from "@rollup/plugin-babel";
+import styles from "rollup-plugin-styles";
 import alias from "@rollup/plugin-alias";
 import { DEFAULT_EXTENSIONS } from "@babel/core";
 // import { ElementPlusAlias } from "./element-plus-alias";
@@ -41,19 +42,20 @@ export const buildModules = async () => {
                 entries: [
                     { find: "@mccree-ui/components", replacement: compRoot },
                     { find: "@mccree-ui/hooks", replacement: hookRoot },
-                    { find: "@mccree-ui/utils", replacement: utilRoot },
-                    { find: "@mccree-ui/icons", replacement: iconRoot },
-
+                    { find: "@mccree-ui/util", replacement: utilRoot },
+                    { find: "@mccree-ui/icons", replacement: iconRoot }
                 ]
             }),
             nodeResolve(),
+            styles({ mode: "extract" }),
             commonjs(),
             esbuild({ sourceMap: true, target }),
             babel({
                 babelHelpers: "runtime",
                 extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"]
             })
-        ]
+        ],
+        external: ["react", "react-dom"]
     });
 
     await writeBundles(

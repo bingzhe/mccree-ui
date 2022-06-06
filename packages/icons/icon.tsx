@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { IconContext } from "./Context";
 import { useInsertStyles } from "./iconStyle";
 
-import cs from "@mccree-ui/util/classnames";
+import { cs } from "@mccree-ui/util";
 
 interface IconProps extends React.SVGAttributes<SVGElement> {
     name: string;

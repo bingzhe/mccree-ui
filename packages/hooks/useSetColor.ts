@@ -1,6 +1,6 @@
 /* eslint-disable max-params */
 import * as React from "react";
-import { warning } from "@mccree-ui/components/utils/warning";
+import { warning } from "@mccree-ui/util";
 
 const isColor = (color: string) => {
     const mccreeColor = ["primary", "secondary", "success", "warning", "error", "info"];

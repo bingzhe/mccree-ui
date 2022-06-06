@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, forwardRef } from "react";
-import cs from "@mccree-ui/util/classnames";
+import { cs } from "@mccree-ui/util";
 import { useMergeProps } from "@mccree-ui/hooks";
-import { isNumber } from "@mccree-ui/util/is";
+import { isNumber } from "@mccree-ui/util";
 import { ConfigContext } from "../ConfigProvider";
 import { SpaceProps, SpaceSize } from "./Space.type";
 
