@@ -1,4 +1,4 @@
-import { MC_PKG } from "./utils/constants";
+import { MC_PREFIX } from "./utils/constants";
 import type { Plugin } from "rollup";
 
 export function ElementPlusAlias(): Plugin {
@@ -7,9 +7,7 @@ export function ElementPlusAlias(): Plugin {
     return {
         name: "element-plus-alias-plugin",
         resolveId(id, importer, options) {
-            console.log("++++++++++++++++++++")
-            console.log(id,importer,options)
-            if (!id.startsWith(MC_PKG)) {
+            if (!id.startsWith(MC_PREFIX)) {
                 return;
             }
 
@@ -19,7 +17,8 @@ export function ElementPlusAlias(): Plugin {
             //       external: 'absolute',
             //     }
             //   }
-
+            console.log("+++++++++++")
+            console.log(id)
             return this.resolve(id, importer, { skipSelf: true, ...options });
         }
     };

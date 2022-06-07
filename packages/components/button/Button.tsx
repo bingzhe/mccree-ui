@@ -1,8 +1,8 @@
 import React, { useContext, forwardRef, useRef } from "react";
 import { cs } from "@mccree-ui/util";
-import ButtonGroup from "./ButtonGroup";
+// import ButtonGroup from "./ButtonGroup";
 import { ConfigContext } from "../ConfigProvider";
-import { ButtonProps } from "./Button.type";
+import type { ButtonProps } from "./Button.type";
 import { useMergeProps } from "@mccree-ui/hooks";
 import { IconLoading } from "@mccree-ui/icons";
 
@@ -114,11 +114,11 @@ const InternalButton: React.ForwardRefRenderFunction<any, ButtonProps> = (basePr
 
 const ForwardRefButton = forwardRef(InternalButton);
 const Button = ForwardRefButton as typeof ForwardRefButton & {
-    Group: typeof ButtonGroup;
+    // Group: typeof ButtonGroup;
     __MR_BUTTON: boolean;
 };
 
-Button.Group = ButtonGroup;
+// Button.Group = ButtonGroup;
 Button.__MR_BUTTON = true;
 Button.displayName = "Button";
 
