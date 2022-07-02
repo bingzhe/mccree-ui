@@ -12,12 +12,13 @@
         "rootDir": "../",
         "forceConsistentCasingInFileNames": false,
         "noImplicitReturns": false,
-        "noImplicitThis": true,
-        "noImplicitAny": true,
+        // "noImplicitThis": true,
+        // "noImplicitAny": true,
         "strictNullChecks": false,
         "esModuleInterop": true,
         "downlevelIteration": true,
         "noUnusedLocals": true,
+        "skipLibCheck": true,
         "types": ["react", "jest", "node"],
         "paths": {
             "mccree-ui/components": ["packages/components"]

@@ -1,5 +1,6 @@
 import React, { useContext, forwardRef, useRef } from "react";
 import { cs } from "@mccree-ui/util";
+
 // import ButtonGroup from "./ButtonGroup";
 import { ConfigContext } from "../ConfigProvider";
 import type { ButtonProps } from "./Button.type";
@@ -17,7 +18,7 @@ const defaultProps: ButtonProps = {
     shape: "square"
 };
 
-const InternalButton: React.ForwardRefRenderFunction<any, ButtonProps> = (baseProps, ref) => {
+const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (baseProps, ref) => {
     const { getPrefixCls, size: ctxSize, componentConfig } = useContext(ConfigContext);
     const props = useMergeProps(baseProps, defaultProps, componentConfig?.Button);
 
