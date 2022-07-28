@@ -24,7 +24,7 @@
             "mccree-ui/components": ["packages/components"]
         }
     },
-    "include": ["components/**/*", "packages/**/*", "docs/**/*"],
+    "include": ["packages/**/*", "docs/**/*"],
     "exclude": [
         "node_modules",
         "build",

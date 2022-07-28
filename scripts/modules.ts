@@ -14,25 +14,26 @@ import { DEFAULT_EXTENSIONS } from "@babel/core";
 import { ElementPlusAlias } from "./element-plus-alias";
 
 export const buildModules = async () => {
-    const inputList = [
-        "components/**/*.{js,ts,tsx}",
-        "hooks/**/*.{js,ts,tsx}",
-        "util/**/*.{js,ts,tsx}",
-        "mccree-ui/**/*.{js,ts,ts}"
-    ];
+    // const inputList = [
+    //     "components/**/*.{js,ts,tsx}",
+    //     "hooks/**/*.{js,ts,tsx}",
+    //     "util/**/*.{js,ts,tsx}",
+    //     "mccree-ui/**/*.{js,ts,ts}"
+    // ];
 
+    
     const input = excludeFiles(
-        // await glob("**/*.{js,ts,tsx}", {
-        //     cwd: pkgRoot,
-        //     absolute: true,
-        //     onlyFiles: true
-        // })
-
-        await glob(inputList, {
+        await glob("**/*.{js,ts,tsx}", {
             cwd: pkgRoot,
             absolute: true,
             onlyFiles: true
         })
+
+        // await glob(inputList, {
+        //     cwd: pkgRoot,
+        //     absolute: true,
+        //     onlyFiles: true
+        // })
     );
 
     const bundle = await rollup({
