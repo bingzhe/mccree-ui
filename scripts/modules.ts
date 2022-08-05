@@ -10,8 +10,9 @@ import commonjs from "@rollup/plugin-commonjs";
 import esbuild from "rollup-plugin-esbuild";
 import babel from "@rollup/plugin-babel";
 import styles from "rollup-plugin-styles";
-import { DEFAULT_EXTENSIONS } from "@babel/core";
-import { ElementPlusAlias } from "./element-plus-alias";
+// import { DEFAULT_EXTENSIONS } from "@babel/core";
+// import { ElementPlusAlias } from "./element-plus-alias";
+import typescript from 'rollup-plugin-typescript2';
 
 export const buildModules = async () => {
     // const inputList = [
@@ -39,17 +40,20 @@ export const buildModules = async () => {
     const bundle = await rollup({
         input,
         plugins: [
-            ElementPlusAlias(),
+            typescript(),
+            // ElementPlusAlias(),
             styles(), //{ mode: "extract" }
             nodeResolve({
                 extensions: [".mjs", ".js", ".json", ".ts"]
             }),
             commonjs(),
             esbuild({ sourceMap: true, target }),
-            babel({
-                babelHelpers: "runtime",
-                extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"]
-            })
+            babel()
+            // {
+            //     exclude: 'node_modules/**',
+            //     babelHelpers: "runtime",
+            //     extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"]
+            // }
         ],
         external: ["react", "react-dom"],
         treeshake: false
